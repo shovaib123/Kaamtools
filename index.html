@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#4f46e5">
+<meta name="description" content="Kaam Kaaj Tools offers free online calculators, converters, PDF and Word tools, image tools, video compression, QR generation and everyday utility tools.">
+<meta name="keywords" content="free online tools, SIP calculator, EMI calculator, GST calculator, percentage calculator, age calculator, BMI calculator, QR code generator, unit converter, image compressor, PDF to Word, text to Word, video compressor, live currency converter, JSON formatter">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="author" content="Kaam Kaaj Tools">
+<meta name="application-name" content="Kaam Kaaj Tools">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Kaam Kaaj Tools">
+<meta property="og:title" content="Kaam Kaaj Tools — Free Online Utility Tools">
+<meta property="og:description" content="Free calculators, converters, PDF/Word tools, image tools, video compressor, QR generator and more.">
+<meta name="twitter:card" content="summary">
+<title>Kaam Kaaj Tools — Free Online Calculators, Converters & Utility Tools</title>
+<link rel="canonical" href="/">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script>if(window.pdfjsLib){pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";}</script>
+<style>
+*{box-sizing:border-box} body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+.tool{display:none}.tool.active{display:block}.navactive{background:#eef2ff;color:#4338ca}
+textarea,input,select{outline:none} .glass{backdrop-filter:blur(12px)}
+.card{transition:.2s}.card:hover{transform:translateY(-2px)}
+.dark body{background:#0f172a;color:#e2e8f0}.dark .bg-white{background:#1e293b!important}
+.dark .bg-slate-50{background:#0f172a!important}.dark .text-slate-800{color:#e2e8f0!important}
+.dark .text-slate-500{color:#94a3b8!important}.dark input,.dark textarea,.dark select{background:#0f172a;color:#e2e8f0;border-color:#334155}
+
+/* Premium Kaam Kaaj redesign */
+:root{--brand:#4f46e5;--brand2:#312e81;--ink:#172033;--muted:#64748b}
+body{background:#f7f8fc;color:var(--ink)}
+body.tool-mode{background:#f7f8fc}
+.app-header{background:linear-gradient(135deg,#312e81 0%,#4f46e5 55%,#5b4eea 100%)!important}
+.header-inner{max-width:1280px;margin:auto;padding:13px 20px;display:flex;align-items:center;gap:14px}
+.header-logo{width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.12);display:grid;place-items:center;font-size:27px}
+.header-title{font-weight:850;font-size:22px;line-height:1.05}.header-sub{font-size:12px;opacity:.78;margin-top:4px}
+.header-action{width:42px;height:42px;border:0;border-radius:13px;background:rgba(255,255,255,.12);color:white;font-size:20px;display:grid;place-items:center}
+.header-action:hover{background:rgba(255,255,255,.2)}
+#home{max-width:1280px;margin:0 auto;padding:20px}
+.hero{position:relative;overflow:hidden;border-radius:28px;padding:34px 34px 30px;color:#fff;background:
+ radial-gradient(circle at 85% 20%,rgba(167,139,250,.45),transparent 30%),
+ radial-gradient(circle at 15% 100%,rgba(59,130,246,.35),transparent 32%),
+ linear-gradient(135deg,#11185b,#35228d 55%,#4f46e5);box-shadow:0 18px 45px rgba(49,46,129,.22)}
+.hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.12);border-radius:50%;right:-65px;bottom:-110px;box-shadow:0 0 0 35px rgba(255,255,255,.035),0 0 0 70px rgba(255,255,255,.025)}
+.hero-kicker{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
+.hero h2{font-size:clamp(30px,5vw,48px);font-weight:900;line-height:1.04;margin:7px 0 10px;max-width:720px}
+.hero h2 span{color:#facc15}
+.hero p{font-size:14px;opacity:.9;max-width:650px}
+.hero-search{position:relative;z-index:2;display:flex;gap:8px;max-width:560px;margin-top:22px;background:#fff;padding:6px;border-radius:17px;box-shadow:0 12px 30px rgba(0,0,0,.18)}
+.hero-search input{border:0!important;box-shadow:none!important;flex:1;padding:10px 12px;font-size:14px;color:#1e293b;background:#fff!important}
+.hero-search button{border:0;border-radius:12px;background:#4f46e5;color:#fff;padding:0 20px;font-weight:850}
+.hero-emoji{position:absolute;right:8%;top:50%;transform:translateY(-45%);font-size:105px;opacity:.95;filter:drop-shadow(0 18px 18px rgba(0,0,0,.18))}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:18px 0 28px}
+.stat{background:#fff;border:1px solid #e7eaf2;border-radius:19px;padding:15px;display:flex;align-items:center;gap:12px;box-shadow:0 5px 18px rgba(15,23,42,.045)}
+.stat-icon{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:21px;background:#eef2ff}
+.stat b{font-size:18px}.stat span{display:block;font-size:11px;color:#64748b;margin-top:2px}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin:22px 0 12px}
+.section-head h3{font-size:21px;font-weight:900}.section-head a{font-size:13px;color:#4338ca;font-weight:800}
+.popular-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.pop-card{background:#fff;border:1px solid #e8eaf2;border-radius:19px;padding:17px 12px;text-align:center;box-shadow:0 5px 18px rgba(15,23,42,.045);transition:.2s}
+.pop-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(79,70,229,.12)}
+.pop-icon{width:50px;height:50px;margin:auto;border-radius:15px;display:grid;place-items:center;font-size:25px;background:#eef2ff}
+.pop-card b{display:block;font-size:13px;margin-top:10px}.pop-card span{font-size:10px;color:#64748b}
+.category-row{display:flex;gap:8px;overflow:auto;padding-bottom:5px}
+.cat-btn{white-space:nowrap;border:1px solid #e5e7eb;background:#fff;border-radius:999px;padding:8px 17px;font-size:12px;font-weight:750}
+.cat-btn.active{background:#4338ca;color:#fff;border-color:#4338ca}
+#appLayout{max-width:1280px;margin:auto;display:flex;gap:18px;padding:18px 20px}
+body:not(.tool-mode) #appLayout{display:none}
+body.tool-mode #home{display:none}
+body.tool-mode #appLayout{display:flex}
+.tool-sidebar{width:255px;flex:0 0 255px;background:#fff;border:1px solid #e5e7eb;border-radius:22px;padding:12px;height:calc(100vh - 105px);position:sticky;top:88px;overflow:auto}
+.tool-main{flex:1;min-width:0}
+.tool-topbar{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.back-btn{border:0;background:#fff;border:1px solid #e5e7eb;border-radius:12px;padding:9px 13px;font-weight:850;color:#334155}
+.tool.active{background:#fff;border:1px solid #e5e7eb;border-radius:24px;padding:24px;box-shadow:0 10px 30px rgba(15,23,42,.05)}
+.tool .input,.tool input.input,.tool select.input{width:100%;border:1px solid #dbe1ea!important;border-radius:13px;padding:11px 13px;background:#fff}
+.tool .label{display:block;font-size:12px;font-weight:800;color:#475569;margin-bottom:6px}
+.tool .area{width:100%;border:1px solid #dbe1ea;border-radius:14px;padding:13px;background:#fff}
+.btn,.smallbtn{font-weight:900!important;letter-spacing:.01em}
+.btn{border:0;border-radius:13px;background:linear-gradient(135deg,#4338ca,#5b4eea);color:#fff;padding:12px 18px;box-shadow:0 7px 16px rgba(79,70,229,.18)}
+.btn.secondary{background:#eef2ff;color:#4338ca;box-shadow:none}
+.smallbtn{border:0;border-radius:11px;background:#eef2ff;color:#3730a3;padding:9px 12px}
+.result{background:#f8fafc;border:1px solid #e8edf4;border-radius:14px;padding:14px;font-size:13px;line-height:1.8}
+.navitem{font-weight:650;color:#334155}.navitem.navactive{background:#eef2ff;color:#4338ca;font-weight:850}
+.dark body{background:#0f172a}.dark .hero{box-shadow:none}.dark .stat,.dark .pop-card,.dark .tool-sidebar,.dark .tool.active,.dark .hero-search{border-color:#334155;background:#1e293b}.dark .hero-search input{background:#1e293b!important;color:#fff}.dark .tool .input,.dark .tool input.input,.dark .tool select.input,.dark .tool .area{background:#0f172a;color:#e2e8f0;border-color:#334155!important}.dark .result{background:#0f172a;border-color:#334155}.dark .back-btn{background:#1e293b;color:#e2e8f0;border-color:#334155}.dark .pop-card span,.dark .stat span{color:#94a3b8}
+@media(max-width:900px){.popular-grid{grid-template-columns:repeat(3,1fr)}.hero-emoji{right:3%;font-size:75px;opacity:.18}.stat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){
+ .header-inner{padding:11px 14px}.header-title{font-size:19px}.header-logo{width:40px;height:40px}.hero{padding:25px 20px;border-radius:23px}.hero h2{font-size:31px}.hero-emoji{display:none}
+ #home{padding:12px}.stat-grid{gap:8px;margin:12px 0 22px}.stat{padding:11px;gap:9px}.stat-icon{width:38px;height:38px}.stat b{font-size:15px}.stat span{font-size:10px}
+ .popular-grid{grid-template-columns:repeat(2,1fr)}.pop-card{padding:14px 8px}.section-head h3{font-size:18px}
+ #appLayout{padding:10px;display:block!important}.tool-sidebar{display:none}.tool-main{width:100%}.tool.active{padding:18px 14px;border-radius:20px}
+ .tool-topbar{margin-bottom:8px}.back-btn{padding:8px 11px}
+ .hero-search button{padding:0 14px}.hero-search input{min-width:0}
+}
+
+/* Final homepage visibility safeguards */
+#home.tool.active{display:block!important}
+/* Home lives inside the app shell; keep the shell visible on Home but hide its tool-only chrome. */
+body:not(.tool-mode) #appLayout{display:block!important;max-width:1280px;margin:0 auto;padding:0!important}
+body:not(.tool-mode) #appLayout .tool-sidebar,
+body:not(.tool-mode) #appLayout .tool-topbar{display:none!important}
+body:not(.tool-mode) #appLayout .tool-main{width:100%;max-width:none}
+body.tool-mode #home{display:none!important}
+body.tool-mode #appLayout{display:flex!important}
+.pop-card{cursor:pointer}
+
+.result-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;padding-top:10px;border-top:1px solid #e5e7eb}
+.result-actions button{font-weight:900!important;font-size:12px;border:0;border-radius:10px;padding:9px 11px;cursor:pointer}
+.result-actions .wa{background:#dcfce7;color:#166534}.result-actions .print{background:#eef2ff;color:#3730a3}.result-actions .save{background:#fef3c7;color:#92400e}.result-actions .pdf{background:#fee2e2;color:#991b1b}.result-actions .copy{background:#f1f5f9;color:#334155}
+.saved-section{margin-top:28px;padding:18px;background:#fff;border:1px solid #e7eaf2;border-radius:22px;box-shadow:0 5px 18px rgba(15,23,42,.045)}
+.saved-note{font-size:11px;color:#94a3b8;margin-top:2px}.saved-list{display:grid;gap:9px}.saved-empty{font-size:13px;color:#94a3b8;padding:10px 0}.saved-item{display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #e8edf4;border-radius:14px;padding:11px 12px;background:#f8fafc}.saved-item b{font-size:12px}.saved-item p{font-size:11px;color:#64748b;margin-top:2px;white-space:pre-wrap;max-height:48px;overflow:hidden}.saved-item .saved-actions{display:flex;gap:6px;flex-shrink:0}.saved-item button{border:0;border-radius:9px;padding:7px 9px;font-size:11px;font-weight:900;background:#eef2ff;color:#3730a3}.saved-item button.delete{background:#fee2e2;color:#991b1b}
+.dark .saved-section{background:#1e293b;border-color:#334155}.dark .saved-item{background:#0f172a;border-color:#334155}.dark .saved-item p{color:#94a3b8}.dark .result-actions{border-color:#334155}
+@media(max-width:640px){.saved-item{align-items:flex-start;flex-direction:column}.saved-item .saved-actions{width:100%}.saved-item .saved-actions button{flex:1}}
+.site-footer{background:#f8fafc}.footer-links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap}.footer-links button{border:0;background:none;color:#4f46e5;font-weight:800;cursor:pointer}.footer-links button:hover{text-decoration:underline}.legal-modal{position:fixed;inset:0;z-index:100;background:rgba(15,23,42,.65);padding:18px;display:flex;align-items:center;justify-content:center}.legal-modal.hidden{display:none}.legal-card{position:relative;width:min(760px,100%);max-height:88vh;overflow:auto;background:#fff;border-radius:22px;padding:28px;box-shadow:0 25px 80px rgba(0,0,0,.25);color:#172033}.legal-card h2{font-size:24px;font-weight:900;margin-bottom:14px;color:#312e81}.legal-card h3{font-size:15px;font-weight:900;margin:18px 0 6px}.legal-card p,.legal-card li{font-size:13px;line-height:1.7;color:#475569}.legal-card ul{padding-left:20px;list-style:disc}.legal-close{position:absolute;right:14px;top:10px;border:0;background:#eef2ff;color:#3730a3;width:34px;height:34px;border-radius:10px;font-size:23px;font-weight:900}.pdf-thumb{background:#f8fafc;border:1px solid #e5e7eb;border-radius:15px;padding:10px}.pdf-thumb img{width:100%;height:240px;object-fit:contain;background:white;border-radius:9px}.dark .site-footer{background:#0f172a;border-color:#334155}.dark .legal-card{background:#1e293b;color:#e2e8f0}.dark .legal-card p,.dark .legal-card li{color:#cbd5e1}.dark .pdf-thumb{background:#0f172a;border-color:#334155}
+
+.content-section{margin:28px 0;padding:24px;background:#fff;border:1px solid #e5e7eb;border-radius:24px}
+.content-intro{color:#64748b;line-height:1.7;margin-top:6px}
+.guide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:18px}
+.guide-card{border:1px solid #e5e7eb;border-radius:18px;padding:18px;background:linear-gradient(180deg,#fff,#f8fafc);text-align:left;cursor:pointer;transition:.2s}
+.guide-card:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(15,23,42,.08);border-color:#c7d2fe}
+.guide-card .guide-cat{font-size:11px;font-weight:800;color:#6366f1;text-transform:uppercase;letter-spacing:.06em}
+.guide-card h4{font-size:17px;font-weight:900;color:#172033;margin:8px 0}
+.guide-card p{font-size:13px;line-height:1.6;color:#64748b}
+.guide-read{display:inline-block;margin-top:12px;color:#4f46e5;font-size:12px;font-weight:900}
+.guide-modal{position:fixed;inset:0;z-index:120;background:rgba(15,23,42,.72);padding:16px;display:flex;align-items:center;justify-content:center}
+.guide-modal.hidden{display:none}
+.guide-card-full{position:relative;width:min(860px,100%);max-height:90vh;overflow:auto;background:#fff;border-radius:24px;padding:28px;color:#172033}
+.guide-card-full h2{font-size:27px;line-height:1.2;font-weight:900;color:#312e81;margin:0 40px 8px 0}
+.guide-card-full .article-meta{font-size:12px;color:#64748b;margin-bottom:18px}
+.guide-card-full h3{font-size:16px;font-weight:900;margin:22px 0 8px}
+.guide-card-full p{font-size:14px;line-height:1.8;color:#475569;margin:0 0 12px}
+.guide-close{position:absolute;right:14px;top:12px;border:0;background:#eef2ff;color:#3730a3;width:36px;height:36px;border-radius:11px;font-size:24px;font-weight:900}
+.tool-guide{margin-top:24px;padding:22px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:20px}
+.tool-guide h3{font-size:18px;font-weight:900;color:#312e81;margin-bottom:12px}
+.tool-guide h4{font-size:14px;font-weight:900;color:#172033;margin:15px 0 6px}
+.tool-guide p,.tool-guide li{font-size:13px;line-height:1.7;color:#475569}
+.tool-guide ul{padding-left:18px;list-style:disc}
+.faq-item{border-top:1px solid #e2e8f0;padding:10px 0}
+.faq-item summary{cursor:pointer;font-weight:800;color:#334155;font-size:13px}
+@media(max-width:800px){.guide-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.guide-grid{grid-template-columns:1fr}.content-section{padding:17px}.guide-card-full{padding:20px}}
+.dark .content-section,.dark .guide-card{background:#0f172a;border-color:#334155}
+.dark .guide-card h4,.dark .tool-guide h4{color:#e2e8f0}
+.dark .guide-card p,.dark .content-intro,.dark .guide-card-full p,.dark .tool-guide p,.dark .tool-guide li{color:#cbd5e1}
+.dark .guide-card-full{background:#1e293b;color:#e2e8f0}
+.dark .guide-card-full h2{color:#c4b5fd}
+
+.seo-link-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin-top:14px}.seo-link-grid a{display:block;padding:13px 15px;border:1px solid #e2e8f0;border-radius:14px;background:#fff;color:#3730a3;font-weight:700;text-decoration:none;line-height:1.35}.seo-link-grid a:hover{background:#eef2ff}.dark .seo-link-grid a{background:#1e293b;border-color:#334155;color:#c4b5fd}.video-processing{display:none}
+</style>
+
+<script type="application/ld+json" id="kk-structured-data">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Kaam Kaaj Tools",
+  "applicationCategory":"UtilitiesApplication",
+  "operatingSystem":"Web Browser",
+  "description":"Free online calculators, converters, document, image, video and productivity tools."
+}
+</script>
+<script type="application/ld+json" id="kk-tool-list-schema"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen">
+<header class="app-header sticky top-0 z-50 text-white shadow-lg">
+  <div class="header-inner">
+    <button id="headerBack" class="header-action hidden" onclick="goHome()" aria-label="Back">←</button>
+    <div class="header-logo">⚡</div>
+    <div class="flex-1">
+      <div class="header-title">Kaam Kaaj Tools</div>
+      <div class="header-sub">All-in-One Utility Hub</div>
+    </div>
+    <button class="header-action" onclick="focusHomeSearch()" aria-label="Search">⌕</button>
+    <button class="header-action" onclick="toggleDark()" aria-label="Dark mode">☾</button>
+  </div>
+</header>
+
+<div id="appLayout">
+<aside class="tool-sidebar">
+  <div class="font-black text-slate-900 px-2 pb-3">All Tools</div>
+  <input id="toolSearch" oninput="filterTools()" placeholder="🔎 Search tools..." class="w-full px-3 py-2 border rounded-xl text-sm mb-3">
+  <nav id="toolNav" class="space-y-1"></nav>
+</aside>
+<main class="tool-main">
+  <div class="tool-topbar">
+    <button class="back-btn" onclick="goHome()">← Back to Home</button>
+    <div class="text-sm font-bold text-slate-500">Utility Tool</div>
+  </div>
+<div id="home" class="tool active">
+  <section class="hero">
+    <div class="hero-kicker">SMART • SIMPLE • USEFUL</div>
+    <h2>Your All-in-One <span>Utility Companion</span> ⚡</h2>
+    <p>Everyday calculators, converters and productivity tools — fast, free and easy to use.</p>
+    <div class="hero-search">
+      <input id="homeSearch" oninput="homeSearchTools()" placeholder="Search any tool..." autocomplete="off">
+      <button onclick="homeSearchTools()">Search</button>
+    </div>
+    <div class="hero-emoji">🧰</div>
+  </section>
+
+  <div class="stat-grid">
+    <div class="stat"><div class="stat-icon">▦</div><div><b>36+</b><span>Powerful Tools</span></div></div>
+    <div class="stat"><div class="stat-icon">⚡</div><div><b>100%</b><span>Free Forever</span></div></div>
+    <div class="stat"><div class="stat-icon">🛡️</div><div><b>Secure</b><span>Private & Safe</span></div></div>
+    <div class="stat"><div class="stat-icon">◷</div><div><b>Instant</b><span>Quick Results</span></div></div>
+  </div>
+
+  <div class="section-head"><h3>Categories</h3></div>
+  <div id="categoryRow" class="category-row"></div>
+
+  <div class="section-head">
+    <h3>Popular Tools</h3>
+    <a href="#allToolsSection" onclick="event.preventDefault();showAllCards()">View All Tools →</a>
+  </div>
+  <div id="cards" class="popular-grid"></div>
+
+  
+
+  <div id="allToolsSection" class="section-head"><h3>All Tools</h3></div>
+  <div id="allCards" class="popular-grid"></div>
+
+  <section class="content-section" id="seoToolsSection">
+    <div class="section-head"><div><h3>Free Online Tools & Calculators</h3><p class="content-intro">Explore dedicated pages for popular calculators, converters, PDF and Word tools, image tools, video compression and everyday utilities. Each tool page includes practical guidance, benefits and FAQs.</p></div></div>
+    <div class="seo-link-grid">
+      <a href="/sip-calculator" onclick="event.preventDefault();openTool('sip')">SIP Calculator — Mutual Fund SIP Return Calculator</a>
+      <a href="/emi-calculator" onclick="event.preventDefault();openTool('emi')">EMI Calculator — Loan, Home & Car EMI</a>
+      <a href="/gst-calculator" onclick="event.preventDefault();openTool('gst')">GST Calculator India — Add or Remove GST</a>
+      <a href="/discount-calculator" onclick="event.preventDefault();openTool('discount')">Discount Calculator — Sale Price & Percentage Off</a>
+      <a href="/percentage-calculator" onclick="event.preventDefault();openTool('percentage')">Percentage Calculator — Increase, Decrease & Percentage</a>
+      <a href="/age-calculator" onclick="event.preventDefault();openTool('age')">Age Calculator — Exact Age From Date of Birth</a>
+      <a href="/date-difference-calculator" onclick="event.preventDefault();openTool('dateDiff')">Date Difference Calculator — Days Between Dates</a>
+      <a href="/bmi-calculator" onclick="event.preventDefault();openTool('bmi')">BMI Calculator — Body Mass Index</a>
+      <a href="/qr-code-generator" onclick="event.preventDefault();openTool('qr')">QR Code Generator — Create QR Codes Online</a>
+      <a href="/unit-converter" onclick="event.preventDefault();openTool('unit')">Unit Converter — Length, Weight & Temperature</a>
+      <a href="/image-compressor" onclick="event.preventDefault();openTool('imageCompress')">Image Compressor — Reduce JPG & PNG Size</a>
+      <a href="/images-to-pdf" onclick="event.preventDefault();openTool('imagePDF')">Images to PDF — JPG, PNG & WEBP</a>
+      <a href="/text-to-pdf" onclick="event.preventDefault();openTool('textPDF')">Text to PDF Converter</a>
+      <a href="/pdf-to-image" onclick="event.preventDefault();openTool('pdfImage')">PDF to Image — PDF to PNG</a>
+      <a href="/text-to-word" onclick="event.preventDefault();openTool('textWord')">Text to Word — Create DOCX Online</a>
+      <a href="/pdf-to-word" onclick="event.preventDefault();openTool('pdfWord')">PDF to Word — PDF to DOCX</a>
+      <a href="/video-compressor" onclick="event.preventDefault();openTool('videoCompress')">Video Compressor — Reduce MP4 Size</a>
+      <a href="/currency-converter" onclick="event.preventDefault();openTool('currency')">Live Currency Converter — Exchange Rates</a>
+      <a href="/json-formatter" onclick="event.preventDefault();openTool('json')">JSON Formatter & Validator</a>
+      <a href="/password-generator" onclick="event.preventDefault();openTool('password')">Password Generator — Strong Random Passwords</a>
+      <a href="/word-counter" onclick="event.preventDefault();openTool('word')">Word Counter — Words & Characters</a>
+      <a href="/text-formatter" onclick="event.preventDefault();openTool('text')">Text Formatter — Case & Text Cleanup</a>
+      <a href="/random-number-generator" onclick="event.preventDefault();openTool('random')">Random Number Generator</a>
+      <a href="/color-converter" onclick="event.preventDefault();openTool('color')">Color Converter — HEX, RGB & Color Codes</a>
+      <a href="/tip-calculator" onclick="event.preventDefault();openTool('tip')">Tip Calculator — Bill Split & Tip</a>
+      <a href="/loan-calculator" onclick="event.preventDefault();openTool('loan')">Simple Loan Calculator</a>
+      <a href="/base64-encoder-decoder" onclick="event.preventDefault();openTool('base64')">Base64 Encoder & Decoder</a>
+      <a href="/hash-generator" onclick="event.preventDefault();openTool('hash')">Hash Generator — MD5, SHA-1 & SHA-256</a>
+      <a href="/css-box-shadow-generator" onclick="event.preventDefault();openTool('shadow')">CSS Box Shadow Generator</a>
+      <a href="/image-resizer" onclick="event.preventDefault();openTool('imageResize')">Image Resizer — Resize JPG & PNG</a>
+      <a href="/svg-to-png" onclick="event.preventDefault();openTool('svgPng')">SVG to PNG Converter</a>
+      <a href="/color-palette-generator" onclick="event.preventDefault();openTool('palette')">Color Palette Generator</a>
+      <a href="/lorem-ipsum-generator" onclick="event.preventDefault();openTool('lorem')">Lorem Ipsum Generator</a>
+      <a href="/stopwatch-timer" onclick="event.preventDefault();openTool('stopwatch')">Stopwatch & Timer</a>
+      <a href="/world-clock" onclick="event.preventDefault();openTool('worldClock')">World Clock</a>
+      <a href="/scientific-calculator" onclick="event.preventDefault();openTool('scientific')">Scientific Calculator</a>
+    </div>
+  </section>
+
+  <div id="savedSection" class="saved-section">
+    <div class="section-head"><div><h3>Saved Calculations</h3><p class="saved-note">Saved privately on this device</p></div><button class="smallbtn" onclick="clearSavedCalculations()">Clear All</button></div>
+    <div id="savedCalculations" class="saved-list"></div>
+  </div>
+
+<section class="content-section" id="guidesSection">
+  <div class="section-head"><div><h3>Guides & Useful Articles</h3><p class="content-intro">Practical explanations for calculators, conversions, documents and everyday tools. Read the guide before using a tool when you want to understand the result.</p></div></div>
+  <div class="guide-grid"><button class="guide-card" onclick="openGuide(0)"><span class="guide-cat">Finance</span><h4>SIP Investment Calculator: How to Estimate Long-Term Growth</h4><p>Understand monthly investing, compounding and return assumptions before using an SIP estimate.</p><span class="guide-read">Read guide →</span></button><button class="guide-card" onclick="openGuide(1)"><span class="guide-cat">Finance</span><h4>EMI Calculator: How Monthly Loan Payments Work</h4><p>Learn what changes your EMI and why a lower monthly payment can sometimes mean a higher total cost.</p><span class="guide-read">Read guide →</span></button><button class="guide-card" onclick="openGuide(2)"><span class="guide-cat">Date</span><h4>Age Calculator: Calculate Exact Age From Dates</h4><p>A date-based guide to calculating completed years, months and days without manual calendar mistakes.</p><span class="guide-read">Read guide →</span></button><button class="guide-card" onclick="openGuide(3)"><span class="guide-cat">Shopping</span><h4>Discount Calculator: Find the Real Price After a Sale</h4><p>Calculate the money saved and the final price after a percentage discount.</p><span class="guide-read">Read guide →</span></button><button class="guide-card" onclick="openGuide(4)"><span class="guide-cat">Finance</span><h4>GST Calculator: Understand Tax-Exclusive and Tax-Inclusive Prices</h4><p>Learn the difference between adding GST to a base amount and extracting GST from a tax-inclusive total.</p><span class="guide-read">Read guide →</span></button><button class="guide-card" onclick="openGuide(5)"><span class="guide-cat">Math</span><h4>Percentage Calculator: Solve Everyday Percentage Problems</h4><p>Use percentages correctly for discounts, growth, marks, commission and comparisons.</p><span class="guide-read">Read guide →</span></button><button class="guide-card" onclick="openGuide(6)"><span class="guide-cat">Date</span><h4>Date Difference: Count Days Between Two Dates</h4><p>A practical guide for project periods, subscriptions, deadlines and calendar comparisons.</p><span class="guide-read">Read guide →</span></button><button class="guide-card" onclick="openGuide(7)"><span class="guide-cat">Health</span><h4>BMI Calculator: Understand the Number Without Overinterpreting It</h4><p>BMI can be a useful screening number, but it is not a complete measure of health or body composition.</p><span class="guide-read">Read guide →</span></button><button class="guide-card" onclick="openGuide(8)"><span class="guide-cat">QR</span><h4>QR Code Generator: Create and Test Useful QR Codes</h4><p>Generate QR codes for links, text and other supported information and test them before printing.</p><span class="guide-read">Read guide →</span></button><button class="guide-card" onclick="openGuide(9)"><span class="guide-cat">Converter</span><h4>Unit Converter: Convert Measurements With Fewer Mistakes</h4><p>Learn how to choose the correct source and target unit and avoid rounding errors.</p><span class="guide-read">Read guide →</span></button><button class="guide-card" onclick="openGuide(10)"><span class="guide-cat">Image/PDF</span><h4>Image Compressor: Reduce File Size While Keeping Useful Quality</h4><p>Understand the balance between file size, dimensions and visual quality before sharing an image.</p><span class="guide-read">Read guide →</span></button><button class="guide-card" onclick="openGuide(11)"><span class="guide-cat">Image/PDF</span><h4>Images to PDF: Combine Multiple Images Into One Document</h4><p>Create a multi-page PDF from several JPG, PNG or WEBP images while preserving their order and proportions.</p><span class="guide-read">Read guide →</span></button><button class="guide-card" onclick="openGuide(12)"><span class="guide-cat">Text/PDF</span><h4>Text to PDF: Turn Notes Into a Clean Multi-Page PDF</h4><p>Create a simple readable PDF from notes, instructions, drafts or plain text.</p><span class="guide-read">Read guide →</span></button><button class="guide-card" onclick="openGuide(13)"><span class="guide-cat">Image/PDF</span><h4>PDF to Image: Convert Every Page to a PNG</h4><p>Turn PDF pages into individual images for sharing, previews or platforms that accept images instead of PDFs.</p><span class="guide-read">Read guide →</span></button><button class="guide-card" onclick="openGuide(14)"><span class="guide-cat">Security</span><h4>Password Generator: Create Better Unique Passwords</h4><p>Generate random passwords and learn safer habits such as uniqueness and multi-factor authentication.</p><span class="guide-read">Read guide →</span></button></div>
+</section>
+
+</div>
+
+<!-- Finance -->
+<section id="sip" class="tool"><ToolTitle>📈 SIP & Investment Calculator</ToolTitle>
+<div class="grid md:grid-cols-3 gap-3"><Field id="sipAmount" label="Monthly Investment ₹" value="5000"><input type="number" id="sipAmount" value="5000"></Field></div>
+<div class="grid md:grid-cols-3 gap-3 mt-3"><Field id="sipRate" label="Annual Return %"><input type="number" id="sipRate" value="12"></Field><Field id="sipYears" label="Years"><input type="number" id="sipYears" value="10"></Field></div>
+<button class="btn mt-4" onclick="calcSIP()">Calculate</button><Result id="sipResult"/></section>
+
+<section id="discount" class="tool"><ToolTitle>🏷️ Discount Calculator</ToolTitle>
+<div class="grid md:grid-cols-2 gap-3"><Field id="origPrice" label="Original Price ₹"><input type="number" id="origPrice" placeholder="1999"></Field><Field id="discPercent" label="Discount %"><input type="number" id="discPercent" placeholder="20"></Field></div>
+<button class="btn mt-4" onclick="calcDiscount()">Calculate</button><Result id="discResult"/></section>
+
+<section id="emi" class="tool"><ToolTitle>🏦 EMI Calculator</ToolTitle>
+<div class="grid md:grid-cols-3 gap-3"><Field id="loan" label="Loan Amount ₹"><input type="number" id="loan" value="500000"></Field><Field id="emiRate" label="Annual Interest %"><input type="number" id="emiRate" value="10"></Field><Field id="emiYears" label="Tenure Years"><input type="number" id="emiYears" value="5"></Field></div>
+<button class="btn mt-4" onclick="calcEMI()">Calculate EMI</button><Result id="emiResult"/></section>
+
+<section id="gst" class="tool"><ToolTitle>🧾 GST Calculator</ToolTitle>
+<div class="grid md:grid-cols-2 gap-3"><Field id="gstPrice" label="Amount ₹"><input type="number" id="gstPrice" placeholder="1000"></Field><Field id="gstRate" label="GST %"><input type="number" id="gstRate" value="18"></Field></div>
+<div class="flex gap-2 mt-3"><button class="btn" onclick="calcGST(true)">Add GST</button><button class="btn secondary" onclick="calcGST(false)">Remove GST</button></div><Result id="gstResult"/></section>
+
+<section id="percentage" class="tool"><ToolTitle>📊 Percentage Calculator</ToolTitle>
+<div class="grid md:grid-cols-2 gap-3"><Field id="p1" label="Value"><input type="number" id="p1"></Field><Field id="p2" label="Percentage %"><input type="number" id="p2"></Field></div>
+<button class="btn mt-4" onclick="calcPercent()">Calculate</button><Result id="percentResult"/></section>
+
+<section id="tip" class="tool"><ToolTitle>🍽️ Tip Calculator</ToolTitle>
+<div class="grid md:grid-cols-3 gap-3"><Field id="bill" label="Bill ₹"><input type="number" id="bill"></Field><Field id="tipRate" label="Tip %"><input type="number" id="tipRate" value="10"></Field><Field id="people" label="People"><input type="number" id="people" value="1"></Field></div>
+<button class="btn mt-4" onclick="calcTip()">Calculate</button><Result id="tipResult"/></section>
+
+<section id="loan" class="tool"><ToolTitle>💰 Simple Loan Calculator</ToolTitle>
+<div class="grid md:grid-cols-3 gap-3"><Field id="simpleLoan" label="Principal ₹"><input type="number" id="simpleLoan"></Field><Field id="simpleRate" label="Annual Rate %"><input type="number" id="simpleRate"></Field><Field id="simpleYears" label="Years"><input type="number" id="simpleYears"></Field></div>
+<button class="btn mt-4" onclick="calcSimpleLoan()">Calculate</button><Result id="loanResult"/></section>
+
+<!-- Text -->
+<section id="text" class="tool"><ToolTitle>✍️ Text Cleaner & Case Converter</ToolTitle>
+<textarea id="textInput" rows="8" placeholder="Paste or type text..." class="area"></textarea>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-2 mt-3">
+<button class="smallbtn" onclick="fmt('upper')">UPPER</button><button class="smallbtn" onclick="fmt('lower')">lower</button><button class="smallbtn" onclick="fmt('title')">Title Case</button><button class="smallbtn" onclick="fmt('spaces')">Clean Spaces</button><button class="smallbtn" onclick="copyText()">Copy</button>
+</div><div id="textStats" class="result mt-3">Words: 0 · Characters: 0 · Lines: 0</div></section>
+
+<section id="word" class="tool"><ToolTitle>🔢 Word & Character Counter</ToolTitle>
+<textarea id="wordText" oninput="countWords()" rows="9" class="area" placeholder="Type or paste text..."></textarea><Result id="wordResult"/></section>
+
+<section id="password" class="tool"><ToolTitle>🔐 Strong Password Generator</ToolTitle>
+<div class="grid md:grid-cols-3 gap-3"><Field id="passLen" label="Length"><input type="number" id="passLen" value="16" min="4" max="128"></Field></div>
+<div class="flex flex-wrap gap-3 mt-3 text-sm"><label><input type="checkbox" id="pUpper" checked> Uppercase</label><label><input type="checkbox" id="pLower" checked> Lowercase</label><label><input type="checkbox" id="pNum" checked> Numbers</label><label><input type="checkbox" id="pSym" checked> Symbols</label></div>
+<button class="btn mt-4" onclick="genPass()">Generate</button><div class="flex gap-2 mt-3"><input id="passOut" readonly class="input flex-1"><button class="smallbtn" onclick="copy('passOut')">Copy</button></div></section>
+
+<!-- Date -->
+<section id="age" class="tool"><ToolTitle>🎂 Age Calculator</ToolTitle>
+<Field id="dob" label="Date of Birth"><input type="date" id="dob"></Field><button class="btn mt-4" onclick="calcAge()">Calculate Age</button><Result id="ageResult"/></section>
+
+<section id="dateDiff" class="tool"><ToolTitle>📅 Date Difference</ToolTitle>
+<div class="grid md:grid-cols-2 gap-3"><Field id="date1" label="Start Date"><input type="date" id="date1"></Field><Field id="date2" label="End Date"><input type="date" id="date2"></Field></div>
+<button class="btn mt-4" onclick="calcDateDiff()">Calculate Difference</button><Result id="dateDiffResult"/></section>
+
+<section id="bmi" class="tool"><ToolTitle>⚖️ BMI Calculator</ToolTitle>
+<div class="grid md:grid-cols-2 gap-3"><Field id="height" label="Height (cm)"><input type="number" id="height"></Field><Field id="weight" label="Weight (kg)"><input type="number" id="weight"></Field></div>
+<button class="btn mt-4" onclick="calcBMI()">Calculate BMI</button><Result id="bmiResult"/></section>
+
+<!-- QR -->
+<section id="qr" class="tool"><ToolTitle>📱 QR Code Generator</ToolTitle>
+<input id="qrText" class="input" placeholder="Enter URL, text, phone, etc."><button class="btn mt-4" onclick="genQR()">Generate QR</button>
+<div id="qrcode" class="mt-5 flex justify-center"></div><button id="qrDownload" class="smallbtn hidden mx-auto mt-3" onclick="downloadQR()">Download PNG</button></section>
+
+<!-- Converter -->
+<section id="unit" class="tool"><ToolTitle>📐 Unit Converter</ToolTitle>
+<div class="grid md:grid-cols-3 gap-3"><select id="unitType" class="input" onchange="loadUnits()"><option value="length">Length</option><option value="weight">Weight</option><option value="temperature">Temperature</option><option value="area">Area</option><option value="volume">Volume</option><option value="speed">Speed</option></select><input id="unitVal" type="number" class="input" placeholder="Value"></div>
+<div class="grid md:grid-cols-2 gap-3 mt-3"><select id="fromUnit" class="input"></select><select id="toUnit" class="input"></select></div>
+<button class="btn mt-4" onclick="convertUnit()">Convert</button><Result id="unitResult"/></section>
+
+<section id="color" class="tool"><ToolTitle>🎨 Color Converter</ToolTitle>
+<input id="hex" class="input" placeholder="#4f46e5"><button class="btn mt-4" onclick="hexToRgb()">Convert</button><Result id="colorResult"/></section>
+
+<!-- Image/PDF -->
+<section id="imageCompress" class="tool"><ToolTitle>🖼️ Image Compressor & Resizer</ToolTitle>
+<input type="file" id="imgFile" accept="image/*" class="input"><div class="grid md:grid-cols-2 gap-3 mt-3"><Field id="imgWidth" label="Max Width px"><input type="number" id="imgWidth" value="1200"></Field><Field id="imgQuality" label="Quality 0.1–1"><input type="number" id="imgQuality" value="0.75" step="0.05" min="0.1" max="1"></Field></div>
+<button class="btn mt-4" onclick="compressImage()">Compress & Download</button><Result id="imgResult"/></section>
+
+<section id="imagePDF" class="tool"><ToolTitle>📄 Images to PDF</ToolTitle>
+<input type="file" id="pdfImages" accept="image/*" multiple class="input"><button class="btn mt-4" onclick="imagesToPDF()">Create PDF</button><Result id="pdfResult"/></section>
+
+<!-- PDF Tools -->
+<section id="textPDF" class="tool"><ToolTitle>📝 Text to PDF</ToolTitle>
+<textarea id="pdfText" rows="12" class="area" placeholder="Type or paste your text here..."></textarea>
+<div class="grid md:grid-cols-3 gap-3 mt-3">
+<Field id="pdfFontSize" label="Font Size"><input type="number" id="pdfFontSize" value="12" min="8" max="30"></Field>
+<Field id="pdfMargin" label="Margin (mm)"><input type="number" id="pdfMargin" value="15" min="5" max="40"></Field>
+<Field id="pdfFileName" label="File Name"><input type="text" id="pdfFileName" value="kaam-kaaj-text"></Field>
+</div>
+<button class="btn mt-4" onclick="textToPDF()">Create & Download PDF</button><Result id="textPDFResult"/></section>
+
+<section id="pdfImage" class="tool"><ToolTitle>📑 PDF to Image</ToolTitle>
+<p class="text-xs text-slate-500 mb-3">Convert every PDF page to PNG. Download pages individually or all pages together as a ZIP.</p>
+<input type="file" id="pdfInput" accept="application/pdf,.pdf" class="input">
+<div class="grid md:grid-cols-2 gap-3 mt-3"><Field id="pdfScale" label="Image Quality / Scale"><input type="number" id="pdfScale" value="2" min="1" max="4" step="0.5"></Field></div>
+<button class="btn mt-4" onclick="pdfToImages()">Convert PDF to Images</button>
+<div id="pdfImageActions" class="hidden mt-4 flex flex-wrap gap-2"><button class="smallbtn" onclick="downloadPdfImagesZip()">Download All as ZIP</button></div>
+<div id="pdfPreview" class="grid md:grid-cols-2 gap-3 mt-4"></div><Result id="pdfImageResult"/></section>
+
+<!-- Document & Video Tools -->
+<section id="textWord" class="tool"><ToolTitle>📝 Text to Word</ToolTitle>
+<p class="text-xs text-slate-500 mb-3">Create a real .docx Word document directly on your device. No Word library is required.</p>
+<textarea id="wordDocText" rows="13" class="area" placeholder="Type or paste your text here..."></textarea>
+<div class="grid md:grid-cols-2 gap-3 mt-3"><Field id="wordDocFileName" label="File Name"><input type="text" id="wordDocFileName" value="kaam-kaaj-document"></Field><Field id="wordDocFontSize" label="Font Size"><input type="number" id="wordDocFontSize" value="12" min="8" max="30"></Field></div>
+<button class="btn mt-4" onclick="textToWord()">Create & Download Word</button><Result id="textWordResult"/></section>
+
+<section id="pdfWord" class="tool"><ToolTitle>📃 PDF to Word</ToolTitle>
+<p class="text-xs text-slate-500 mb-3">Extract selectable text from a PDF and create an editable Word-compatible document. Best for text-based PDFs; scanned/image-only PDFs may need OCR.</p>
+<input type="file" id="pdfWordInput" accept="application/pdf,.pdf" class="input">
+<button class="btn mt-4" onclick="pdfToWord()">Convert PDF to Word</button><Result id="pdfWordResult"/></section>
+
+<section id="videoCompress" class="tool"><ToolTitle>🎬 Video Compressor</ToolTitle>
+<p class="text-xs text-slate-500 mb-3">Compress a video locally in your browser. No upload is required. Save or share the compressed video directly from your device. Output is WebM for broad browser support.</p>
+<input type="file" id="videoFile" accept="video/*" class="input">
+<div class="grid md:grid-cols-3 gap-3 mt-3">
+<Field id="videoWidth" label="Max Width"><select id="videoWidth" class="input"><option value="854">480p (854px)</option><option value="1280" selected>720p (1280px)</option><option value="1920">1080p (1920px)</option></select></Field>
+<Field id="videoBitrate" label="Video Bitrate"><select id="videoBitrate" class="input"><option value="700000">Low · 0.7 Mbps</option><option value="1200000" selected>Balanced · 1.2 Mbps</option><option value="2200000">High · 2.2 Mbps</option></select></Field>
+<Field id="videoFps" label="Frame Rate"><select id="videoFps" class="input"><option value="24">24 FPS</option><option value="30" selected>30 FPS</option></select></Field>
+</div>
+<div class="mt-4 rounded-xl bg-slate-50 p-3 text-xs text-slate-500">Tip: 720p + Balanced is a good starting point for sharing. Compression speed depends on your phone/computer.</div>
+<button class="btn mt-4" onclick="compressVideo()">Compress & Download Video</button><Result id="videoResult"/></section>
+
+<!-- Developer -->
+<section id="json" class="tool"><ToolTitle>🧑‍💻 JSON Formatter & Validator</ToolTitle>
+<textarea id="jsonText" rows="12" class="area" placeholder='{"name":"Kaam Kaaj","tools":20}'></textarea>
+<div class="flex gap-2 mt-3"><button class="btn" onclick="formatJSON()">Format</button><button class="smallbtn" onclick="minifyJSON()">Minify</button></div><Result id="jsonResult"/></section>
+
+<section id="random" class="tool"><ToolTitle>🎲 Random Number Generator</ToolTitle>
+<div class="grid md:grid-cols-2 gap-3"><Field id="minNum" label="Minimum"><input type="number" id="minNum" value="1"></Field><Field id="maxNum" label="Maximum"><input type="number" id="maxNum" value="100"></Field></div>
+<button class="btn mt-4" onclick="randomNum()">Generate</button><div id="randomResult" class="text-4xl font-bold text-indigo-600 text-center mt-6">—</div></section>
+
+<section id="currency" class="tool"><ToolTitle>💱 Currency Converter</ToolTitle>
+<div class="rounded-xl bg-indigo-50 border border-indigo-100 p-3 mb-4 text-xs text-indigo-900"><b>🌐 Internet-Connected Live Rates:</b> Tap <b>Get Live Rate &amp; Convert</b> to fetch the latest available exchange rate online. The tool tries multiple public rate services and can remember the last successful rate on this device if the internet temporarily fails. Bank/card fees may differ.</div>
+<div class="grid md:grid-cols-4 gap-3"><input id="curAmount" type="number" class="input" value="1" min="0.000001"><select id="curFrom" class="input">
+<optgroup label="🇮🇳 South Asia"><option>INR</option><option>PKR</option><option>BDT</option><option>LKR</option><option>NPR</option><option>AFN</option></optgroup>
+<optgroup label="🌍 Gulf &amp; Middle East"><option>USD</option><option>AED</option><option>SAR</option><option>QAR</option><option>KWD</option><option>BHD</option><option>OMR</option><option>JOD</option><option>ILS</option><option>IQD</option><option>IRR</option><option>TRY</option></optgroup>
+<optgroup label="🇪🇺 Europe"><option>EUR</option><option>GBP</option><option>CHF</option><option>SEK</option><option>NOK</option><option>DKK</option><option>PLN</option><option>CZK</option><option>HUF</option><option>RON</option><option>BGN</option><option>ISK</option><option>RSD</option><option>BAM</option><option>ALL</option><option>MKD</option><option>UAH</option><option>RUB</option><option>GEL</option></optgroup>
+<optgroup label="🌍 Africa"><option>ZAR</option><option>EGP</option><option>MAD</option><option>DZD</option><option>TND</option><option>NGN</option><option>GHS</option><option>KES</option><option>UGX</option><option>TZS</option><option>ETB</option><option>XOF</option><option>XAF</option><option>MUR</option><option>SCR</option><option>ZMW</option><option>BWP</option><option>NAD</option><option>MZN</option><option>AOA</option><option>RWF</option><option>SOS</option></optgroup>
+<optgroup label="🌏 Asia-Pacific"><option>JPY</option><option>CNY</option><option>HKD</option><option>SGD</option><option>MYR</option><option>THB</option><option>IDR</option><option>PHP</option><option>VND</option><option>KRW</option><option>TWD</option><option>KZT</option><option>AZN</option><option>AMD</option><option>KGS</option><option>UZS</option><option>MNT</option><option>LAK</option><option>MMK</option><option>KHR</option></optgroup>
+<optgroup label="🇦🇺 Australia &amp; Oceania"><option>AUD</option><option>NZD</option><option>FJD</option></optgroup>
+<optgroup label="🌎 Americas"><option>CAD</option><option>MXN</option><option>BRL</option><option>ARS</option><option>CLP</option><option>COP</option><option>PEN</option><option>UYU</option><option>BOB</option><option>PYG</option><option>CRC</option><option>DOP</option><option>GTQ</option></optgroup>
+</select><button class="smallbtn" type="button" onclick="swapCurrency()">⇄ Swap</button><select id="curTo" class="input">
+<optgroup label="🇮🇳 South Asia"><option>INR</option><option>PKR</option><option>BDT</option><option>LKR</option><option>NPR</option><option>AFN</option></optgroup>
+<optgroup label="🌍 Gulf &amp; Middle East"><option>USD</option><option>AED</option><option>SAR</option><option>QAR</option><option>KWD</option><option>BHD</option><option>OMR</option><option>JOD</option><option>ILS</option><option>IQD</option><option>IRR</option><option>TRY</option></optgroup>
+<optgroup label="🇪🇺 Europe"><option>EUR</option><option>GBP</option><option>CHF</option><option>SEK</option><option>NOK</option><option>DKK</option><option>PLN</option><option>CZK</option><option>HUF</option><option>RON</option><option>BGN</option><option>ISK</option><option>RSD</option><option>BAM</option><option>ALL</option><option>MKD</option><option>UAH</option><option>RUB</option><option>GEL</option></optgroup>
+<optgroup label="🌍 Africa"><option>ZAR</option><option>EGP</option><option>MAD</option><option>DZD</option><option>TND</option><option>NGN</option><option>GHS</option><option>KES</option><option>UGX</option><option>TZS</option><option>ETB</option><option>XOF</option><option>XAF</option><option>MUR</option><option>SCR</option><option>ZMW</option><option>BWP</option><option>NAD</option><option>MZN</option><option>AOA</option><option>RWF</option><option>SOS</option></optgroup>
+<optgroup label="🌏 Asia-Pacific"><option>JPY</option><option>CNY</option><option>HKD</option><option>SGD</option><option>MYR</option><option>THB</option><option>IDR</option><option>PHP</option><option>VND</option><option>KRW</option><option>TWD</option><option>KZT</option><option>AZN</option><option>AMD</option><option>KGS</option><option>UZS</option><option>MNT</option><option>LAK</option><option>MMK</option><option>KHR</option></optgroup>
+<optgroup label="🇦🇺 Australia &amp; Oceania"><option>AUD</option><option>NZD</option><option>FJD</option></optgroup>
+<optgroup label="🌎 Americas"><option>CAD</option><option>MXN</option><option>BRL</option><option>ARS</option><option>CLP</option><option>COP</option><option>PEN</option><option>UYU</option><option>BOB</option><option>PYG</option><option>CRC</option><option>DOP</option><option>GTQ</option></optgroup>
+</select></div>
+<div class="flex flex-wrap gap-2 mt-4"><button class="btn" onclick="convertCurrency(true)">🌐 Get Live Rate &amp; Convert</button><button class="smallbtn" onclick="convertCurrency(false)">Use Current Result</button></div><Result id="curResult"/><div id="curUpdated" class="text-[11px] text-slate-400 mt-2"></div></section>
+
+
+<!-- New Developer, Design, Text & Utility Tools -->
+<section id="base64" class="tool"><ToolTitle>🔤 Base64 Encoder & Decoder</ToolTitle>
+<p class="text-slate-500 mb-4">Encode text to Base64 or decode Base64 back to readable text directly in your browser.</p>
+<textarea id="base64Text" rows="8" class="area" placeholder="Enter text or Base64..."></textarea>
+<div class="flex flex-wrap gap-2 mt-3"><button class="btn" onclick="base64Encode()">Encode</button><button class="smallbtn" onclick="base64Decode()">Decode</button><button class="smallbtn" onclick="copyValue('base64Text')">Copy</button><button class="smallbtn" onclick="clearValue('base64Text')">Clear</button></div><Result id="base64Result"/></section>
+
+<section id="hash" class="tool"><ToolTitle>#️⃣ Hash Generator</ToolTitle>
+<p class="text-slate-500 mb-4">Generate MD5, SHA-1, SHA-256 and SHA-512 hashes from text in your browser.</p>
+<textarea id="hashText" rows="7" class="area" placeholder="Enter text to hash..."></textarea>
+<div class="flex flex-wrap gap-2 mt-3"><button class="btn" onclick="generateHashes()">Generate Hashes</button><button class="smallbtn" onclick="copyHash('sha256')">Copy SHA-256</button></div><div id="hashResult" class="result mt-4"></div></section>
+
+<section id="shadow" class="tool"><ToolTitle>🎨 CSS Box Shadow Generator</ToolTitle>
+<div class="grid md:grid-cols-2 gap-3"><Field id="shadowX" label="Horizontal (px)"><input type="number" id="shadowX" value="0"></Field><Field id="shadowY" label="Vertical (px)"><input type="number" id="shadowY" value="8"></Field><Field id="shadowBlur" label="Blur (px)"><input type="number" id="shadowBlur" value="24" min="0"></Field><Field id="shadowSpread" label="Spread (px)"><input type="number" id="shadowSpread" value="0"></Field></div>
+<div class="grid md:grid-cols-2 gap-3 mt-3"><Field id="shadowOpacity" label="Opacity"><input type="number" id="shadowOpacity" value="0.18" min="0" max="1" step="0.01"></Field><Field id="shadowColor" label="Shadow Color"><input type="color" id="shadowColor" value="#000000"></Field></div>
+<div id="shadowPreview" class="mt-6 mx-auto w-40 h-40 rounded-2xl bg-white flex items-center justify-center font-bold">Preview</div><textarea id="shadowCode" rows="3" class="area mt-5" readonly></textarea><div class="flex gap-2 mt-3"><button class="btn" onclick="updateShadow()">Update Shadow</button><button class="smallbtn" onclick="copyValue('shadowCode')">Copy CSS</button></div></section>
+
+<section id="imageResize" class="tool"><ToolTitle>📐 Image Resizer</ToolTitle>
+<p class="text-slate-500 mb-4">Resize JPG, PNG or WEBP images locally. Your image stays in the browser while it is processed.</p>
+<input id="resizeFile" type="file" accept="image/*" class="input"><div class="grid md:grid-cols-3 gap-3 mt-3"><Field id="resizeWidth" label="Width (px)"><input type="number" id="resizeWidth" value="1200" min="1"></Field><Field id="resizeHeight" label="Height (px)"><input type="number" id="resizeHeight" placeholder="Auto" min="1"></Field><Field id="resizeQuality" label="JPG Quality"><input type="number" id="resizeQuality" value="0.9" min="0.1" max="1" step="0.05"></Field></div><label class="flex items-center gap-2 mt-3"><input id="resizeKeep" type="checkbox" checked> Keep aspect ratio</label><button class="btn mt-4" onclick="resizeImage()">Resize & Download</button><Result id="resizeResult"/></section>
+
+<section id="svgPng" class="tool"><ToolTitle>🖼️ SVG to PNG Converter</ToolTitle>
+<p class="text-slate-500 mb-4">Convert an SVG file to a PNG image locally using your browser.</p><input id="svgFile" type="file" accept="image/svg+xml,.svg" class="input"><div class="grid md:grid-cols-2 gap-3 mt-3"><Field id="svgWidth" label="PNG Width (px)"><input type="number" id="svgWidth" value="1200" min="1"></Field><Field id="svgHeight" label="PNG Height (px)"><input type="number" id="svgHeight" placeholder="Auto" min="1"></Field></div><button class="btn mt-4" onclick="svgToPng()">Convert & Download PNG</button><Result id="svgResult"/></section>
+
+<section id="palette" class="tool"><ToolTitle>🌈 Color Palette Generator</ToolTitle>
+<p class="text-slate-500 mb-4">Create a harmonious five-color palette from a starting color.</p><div class="flex gap-2 items-end"><Field id="paletteColor" label="Base Color"><input type="color" id="paletteColor" value="#4f46e5"></Field><button class="btn" onclick="generatePalette()">Generate Palette</button></div><div id="paletteGrid" class="grid grid-cols-2 md:grid-cols-5 gap-3 mt-5"></div><Result id="paletteResult"/></section>
+
+<section id="lorem" class="tool"><ToolTitle>📝 Lorem Ipsum Generator</ToolTitle>
+<p class="text-slate-500 mb-4">Generate placeholder text for website layouts, UI designs and prototypes.</p><div class="grid md:grid-cols-2 gap-3"><Field id="loremParas" label="Paragraphs"><input type="number" id="loremParas" value="3" min="1" max="20"></Field><Field id="loremWords" label="Words per paragraph"><input type="number" id="loremWords" value="50" min="5" max="200"></Field></div><div class="flex gap-2 mt-4"><button class="btn" onclick="generateLorem()">Generate</button><button class="smallbtn" onclick="copyValue('loremOutput')">Copy</button></div><textarea id="loremOutput" rows="14" class="area mt-4" readonly></textarea></section>
+
+<section id="stopwatch" class="tool"><ToolTitle>⏱️ Stopwatch & Timer</ToolTitle>
+<div class="text-center py-5"><div id="stopwatchDisplay" class="text-5xl font-black text-indigo-600">00:00:00.0</div><div class="flex flex-wrap justify-center gap-2 mt-5"><button class="btn" onclick="stopwatchStart()">Start</button><button class="smallbtn" onclick="stopwatchPause()">Pause</button><button class="smallbtn" onclick="stopwatchReset()">Reset</button></div></div><div class="border-t pt-5 mt-3"><h3 class="font-bold text-xl">Countdown Timer</h3><div class="grid grid-cols-3 gap-2 mt-3"><input id="timerMin" type="number" class="input" value="5" min="0"><input id="timerSec" type="number" class="input" value="0" min="0" max="59"><button class="btn" onclick="startTimer()">Start Timer</button></div><div id="timerDisplay" class="text-3xl font-bold text-center mt-4">05:00</div><button class="smallbtn mt-3" onclick="stopTimer()">Stop</button></div><Result id="timerResult"/></section>
+
+<section id="worldClock" class="tool"><ToolTitle>🌍 World Clock</ToolTitle>
+<p class="text-slate-500 mb-4">See current local time across major cities. Times update automatically on your device.</p><div id="clockGrid" class="grid md:grid-cols-2 gap-3"></div></section>
+
+<section id="scientific" class="tool"><ToolTitle>🧪 Scientific Calculator</ToolTitle>
+<p class="text-slate-500 mb-4">Calculate common scientific functions such as sin, cos, tan, square root, powers and logarithms.</p><input id="sciInput" class="input" placeholder="Example: sin(30)+sqrt(25)*2" inputmode="decimal"><div class="grid grid-cols-4 gap-2 mt-3"><button class="smallbtn" onclick="sciInsert('sin(')">sin</button><button class="smallbtn" onclick="sciInsert('cos(')">cos</button><button class="smallbtn" onclick="sciInsert('tan(')">tan</button><button class="smallbtn" onclick="sciInsert('sqrt(')">√</button><button class="smallbtn" onclick="sciInsert('log(')">log</button><button class="smallbtn" onclick="sciInsert('ln(')">ln</button><button class="smallbtn" onclick="sciInsert('pi')">π</button><button class="smallbtn" onclick="sciInsert('e')">e</button></div><div class="flex gap-2 mt-3"><button class="btn" onclick="scientificCalculate()">Calculate</button><button class="smallbtn" onclick="clearValue('sciInput')">Clear</button></div><Result id="sciResult"/></section>
+
+</main></div>
+
+<footer class="site-footer text-center text-xs text-slate-400 py-6 border-t">
+  <div class="footer-links">
+    <button onclick="openLegal('about')">About Us</button>
+    <button onclick="openLegal('privacy')">Privacy Policy</button>
+    <button onclick="openLegal('terms')">Terms & Conditions</button>
+    <button onclick="openLegal('disclaimer')">Disclaimer</button>
+    <button onclick="openLegal('cookies')">Cookie Policy</button>
+    <button onclick="openLegal('contact')">Contact Us</button>
+  </div>
+  <div class="mt-3">© 2026 Kaam Kaaj Tools · Calculations run in your browser</div>
+  <div class="mt-2 max-w-2xl mx-auto text-[10px]">Some tools may use third-party services and advertising. Always verify important results before relying on them.</div>
+</footer>
+<div id="legalModal" class="legal-modal hidden" onclick="if(event.target===this)closeLegal()"><div class="legal-card"><button class="legal-close" onclick="closeLegal()">×</button><div id="legalContent"></div></div></div>
+
+<div id="guideModal" class="guide-modal hidden" onclick="if(event.target===this)closeGuide()"><article class="guide-card-full"><button class="guide-close" onclick="closeGuide()">×</button><div id="guideContent"></div></article></div>
+
+<script id="kk-seo-data">
+const KK_SEO = {"sip": {"title": "Free SIP Calculator Online — Mutual Fund SIP Return Calculator", "description": "Calculate estimated SIP returns, total investment and future value with our free online SIP calculator. Compare monthly investment and return scenarios.", "keywords": "mutual fund SIP calculator, online SIP return calculator, monthly SIP calculator, compound interest calculator online, investment growth calculator"}, "discount": {"title": "Free Discount Calculator Online — Sale Price & Percentage Off", "description": "Find discount amount, savings and final sale price instantly with this free online discount calculator for shopping and everyday price checks.", "keywords": "sale discount calculator, percentage off calculator, price discount calculator, shopping discount finder"}, "emi": {"title": "Free Loan EMI Calculator Online — Home, Car & Personal Loan", "description": "Calculate monthly loan EMI, total interest and total payment with our free EMI calculator. Compare loan amounts, rates and repayment tenures.", "keywords": "loan EMI calculator online, home loan EMI calculator, car loan calculator, personal loan EMI calculator, monthly installment calculator"}, "gst": {"title": "Free GST Calculator India — Add or Remove GST Online", "description": "Calculate GST amount and total price or extract GST from an inclusive amount with this free online GST calculator for India.", "keywords": "online GST calculator India, GST tax amount calculator, inclusive and exclusive GST calculator"}, "percentage": {"title": "Free Percentage Calculator Online — Increase, Decrease & More", "description": "Calculate percentages quickly for discounts, marks, growth, commission and everyday maths with this free online percentage calculator.", "keywords": "calculate percentage online, percentage increase calculator, percentage decrease calculator, math percentage finder"}, "tip": {"title": "Free Tip Calculator Online — Bill Split & Tip Amount", "description": "Calculate restaurant tip, total bill and per-person amount quickly with this free online tip and bill split calculator.", "keywords": "restaurant tip calculator, bill split calculator, tip and total calculator"}, "loan": {"title": "Simple Loan Interest Calculator Online — Free Loan Calculator", "description": "Estimate loan repayment and interest using a simple free online loan calculator. Compare principal, interest rate and repayment period.", "keywords": "simple loan interest calculator, loan calculator online, interest calculator"}, "text": {"title": "Free Text Formatter Online — Case Converter & Text Cleaner", "description": "Clean and format text online with tools for changing case, removing extra spaces and preparing text for documents, forms and captions.", "keywords": "online text case converter, uppercase to lowercase converter, remove extra spaces from text"}, "word": {"title": "Free Word Counter Online — Words, Characters & Reading Time", "description": "Count words and characters online and estimate reading time with this free word counter for essays, applications, captions and documents.", "keywords": "word and character count tool, online word counter for essays, reading time estimator"}, "password": {"title": "Free Strong Password Generator Online", "description": "Generate unique random passwords with customizable length and character options using this free browser-based password generator.", "keywords": "secure password generator, random strong password creator, customizable password tool"}, "age": {"title": "Free Age Calculator Online — Exact Age in Years, Months & Days", "description": "Calculate exact age from date of birth in years, months and days with this free online age calculator.", "keywords": "exact age calculator by date of birth, age finder in years months days, chronological age calculator"}, "dateDiff": {"title": "Free Date Difference Calculator — Days Between Two Dates", "description": "Calculate the duration and number of days between two dates with this free online date difference calculator.", "keywords": "date to date duration calculator, days between two dates calculator, business days calculator"}, "bmi": {"title": "Free BMI Calculator Online — Body Mass Index Calculator", "description": "Calculate Body Mass Index from height and weight with this free BMI calculator. Use the result as a general screening measure.", "keywords": "Body Mass Index calculator online, BMI calculator for men and women, healthy weight range calculator"}, "qr": {"title": "Free QR Code Generator Online — Create QR Codes for Text & URLs", "description": "Create a free QR code for a URL or text directly in your browser. Generate, test and download your QR code as an image.", "keywords": "free QR code generator online, QR code maker for URL and text, QR generator"}, "unit": {"title": "Free Unit Converter Online — Length, Weight, Temperature & More", "description": "Convert length, weight, temperature, area, volume and speed units quickly with this free online unit conversion tool.", "keywords": "online unit conversion tool, length weight temperature converter, metric to imperial converter"}, "color": {"title": "Free Color Converter Online — HEX, RGB & Color Codes", "description": "Convert supported color values between common formats with this free online color converter for design and development work.", "keywords": "HEX to RGB color converter, color code converter, CMYK to HEX converter online"}, "imageCompress": {"title": "Free Image Compressor Online — Reduce JPG, PNG & Image Size", "description": "Compress and resize images online to reduce file size for websites, sharing, uploads and storage while reviewing image quality.", "keywords": "compress image size online, reduce JPEG PNG size in KB MB, bulk image compressor"}, "imagePDF": {"title": "Free Images to PDF Converter — Merge Multiple Images into One PDF", "description": "Convert multiple JPG, PNG or WEBP images into one multi-page PDF. Arrange images in order and create the PDF directly in your browser.", "keywords": "convert JPG to PDF online, merge images into PDF, multiple images to one PDF"}, "textPDF": {"title": "Free Text to PDF Converter Online", "description": "Turn plain text, notes and drafts into a clean multi-page PDF directly in your browser with this free text to PDF converter.", "keywords": "text to PDF converter, convert text file to PDF, notes to PDF online"}, "pdfImage": {"title": "Free PDF to Image Converter — Convert PDF Pages to PNG", "description": "Convert every page of a PDF into PNG images directly in your browser. Download individual pages or a ZIP of all converted images.", "keywords": "PDF to image converter online, PDF to PNG, extract images from PDF pages"}, "textWord": {"title": "Free Text to Word Converter — Create DOCX Online", "description": "Create and download a real .docx Word document from plain text directly in your browser. Useful for letters, notes and simple documents.", "keywords": "text to Word converter, create DOCX online, text to DOCX"}, "pdfWord": {"title": "Free PDF to Word Converter Online — PDF to DOCX", "description": "Extract selectable text from a text-based PDF and create an editable Word document directly in your browser.", "keywords": "PDF to Word converter free online, PDF to DOCX converter, editable Word document converter"}, "videoCompress": {"title": "Free Video Compressor Online — Reduce Video File Size", "description": "Compress video in your browser by adjusting resolution, bitrate and frame rate. Reduce file size for sharing and uploads.", "keywords": "online video compressor, reduce MP4 file size, video size reducer"}, "json": {"title": "Free JSON Formatter & Validator Online", "description": "Format, beautify, minify and validate JSON directly in your browser with this free online JSON formatter and validator.", "keywords": "online JSON formatter and validator, beautify JSON string, parse and lint JSON online"}, "random": {"title": "Free Random Number Generator Online", "description": "Generate a random number within a chosen minimum and maximum range with this simple free online random number generator.", "keywords": "random number generator online, random number picker, number range generator"}, "currency": {"title": "Free Live Currency Converter Online — Exchange Rates", "description": "Convert currencies using available live online exchange-rate data, with a saved-rate fallback when a live connection is temporarily unavailable.", "keywords": "live currency converter online, currency exchange rate calculator, international currency converter"}};
+
+function updateToolSEO(id){
+  const data = KK_SEO[id];
+  if(!data) return;
+  document.title = data.title;
+  let desc = document.querySelector('meta[name="description"]');
+  if(desc) desc.setAttribute('content', data.description);
+  else {
+    desc = document.createElement('meta');
+    desc.name = 'description';
+    desc.content = data.description;
+    document.head.appendChild(desc);
+  }
+  let kw = document.querySelector('meta[name="keywords"]');
+  if(!kw){
+    kw = document.createElement('meta');
+    kw.name = 'keywords';
+    document.head.appendChild(kw);
+  }
+  kw.setAttribute('content', data.keywords);
+
+  let ogt = document.querySelector('meta[property="og:title"]');
+  if(ogt) ogt.setAttribute('content', data.title);
+  let ogd = document.querySelector('meta[property="og:description"]');
+  if(ogd) ogd.setAttribute('content', data.description);
+
+  let h = document.querySelector('#'+CSS.escape(id)+' h2');
+  if(h) {
+    h.setAttribute('data-seo-keywords', data.keywords);
+  }
+  setCanonical('/'+toolSlug(id));
+}
+
+function setCanonical(path){
+  let c=document.querySelector('link[rel="canonical"]');
+  if(!c){c=document.createElement('link');c.rel='canonical';document.head.appendChild(c);}
+  if(/^https?:$/.test(location.protocol)) c.href=location.origin+path;
+}
+
+function resetHomeSEO(){
+  setCanonical('/');
+  document.title = 'Kaam Kaaj Tools — Free Online Calculators, Converters & Utility Tools';
+  const desc = document.querySelector('meta[name="description"]');
+  if(desc) desc.setAttribute('content', 'Kaam Kaaj Tools offers free online calculators, converters, PDF and Word tools, image tools, video compression, QR generation and everyday utility tools.');
+  const kw = document.querySelector('meta[name="keywords"]');
+  if(kw) kw.setAttribute('content', 'free online tools, calculators, converters, PDF tools, Word tools, image tools, video compressor, QR generator');
+  const ogt = document.querySelector('meta[property="og:title"]');
+  if(ogt) ogt.setAttribute('content', 'Kaam Kaaj Tools — Free Online Utility Tools');
+  const ogd = document.querySelector('meta[property="og:description"]');
+  if(ogd) ogd.setAttribute('content', 'Free calculators, converters, PDF/Word tools, image tools, video compressor, QR generator and more.');
+}
+</script>
+
+<script>
+const guideArticles=[{"title": "SIP Investment Calculator: How to Estimate Long-Term Growth", "cat": "Finance", "summary": "Understand monthly investing, compounding and return assumptions before using an SIP estimate.", "paras": ["A systematic investment plan calculator is most useful when you treat it as a planning tool rather than a promise about future returns. Enter the monthly amount, an assumed annual return and the investment period to see how regular contributions and compounding can change a hypothetical future value.", "Try more than one scenario instead of relying on a single number. Compare a smaller monthly contribution with a larger one, or compare ten years with fifteen or twenty years. Keep the invested amount and estimated growth separate so you can see how much money comes from your own contributions.", "Remember that market-linked investments can rise and fall. The return entered into a calculator is an assumption, not a guaranteed rate. Fees, taxes, inflation and the actual product can change the result. A longer time period can make compounding more visible, but it does not remove investment risk.", "Before making an investment decision, read the official product information and consider whether the risk is suitable for you. For important financial decisions, verify assumptions with a qualified financial professional."]}, {"title": "EMI Calculator: How Monthly Loan Payments Work", "cat": "Finance", "summary": "Learn what changes your EMI and why a lower monthly payment can sometimes mean a higher total cost.", "paras": ["An EMI calculator estimates a regular loan payment from the principal, interest rate and repayment period. It is helpful when budgeting because it turns a large borrowing decision into a monthly figure that can be compared with your income and other expenses.", "Change one input at a time to understand the effect. A longer tenure can reduce the monthly EMI, but it can also increase the total interest paid over the life of the loan. A higher interest rate normally increases both the EMI and total repayment. A larger down payment reduces the amount borrowed.", "The calculator result is not necessarily the same as a lender's final quotation. Processing fees, insurance, taxes, penalties, floating interest rates and other charges may apply. For variable-rate loans, the payment can change in the future.", "Use the result for planning and comparison, then check the lender's official amortization schedule and total cost before signing a loan agreement."]}, {"title": "Age Calculator: Calculate Exact Age From Dates", "cat": "Date", "summary": "A date-based guide to calculating completed years, months and days without manual calendar mistakes.", "paras": ["Subtracting two years is not always enough to calculate someone's exact age because months have different lengths and leap years exist. An age calculator compares the date of birth with a chosen target date and handles those calendar boundaries automatically.", "Enter the birth date carefully and use today's date when you want the current age. You can also choose another date when calculating age for a future event, a historical date or a form that specifies a particular cutoff date.", "For everyday use, years are usually sufficient. Some applications need a more detailed years-months-days result. The important point is to follow the definition used by the relevant organization when age affects eligibility or a deadline.", "For official, legal or government purposes, use the date recorded on the relevant document as the source of truth. An online calculator is a convenience tool for understanding the dates, not an official identity record."]}, {"title": "Discount Calculator: Find the Real Price After a Sale", "cat": "Shopping", "summary": "Calculate the money saved and the final price after a percentage discount.", "paras": ["A discount calculator makes sale prices easier to compare. Enter the original price and the discount percentage to find the discount amount and the price after that discount. For example, a 20% discount on ₹2,000 represents ₹400 saved and a ₹1,600 discounted price before other charges.", "The headline percentage is not always the best way to compare offers. Shipping, taxes, platform charges, coupons and minimum-order conditions can change the amount you finally pay. Check the final payable amount whenever possible.", "Be careful with multiple discounts. Two discounts applied one after another are normally calculated sequentially, so 20% off followed by 10% off is not the same as 30% off the original price.", "Use the calculator to check shopping offers, invoices and budgets. If a seller's displayed price conflicts with the final checkout amount, rely on the final invoice and the seller's stated terms."]}, {"title": "GST Calculator: Understand Tax-Exclusive and Tax-Inclusive Prices", "cat": "Finance", "summary": "Learn the difference between adding GST to a base amount and extracting GST from a tax-inclusive total.", "paras": ["GST calculations become easier when you first identify whether the amount you have is before GST or already includes GST. When tax is added to a base price, the GST amount is calculated from that base. When a displayed total already includes GST, the tax component must be extracted from the total rather than simply multiplying the total by the tax rate.", "Invoices may also show components such as CGST and SGST or IGST depending on the transaction. The correct treatment depends on the transaction, location and applicable rules, so a general calculator should be used for estimation and understanding.", "Keep the original taxable value, tax rate and final amount visible when checking an invoice. Rounding rules can matter when many line items are involved.", "For business filings, invoices or tax compliance, verify the current applicable rate and treatment using official GST guidance or a qualified tax professional."]}, {"title": "Percentage Calculator: Solve Everyday Percentage Problems", "cat": "Math", "summary": "Use percentages correctly for discounts, growth, marks, commission and comparisons.", "paras": ["Percentages appear in shopping, school marks, salary changes, commissions, interest and business reports. A percentage calculator is useful because it reduces arithmetic errors and makes the base value explicit.", "For a basic percentage, multiply the base value by the percentage and divide by 100. Percentage increase and percentage decrease are different from simply finding a percentage of a number because the comparison uses a starting value.", "For example, a rise from 100 to 120 is a 20% increase. A fall from 120 back to 100 is a 16.67% decrease. The absolute difference is the same, but the base is different.", "Whenever you compare percentages, write down what the percentage is based on. For financial or contractual calculations, verify the result against the original statement before acting on it."]}, {"title": "Date Difference: Count Days Between Two Dates", "cat": "Date", "summary": "A practical guide for project periods, subscriptions, deadlines and calendar comparisons.", "paras": ["Date differences are useful for travel plans, subscriptions, project schedules, document validity and personal planning. Calendar calculations are more reliable when you use actual dates because months have different lengths and leap years add another day in some years.", "Enter the start and end dates carefully. If the end date is earlier than the start date, reverse the dates when you want a positive duration. Decide whether your situation counts the starting day, ending day or both; official rules can differ.", "A result in total days is often easiest for planning. A result expressed in years, months and days can be easier for people to understand, but it should not be treated as a fixed conversion because a month is not a fixed number of days.", "For legal deadlines, government forms or contract periods, follow the counting rule stated by the relevant authority or document. Use this tool as a convenient check, not as a substitute for the official rule."]}, {"title": "BMI Calculator: Understand the Number Without Overinterpreting It", "cat": "Health", "summary": "BMI can be a useful screening number, but it is not a complete measure of health or body composition.", "paras": ["BMI uses height and weight to produce a screening value. It is widely used for population-level comparisons, but it does not directly measure body fat, muscle mass, fitness or overall health.", "Enter height and weight using the requested units and read the result as a broad screening category. People with high muscle mass, older adults and some other groups may not fit neatly into general population categories.", "A more complete health picture can include waist measurement, activity, diet, medical history and professional assessment. A single number should not be used to diagnose a condition or decide on a treatment.", "If the result concerns you, discuss it with a qualified healthcare professional. The calculator is intended for general information and does not replace individualized medical advice."]}, {"title": "QR Code Generator: Create and Test Useful QR Codes", "cat": "QR", "summary": "Generate QR codes for links, text and other supported information and test them before printing.", "paras": ["QR codes provide a quick bridge between printed material and a phone. You can encode a website address, text or another supported string. The most important step is to enter the exact information you want people to receive.", "After generating a code, scan it with another phone. Test it from the expected distance and in the expected lighting, especially if you plan to print it on a poster, label or card. Very small codes or low contrast can be difficult to scan.", "For website QR codes, check the destination address and use HTTPS when available. If a printed QR will be used for a long time, make sure the destination remains under your control.", "Users should still verify QR destinations before entering passwords, payment information or personal details. A QR code is only a carrier for information; it does not make the destination trustworthy by itself."]}, {"title": "Unit Converter: Convert Measurements With Fewer Mistakes", "cat": "Converter", "summary": "Learn how to choose the correct source and target unit and avoid rounding errors.", "paras": ["Unit conversion is common in cooking, travel, schoolwork, construction, shopping and engineering. Start by identifying exactly what the original number represents and which target unit you need.", "Length, mass and volume often use fixed conversion factors, while temperature requires a formula because the scales have different zero points. This is why a temperature conversion should not be treated like a simple multiplication.", "Keep extra precision during intermediate calculations and round only the final displayed value when appropriate. Rounding too early can create a larger error when several calculations follow.", "For professional engineering, laboratory or regulated work, use the standard and precision specified by the project or authority. A general converter is excellent for quick checks but may not replace a certified reference."]}, {"title": "Image Compressor: Reduce File Size While Keeping Useful Quality", "cat": "Image/PDF", "summary": "Understand the balance between file size, dimensions and visual quality before sharing an image.", "paras": ["Image compression is useful when a photo is too large to upload, email or store. The aim is to reduce bytes without making the image unusable. A good output depends on how the image will be used.", "Photos for messaging or web pages can often tolerate more compression than screenshots, scanned documents or images containing small text. If readability matters, inspect the compressed file at the size people will actually view it.", "Dimensions also affect file size. A very large image displayed in a small box can often be resized as well as compressed. Keep the original file if you may later need the highest quality.", "For important documents, verify that text and fine details remain readable after compression. Compression is a trade-off, so there is no single quality setting that is best for every image."]}, {"title": "Images to PDF: Combine Multiple Images Into One Document", "cat": "Image/PDF", "summary": "Create a multi-page PDF from several JPG, PNG or WEBP images while preserving their order and proportions.", "paras": ["Images to PDF is useful for scanned notes, receipts, assignments, forms and photo collections. Select multiple images and make sure the selection order matches the order you want in the final document.", "Each image is placed on its own PDF page and scaled to fit the page without stretching its proportions. Portrait and landscape images can therefore be combined into one document without manually editing every page.", "Before sharing the PDF, open it and check page order, orientation, readability and file size. If the images are extremely large, compressing or resizing them first can reduce the final PDF size.", "For official submissions, check the receiving service's file-size, page-size and resolution requirements. Always keep the original images until you are satisfied with the PDF."]}, {"title": "Text to PDF: Turn Notes Into a Clean Multi-Page PDF", "cat": "Text/PDF", "summary": "Create a simple readable PDF from notes, instructions, drafts or plain text.", "paras": ["Text to PDF is designed for text-first documents. Paste your content, choose a sensible font size and margin, and the tool wraps long lines and continues onto additional pages.", "Use blank lines to separate paragraphs and make long notes easier to scan. A slightly larger font can improve readability on phones and printed pages, while moderate margins keep text away from the edge.", "Review the generated PDF before sharing it. Check spelling, paragraph breaks, the file name and whether any special characters display as expected.", "For advanced layouts, tables, signatures, complex typography or forms, a dedicated document editor may be a better choice. This tool is intentionally lightweight and useful for straightforward text documents."]}, {"title": "PDF to Image: Convert Every Page to a PNG", "cat": "Image/PDF", "summary": "Turn PDF pages into individual images for sharing, previews or platforms that accept images instead of PDFs.", "paras": ["PDF to Image is useful when a document page needs to be posted as an image or inserted into another visual workflow. Choose the PDF and a rendering scale, then preview the generated pages.", "Higher rendering scale can improve detail but also increases image dimensions and memory use. For a phone screenshot or social preview, a moderate scale may be enough; for readable document text, a higher scale can be useful.", "Every page is rendered separately. You can download individual PNG files or package all pages into one ZIP archive. Check orientation and readability before sharing.", "For confidential PDFs, prefer local processing and avoid unknown online converters. Keep the original PDF as the authoritative copy and use the images as convenient derivatives."]}, {"title": "Password Generator: Create Better Unique Passwords", "cat": "Security", "summary": "Generate random passwords and learn safer habits such as uniqueness and multi-factor authentication.", "paras": ["A password generator can create random strings that are difficult to guess. Length matters because a longer random password has a much larger search space than a short predictable password.", "Choose a length that fits the service and use a mix of character types when supported. Avoid names, birthdays, phone numbers, repeated patterns and words connected to your identity.", "Do not reuse important passwords. A password manager can create and store a unique password for each service, reducing the temptation to repeat one password everywhere.", "Enable multi-factor authentication where available. Never share passwords through chat messages or email just because someone claims to need them."]}];
+Object.assign(KK_SEO,{
+base64:{title:'Free Base64 Encoder & Decoder Online',description:'Encode text to Base64 or decode Base64 strings online in your browser with this free Base64 encoder and decoder.',keywords:'Base64 encoder online, Base64 decoder, text to Base64, decode Base64'},
+hash:{title:'Free Hash Generator Online — MD5, SHA-1, SHA-256 & SHA-512',description:'Generate common cryptographic hashes from text in your browser with MD5, SHA-1, SHA-256 and SHA-512 options.',keywords:'hash generator online, SHA-256 generator, MD5 hash generator, SHA1 generator'},
+shadow:{title:'Free CSS Box Shadow Generator Online',description:'Create CSS box-shadow code visually with adjustable offset, blur, spread, opacity and color.',keywords:'CSS box shadow generator, box shadow CSS, shadow generator online'},
+imageResize:{title:'Free Image Resizer Online — Resize JPG PNG WEBP',description:'Resize images to a chosen width and height in your browser. Keep aspect ratio and download the resized image locally.',keywords:'image resizer online, resize image JPG PNG, photo resize tool'},
+svgPng:{title:'Free SVG to PNG Converter Online',description:'Convert SVG files to PNG images in your browser with a chosen output size.',keywords:'SVG to PNG converter, convert SVG image to PNG, SVG converter online'},
+palette:{title:'Free Color Palette Generator Online',description:'Generate a five-color palette from a base color for websites, graphics, UI design and creative projects.',keywords:'color palette generator, color scheme generator, palette maker'},
+lorem:{title:'Free Lorem Ipsum Generator Online',description:'Generate placeholder Lorem Ipsum paragraphs and copy them quickly for website layouts, UI mockups and prototypes.',keywords:'Lorem Ipsum generator, dummy text generator, placeholder text'},
+stopwatch:{title:'Free Online Stopwatch & Timer',description:'Use a simple browser stopwatch and countdown timer for workouts, study sessions, cooking and everyday tasks.',keywords:'online stopwatch, countdown timer online, free timer'},
+worldClock:{title:'World Clock Online — Current Time Around the World',description:'Check current local time in major cities around the world with an automatically updating world clock.',keywords:'world clock online, current time worldwide, time zone clock'},
+scientific:{title:'Free Scientific Calculator Online',description:'Calculate scientific expressions with trigonometry, square roots, logarithms, powers and constants in your browser.',keywords:'scientific calculator online, sin cos calculator, logarithm calculator, square root calculator'}
+});
+
+const tools=[
+['sip','📈','SIP Calculator','Finance'],['discount','🏷️','Discount Calculator','Finance'],['emi','🏦','EMI Calculator','Finance'],['gst','🧾','GST Calculator','Finance'],['percentage','📊','Percentage Calculator','Finance'],['tip','🍽️','Tip Calculator','Finance'],['loan','💰','Simple Loan','Finance'],
+['text','✍️','Text Formatter','Text'],['word','🔢','Word Counter','Text'],['password','🔐','Password Generator','Security'],
+['age','🎂','Age Calculator','Date'],['dateDiff','📅','Date Difference','Date'],['bmi','⚖️','BMI Calculator','Health'],
+['qr','📱','QR Generator','QR'],['unit','📐','Unit Converter','Converter'],['color','🎨','Color Converter','Converter'],
+['imageCompress','🖼️','Image Compressor','Image/PDF'],['imagePDF','📄','Images to PDF','Image/PDF'],['textPDF','📝','Text to PDF','Image/PDF'],['pdfImage','📑','PDF to Image','Image/PDF'],['textWord','📝','Text to Word','Documents'],['pdfWord','📃','PDF to Word','Documents'],['videoCompress','🎬','Video Compressor','Video'],
+['json','🧑‍💻','JSON Formatter','Developer'],['base64','🔤','Base64 Encoder & Decoder','Developer'],['hash','#️⃣','Hash Generator','Developer'],['shadow','🎨','CSS Box Shadow Generator','Developer'],['imageResize','📐','Image Resizer','Image/Design'],['svgPng','🖼️','SVG to PNG','Image/Design'],['palette','🌈','Color Palette Generator','Image/Design'],['lorem','📝','Lorem Ipsum Generator','Text'],['stopwatch','⏱️','Stopwatch & Timer','Utility'],['worldClock','🌍','World Clock','Utility'],['scientific','🧪','Scientific Calculator','Math'],['random','🎲','Random Number','Other'],['currency','💱','Currency Converter','Finance']
+];
+const $=id=>document.getElementById(id);
+function Result({id}){} // placeholder component marker
+function ToolTitle({children}){} // placeholder component marker
+
+// Convert the custom tags into normal HTML before runtime.
+document.querySelectorAll('ToolTitle').forEach(e=>{let d=document.createElement('div');d.className='flex items-center justify-between mb-5';d.innerHTML='<h2 class="text-xl font-bold text-indigo-600">'+e.innerHTML+'</h2>';e.replaceWith(d)});
+document.querySelectorAll('Result').forEach(e=>{let d=document.createElement('div');d.id=e.getAttribute('id');d.className='result mt-4';e.replaceWith(d)});
+document.querySelectorAll('Field').forEach(e=>{let id=e.getAttribute('id'), label=e.getAttribute('label'), child=e.firstElementChild; child.id=id; child.className='input'; let wrap=document.createElement('div');wrap.innerHTML='<label class="label">'+label+'</label>';wrap.appendChild(child);e.removeAttribute('id');e.replaceWith(wrap)});
+
+const nav=$('toolNav');
+const cards=$('cards');
+const allCards=$('allCards');
+const categoryRow=$('categoryRow');
+const popularIds=['sip','emi','discount','qr','bmi','age','json','imageResize','scientific'];
+const cats=['All',...new Set(tools.map(x=>x[3]))];
+
+function toolSlug(id){
+ const map={sip:'sip-calculator',discount:'discount-calculator',emi:'emi-calculator',gst:'gst-calculator',percentage:'percentage-calculator',tip:'tip-calculator',loan:'loan-calculator',text:'text-formatter',word:'word-counter',password:'password-generator',age:'age-calculator',dateDiff:'date-difference-calculator',bmi:'bmi-calculator',qr:'qr-code-generator',unit:'unit-converter',color:'color-converter',imageCompress:'image-compressor',imagePDF:'images-to-pdf',textPDF:'text-to-pdf',pdfImage:'pdf-to-image',textWord:'text-to-word',pdfWord:'pdf-to-word',videoCompress:'video-compressor',json:'json-formatter',base64:'base64-encoder-decoder',hash:'hash-generator',shadow:'css-box-shadow-generator',imageResize:'image-resizer',svgPng:'svg-to-png',palette:'color-palette-generator',lorem:'lorem-ipsum-generator',stopwatch:'stopwatch-timer',worldClock:'world-clock',scientific:'scientific-calculator',random:'random-number-generator',currency:'currency-converter'};
+ return map[id]||id;
+}
+function toolCard(t){
+ const [id,icon,name,cat]=t;
+ return `<a href="/${toolSlug(id)}" data-tool-id="${id}" data-name="${name.toLowerCase()}" onclick="event.preventDefault();openTool('${id}')" class="pop-card" aria-label="${name} online — ${cat}"><div class="pop-icon">${icon}</div><b>${name}</b><span>${cat}</span></a>`;
+}
+function renderHome(){
+ cards.innerHTML='';
+ allCards.innerHTML='';
+ nav.innerHTML='';
+ categoryRow.innerHTML='';
+ tools.forEach(t=>{
+   const card=toolCard(t);
+   allCards.insertAdjacentHTML('beforeend',card);
+   if(popularIds.includes(t[0])) cards.insertAdjacentHTML('beforeend',card);
+   nav.insertAdjacentHTML('beforeend',
+     `<button data-name="${t[2].toLowerCase()}" onclick="openTool('${t[0]}')" class="navitem w-full text-left px-3 py-2 rounded-xl text-sm hover:bg-slate-100">${t[1]} ${t[2]}</button>`
+   );
+ });
+ cats.forEach((c,i)=>{
+   categoryRow.insertAdjacentHTML('beforeend',
+     `<button class="cat-btn ${i===0?'active':''}" onclick="filterCategory('${c}',this)">${c}</button>`
+   );
+ });
+}
+
+const toolGuideData={"sip": ["How to use", "Enter monthly investment, expected annual return and years. Compare multiple scenarios instead of relying on one estimate.", "Separate your own contributions from estimated growth. Test a longer period and different monthly amounts.", "Does this guarantee the final value?", "No. It is an estimate based on the return you enter."], "discount": ["How to use", "Enter the original price and discount percentage, then calculate the saving and final price.", "Compare final payable prices, not only headline discount percentages.", "Does it include tax or shipping?", "No, unless those amounts are included in the price you enter."], "emi": ["How to use", "Enter loan amount, interest rate and tenure. Change one input at a time to compare scenarios.", "Use it for budgeting and compare total repayment, not only monthly EMI.", "Is the result a bank quotation?", "No. Fees and lender-specific terms may change the actual payment."], "gst": ["How to use", "Enter the amount and GST rate and choose the applicable calculation mode.", "Keep the taxable amount and tax amount visible when checking invoices.", "Can this replace tax advice?", "No. Verify current GST rules for business or filing decisions."], "percentage": ["How to use", "Enter the values requested by the calculator and identify the correct base value.", "Always ask 'percentage of what?' before comparing two percentages.", "Why can two percentage changes differ?", "Because the base value can be different."], "tip": ["How to use", "Enter the bill amount, tip percentage and number of people if applicable.", "Use it to quickly split a bill and check the amount before paying.", "Can I use a fixed tip?", "Yes; enter the equivalent percentage or use the result as a reference."], "loan": ["How to use", "Enter the principal, interest rate and repayment period.", "Compare total repayment across different tenures before choosing a loan.", "Are extra fees included?", "Only if you include them in the inputs or the tool specifically supports them."], "text": ["How to use", "Paste text and choose the formatting action you need.", "Clean spaces before copying text into forms, documents or captions.", "Does it upload my text?", "The formatter is designed for browser-side processing."], "word": ["How to use", "Paste your text and review word and character counts.", "Check limits before submitting applications, captions or assignments.", "Will every platform count the same way?", "Not always; platforms can use different counting rules."], "password": ["How to use", "Choose a length and character set, then generate a random password.", "Use a unique password for each important account and enable MFA.", "Should I reuse a generated password?", "No. Keep passwords unique and store them securely."], "age": ["How to use", "Enter the birth date and target date to calculate age.", "Use the exact date recorded on official documents for formal purposes.", "Is this an official age record?", "No. It is a date calculation tool."], "dateDiff": ["How to use", "Select start and end dates and compare the interval.", "Check the counting rule when a deadline or contract is involved.", "Why can inclusive and exclusive day counts differ?", "Because some rules count the start and/or end date."], "bmi": ["How to use", "Enter height and weight using the requested units.", "Treat BMI as a screening number, not a complete health assessment.", "Can BMI diagnose health problems?", "No. Discuss health concerns with a qualified professional."], "qr": ["How to use", "Enter a URL or text and generate the code. Scan it before sharing.", "Test printed codes at their actual size and distance.", "Can a QR code prove a website is safe?", "No. Always verify the destination before entering sensitive information."], "unit": ["How to use", "Choose the source and target units and enter the value.", "Keep precision until the final step for technical calculations.", "Are all conversions exact?", "Some involve rounding or conventions; verify professional requirements."], "color": ["How to use", "Enter a supported color value and convert it to another format.", "Keep a color value in a consistent format when working across design tools.", "Will every screen display the same color?", "Display hardware and color profiles can differ."], "imageCompress": ["How to use", "Select an image, choose compression settings and review the output.", "Resize very large images as well as compressing them when appropriate.", "Does compression always reduce quality?", "Lossy compression can; review the output before deleting the original."], "imagePDF": ["How to use", "Select multiple images and confirm their order before creating the PDF.", "Review every page and keep the original images until the PDF is verified.", "Can different image orientations be combined?", "Yes, the tool fits each image to its PDF page."], "textPDF": ["How to use", "Paste text, choose font size and margin, then create the PDF.", "Use blank lines for readable paragraphs and review the generated file.", "Can it create complex layouts?", "It is designed mainly for simple text-first PDFs."], "pdfImage": ["How to use", "Choose a PDF, set rendering scale and convert. Download pages individually or as a ZIP.", "Use a higher scale for small document text, but remember it creates larger images.", "Are my PDF pages uploaded?", "The converter is designed for local browser rendering."], "json": ["How to use", "Paste valid JSON and format it to add readable indentation.", "Never paste production secrets, private keys or confidential data into unknown services.", "What does a JSON formatting error mean?", "Usually the JSON contains invalid syntax such as missing quotes, commas or braces."], "random": ["How to use", "Set the minimum and maximum values and generate a number.", "Use a clear range and verify whether your task needs a cryptographically secure random source.", "Is ordinary random suitable for passwords?", "No. Use a dedicated secure password generator for security-sensitive use."], "currency": ["How to use", "Choose currencies and enter an amount, then review the displayed rate and result.", "For payments, verify the live rate and fees with your bank or provider.", "Is the displayed exchange rate guaranteed?", "No. Provider rates, fees and timing can differ."], "textWord": ["How to use", "Paste your text, choose a font size and download a .docx Word document.", "Useful for letters, notes, applications and simple documents without installing Word.", "Will it keep complex formatting?", "This version is designed for clean text documents; complex tables and layouts may need a full editor."], "pdfWord": ["How to use", "Choose a PDF and convert it to an editable Word document.", "It can save time when you need to edit text from a normal text-based PDF.", "Can it convert scanned PDFs perfectly?", "No. Scanned/image-only PDFs need OCR for reliable text extraction."], "videoCompress": ["How to use", "Choose a video, select resolution, bitrate and frame rate, then start compression.", "Lower resolution and bitrate can reduce file size for messaging and sharing.", "Does it create MP4?", "This browser-only version exports WebM. MP4 conversion can require a heavier processing engine such as FFmpeg."]};
+
+Object.assign(toolGuideData,{
+base64:['How to use','Enter text, then choose Encode or Decode. Use Decode only with valid Base64 input.','Useful for understanding encoded text and transferring binary-safe text representations.','Is Base64 encryption?','No. Base64 is encoding, not encryption, and it should not be used to protect secrets.'],
+hash:['How to use','Enter text and generate the supported hash values. Compare the output when checking file or text integrity.','Hash functions are useful for checksums, integrity checks and development workflows.','Can a hash be reversed?','Cryptographic hashes are designed to be one-way, although weak algorithms can have practical attacks.'],
+shadow:['How to use','Adjust offset, blur, spread, opacity and color, then copy the generated CSS.','Preview the effect before adding it to a website or app design.','Does it require a CSS library?','No. The generated value uses standard CSS box-shadow syntax.'],
+imageResize:['How to use','Choose an image, set a target width and optionally a height, then resize and download it.','Resizing large images can reduce upload and page-load sizes while keeping the original file untouched.','Will the original image be changed?','No. The browser creates a new resized file.'],
+svgPng:['How to use','Choose an SVG and set the desired PNG dimensions, then convert it locally.','PNG is convenient when a platform or editor does not accept SVG files.','Will SVG text and fonts always match?','Not always. Rendering can depend on embedded fonts and SVG features.'],
+palette:['How to use','Choose a base color and generate a five-color palette. Click a color to copy its HEX value.','Useful for quick UI, branding and design color exploration.','Are these palettes accessibility-tested?','No. Check contrast separately for accessible text and UI combinations.'],
+lorem:['How to use','Choose the number of paragraphs and approximate words per paragraph, then generate and copy the placeholder text.','Useful for testing layouts before real copy is available.','Is Lorem Ipsum meaningful content?','No. It is placeholder text and should be replaced with real, useful content before publishing.'],
+stopwatch:['How to use','Press Start to begin, Pause to stop temporarily and Reset to clear the stopwatch. Use the countdown section for a fixed duration.','Useful for study sessions, workouts, cooking and quick timing tasks.','Does it work when the browser is closed?','No. Keep the page open for reliable browser timing.'],
+worldClock:['How to use','Open the tool and compare the automatically updating local time for listed cities.','Helpful for remote work, travel, calls and international coordination.','Is the time based on my device?','Yes. The browser uses its built-in time-zone data and current device time.'],
+scientific:['How to use','Enter a supported expression and use the scientific buttons for common functions.','Useful for school, engineering and everyday calculations that need more than basic arithmetic.','Are angles in degrees?','Yes. Trigonometric functions in this tool interpret input angles in degrees.']
+});
+
+function renderSEOContent(id){
+ const page=$(id);
+ const data=KK_SEO[id];
+ if(!page || !data) return;
+ let box=page.querySelector('.seo-tool-content');
+ if(!box){
+   box=document.createElement('section');
+   box.className='seo-tool-content';
+   box.id='kk-seo-content';
+   page.appendChild(box);
+ }
+ const name=(page.querySelector('h2')?.innerText||'This tool').replace(/^\S+\s*/,'');
+ box.innerHTML=`<h3>About ${escapeHtml(name)}</h3>
+ <p>${escapeHtml(data.description)}</p>
+ <p><strong>Useful searches:</strong> ${escapeHtml(data.keywords)}</p>
+ <h4>Frequently Asked Questions</h4>
+ <details><summary>Is this tool free to use?</summary><p>Yes. The tool is designed for quick browser-based use. Some features may depend on your browser or an online service.</p></details>
+ <details><summary>Are the results guaranteed?</summary><p>No. Results are estimates or conversions where applicable. Verify important financial, tax, legal, health or payment decisions with an appropriate official or professional source.</p></details>`;
+}
+
+function renderToolGuide(id){
+ const page=$(id); if(!page || id==='home')return;
+ const data=toolGuideData[id]; if(!data)return;
+ let box=page.querySelector('.tool-guide');
+ if(!box){box=document.createElement('section');box.className='tool-guide';page.appendChild(box);}
+ box.innerHTML='<h3>📘 How to use this tool</h3><p>'+data[1]+'</p><h4>Benefits</h4><p>'+data[2]+'</p><h4>FAQ</h4><div class="faq-item"><details><summary>'+data[3]+'</summary><p>'+data[4]+'</p></details></div>';
+}
+function openGuide(i){
+ const a=guideArticles[i]; if(!a)return;
+ $('guideContent').innerHTML='<div class="guide-cat">'+a.cat+'</div><h2>'+a.title+'</h2><div class="article-meta">Kaam Kaaj Tools · Practical guide</div>'+a.paras.map(p=>'<p>'+p+'</p>').join('');
+ $('guideModal').classList.remove('hidden');document.body.style.overflow='hidden';
+}
+function closeGuide(){$('guideModal').classList.add('hidden');document.body.style.overflow='';}
+
+function setToolView(id){
+ const page=$(id);
+ if(!page)return false;
+ document.body.classList.add('tool-mode');
+ document.querySelectorAll('.tool').forEach(x=>x.classList.remove('active'));
+ page.classList.add('active');
+ renderToolGuide(id);
+ renderSEOContent(id);
+ document.querySelectorAll('.navitem').forEach(x=>x.classList.remove('navactive'));
+ const n=document.querySelector(`#toolNav [onclick="openTool('${id}')"]`);
+ if(n)n.classList.add('navactive');
+ $('headerBack').classList.remove('hidden');
+ window.scrollTo(0,0);
+ return true;
+}
+function openTool(id){
+ if(!setToolView(id))return;
+ updateToolSEO(id);
+ const current=history.state||{};
+ const cleanMode=/^https?:$/.test(location.protocol);
+ const target=cleanMode ? (location.origin+'/'+toolSlug(id)) : location.href;
+ if(current.page!=='tool' || current.tool!==id){
+   try{ history.pushState({page:'tool',tool:id},'',target); }catch(e){ history.pushState({page:'tool',tool:id},'',location.href); }
+ }
+}
+function setHomeView(){
+ resetHomeSEO();
+ document.body.classList.remove('tool-mode');
+ document.querySelectorAll('.tool').forEach(x=>x.classList.remove('active'));
+ $('home').classList.add('active');
+ $('headerBack').classList.add('hidden');
+ document.querySelectorAll('.navitem').forEach(x=>x.classList.remove('navactive'));
+ window.scrollTo(0,0);
+}
+function showHome(){
+ setHomeView();
+}
+function goHome(){
+ // If the current screen was opened from Home, go back one browser-history step.
+ // popstate will render Home without creating another history entry.
+ if((history.state||{}).page==='tool'){
+   history.back();
+ }else{
+   setHomeView();
+ }
+}
+window.addEventListener('popstate',function(event){
+ const st=event.state||{};
+ if(st.page==='tool' && st.tool){
+   setToolView(st.tool);
+ }else{
+   setHomeView();
+ }
+});
+function showAllCards(){
+ showHome();
+ setTimeout(()=>{
+   $('allToolsSection').scrollIntoView({behavior:'smooth',block:'start'});
+ },60);
+}
+function focusHomeSearch(){
+ showHome();
+ setTimeout(()=>{
+   $('homeSearch').focus();
+   $('homeSearch').scrollIntoView({behavior:'smooth',block:'center'});
+ },60);
+}
+function homeSearchTools(){
+ const q=($('homeSearch').value||'').toLowerCase().trim();
+ document.querySelectorAll('#allCards .pop-card').forEach(card=>{
+   const t=tools.find(x=>x[0]===card.dataset.toolId);
+   const seo=t && KK_SEO[t[0]];
+   const hay=t ? [t[2],t[3],seo?.title||'',seo?.description||'',seo?.keywords||''].join(' ').toLowerCase() : '';
+   card.style.display=(!q || hay.includes(q))?'':'none';
+ });
+}
+function filterCategory(cat,btn){
+ document.querySelectorAll('.cat-btn').forEach(x=>x.classList.remove('active'));
+ btn.classList.add('active');
+ document.querySelectorAll('#allCards .pop-card').forEach(card=>{
+   const t=tools.find(x=>x[0]===card.dataset.toolId);
+   card.style.display=(cat==='All'||(t&&t[3]===cat))?'':'none';
+ });
+}
+function filterTools(){
+ const q=($('toolSearch').value||'').toLowerCase().trim();
+ document.querySelectorAll('#toolNav [data-name]').forEach(x=>{
+   const t=tools.find(v=>v[2].toLowerCase()===x.dataset.name);
+   const seo=t && KK_SEO[t[0]];
+   const hay=[x.dataset.name,t?.[3]||'',seo?.keywords||'',seo?.title||''].join(' ').toLowerCase();
+   x.style.display=hay.includes(q)?'':'none';
+ });
+}
+
+(function initToolListSchema(){
+  const run=()=>{
+    if(typeof tools==='undefined') return;
+    const el=document.getElementById('kk-tool-list-schema');
+    if(!el) return;
+    el.textContent=JSON.stringify({
+      "@context":"https://schema.org",
+      "@type":"ItemList",
+      "name":"Kaam Kaaj Tools",
+      "itemListElement":tools.map((t,i)=>({
+        "@type":"ListItem",
+        "position":i+1,
+        "name":t[2],
+        "url":location.origin + "/" + toolSlug(t[0])
+      }))
+    });
+  };
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',run,{once:true});
+  else run();
+})();
+
+renderHome();
+renderSavedCalculations();
+
+function money(n){return '₹'+Number(n).toLocaleString('en-IN',{maximumFractionDigits:2})}
+function valid(vals){return vals.every(x=>Number.isFinite(x))}
+const ACTION_RESULT_IDS=new Set(['sipResult','discResult','emiResult','gstResult','percentResult','tipResult','loanResult','ageResult','dateDiffResult','bmiResult','unitResult','colorResult','curResult','textWordResult','pdfWordResult','videoResult']);
+function setR(id,html){
+  const el=$(id); if(!el)return;
+  el.innerHTML=html;
+  if(!ACTION_RESULT_IDS.has(id))return;
+  const bad=/(Please enter|Enter valid|Enter a |Select |cannot be in|Could not|unavailable|loading|Invalid|Choose )/i.test(el.innerText||'');
+  if(bad)return;
+  const tool=el.closest('.tool');
+  const title=tool?.querySelector('h2')?.innerText?.trim()||'Kaam Kaaj Tools Result';
+  el.insertAdjacentHTML('beforeend',`<div class="result-actions" data-result-actions>
+    <button class="wa" onclick="shareWhatsApp('${id}')">🟢 WhatsApp</button>
+    <button class="copy" onclick="copyResult('${id}')">📋 Copy</button>
+    <button class="print" onclick="printResult('${id}')">🖨️ Print</button>
+    <button class="pdf" onclick="downloadResultPDF('${id}')">📄 PDF</button>
+    <button class="save" onclick="saveResult('${id}')">⭐ Save</button>
+  </div>`);
+}
+function resultText(id){const el=$(id);return el?el.innerText.replace(/\n{3,}/g,'\n\n').trim():''}
+function resultTitle(id){return $(id)?.closest('.tool')?.querySelector('h2')?.innerText?.trim()||'Calculation Result'}
+function shareWhatsApp(id){const text=`${resultTitle(id)}\n\n${resultText(id)}\n\nMade with Kaam Kaaj Tools ⚡`;window.open('https://wa.me/?text='+encodeURIComponent(text),'_blank','noopener')}
+async function copyResult(id){const text=`${resultTitle(id)}\n${resultText(id)}`;try{await navigator.clipboard.writeText(text);alert('Result copied!')}catch(e){prompt('Copy this result:',text)}}
+function printResult(id){const title=resultTitle(id),text=resultText(id);const w=window.open('','_blank','width=800,height=900');if(!w){alert('Please allow pop-ups to print the result.');return}w.document.write(`<!doctype html><html><head><title>${escapeHtml(title)}</title><style>body{font-family:Arial,sans-serif;padding:36px;color:#172033}h1{font-size:24px;margin-bottom:20px;color:#3730a3}.result{font-size:16px;line-height:1.8;white-space:pre-wrap;border:1px solid #ddd;border-radius:12px;padding:18px}small{color:#64748b}</style></head><body><h1>${escapeHtml(title)}</h1><div class="result">${escapeHtml(text)}</div><p><small>Generated by Kaam Kaaj Tools</small></p><script>window.onload=()=>window.print()<\/script></body></html>`);w.document.close()}
+function downloadResultPDF(id){const {jsPDF}=window.jspdf||{};if(!jsPDF){alert('PDF library is not ready.');return}const title=resultTitle(id),text=resultText(id),doc=new jsPDF({unit:'mm',format:'a4'});const margin=15,maxW=180,lineH=7;doc.setFont('helvetica','bold');doc.setFontSize(16);doc.text(title,margin,margin);doc.setFont('helvetica','normal');doc.setFontSize(11);let y=margin+12;for(const para of text.split(/\n/)){const lines=doc.splitTextToSize(para,maxW);for(const line of lines){if(y>282){doc.addPage();y=margin}doc.text(line,margin,y);y+=lineH}y+=2}doc.setFontSize(9);doc.text('Generated by Kaam Kaaj Tools',margin,289);doc.save((title.replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'')||'calculation-result')+'.pdf')}
+function escapeHtml(x){return String(x).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]))}
+function savedCalculations(){try{return JSON.parse(localStorage.getItem('kk_saved_calculations')||'[]')}catch(e){return[]}}
+function saveResult(id){const text=resultText(id);if(!text)return;const item={id:Date.now(),tool:resultTitle(id),text,date:new Date().toLocaleString('en-IN')};const list=savedCalculations();list.unshift(item);localStorage.setItem('kk_saved_calculations',JSON.stringify(list.slice(0,30)));renderSavedCalculations();alert('Calculation saved on this device ✓')}
+function renderSavedCalculations(){const box=$('savedCalculations');if(!box)return;const list=savedCalculations();if(!list.length){box.innerHTML='<div class="saved-empty">No saved calculations yet. Calculate something and tap ⭐ Save.</div>';return}box.innerHTML=list.map(x=>`<div class="saved-item"><div><b>${escapeHtml(x.tool)}</b><p>${escapeHtml(x.text)}</p><small>${escapeHtml(x.date)}</small></div><div class="saved-actions"><button onclick="shareSaved(${x.id})">Share</button><button class="delete" onclick="deleteSaved(${x.id})">Delete</button></div></div>`).join('')}
+function shareSaved(id){const x=savedCalculations().find(a=>a.id===id);if(!x)return;window.open('https://wa.me/?text='+encodeURIComponent(`${x.tool}\n\n${x.text}\n\nMade with Kaam Kaaj Tools ⚡`),'_blank','noopener')}
+function deleteSaved(id){const list=savedCalculations().filter(x=>x.id!==id);localStorage.setItem('kk_saved_calculations',JSON.stringify(list));renderSavedCalculations()}
+function clearSavedCalculations(){if(!savedCalculations().length)return;if(confirm('Delete all saved calculations from this device?')){localStorage.removeItem('kk_saved_calculations');renderSavedCalculations()}}
+
+
+function calcSIP(){let p=+$('sipAmount').value,r=+$('sipRate').value/1200,n=+$('sipYears').value*12;if(!valid([p,r,n])||p<0||n<=0||r<0)return setR('sipResult','Please enter valid values.');let fv=r===0?p*n:p*((Math.pow(1+r,n)-1)/r)*(1+r),inv=p*n;setR('sipResult',`Invested: <b>${money(inv)}</b><br>Estimated Returns: <b class="text-green-600">${money(fv-inv)}</b><br>Total Value: <b class="text-indigo-600">${money(fv)}</b>`)}
+function calcDiscount(){let p=+$('origPrice').value,d=+$('discPercent').value;if(!valid([p,d])||p<0||d<0||d>100)return setR('discResult','Enter a price and discount between 0–100%.');let s=p*d/100;setR('discResult',`You Save: <b class="text-green-600">${money(s)}</b><br>Final Price: <b class="text-indigo-600">${money(p-s)}</b>`)}
+function calcEMI(){let P=+$('loan').value,annual=+$('emiRate').value,years=+$('emiYears').value,n=years*12,r=annual/1200;if(!valid([P,annual,years])||P<=0||years<=0||annual<0)return setR('emiResult','Enter valid loan details.');let e=r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1),total=e*n;setR('emiResult',`Monthly EMI: <b>${money(e)}</b><br>Total Interest: <b>${money(total-P)}</b><br>Total Payment: <b>${money(total)}</b>`)}
+function calcGST(add){let p=+$('gstPrice').value,g=+$('gstRate').value;if(!valid([p,g])||p<0||g<0)return setR('gstResult','Enter valid values.');if(add){let tax=p*g/100;setR('gstResult',`GST: <b>${money(tax)}</b><br>Total: <b>${money(p+tax)}</b>`)}else{let base=p/(1+g/100);setR('gstResult',`Base Amount: <b>${money(base)}</b><br>GST Included: <b>${money(p-base)}</b>`)}} 
+function calcPercent(){let a=+$('p1').value,b=+$('p2').value;if(!valid([a,b]))return setR('percentResult','Enter valid values.');setR('percentResult',`${b}% of ${a} = <b>${(a*b/100).toFixed(2)}</b>`)}
+function calcTip(){let b=+$('bill').value,t=+$('tipRate').value,n=+$('people').value;if(!valid([b,t,n])||n<=0)return setR('tipResult','Enter valid values.');let tip=b*t/100,total=b+tip;setR('tipResult',`Tip: <b>${money(tip)}</b><br>Total: <b>${money(total)}</b><br>Per Person: <b>${money(total/n)}</b>`)}
+function calcSimpleLoan(){let p=+$('simpleLoan').value,r=+$('simpleRate').value,y=+$('simpleYears').value;if(!valid([p,r,y])||p<0||y<0)return setR('loanResult','Enter valid values.');let i=p*r*y/100;setR('loanResult',`Interest: <b>${money(i)}</b><br>Total Amount: <b>${money(p+i)}</b>`)}
+function fmt(t){let x=$('textInput'),v=x.value;if(t==='upper')x.value=v.toUpperCase();if(t==='lower')x.value=v.toLowerCase();if(t==='spaces')x.value=v.replace(/\s+/g,' ').trim();if(t==='title')x.value=v.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());updateStats()}
+function updateStats(){let v=$('textInput').value; $('textStats').textContent=`Words: ${v.trim()?v.trim().split(/\s+/).length:0} · Characters: ${v.length} · Lines: ${v?v.split(/\n/).length:0}`}
+$('textInput').addEventListener('input',updateStats);
+function countWords(){let v=$('wordText').value;setR('wordResult',`Words: <b>${v.trim()?v.trim().split(/\s+/).length:0}</b><br>Characters: <b>${v.length}</b><br>Characters without spaces: <b>${v.replace(/\s/g,'').length}</b>`)}
+function copy(id){navigator.clipboard?.writeText($(id).value);alert('Copied!')} function copyText(){navigator.clipboard?.writeText($('textInput').value);alert('Copied!')}
+function genPass(){let len=Math.min(128,Math.max(4,+$('passLen').value||16)),sets=[];if($('pUpper').checked)sets.push('ABCDEFGHIJKLMNOPQRSTUVWXYZ');if($('pLower').checked)sets.push('abcdefghijklmnopqrstuvwxyz');if($('pNum').checked)sets.push('0123456789');if($('pSym').checked)sets.push('!@#$%^&*()_+-=[]{}');if(!sets.length)return alert('Select at least one option');let all=sets.join(''),out=sets.map(s=>s[Math.floor(Math.random()*s.length)]);while(out.length<len)out.push(all[Math.floor(Math.random()*all.length)]);out.sort(()=>Math.random()-.5);$('passOut').value=out.join('')}
+function calcAge(){let d=new Date($('dob').value),now=new Date();if(isNaN(d))return setR('ageResult','Select your birth date.');if(d>now)return setR('ageResult','Birth date cannot be in the future.');let y=now.getFullYear()-d.getFullYear(),m=now.getMonth()-d.getMonth(),day=now.getDate()-d.getDate();if(day<0){m--;day+=new Date(now.getFullYear(),now.getMonth(),0).getDate()}if(m<0){y--;m+=12}setR('ageResult',`Age: <b>${y} years, ${m} months, ${day} days</b>`)}
+function calcDateDiff(){let a=new Date($('date1').value),b=new Date($('date2').value);if(isNaN(a)||isNaN(b))return setR('dateDiffResult','Select both dates.');let days=Math.round(Math.abs(b-a)/86400000);setR('dateDiffResult',`Difference: <b>${days} days</b><br>Approx: <b>${(days/30.44).toFixed(1)} months</b>`)}
+function calcBMI(){let h=+$('height').value/100,w=+$('weight').value;if(!h||!w)return setR('bmiResult','Enter height and weight.');let b=w/(h*h),cat=b<18.5?'Underweight':b<25?'Normal':b<30?'Overweight':'Obesity';setR('bmiResult',`BMI: <b>${b.toFixed(1)}</b><br>Category: <b>${cat}</b>`)}
+function genQR(){let c=$('qrcode'),t=$('qrText').value.trim();c.innerHTML='';$('qrDownload').classList.add('hidden');if(!t)return;new QRCode(c,{text:t,width:220,height:220,correctLevel:QRCode.CorrectLevel.H});setTimeout(()=>$('qrDownload').classList.remove('hidden'),200)}
+function downloadQR(){let img=$('qrcode').querySelector('img')||$('qrcode').querySelector('canvas');let a=document.createElement('a');a.download='kaam-kaaj-qr.png';a.href=img.tagName==='IMG'?img.src:img.toDataURL();a.click()}
+const units={length:{meter:1,kilometer:1000,centimeter:.01,millimeter:.001,foot:.3048,inch:.0254,mile:1609.344},weight:{kilogram:1,gram:.001,milligram:.000001,pound:.45359237,ounce:.0283495},area:{'sq meter':1,'sq km':1e6,'sq foot':.092903,'sq yard':.836127,'acre':4046.86},volume:{liter:1,'milliliter':.001,'cubic meter':1000,'gallon':3.78541},speed:{'km/h':1,'m/s':3.6,'mph':1.60934}};
+function loadUnits(){let type=$('unitType').value,arr=type==='temperature'?['Celsius','Fahrenheit','Kelvin']:Object.keys(units[type]);$('fromUnit').innerHTML=arr.map(x=>`<option>${x}</option>`).join('');$('toUnit').innerHTML=arr.map(x=>`<option>${x}</option>`).join('')}
+function convertUnit(){let type=$('unitType').value,v=+$('unitVal').value,a=$('fromUnit').value,b=$('toUnit').value;if(!valid([v]))return setR('unitResult','Enter a value.');let r;if(type==='temperature'){let c=a==='Celsius'?v:a==='Fahrenheit'?(v-32)*5/9:v-273.15;r=b==='Celsius'?c:b==='Fahrenheit'?c*9/5+32:c+273.15}else r=v*units[type][a]/units[type][b];setR('unitResult',`Result: <b>${r.toLocaleString(undefined,{maximumFractionDigits:8})} ${b}</b>`)}
+function hexToRgb(){let h=$('hex').value.trim().replace('#','');if(!/^[0-9a-fA-F]{6}$/.test(h))return setR('colorResult','Use a valid 6-digit HEX color.');let r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);setR('colorResult',`RGB: <b>rgb(${r}, ${g}, ${b})</b><br>HEX: <b>#${h.toUpperCase()}</b>`)}
+function compressImage(){let f=$('imgFile').files[0],max=+$('imgWidth').value,q=+$('imgQuality').value;if(!f)return setR('imgResult','Choose an image.');let im=new Image(),url=URL.createObjectURL(f);im.onload=()=>{let s=Math.min(1,max/im.width),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);c.toBlob(blob=>{let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='compressed-image.jpg';a.click();setR('imgResult',`Original: ${(f.size/1024).toFixed(1)} KB<br>New: ${(blob.size/1024).toFixed(1)} KB`,'image/jpeg',q)},'image/jpeg',q)};im.src=url}
+async function imagesToPDF(){
+  const files=[...$('pdfImages').files];
+  if(!files.length)return setR('pdfResult','Choose one or more images.');
+  const {jsPDF}=window.jspdf;
+  let doc=null;
+  try{
+    for(let i=0;i<files.length;i++){
+      const im=await loadImg(await fileData(files[i]));
+      const landscape=im.width>im.height;
+      if(!doc) doc=new jsPDF({orientation:landscape?'landscape':'portrait',unit:'mm',format:'a4'});
+      else doc.addPage('a4',landscape?'landscape':'portrait');
+      const pageW=landscape?297:210,pageH=landscape?210:297,margin=8;
+      const maxW=pageW-margin*2,maxH=pageH-margin*2;
+      const scale=Math.min(maxW/im.width,maxH/im.height);
+      const w=im.width*scale,h=im.height*scale,x=(pageW-w)/2,y=(pageH-h)/2;
+      const canvas=document.createElement('canvas');canvas.width=im.width;canvas.height=im.height;
+      canvas.getContext('2d').drawImage(im,0,0);
+      doc.addImage(canvas.toDataURL('image/jpeg',0.92),'JPEG',x,y,w,h);
+    }
+    doc.save('kaam-kaaj-images.pdf');
+    setR('pdfResult',`<b>${files.length} image(s)</b> converted into <b>${files.length} PDF page(s)</b>.`);
+  }catch(e){setR('pdfResult','Could not create the PDF. Please use valid JPG, PNG or WEBP images.');}
+}
+function fileData(f){return new Promise(r=>{let x=new FileReader();x.onload=()=>r(x.result);x.readAsDataURL(f)})}function loadImg(src){return new Promise(r=>{let i=new Image();i.onload=()=>r(i);i.src=src})}
+function textToPDF(){
+  const text=$('pdfText').value.trim();
+  if(!text)return setR('textPDFResult','Enter some text first.');
+  const {jsPDF}=window.jspdf;
+  const size=Math.max(8,Math.min(30,+$('pdfFontSize').value||12));
+  const margin=Math.max(5,Math.min(40,+$('pdfMargin').value||15));
+  const filename=($('pdfFileName').value.trim()||'kaam-kaaj-text').replace(/[\\/:*?"<>|]+/g,'-');
+  const doc=new jsPDF({unit:'mm',format:'a4'}), pageW=210,pageH=297,maxW=pageW-margin*2,lineH=Math.max(4,size*0.42+2);
+  doc.setFont('helvetica','normal');doc.setFontSize(size);let y=margin;
+  for(const para of text.replace(/\r/g,'').split('\n')){
+    const lines=para?doc.splitTextToSize(para,maxW):[''];
+    for(const line of lines){if(y>pageH-margin){doc.addPage();y=margin;}doc.text(line,margin,y);y+=lineH;}
+    y+=2;
+  }
+  doc.save(filename+'.pdf');setR('textPDFResult','PDF created successfully ✓');
+}
+let pdfImageFiles=[];
+async function pdfToImages(){
+  const file=$('pdfInput').files[0];if(!file)return setR('pdfImageResult','Choose a PDF file.');
+  if(!window.pdfjsLib)return setR('pdfImageResult','PDF engine is loading. Please wait a moment and try again.');
+  const scale=Math.max(1,Math.min(4,+$('pdfScale').value||2));
+  const preview=$('pdfPreview');preview.innerHTML='';pdfImageFiles=[];$('pdfImageActions').classList.add('hidden');
+  setR('pdfImageResult','Converting PDF pages...');
+  try{
+    const data=await file.arrayBuffer();const pdf=await window.pdfjsLib.getDocument({data}).promise;
+    for(let n=1;n<=pdf.numPages;n++){
+      const page=await pdf.getPage(n),viewport=page.getViewport({scale});
+      const canvas=document.createElement('canvas');canvas.width=Math.ceil(viewport.width);canvas.height=Math.ceil(viewport.height);
+      await page.render({canvasContext:canvas.getContext('2d'),viewport}).promise;
+      const dataUrl=canvas.toDataURL('image/png');pdfImageFiles.push({name:`page-${n}.png`,dataUrl});
+      const box=document.createElement('div');box.className='pdf-thumb';
+      box.innerHTML=`<img src="${dataUrl}" alt="PDF page ${n}"><div class="flex items-center justify-between mt-2"><b class="text-xs">Page ${n}</b><button class="smallbtn" onclick="downloadOnePdfImage(${n-1})">Download</button></div>`;preview.appendChild(box);
+    }
+    $('pdfImageActions').classList.remove('hidden');setR('pdfImageResult',`<b>${pdf.numPages} page(s)</b> converted to PNG.`);
+  }catch(e){setR('pdfImageResult','Could not read this PDF. Please choose a valid PDF file.');}
+}
+function downloadOnePdfImage(i){const x=pdfImageFiles[i];if(!x)return;const a=document.createElement('a');a.href=x.dataUrl;a.download=x.name;a.click()}
+async function downloadPdfImagesZip(){
+  if(!pdfImageFiles.length)return;
+  if(!window.JSZip)return setR('pdfImageResult','ZIP library is loading. Please try again.');
+  const zip=new JSZip();pdfImageFiles.forEach(x=>zip.file(x.name,x.dataUrl.split(',')[1],{base64:true}));
+  const blob=await zip.generateAsync({type:'blob'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='kaam-kaaj-pdf-pages.zip';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+function formatJSON(){try{$('jsonText').value=JSON.stringify(JSON.parse($('jsonText').value),null,2);setR('jsonResult','<span class="text-green-600">Valid JSON ✓</span>')}catch(e){setR('jsonResult','<span class="text-red-600">Invalid JSON: '+e.message+'</span>')}}
+function minifyJSON(){try{$('jsonText').value=JSON.stringify(JSON.parse($('jsonText').value));setR('jsonResult','Minified successfully ✓')}catch(e){setR('jsonResult','Invalid JSON: '+e.message)}}
+function randomNum(){let a=+$('minNum').value,b=+$('maxNum').value;if(a>b)[a,b]=[b,a];$('randomResult').textContent=Math.floor(Math.random()*(b-a+1))+a}
+async function fetchJsonWithTimeout(url,ms=7000){
+  const controller=new AbortController();
+  const timer=setTimeout(()=>controller.abort(),ms);
+  try{
+    const r=await fetch(url,{cache:'no-store',signal:controller.signal,mode:'cors'});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    return await r.json();
+  }finally{clearTimeout(timer)}
+}
+
+async function getCurrencyRate(from,to){
+  const f=String(from).toLowerCase(), t=String(to).toLowerCase();
+  const sources=[
+    {
+      name:'Fawaz Currency API · jsDelivr',
+      url:`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${f}.min.json`,
+      read:d=>d?.[f]?.[t],
+      date:d=>d?.date
+    },
+    {
+      name:'Fawaz Currency API · Cloudflare fallback',
+      url:`https://latest.currency-api.pages.dev/v1/currencies/${f}.min.json`,
+      read:d=>d?.[f]?.[t],
+      date:d=>d?.date
+    },
+    {
+      name:'Currency API · jsDelivr',
+      url:`https://cdn.jsdelivr.net/gh/irfanokr/currency-api@main/v1/currencies/${f}.min.json`,
+      read:d=>d?.[f]?.[t] ?? d?.rates?.[t],
+      date:d=>d?.date
+    },
+    {
+      name:'Currency API · GitHub Pages fallback',
+      url:`https://irfanokr.github.io/currency-api/v1/currencies/${f}.min.json`,
+      read:d=>d?.[f]?.[t] ?? d?.rates?.[t],
+      date:d=>d?.date
+    },
+    {
+      name:'Frankfurter',
+      url:`https://api.frankfurter.dev/v2/rate/${encodeURIComponent(from)}/${encodeURIComponent(to)}`,
+      read:d=>d?.rate,
+      date:d=>d?.date
+    }
+  ];
+
+  // Try the public sources in parallel so one slow/dead endpoint does not
+  // leave the user staring at “Connecting…” for a long time.
+  const attempts=sources.map(async src=>{
+    const d=await fetchJsonWithTimeout(src.url,7000);
+    const rate=Number(src.read(d));
+    if(!Number.isFinite(rate)||rate<=0)throw new Error('Invalid rate');
+    return {rate,source:src.name,date:src.date(d)||'latest available'};
+  });
+
+  try{
+    return await Promise.any(attempts);
+  }catch(e){
+    throw new Error('All live currency sources failed');
+  }
+}
+
+async function convertCurrency(useInternet=true){
+  const amount=+$('curAmount').value;
+  const from=$('curFrom').value;
+  const to=$('curTo').value;
+  if(!Number.isFinite(amount)||amount<=0){setR('curResult','Enter a valid amount.');return}
+  if(from===to){
+    setR('curResult',`Result: <b>${amount.toLocaleString()} ${to}</b><br>Rate: <b>1 ${from} = 1 ${to}</b>`);
+    $('curUpdated').textContent='Same-currency conversion.';
+    return;
+  }
+
+  const cacheKey=`kk-rate-${from}-${to}`;
+  if(!useInternet){
+    const cached=JSON.parse(localStorage.getItem(cacheKey)||'null');
+    if(cached?.rate){
+      const result=amount*cached.rate;
+      setR('curResult',`Result: <b>${result.toLocaleString(undefined,{maximumFractionDigits:6})} ${to}</b><br>Saved rate: <b>1 ${from} ≈ ${cached.rate.toLocaleString(undefined,{maximumFractionDigits:6})} ${to}</b>`);
+      $('curUpdated').textContent=`📱 Using last saved rate · ${cached.date||'previously loaded'} · ${cached.source||'online source'}`;
+      return;
+    }
+    setR('curResult','No saved rate yet. Tap “🌐 Get Live Rate & Convert” while internet is available.');
+    return;
+  }
+
+  const btn=document.querySelector('[onclick*="convertCurrency(true)"]');
+  if(btn){btn.disabled=true;btn.style.opacity='.7';}
+  setR('curResult','🌐 Fetching live exchange rate…');
+  $('curUpdated').textContent='Connecting to live rate sources…';
+
+  try{
+    const d=await getCurrencyRate(from,to);
+    const result=amount*d.rate;
+    localStorage.setItem(cacheKey,JSON.stringify({rate:d.rate,date:d.date,source:d.source,savedAt:Date.now()}));
+    setR('curResult',`<div class="text-lg font-bold text-green-700">${amount.toLocaleString()} ${from} = ${result.toLocaleString(undefined,{maximumFractionDigits:6})} ${to}</div><div class="mt-2">Live rate: <b>1 ${from} ≈ ${d.rate.toLocaleString(undefined,{maximumFractionDigits:8})} ${to}</b></div>`);
+    $('curUpdated').textContent=`🟢 Live rate loaded · ${d.date} · ${d.source} · Saved on this device`;
+  }catch(e){
+    const cached=JSON.parse(localStorage.getItem(cacheKey)||'null');
+    if(cached?.rate){
+      const result=amount*cached.rate;
+      setR('curResult',`⚠️ Live connection failed. Using your last saved rate:<br><div class="text-lg font-bold">${amount.toLocaleString()} ${from} = ${result.toLocaleString(undefined,{maximumFractionDigits:6})} ${to}</div><div class="mt-2">Saved rate: <b>1 ${from} ≈ ${cached.rate.toLocaleString(undefined,{maximumFractionDigits:8})} ${to}</b></div>`);
+      $('curUpdated').textContent=`🟠 Offline fallback · Last saved ${cached.date||'rate'} · ${cached.source||'online service'}`;
+    }else{
+      setR('curResult','❌ Live rate could not be loaded. Please check that the browser has internet access, then tap the button again.');
+      $('curUpdated').textContent='No live rate was returned by the available public sources.';
+    }
+  }finally{
+    if(btn){btn.disabled=false;btn.style.opacity='';}
+  }
+}
+function swapCurrency(){const a=$('curFrom').value,b=$('curTo').value;$('curFrom').value=b;$('curTo').value=a;} 
+function downloadBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
+function safeFileName(name,ext){return ((name||'kaam-kaaj-document').trim().replace(/[\\/:*?"<>|]+/g,'-')||'kaam-kaaj-document')+ext}
+/* Local file helpers: no document-generation library is required. */
+const generatedFiles={};
+function rememberFile(key,blob,name){generatedFiles[key]={blob,name};}
+function saveFile(key){const f=generatedFiles[key];if(!f)return alert('Create the file first.');
+  if(window.showSaveFilePicker){
+    window.showSaveFilePicker({suggestedName:f.name,types:[{description:'File',accept:{[f.blob.type||'application/octet-stream']:[fileExt(f.name)]}}]}).then(async h=>{const w=await h.createWritable();await w.write(f.blob);await w.close();}).catch(e=>{if(e?.name!=='AbortError')downloadBlob(f.blob,f.name);});
+  } else downloadBlob(f.blob,f.name);
+}
+function fileExt(name){const m=name.match(/(\.[^.]+)$/);return m?m[1]:'.bin';}
+async function shareFile(key){const f=generatedFiles[key];if(!f)return alert('Create the file first.');
+  try{
+    const file=new File([f.blob],f.name,{type:f.blob.type||'application/octet-stream'});
+    if(navigator.share && (!navigator.canShare || navigator.canShare({files:[file]}))){await navigator.share({title:f.name,text:'Created with Kaam Kaaj Tools ⚡',files:[file]});}
+    else if(navigator.share){await navigator.share({title:f.name,text:'Created with Kaam Kaaj Tools ⚡'});}
+    else alert('File sharing is not supported here. Use Save / Download instead.');
+  }catch(e){if(e?.name!=='AbortError')alert('Sharing failed. Use Save / Download instead.');}
+}
+function fileActions(key){return `<div class="result-actions" data-file-actions>
+<button class="save" onclick="saveFile('${key}')">💾 Save / Download</button>
+<button class="copy" onclick="shareFile('${key}')">📤 Share</button>
+</div>`}
+function xmlEsc(x){return String(x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&apos;');}
+async function makeWordDocxBlob(text,title,fontSize){
+  if(!window.JSZip)throw new Error('ZIP library unavailable');
+  const zip=new JSZip();
+  const size=Math.round(Math.max(8,Math.min(30,fontSize))*2);
+  const paragraphs=text.replace(/\r/g,'').split('\n').map(line=>{
+    const safe=xmlEsc(line||' ');
+    return `<w:p><w:pPr><w:spacing w:after="120"/></w:pPr><w:r><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/><w:sz w:val="${size}"/></w:rPr><w:t xml:space="preserve">${safe}</w:t></w:r></w:p>`;
+  }).join('');
+  const documentXml=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${paragraphs}<w:sectPr><w:pgSz w:w="12240" w:h="15840"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" w:header="720" w:footer="720" w:gutter="0"/></w:sectPr></w:body></w:document>`;
+  const contentTypes=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/></Types>`;
+  const rels=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`;
+  const styles=`<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="Calibri" w:hAnsi="Calibri"/></w:rPr></w:rPrDefault></w:docDefaults></w:styles>`;
+  zip.file('[Content_Types].xml',contentTypes);zip.folder('_rels').file('.rels',rels);zip.folder('word').file('document.xml',documentXml);zip.folder('word').file('styles.xml',styles);
+  return await zip.generateAsync({type:'blob',mimeType:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+}
+async function textToWord(){
+  const text=$('wordDocText').value.trim();if(!text)return setR('textWordResult','Enter some text first.');
+  try{
+    setR('textWordResult','Creating Word document…');
+    const size=Math.max(8,Math.min(30,+$('wordDocFontSize').value||12));
+    const name=safeFileName($('wordDocFileName').value,'.docx');
+    const blob=await makeWordDocxBlob(text,name,size);rememberFile('textWord',blob,name);downloadBlob(blob,name);
+    setR('textWordResult',`<b>Word document created successfully ✓</b><br><span class="text-slate-500">Real .docx file created locally in your browser. No document-generation service is used.</span>${fileActions('textWord')}`);
+  }catch(e){setR('textWordResult','Could not create the Word document. Please check your browser connection and try again.');}
+}
+async function pdfToWord(){
+  const file=$('pdfWordInput').files[0];
+  if(!file)return setR('pdfWordResult','Choose a PDF file.');
+  if(!window.pdfjsLib)return setR('pdfWordResult','PDF engine is still loading. Please wait a moment and try again.');
+  try{
+    setR('pdfWordResult','Reading PDF text…');
+    const data=await file.arrayBuffer();const pdf=await window.pdfjsLib.getDocument({data}).promise;
+    const pages=[];let extracted=0;
+    for(let n=1;n<=pdf.numPages;n++){
+      const page=await pdf.getPage(n);const tc=await page.getTextContent();const items=tc.items||[];let lines=[];let currentY=null;let line='';
+      for(const it of items){const y=it.transform?.[5]??0;if(currentY===null)currentY=y;if(Math.abs(y-currentY)>4){if(line.trim())lines.push(line.trim());line='';currentY=y}line+=(it.str||'')+' ';}
+      if(line.trim())lines.push(line.trim());
+      if(lines.length){extracted+=lines.length;pages.push(`Page ${n}\n\n${lines.join('\n')}`)}
+    }
+    if(!extracted)return setR('pdfWordResult','No selectable text was found. This may be a scanned/image-only PDF; OCR is needed for that type of PDF.');
+    const text=pages.join('\n\n');
+    const base=file.name.replace(/\.pdf$/i,'-converted');const name=safeFileName(base,'.docx');
+    const blob=await makeWordDocxBlob(text,name,12);rememberFile('pdfWord',blob,name);downloadBlob(blob,name);
+    setR('pdfWordResult',`Converted <b>${extracted}</b> text line(s) from <b>${pdf.numPages}</b> page(s).<br><span class="text-slate-500">Real editable .docx Word file created locally.</span>${fileActions('pdfWord')}`);
+  }catch(e){setR('pdfWordResult','Could not convert this PDF. Please choose a valid text-based PDF.');}
+}
+async function compressVideo(){
+  const file=$('videoFile').files[0];if(!file)return setR('videoResult','Choose a video file.');
+  if(!window.MediaRecorder||!HTMLCanvasElement.prototype.captureStream)return setR('videoResult','This browser does not support browser-based video compression. Try Chrome or a recent Android browser.');
+  const maxW=+$('videoWidth').value||1280,bitrate=+$('videoBitrate').value||1200000,fps=+$('videoFps').value||30;
+  const video=document.createElement('video');video.preload='metadata';video.muted=true;video.playsInline=true;video.controls=false;
+  const url=URL.createObjectURL(file);video.src=url;
+  try{
+    setR('videoResult','Preparing video…');
+    await new Promise((res,rej)=>{video.onloadedmetadata=res;video.onerror=()=>rej(new Error('load'))});
+    const scale=Math.min(1,maxW/video.videoWidth);const w=Math.max(2,Math.round(video.videoWidth*scale/2)*2),h=Math.max(2,Math.round(video.videoHeight*scale/2)*2);
+    const canvas=document.createElement('canvas');canvas.width=w;canvas.height=h;const ctx=canvas.getContext('2d');
+    const stream=canvas.captureStream(fps);let audioAdded=false;
+    try{const source=video.captureStream?.();source?.getAudioTracks().forEach(t=>{stream.addTrack(t);audioAdded=true});}catch(e){}
+    const mime=MediaRecorder.isTypeSupported('video/webm;codecs=vp9,opus')?'video/webm;codecs=vp9,opus':(MediaRecorder.isTypeSupported('video/webm;codecs=vp8,opus')?'video/webm;codecs=vp8,opus':'video/webm');
+    const rec=new MediaRecorder(stream,{mimeType:mime,videoBitsPerSecond:bitrate});const chunks=[];
+    rec.ondataavailable=e=>{if(e.data.size)chunks.push(e.data)};
+    const done=new Promise((res,rej)=>{rec.onstop=res;rec.onerror=rej});
+    let draw=0;const drawFrame=()=>{if(video.paused||video.ended)return;ctx.drawImage(video,0,0,w,h);draw=requestAnimationFrame(drawFrame)};
+    video.currentTime=0;await video.play();rec.start(250);drawFrame();
+    await new Promise(resolve=>video.onended=resolve);cancelAnimationFrame(draw);rec.stop();await done;
+    stream.getTracks().forEach(t=>t.stop());
+    const blob=new Blob(chunks,{type:'video/webm'});const name='kaam-kaaj-compressed-video.webm';rememberFile('videoCompress',blob,name);downloadBlob(blob,name);
+    const saved=((file.size-blob.size)/file.size*100);const reduction=saved>=0?`Size reduced by <b>${saved.toFixed(1)}%</b>`:`Output is <b>${Math.abs(saved).toFixed(1)}% larger</b>; try a lower bitrate.`;
+    setR('videoResult',`<b>Compression complete ✓</b><br>Original: <b>${(file.size/1024/1024).toFixed(2)} MB</b><br>Compressed: <b>${(blob.size/1024/1024).toFixed(2)} MB</b><br>${reduction}<br>Resolution: <b>${w}×${h}</b> · ${fps} FPS${audioAdded?' · Audio included':' · Audio may not be available in this browser'}${fileActions('videoCompress')}`);
+  }catch(e){setR('videoResult','Video compression failed. Try a shorter MP4/WebM video, lower resolution, or Chrome.');}
+  finally{URL.revokeObjectURL(url)}
+}
+function openLegal(type){
+ const content={
+ about:`<h2>About Kaam Kaaj Tools</h2><p>Kaam Kaaj Tools is an all-in-one utility hub made to keep everyday calculations, conversions, text tools and document tools in one simple place.</p><h3>Our goal</h3><p>Make useful everyday tools fast, simple and accessible on mobile and desktop without unnecessary steps.</p><h3>Contact</h3><p>For feedback, corrections or business enquiries, use the real contact email or contact page published by the site owner.</p>`,
+ privacy:`<h2>Privacy Policy</h2><p><b>Last updated: 20 August 2026</b></p><p>Kaam Kaaj Tools provides browser-based utility tools. Where technically possible, calculations and file processing happen locally in your browser.</p><h3>Information</h3><p>The basic tools do not require an account. If analytics, advertising or third-party services are enabled, those providers may process information such as browser/device data, usage information, approximate location or advertising identifiers according to their own policies.</p><h3>Files and text</h3><p>Files and text used by local tools are intended to be processed in your browser. Do not submit confidential information to a third-party API or service.</p><h3>Advertising</h3><p>We may display advertisements. Advertising partners may use cookies or similar technologies to serve, measure and personalize ads. You can manage available controls through your browser and the advertising provider.</p><h3>Third-party services</h3><p>Some tools use third-party libraries or APIs. Their privacy policies may also apply.</p><h3>Contact</h3><p>For privacy questions, use the contact email or contact page published by the site owner.</p>`,
+ terms:`<h2>Terms & Conditions</h2><p>By using Kaam Kaaj Tools, you agree to use the website lawfully and responsibly.</p><h3>Tool use</h3><p>Tools are provided for general informational and productivity purposes. You are responsible for checking important results before relying on them.</p><h3>No guarantee</h3><p>We aim for accurate and reliable tools but do not guarantee that every calculation, conversion, PDF operation, third-party service or website feature will always be error-free or available.</p><h3>Uploads</h3><p>You are responsible for files and content you process. Do not use the service for unlawful, infringing or harmful material.</p><h3>Changes</h3><p>Features and these terms may be changed or updated from time to time.</p>`,
+ disclaimer:`<h2>Disclaimer</h2><p>Kaam Kaaj Tools provides general-purpose utility tools and does not provide professional financial, medical, legal, tax or investment advice.</p><p>SIP, EMI, loan, GST, BMI and other calculators provide estimates based on the values entered. Actual results can differ because of rates, fees, taxes, rules, rounding and provider-specific terms.</p><p>Verify important results with the relevant bank, government department, professional adviser or original document.</p>`,
+ cookies:`<h2>Cookie Policy</h2><p>Cookies and similar technologies may be used for essential site functions, analytics and advertising. Third-party advertising or analytics providers may set their own cookies according to their policies.</p><p>Browser settings can be used to restrict or delete cookies. Disabling some cookies may affect certain features or advertising preferences.</p>`,
+ contact:`<h2>Contact Us</h2><p>For feedback, bug reports, privacy requests or business enquiries, contact the site owner using the official monitored email address or contact page published with this website.</p><p><b>Before publishing:</b> replace this text with your real contact email/contact page. A real contact method is important for users and advertising compliance.</p>`};
+ $('legalContent').innerHTML=content[type]||content.privacy;$('legalModal').classList.remove('hidden');document.body.style.overflow='hidden';
+}
+function closeLegal(){$('legalModal').classList.add('hidden');document.body.style.overflow=''}
+function toggleDark(){document.documentElement.classList.toggle('dark');localStorage.setItem('dark',$('html').classList.contains('dark'))}
+if(localStorage.getItem('dark')==='true')document.documentElement.classList.add('dark');
+loadUnits();
+
+
+function copyValue(id){const el=$(id);if(!el)return; navigator.clipboard?.writeText(el.value||el.textContent||'');}
+function clearValue(id){const el=$(id);if(el){el.value='';el.textContent='';}}
+function base64Encode(){const v=$('base64Text').value;try{const bytes=new TextEncoder().encode(v);let bin='';bytes.forEach(b=>bin+=String.fromCharCode(b));$('base64Text').value=btoa(bin);setR('base64Result','Base64 encoded successfully.');}catch(e){setR('base64Result','Could not encode this text.');}}
+function base64Decode(){const v=$('base64Text').value.trim();try{const bin=atob(v);const bytes=Uint8Array.from(bin,c=>c.charCodeAt(0));$('base64Text').value=new TextDecoder().decode(bytes);setR('base64Result','Base64 decoded successfully.');}catch(e){setR('base64Result','Invalid Base64 input.');}}
+async function generateHashes(){const text=$('hashText').value; if(!text)return setR('hashResult','Enter text first.'); const enc=new TextEncoder().encode(text); let out=''; for(const name of ['SHA-1','SHA-256','SHA-512']){const buf=await crypto.subtle.digest(name,enc);out+=`<div class="mb-2"><b>${name}</b><br><code>${[...new Uint8Array(buf)].map(x=>x.toString(16).padStart(2,'0')).join('')}</code></div>`;} setR('hashResult',out);}
+function copyHash(which){const el=document.querySelector('#hashResult code');if(el)navigator.clipboard?.writeText(el.textContent);}
+function updateShadow(){const x=+$('shadowX').value||0,y=+$('shadowY').value||0,b=+$('shadowBlur').value||0,sp=+$('shadowSpread').value||0,o=Math.min(1,Math.max(0,+$('shadowOpacity').value||0)),hex=$('shadowColor').value||'#000';const n=parseInt(hex.slice(1),16),r=n>>16,g=n>>8&255,bl=n&255;const css=`box-shadow: ${x}px ${y}px ${b}px ${sp}px rgba(${r}, ${g}, ${bl}, ${o});`;$('shadowPreview').style.boxShadow=`${x}px ${y}px ${b}px ${sp}px rgba(${r},${g},${bl},${o})`;$('shadowCode').value=css;}
+function resizeImage(){const f=$('resizeFile').files[0];if(!f)return setR('resizeResult','Choose an image.');const im=new Image(),url=URL.createObjectURL(f);im.onload=()=>{let w=+$('resizeWidth').value||im.width,h=+$('resizeHeight').value||0;if($('resizeKeep').checked){const ratio=im.height/im.width;if(!w&&h)w=Math.round(h/ratio);h=Math.round(w*ratio);}else{h=h||im.height;}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(im,0,0,w,h);c.toBlob(blob=>{const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='kaam-kaaj-resized-image.jpg';a.click();setR('resizeResult',`Resized image: <b>${w} × ${h}px</b><br>Output: <b>${(blob.size/1024).toFixed(1)} KB</b>`);URL.revokeObjectURL(url);},'image/jpeg',Math.min(1,Math.max(.1,+$('resizeQuality').value||.9)));};im.onerror=()=>setR('resizeResult','Could not read this image.');im.src=url;}
+function svgToPng(){const f=$('svgFile').files[0];if(!f)return setR('svgResult','Choose an SVG file.');const reader=new FileReader();reader.onload=()=>{const svgText=reader.result;const blob=new Blob([svgText],{type:'image/svg+xml'});const url=URL.createObjectURL(blob),im=new Image();im.onload=()=>{const w=+$('svgWidth').value||im.naturalWidth||1200,h=+$('svgHeight').value||Math.round(w*(im.naturalHeight/im.naturalWidth||1));const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(im,0,0,w,h);c.toBlob(out=>{const a=document.createElement('a');a.href=URL.createObjectURL(out);a.download='kaam-kaaj-svg.png';a.click();setR('svgResult',`Converted to PNG: <b>${w} × ${h}px</b>`);URL.revokeObjectURL(url);},'image/png');};im.onerror=()=>setR('svgResult','This SVG could not be rendered by the browser.');im.src=url;};reader.readAsText(f);}
+function generatePalette(){const hex=$('paletteColor').value;const n=parseInt(hex.slice(1),16),r=n>>16,g=n>>8&255,b=n&255;function rgbToHsl(r,g,b){r/=255;g/=255;b/=255;let max=Math.max(r,g,b),min=Math.min(r,g,b),h,s,l=(max+min)/2;if(max===min)h=s=0;else{let d=max-min;s=l>.5?d/(2-max-min):d/(max+min);switch(max){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;default:h=(r-g)/d+4;}h/=6;}return[h*360,s*100,l*100];}function hsl(h,s,l){return `hsl(${h},${s}%,${l}%)`;}const [h,s,l]=rgbToHsl(r,g,b),vals=[l-24,l-12,l,l+12,l+24].map(x=>Math.max(8,Math.min(92,x)));$('paletteGrid').innerHTML=vals.map(x=>{const c=hsl(h,s,x);return `<button class="rounded-2xl p-5 text-white font-bold min-h-28" style="background:${c}" onclick="navigator.clipboard?.writeText(this.dataset.hex)" data-hex="${hslToHex(h,s,x)}">${hslToHex(h,s,x)}</button>`}).join('');setR('paletteResult','Tap a color to copy its HEX value.');}
+function hslToHex(h,s,l){s/=100;l/=100;const k=n=>(n+h/30)%12,a=s*Math.min(l,1-l),f=n=>l-a*Math.max(-1,Math.min(k(n)-3,Math.min(9-k(n),1)));return '#'+[f(0),f(8),f(4)].map(x=>Math.round(255*x).toString(16).padStart(2,'0')).join('').toUpperCase();}
+const loremWords='lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam quis nostrud exercitation ullamco laboris nisi aliquip ex ea commodo consequat'.split(' ');
+function generateLorem(){const p=Math.min(20,Math.max(1,+$('loremParas').value||3)),w=Math.min(200,Math.max(5,+$('loremWords').value||50));const arr=[];for(let j=0;j<p;j++){let a=[];for(let i=0;i<w;i++)a.push(loremWords[(i+j*7)%loremWords.length]);a[0]=a[0][0].toUpperCase()+a[0].slice(1);arr.push(a.join(' ')+'.');}$('loremOutput').value=arr.join('\n\n');}
+let swStart=0,swElapsed=0,swTimer=null;function swFormat(ms){const t=ms/1000,h=Math.floor(t/3600),m=Math.floor(t%3600/60),s=Math.floor(t%60),d=Math.floor(ms%1000/100);return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}.${d}`;}function swRender(){$('stopwatchDisplay').textContent=swFormat(swElapsed+(swStart?Date.now()-swStart:0));}function stopwatchStart(){if(swStart)return;swStart=Date.now();swTimer=setInterval(swRender,100);swRender();}function stopwatchPause(){if(!swStart)return;swElapsed+=Date.now()-swStart;swStart=0;clearInterval(swTimer);swRender();}function stopwatchReset(){swStart=0;swElapsed=0;clearInterval(swTimer);swRender();}
+let timerEnd=0,timerInt=null;function renderTimer(){const left=Math.max(0,timerEnd-Date.now()),sec=Math.ceil(left/1000),m=Math.floor(sec/60),s=sec%60;$('timerDisplay').textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;if(left<=0){clearInterval(timerInt);timerInt=null;setR('timerResult','⏰ Timer finished!');}}function startTimer(){const total=(+$('timerMin').value||0)*60+(+$('timerSec').value||0);if(total<=0)return setR('timerResult','Set a timer duration first.');clearInterval(timerInt);timerEnd=Date.now()+total*1000;setR('timerResult','Timer running…');renderTimer();timerInt=setInterval(renderTimer,250);}function stopTimer(){clearInterval(timerInt);timerInt=null;setR('timerResult','Timer stopped.');}
+const clockZones=[['🇮🇳','New Delhi','Asia/Kolkata'],['🇦🇪','Dubai','Asia/Dubai'],['🇸🇦','Riyadh','Asia/Riyadh'],['🇬🇧','London','Europe/London'],['🇫🇷','Paris','Europe/Paris'],['🇩🇪','Berlin','Europe/Berlin'],['🇺🇸','New York','America/New_York'],['🇺🇸','Los Angeles','America/Los_Angeles'],['🇦🇺','Sydney','Australia/Sydney'],['🇯🇵','Tokyo','Asia/Tokyo']];function renderClocks(){const now=new Date();$('clockGrid').innerHTML=clockZones.map(([flag,city,tz])=>`<div class="rounded-2xl border p-4 bg-white"><div class="font-bold text-lg">${flag} ${city}</div><div class="text-2xl font-black text-indigo-600 mt-2">${new Intl.DateTimeFormat('en-IN',{timeZone:tz,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true}).format(now)}</div><div class="text-xs text-slate-500 mt-1">${new Intl.DateTimeFormat('en-IN',{timeZone:tz,dateStyle:'medium'}).format(now)}</div></div>`).join('');}setInterval(()=>{if(document.getElementById('worldClock')?.classList.contains('active'))renderClocks();},1000);
+function sciInsert(v){$('sciInput').value+=v;}
+function scientificCalculate(){let expr=$('sciInput').value.trim();if(!expr)return setR('sciResult','Enter an expression.');if(!/^[0-9+\-*/%().,\sA-Za-z_]+$/.test(expr)||/\b(?:constructor|prototype|window|document|eval|Function|fetch|localStorage)\b/i.test(expr))return setR('sciResult','Expression contains unsupported characters or words.');try{expr=expr.replace(/π/g,'pi').replace(/\bpi\b/gi,'Math.PI').replace(/\be\b/g,'Math.E').replace(/sqrt\s*\(/gi,'Math.sqrt(').replace(/sin\s*\(/gi,'Math.sin(Math.PI/180*').replace(/cos\s*\(/gi,'Math.cos(Math.PI/180*').replace(/tan\s*\(/gi,'Math.tan(Math.PI/180*').replace(/log\s*\(/gi,'Math.log10(').replace(/ln\s*\(/gi,'Math.log(');let open=0;for(const c of expr){if(c==='(')open++;if(c===')')open--;if(open<0)throw 0;}if(open!==0)throw 0;const result=Function(`"use strict";return (${expr})`)();if(!Number.isFinite(result))throw 0;setR('sciResult',`Result: <b>${Number(result.toPrecision(12)).toLocaleString()}</b>`);}catch(e){setR('sciResult','Invalid expression. Example: sin(30)+sqrt(25)*2');}}
+updateShadow();generatePalette();generateLorem();renderClocks();
+
+// Start the app with a crawlable clean URL when hosted on HTTP/HTTPS.
+// Direct routes such as /sip-calculator render the matching tool, while Android Back returns to Home.
+const routeTool=(()=>{
+ if(!/^https?:$/.test(location.protocol)) return null;
+ const path=location.pathname.replace(/^\/+|\/+$/g,'').toLowerCase();
+ if(!path)return null;
+ const match=tools.find(t=>toolSlug(t[0])===path);
+ return match?match[0]:null;
+})();
+if(routeTool){
+ history.replaceState({page:'tool',tool:routeTool},'',location.href);
+ setToolView(routeTool);
+ updateToolSEO(routeTool);
+}else{
+ history.replaceState({page:'home'},'',location.href);
+ setHomeView();
+}
+$('date1').valueAsDate=new Date();$('date2').valueAsDate=new Date();
+</script>
+</body>
+</html>
