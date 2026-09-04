@@ -17,7 +17,8 @@
 <meta name="geo.region" content="IN">
 <meta name="geo.placename" content="India">
 <link rel="canonical" href="https://kaamtools.in/">
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/jpeg" href="/logo.jpg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="alternate" hreflang="en-IN" href="https://kaamtools.in/">
 <link rel="alternate" hreflang="x-default" href="https://kaamtools.in/">
 <meta property="og:type" content="website">
@@ -26,7 +27,9 @@
 <meta property="og:url" content="https://kaamtools.in/">
 <meta property="og:title" content="Kaam Kaaj Tools — Free Online Calculators, Converters & Utility Tools">
 <meta property="og:description" content="Free SIP, EMI, GST calculators, PDF and image tools. Fast, private, no signup.">
-<meta property="og:image" content="https://kaamtools.in/favicon.svg">
+<meta property="og:image" content="https://kaamtools.in/logo.jpg">
+<meta property="og:image:width" content="1024">
+<meta property="og:image:height" content="1024">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kaam Kaaj Tools — Free Online Utility Tools">
 <meta name="twitter:description" content="Free calculators, converters, PDF and image tools for India. No signup.">
@@ -52,7 +55,7 @@ body{background:#f7f8fc;color:var(--ink)}
 body.tool-mode{background:#f7f8fc}
 .app-header{background:linear-gradient(135deg,#312e81 0%,#4f46e5 55%,#5b4eea 100%)!important}
 .header-inner{max-width:1280px;margin:auto;padding:13px 20px;display:flex;align-items:center;gap:14px}
-.header-logo{width:44px;height:44px;border-radius:14px;background:rgba(255,255,255,.12);display:grid;place-items:center;font-size:27px}
+.header-logo{width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.12);display:grid;place-items:center;overflow:hidden;padding:0;flex-shrink:0}.header-logo img{width:100%;height:100%;object-fit:cover;display:block}
 .header-title{font-weight:850;font-size:22px;line-height:1.05}.header-sub{font-size:12px;opacity:.78;margin-top:4px}
 .header-action{width:42px;height:42px;border:0;border-radius:13px;background:rgba(255,255,255,.12);color:white;font-size:20px;display:grid;place-items:center}
 .header-action:hover{background:rgba(255,255,255,.2)}
@@ -105,7 +108,7 @@ body.tool-mode #appLayout{display:flex}
 .dark body{background:#0f172a}.dark .hero{box-shadow:none}.dark .stat,.dark .pop-card,.dark .tool-sidebar,.dark .tool.active,.dark .hero-search{border-color:#334155;background:#1e293b}.dark .hero-search input{background:#1e293b!important;color:#fff}.dark .tool .input,.dark .tool input.input,.dark .tool select.input,.dark .tool .area{background:#0f172a;color:#e2e8f0;border-color:#334155!important}.dark .result{background:#0f172a;border-color:#334155}.dark .back-btn{background:#1e293b;color:#e2e8f0;border-color:#334155}.dark .pop-card span,.dark .stat span{color:#94a3b8}
 @media(max-width:900px){.popular-grid{grid-template-columns:repeat(3,1fr)}.hero-emoji{right:3%;font-size:75px;opacity:.18}.stat-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){
- .header-inner{padding:11px 14px}.header-title{font-size:19px}.header-logo{width:40px;height:40px}.hero{padding:25px 20px;border-radius:23px}.hero h2{font-size:31px}.hero-emoji{display:none}
+ .header-inner{padding:11px 14px}.header-title{font-size:19px}.header-logo{width:42px;height:42px}.hero{padding:25px 20px;border-radius:23px}.hero h2{font-size:31px}.hero-emoji{display:none}
  #home{padding:12px}.stat-grid{gap:8px;margin:12px 0 22px}.stat{padding:11px;gap:9px}.stat-icon{width:38px;height:38px}.stat b{font-size:15px}.stat span{font-size:10px}
  .popular-grid{grid-template-columns:repeat(2,1fr)}.pop-card{padding:14px 8px}.section-head h3{font-size:18px}
  #appLayout{padding:10px;display:block!important}.tool-sidebar{display:none}.tool-main{width:100%}.tool.active{padding:18px 14px;border-radius:20px}
@@ -200,7 +203,7 @@ body.tool-mode #appLayout{display:flex!important}
 <header class="app-header sticky top-0 z-50 text-white shadow-lg">
   <div class="header-inner">
     <button id="headerBack" class="header-action hidden" onclick="goHome()" aria-label="Back">←</button>
-    <div class="header-logo">⚡</div>
+    <a href="/" class="header-logo" onclick="event.preventDefault();goHome()" aria-label="Kaamtools home"><img src="/logo.jpg" width="48" height="48" alt="Kaamtools logo"></a>
     <div class="flex-1">
       <div class="header-title">Kaam Kaaj Tools</div>
       <div class="header-sub">All-in-One Utility Hub</div>
