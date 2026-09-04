@@ -4,6 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#4f46e5">
+<link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+<link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+<link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
 <meta name="description" content="Free online tools for India: SIP, EMI, GST, Age, BMI calculators, PDF converters, QR generator, image compressor and more. No signup. Private in your browser.">
 <meta name="keywords" content="free online tools India, SIP calculator, EMI calculator, GST calculator, age calculator, BMI calculator, images to PDF, PDF to Word, QR code generator, image compressor">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -546,6 +550,67 @@ function updateToolSEO(id){
   setCanonical('/'+toolSlug(id));
   const ogUrl=document.querySelector('meta[property="og:url"]');
   if(ogUrl) ogUrl.setAttribute('content','https://kaamtools.in/'+toolSlug(id));
+  updateToolSchemas(id, data);
+}
+
+function upsertJsonLd(id, obj){
+  let el=document.getElementById(id);
+  if(!el){
+    el=document.createElement('script');
+    el.type='application/ld+json';
+    el.id=id;
+    document.head.appendChild(el);
+  }
+  el.textContent=JSON.stringify(obj);
+}
+
+function updateToolSchemas(id, data){
+  const slug=toolSlug(id);
+  const url='https://kaamtools.in/'+slug;
+  const name=(document.querySelector('#'+CSS.escape(id)+' h2')?.innerText||data.title).replace(/^\S+\s*/,'');
+  upsertJsonLd('kk-breadcrumb-schema',{
+    "@context":"https://schema.org",
+    "@type":"BreadcrumbList",
+    "itemListElement":[
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://kaamtools.in/"},
+      {"@type":"ListItem","position":2,"name":name,"item":url}
+    ]
+  });
+  upsertJsonLd('kk-tool-schema',{
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":name,
+    "url":url,
+    "description":data.description,
+    "applicationCategory":"UtilitiesApplication",
+    "operatingSystem":"Any",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},
+    "inLanguage":"en-IN"
+  });
+  const guide=typeof toolGuideData!=='undefined' ? toolGuideData[id] : null;
+  const mainEntity=[];
+  mainEntity.push({
+    "@type":"Question",
+    "name":"Is this tool free to use?",
+    "acceptedAnswer":{"@type":"Answer","text":"Yes. Kaam Kaaj Tools are free to use in your browser. No signup is required for the basic tools."}
+  });
+  mainEntity.push({
+    "@type":"Question",
+    "name":"Do files leave my device?",
+    "acceptedAnswer":{"@type":"Answer","text":"Most calculators and converters process data locally in your browser. Prefer local tools for private files."}
+  });
+  if(guide && guide.length>=5){
+    mainEntity.push({
+      "@type":"Question",
+      "name":guide[3],
+      "acceptedAnswer":{"@type":"Answer","text":guide[4]}
+    });
+  }
+  upsertJsonLd('kk-faq-schema',{
+    "@context":"https://schema.org",
+    "@type":"FAQPage",
+    "mainEntity":mainEntity
+  });
 }
 
 function setCanonical(path){
@@ -661,16 +726,28 @@ function renderSEOContent(id){
  if(!box){
    box=document.createElement('section');
    box.className='seo-tool-content';
-   box.id='kk-seo-content';
    page.appendChild(box);
  }
  const name=(page.querySelector('h2')?.innerText||'This tool').replace(/^\S+\s*/,'');
+ const current=tools.find(t=>t[0]===id);
+ const cat=current?current[3]:'';
+ const related=tools.filter(t=>t[0]!==id && t[3]===cat).slice(0,6);
+ const relatedHtml=related.length
+  ? `<h4>Related tools</h4><div class="seo-link-grid">${related.map(t=>`<a href="/${toolSlug(t[0])}" onclick="event.preventDefault();openTool('${t[0]}')">${escapeHtml(t[2])}</a>`).join('')}</div>`
+  : '';
+ const guide=typeof toolGuideData!=='undefined' ? toolGuideData[id] : null;
+ const extraFaq=(guide && guide.length>=5)
+  ? `<details open><summary>${escapeHtml(guide[3])}</summary><p>${escapeHtml(guide[4])}</p></details>`
+  : '';
  box.innerHTML=`<h3>About ${escapeHtml(name)}</h3>
  <p>${escapeHtml(data.description)}</p>
+ <p>Use this free online ${escapeHtml(name)} on Kaamtools.in — no signup, works on mobile, and processing stays in your browser wherever possible.</p>
  <p><strong>Useful searches:</strong> ${escapeHtml(data.keywords)}</p>
+ ${relatedHtml}
  <h4>Frequently Asked Questions</h4>
- <details><summary>Is this tool free to use?</summary><p>Yes. The tool is designed for quick browser-based use. Some features may depend on your browser or an online service.</p></details>
- <details><summary>Are the results guaranteed?</summary><p>No. Results are estimates or conversions where applicable. Verify important financial, tax, legal, health or payment decisions with an appropriate official or professional source.</p></details>`;
+ <details open><summary>Is this tool free to use?</summary><p>Yes. The tool is free for everyday use in your browser.</p></details>
+ <details><summary>Are the results guaranteed?</summary><p>No. Results are estimates or conversions where applicable. Verify important financial, tax, legal, health or payment decisions with an official or professional source.</p></details>
+ ${extraFaq}`;
 }
 
 function renderToolGuide(id){
@@ -737,6 +814,7 @@ window.addEventListener('popstate',function(event){
  const st=event.state||{};
  if(st.page==='tool' && st.tool){
    setToolView(st.tool);
+   updateToolSEO(st.tool);
  }else{
    setHomeView();
  }
@@ -794,7 +872,7 @@ function filterTools(){
         "@type":"ListItem",
         "position":i+1,
         "name":t[2],
-        "url":location.origin + "/" + toolSlug(t[0])
+        "url":"https://kaamtools.in/" + toolSlug(t[0])
       }))
     });
   };
