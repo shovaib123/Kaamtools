@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kaamtools.in/sitemap.xml
+Host: kaamtools.in

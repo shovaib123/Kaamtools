@@ -1,21 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <meta name="theme-color" content="#4f46e5">
-<meta name="description" content="Kaam Kaaj Tools offers free online calculators, converters, PDF and Word tools, image tools, video compression, QR generation and everyday utility tools.">
-<meta name="keywords" content="free online tools, SIP calculator, EMI calculator, GST calculator, percentage calculator, age calculator, BMI calculator, QR code generator, unit converter, image compressor, PDF to Word, text to Word, video compressor, live currency converter, JSON formatter">
+<meta name="description" content="Free online tools for India: SIP, EMI, GST, Age, BMI calculators, PDF converters, QR generator, image compressor and more. No signup. Private in your browser.">
+<meta name="keywords" content="free online tools India, SIP calculator, EMI calculator, GST calculator, age calculator, BMI calculator, images to PDF, PDF to Word, QR code generator, image compressor">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="googlebot" content="index, follow">
 <meta name="author" content="Kaam Kaaj Tools">
 <meta name="application-name" content="Kaam Kaaj Tools">
+<meta name="geo.region" content="IN">
+<meta name="geo.placename" content="India">
+<link rel="canonical" href="https://kaamtools.in/">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate" hreflang="en-IN" href="https://kaamtools.in/">
+<link rel="alternate" hreflang="x-default" href="https://kaamtools.in/">
 <meta property="og:type" content="website">
+<meta property="og:locale" content="en_IN">
 <meta property="og:site_name" content="Kaam Kaaj Tools">
-<meta property="og:title" content="Kaam Kaaj Tools — Free Online Utility Tools">
-<meta property="og:description" content="Free calculators, converters, PDF/Word tools, image tools, video compressor, QR generator and more.">
+<meta property="og:url" content="https://kaamtools.in/">
+<meta property="og:title" content="Kaam Kaaj Tools — Free Online Calculators, Converters & Utility Tools">
+<meta property="og:description" content="Free SIP, EMI, GST calculators, PDF and image tools. Fast, private, no signup.">
+<meta property="og:image" content="https://kaamtools.in/favicon.svg">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Kaam Kaaj Tools — Free Online Utility Tools">
+<meta name="twitter:description" content="Free calculators, converters, PDF and image tools for India. No signup.">
 <title>Kaam Kaaj Tools — Free Online Calculators, Converters & Utility Tools</title>
-<link rel="canonical" href="/">
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -158,9 +169,25 @@ body.tool-mode #appLayout{display:flex!important}
   "@context":"https://schema.org",
   "@type":"WebApplication",
   "name":"Kaam Kaaj Tools",
+  "url":"https://kaamtools.in/",
   "applicationCategory":"UtilitiesApplication",
-  "operatingSystem":"Web Browser",
-  "description":"Free online calculators, converters, document, image, video and productivity tools."
+  "operatingSystem":"Any",
+  "inLanguage":"en-IN",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},
+  "description":"Free online calculators, converters, PDF, Word, image and productivity tools for India. Runs in your browser."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"Kaam Kaaj Tools",
+  "url":"https://kaamtools.in/",
+  "potentialAction":{
+    "@type":"SearchAction",
+    "target":"https://kaamtools.in/?q={search_term_string}",
+    "query-input":"required name=search_term_string"
+  }
 }
 </script>
 <script type="application/ld+json" id="kk-tool-list-schema"></script>
@@ -517,25 +544,30 @@ function updateToolSEO(id){
     h.setAttribute('data-seo-keywords', data.keywords);
   }
   setCanonical('/'+toolSlug(id));
+  const ogUrl=document.querySelector('meta[property="og:url"]');
+  if(ogUrl) ogUrl.setAttribute('content','https://kaamtools.in/'+toolSlug(id));
 }
 
 function setCanonical(path){
   let c=document.querySelector('link[rel="canonical"]');
   if(!c){c=document.createElement('link');c.rel='canonical';document.head.appendChild(c);}
-  if(/^https?:$/.test(location.protocol)) c.href=location.origin+path;
+  const p=path.startsWith('/')?path:'/'+path;
+  c.href='https://kaamtools.in'+(p==='/'?'/':p);
 }
 
 function resetHomeSEO(){
   setCanonical('/');
   document.title = 'Kaam Kaaj Tools — Free Online Calculators, Converters & Utility Tools';
   const desc = document.querySelector('meta[name="description"]');
-  if(desc) desc.setAttribute('content', 'Kaam Kaaj Tools offers free online calculators, converters, PDF and Word tools, image tools, video compression, QR generation and everyday utility tools.');
+  if(desc) desc.setAttribute('content', 'Free online tools for India: SIP, EMI, GST, Age, BMI calculators, PDF converters, QR generator, image compressor and more. No signup. Private in your browser.');
   const kw = document.querySelector('meta[name="keywords"]');
-  if(kw) kw.setAttribute('content', 'free online tools, calculators, converters, PDF tools, Word tools, image tools, video compressor, QR generator');
+  if(kw) kw.setAttribute('content', 'free online tools India, SIP calculator, EMI calculator, GST calculator, age calculator, BMI calculator, images to PDF, PDF to Word, QR code generator, image compressor');
   const ogt = document.querySelector('meta[property="og:title"]');
-  if(ogt) ogt.setAttribute('content', 'Kaam Kaaj Tools — Free Online Utility Tools');
+  if(ogt) ogt.setAttribute('content', 'Kaam Kaaj Tools — Free Online Calculators, Converters & Utility Tools');
   const ogd = document.querySelector('meta[property="og:description"]');
-  if(ogd) ogd.setAttribute('content', 'Free calculators, converters, PDF/Word tools, image tools, video compressor, QR generator and more.');
+  if(ogd) ogd.setAttribute('content', 'Free SIP, EMI, GST calculators, PDF and image tools. Fast, private, no signup.');
+  const ogUrl=document.querySelector('meta[property="og:url"]');
+  if(ogUrl) ogUrl.setAttribute('content','https://kaamtools.in/');
 }
 </script>
 
