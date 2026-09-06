@@ -56,7 +56,7 @@ body.tool-mode{background:#f7f8fc}
 .app-header{background:linear-gradient(135deg,#312e81 0%,#4f46e5 55%,#5b4eea 100%)!important}
 .header-inner{max-width:1280px;margin:auto;padding:13px 20px;display:flex;align-items:center;gap:14px}
 .header-logo{width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.12);display:grid;place-items:center;overflow:hidden;padding:0;flex-shrink:0}.header-logo img{width:100%;height:100%;object-fit:cover;display:block}
-.header-title{font-weight:850;font-size:22px;line-height:1.05}.header-sub{font-size:12px;opacity:.78;margin-top:4px}
+.header-title{font-weight:850;font-size:22px;line-height:1.05}.header-sub{font-size:12px;opacity:.78;margin-top:4px}.header-brand{color:inherit;text-decoration:none;min-width:0;cursor:pointer}.header-brand:active{opacity:.85}
 .header-action{width:42px;height:42px;border:0;border-radius:13px;background:rgba(255,255,255,.12);color:white;font-size:20px;display:grid;place-items:center}
 .header-action:hover{background:rgba(255,255,255,.2)}
 #home{max-width:1280px;margin:0 auto;padding:20px}
@@ -80,12 +80,14 @@ body.tool-mode{background:#f7f8fc}
 .section-head{display:flex;justify-content:space-between;align-items:center;margin:22px 0 12px}
 .section-head h3{font-size:21px;font-weight:900}.section-head a{font-size:13px;color:#4338ca;font-weight:800}
 .popular-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-.pop-card{background:#fff;border:1px solid #e8eaf2;border-radius:19px;padding:17px 12px;text-align:center;box-shadow:0 5px 18px rgba(15,23,42,.045);transition:.2s}
+.pop-card{background:#fff;border:1px solid #e8eaf2;border-radius:19px;padding:17px 12px;text-align:center;box-shadow:0 5px 18px rgba(15,23,42,.045);transition:.2s;color:#172033;text-decoration:none;display:block}
+.pop-card:visited{color:#172033}
 .pop-card:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(79,70,229,.12)}
 .pop-icon{width:50px;height:50px;margin:auto;border-radius:15px;display:grid;place-items:center;font-size:25px;background:#eef2ff}
-.pop-card b{display:block;font-size:13px;margin-top:10px}.pop-card span{font-size:10px;color:#64748b}
+.pop-card b{display:block;font-size:13px;margin-top:10px;color:#172033;font-weight:800;text-decoration:none}.pop-card span{font-size:10px;color:#64748b;text-decoration:none}
+.dark .pop-card{color:#e2e8f0}.dark .pop-card:visited{color:#e2e8f0}.dark .pop-card b{color:#e2e8f0}
 .category-row{display:flex;gap:8px;overflow:auto;padding-bottom:5px}
-.cat-btn{white-space:nowrap;border:1px solid #e5e7eb;background:#fff;border-radius:999px;padding:8px 17px;font-size:12px;font-weight:750}
+.cat-btn{white-space:nowrap;border:1px solid #e5e7eb;background:#fff;border-radius:999px;padding:8px 17px;font-size:12px;font-weight:900}
 .cat-btn.active{background:#4338ca;color:#fff;border-color:#4338ca}
 #appLayout{max-width:1280px;margin:auto;display:flex;gap:18px;padding:18px 20px}
 body:not(.tool-mode) #appLayout{display:none}
@@ -169,6 +171,45 @@ body.tool-mode #appLayout{display:flex!important}
 .dark .guide-card-full h2{color:#c4b5fd}
 
 .seo-link-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin-top:14px}.seo-link-grid a{display:block;padding:13px 15px;border:1px solid #e2e8f0;border-radius:14px;background:#fff;color:#3730a3;font-weight:700;text-decoration:none;line-height:1.35}.seo-link-grid a:hover{background:#eef2ff}.dark .seo-link-grid a{background:#1e293b;border-color:#334155;color:#c4b5fd}.video-processing{display:none}
+
+/* ===== Colorful result & input components for Government/Finance/Documents/Education tools ===== */
+.tool-accent{border-top:6px solid var(--ac,#4f46e5)}
+.tool-accent>div:first-child h2{color:var(--ac,#4f46e5)!important}
+.rh{border-radius:20px;padding:20px 22px;color:#fff;text-align:center;margin-bottom:12px;box-shadow:0 12px 28px rgba(15,23,42,.16)}
+.rh .rh-label{font-size:11px;letter-spacing:.09em;text-transform:uppercase;opacity:.9;font-weight:800}
+.rh .rh-value{font-size:32px;font-weight:900;margin:6px 0;line-height:1.15}
+.rh .rh-sub{font-size:12px;opacity:.9}
+.rb{border:1px solid #e8edf4;border-radius:14px;overflow:hidden;margin-top:10px}
+.rb .rb-row{display:flex;justify-content:space-between;gap:10px;padding:10px 14px;font-size:13px;border-bottom:1px solid #eef1f6;background:#fff}
+.rb .rb-row:last-child{border-bottom:0}
+.rb .rb-row.hl{background:#fef3c7;font-weight:900}
+.rc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+.rc{border-radius:16px;padding:16px;color:#fff;text-align:center;position:relative}
+.rc .rc-badge{position:absolute;top:8px;right:8px;background:#facc15;color:#78350f;font-size:9px;font-weight:900;padding:3px 8px;border-radius:999px;letter-spacing:.03em}
+.rc .rc-label{font-size:11px;font-weight:800;opacity:.92}
+.rc .rc-value{font-size:21px;font-weight:900;margin-top:5px}
+.rc .rc-sub{font-size:10px;opacity:.9;margin-top:3px}
+.chip-group{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.chip{border:1.5px solid #dbe1ea;border-radius:12px;padding:10px 6px;text-align:center;font-size:12px;font-weight:800;background:#fff;cursor:pointer;color:#334155;transition:.15s}
+.chip:hover{border-color:#a5b4fc}
+.chip.active{background:#4338ca;color:#fff;border-color:#4338ca}
+.chip small{display:block;font-weight:700;opacity:.85;font-size:10px;margin-top:2px}
+.mini-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:8px}
+.mini-table th{background:#172033;color:#fff;padding:8px 9px;text-align:left;font-weight:800}
+.mini-table td{padding:7px 9px;border-bottom:1px solid #eef1f6}
+.mini-table input,.mini-table select{width:100%;border:1px solid #dbe1ea;border-radius:8px;padding:5px 7px;font-size:12px}
+.row-del{background:#fee2e2;color:#991b1b;border:0;border-radius:8px;padding:5px 9px;font-weight:900;font-size:11px;cursor:pointer}
+.doc-preview{background:#fff;border:1px solid #e5e7eb;border-radius:16px;padding:20px;font-size:13px;color:#172033}
+.doc-preview h3{font-size:20px;font-weight:900}
+.doc-preview table{width:100%;border-collapse:collapse;margin-top:10px;font-size:12px}
+.doc-preview th{background:#172033;color:#fff;padding:7px 8px;text-align:left}
+.doc-preview td{padding:7px 8px;border-bottom:1px solid #eef1f6}
+.dark .rb .rb-row{background:#0f172a;border-color:#334155;color:#e2e8f0}
+.dark .rb .rb-row.hl{background:#3f2d0a}
+.dark .doc-preview{background:#0f172a;border-color:#334155;color:#e2e8f0}
+.dark .doc-preview th,.dark .mini-table th{background:#1e293b}
+.dark .chip{background:#0f172a;border-color:#334155;color:#e2e8f0}
+@media(max-width:640px){.rc-grid{grid-template-columns:1fr}.chip-group{grid-template-columns:repeat(2,1fr)}}
 </style>
 
 <script type="application/ld+json" id="kk-structured-data">
@@ -204,10 +245,10 @@ body.tool-mode #appLayout{display:flex!important}
   <div class="header-inner">
     <button id="headerBack" class="header-action hidden" onclick="goHome()" aria-label="Back">←</button>
     <a href="/" class="header-logo" onclick="event.preventDefault();goHome()" aria-label="Kaamtools home"><img src="/logo.jpg" width="48" height="48" alt="Kaamtools logo"></a>
-    <div class="flex-1">
+    <a href="/" class="flex-1 header-brand" onclick="event.preventDefault();goHome()" aria-label="Kaam Kaaj Tools home">
       <div class="header-title">Kaam Kaaj Tools</div>
       <div class="header-sub">All-in-One Utility Hub</div>
-    </div>
+    </a>
     <button class="header-action" onclick="focusHomeSearch()" aria-label="Search">⌕</button>
     <button class="header-action" onclick="toggleDark()" aria-label="Dark mode">☾</button>
   </div>
@@ -237,7 +278,7 @@ body.tool-mode #appLayout{display:flex!important}
   </section>
 
   <div class="stat-grid">
-    <div class="stat"><div class="stat-icon">▦</div><div><b>36+</b><span>Powerful Tools</span></div></div>
+    <div class="stat"><div class="stat-icon">▦</div><div><b>57+</b><span>Powerful Tools</span></div></div>
     <div class="stat"><div class="stat-icon">⚡</div><div><b>100%</b><span>Free Forever</span></div></div>
     <div class="stat"><div class="stat-icon">🛡️</div><div><b>Secure</b><span>Private & Safe</span></div></div>
     <div class="stat"><div class="stat-icon">◷</div><div><b>Instant</b><span>Quick Results</span></div></div>
@@ -246,11 +287,13 @@ body.tool-mode #appLayout{display:flex!important}
   <div class="section-head"><h3>Categories</h3></div>
   <div id="categoryRow" class="category-row"></div>
 
+  <div id="popularSection">
   <div class="section-head">
     <h3>Popular Tools</h3>
     <a href="#allToolsSection" onclick="event.preventDefault();showAllCards()">View All Tools →</a>
   </div>
   <div id="cards" class="popular-grid"></div>
+  </div>
 
   
 
@@ -296,6 +339,27 @@ body.tool-mode #appLayout{display:flex!important}
       <a href="/stopwatch-timer" onclick="event.preventDefault();openTool('stopwatch')">Stopwatch & Timer</a>
       <a href="/world-clock" onclick="event.preventDefault();openTool('worldClock')">World Clock</a>
       <a href="/scientific-calculator" onclick="event.preventDefault();openTool('scientific')">Scientific Calculator</a>
+      <a href="/income-tax-calculator" onclick="event.preventDefault();openTool('incomeTax')">Income Tax Calculator FY 2025-26 — New vs Old Regime</a>
+      <a href="/pension-calculator" onclick="event.preventDefault();openTool('pension')">Pension Calculator — OPS, NPS &amp; UPS</a>
+      <a href="/da-arrears-calculator" onclick="event.preventDefault();openTool('daArrears')">DA Arrears Calculator for Government Employees</a>
+      <a href="/8th-pay-commission-calculator" onclick="event.preventDefault();openTool('eighthCPC')">8th Pay Commission Salary Calculator (Expected)</a>
+      <a href="/salary-slip-generator" onclick="event.preventDefault();openTool('salarySlip')">Salary Slip Generator — Free Payslip Maker</a>
+      <a href="/invoice-generator" onclick="event.preventDefault();openTool('invoiceGen')">Invoice Generator — Free GST Invoice Maker</a>
+      <a href="/profit-loss-calculator" onclick="event.preventDefault();openTool('plStatement')">Profit &amp; Loss Calculator — P&amp;L Statement</a>
+      <a href="/roi-calculator" onclick="event.preventDefault();openTool('roi')">ROI Calculator — Return on Investment &amp; CAGR</a>
+      <a href="/freelance-rate-calculator" onclick="event.preventDefault();openTool('freelanceRate')">Freelance Rate Calculator — Hourly Rate Finder</a>
+      <a href="/home-loan-emi-calculator" onclick="event.preventDefault();openTool('homeLoanEMI')">Home Loan EMI Calculator — SBI, HDFC, ICICI Rates</a>
+      <a href="/personal-loan-emi-calculator" onclick="event.preventDefault();openTool('personalLoanEMI')">Personal Loan EMI Calculator</a>
+      <a href="/car-loan-emi-calculator" onclick="event.preventDefault();openTool('carLoanEMI')">Car Loan EMI Calculator with Down Payment</a>
+      <a href="/education-loan-emi-calculator" onclick="event.preventDefault();openTool('eduLoanEMI')">Education Loan EMI Calculator with Moratorium</a>
+      <a href="/credit-card-emi-calculator" onclick="event.preventDefault();openTool('ccEMI')">Credit Card EMI Calculator — No-Cost EMI</a>
+      <a href="/loan-comparison" onclick="event.preventDefault();openTool('loanComparison')">Loan Comparison — Compare 3 Loan Offers</a>
+      <a href="/loan-eligibility-calculator" onclick="event.preventDefault();openTool('loanEligibility')">Loan Eligibility Calculator — FOIR Based</a>
+      <a href="/loan-prepayment-calculator" onclick="event.preventDefault();openTool('loanPrepayment')">Loan Prepayment Calculator — Interest Savings</a>
+      <a href="/cgpa-to-percentage" onclick="event.preventDefault();openTool('cgpaPercent')">CGPA to Percentage Calculator — VTU, Anna, Mumbai</a>
+      <a href="/cgpa-calculator" onclick="event.preventDefault();openTool('cgpaCalc')">CGPA Calculator — Multi-Semester</a>
+      <a href="/gpa-calculator" onclick="event.preventDefault();openTool('gpaCalc')">GPA Calculator Online</a>
+      <a href="/marks-percentage-calculator" onclick="event.preventDefault();openTool('marksPercent')">Marks Percentage Calculator</a>
     </div>
   </section>
 
@@ -441,7 +505,7 @@ body.tool-mode #appLayout{display:flex!important}
 <button class="btn mt-4" onclick="randomNum()">Generate</button><div id="randomResult" class="text-4xl font-bold text-indigo-600 text-center mt-6">—</div></section>
 
 <section id="currency" class="tool"><ToolTitle>💱 Currency Converter</ToolTitle>
-<div class="rounded-xl bg-indigo-50 border border-indigo-100 p-3 mb-4 text-xs text-indigo-900"><b>🌐 Internet-Connected Live Rates:</b> Tap <b>Get Live Rate &amp; Convert</b> to fetch the latest available exchange rate online. The tool tries multiple public rate services and can remember the last successful rate on this device if the internet temporarily fails. Bank/card fees may differ.</div>
+<div class="rounded-xl bg-indigo-50 border border-indigo-100 p-3 mb-4 text-xs text-indigo-900"><b>🌐 Instant + Live Rates:</b> This tool shows an instant result right away using an indicative reference rate, then tries to fetch and swap in the latest live rate from multiple public sources. Bank/card fees may differ from any rate shown.</div>
 <div class="grid md:grid-cols-4 gap-3"><input id="curAmount" type="number" class="input" value="1" min="0.000001"><select id="curFrom" class="input">
 <optgroup label="🇮🇳 South Asia"><option>INR</option><option>PKR</option><option>BDT</option><option>LKR</option><option>NPR</option><option>AFN</option></optgroup>
 <optgroup label="🌍 Gulf &amp; Middle East"><option>USD</option><option>AED</option><option>SAR</option><option>QAR</option><option>KWD</option><option>BHD</option><option>OMR</option><option>JOD</option><option>ILS</option><option>IQD</option><option>IRR</option><option>TRY</option></optgroup>
@@ -460,6 +524,392 @@ body.tool-mode #appLayout{display:flex!important}
 <optgroup label="🌎 Americas"><option>CAD</option><option>MXN</option><option>BRL</option><option>ARS</option><option>CLP</option><option>COP</option><option>PEN</option><option>UYU</option><option>BOB</option><option>PYG</option><option>CRC</option><option>DOP</option><option>GTQ</option></optgroup>
 </select></div>
 <div class="flex flex-wrap gap-2 mt-4"><button class="btn" onclick="convertCurrency(true)">🌐 Get Live Rate &amp; Convert</button><button class="smallbtn" onclick="convertCurrency(false)">Use Current Result</button></div><Result id="curResult"/><div id="curUpdated" class="text-[11px] text-slate-400 mt-2"></div></section>
+
+<!-- ===================== Government / Salary Tools ===================== -->
+<section id="incomeTax" class="tool tool-accent" style="--ac:#d97706"><ToolTitle>💵 Income Tax Calculator (New vs Old Regime)</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Compare New Regime vs Old Regime for FY 2025-26 (AY 2026-27) and find which saves more tax for you.</p>
+<div class="text-xs font-extrabold text-amber-700 mb-2">💼 INCOME DETAILS</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="itGross" label="Annual Gross Salary ₹"><input type="number" id="itGross" value="1200000"></Field>
+<Field id="itOther" label="Other Income (Interest, Rent, etc.) ₹"><input type="number" id="itOther" value="0"></Field>
+</div>
+<div class="text-xs font-extrabold text-amber-700 mt-4 mb-2">🏠 HRA (used only for Old Regime)</div>
+<div class="grid md:grid-cols-3 gap-3">
+<Field id="itBasic" label="Basic Pay (Annual) ₹"><input type="number" id="itBasic" value="600000"></Field>
+<Field id="itHRA" label="HRA Received (Annual) ₹"><input type="number" id="itHRA" value="180000"></Field>
+<Field id="itRent" label="Rent Paid (Annual) ₹"><input type="number" id="itRent" value="240000"></Field>
+</div>
+<div class="text-xs font-extrabold text-slate-500 mt-1 mb-2">Live in a Metro City? (Delhi/Mumbai/Kolkata/Chennai)</div>
+<div class="chip-group" id="itMetroGroup" style="grid-template-columns:repeat(2,1fr)"><div class="chip active" data-v="1" onclick="selectChip(this)">✅ Yes — Metro</div><div class="chip" data-v="0" onclick="selectChip(this)">Non-Metro</div></div>
+<div class="text-xs font-extrabold text-amber-700 mt-4 mb-2">💸 DEDUCTIONS (Old Regime Only)</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="it80C" label="80C — PF, LIC, ELSS, PPF etc. (Max ₹1.5L)"><input type="number" id="it80C" value="150000"></Field>
+<Field id="it80D" label="80D — Health Insurance Premium"><input type="number" id="it80D" value="25000"></Field>
+<Field id="it80CCD" label="80CCD(1B) — NPS Extra (Max ₹50K)"><input type="number" id="it80CCD" value="0"></Field>
+<Field id="itHomeLoan" label="Home Loan Interest — Sec 24 (Max ₹2L)"><input type="number" id="itHomeLoan" value="0"></Field>
+<Field id="itOtherDed" label="Other Deductions (80E, 80G, etc.)"><input type="number" id="itOtherDed" value="0"></Field>
+</div>
+<button class="btn mt-4" onclick="calcIncomeTax()">Compare Tax Regimes</button>
+<div id="incomeTaxResult" class="mt-4"></div>
+</section>
+
+<section id="pension" class="tool tool-accent" style="--ac:#7c3aed"><ToolTitle>👴 Pension Calculator (OPS / NPS / UPS)</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Calculate your expected monthly pension under the Old Pension Scheme, National Pension System, or Unified Pension Scheme.</p>
+<div class="chip-group" id="pensionModeGroup">
+<div class="chip active" data-v="OPS" onclick="selectChip(this)">🥇 OPS<small>Pre-2004</small></div>
+<div class="chip" data-v="NPS" onclick="selectChip(this)">🥈 NPS<small>Post-2004</small></div>
+<div class="chip" data-v="UPS" onclick="selectChip(this)">🏅 UPS<small>April 2025+</small></div>
+</div>
+<div class="text-xs font-extrabold text-violet-700 mt-4 mb-2">💼 SERVICE DETAILS</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="penAge" label="Current Age (Years)"><input type="number" id="penAge" value="30"></Field>
+<Field id="penRetireAge" label="Retirement Age"><input type="number" id="penRetireAge" value="60"></Field>
+<Field id="penBasic" label="Last Drawn Basic Pay at Retirement ₹"><input type="number" id="penBasic" value="80000"></Field>
+<Field id="penYears" label="Years of Qualifying Service"><input type="number" id="penYears" value="30"></Field>
+<Field id="penDR" label="Expected Dearness Relief (DR) % at Retirement"><input type="number" id="penDR" value="60"></Field>
+</div>
+<div class="text-xs font-extrabold text-violet-700 mt-4 mb-2">📈 NPS DETAILS (used for NPS &amp; UPS)</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="penCorpus" label="Current NPS Corpus ₹"><input type="number" id="penCorpus" value="500000"></Field>
+<Field id="penMonthly" label="Monthly NPS Contribution (Employee+Govt) ₹"><input type="number" id="penMonthly" value="12000"></Field>
+<Field id="penReturn" label="Expected Annual Return %"><input type="number" id="penReturn" value="10"></Field>
+<Field id="penAnnuity" label="Annuity Purchase Rate %"><input type="number" id="penAnnuity" value="6"></Field>
+</div>
+<button class="btn mt-4" onclick="calcPension()">Calculate Pension</button>
+<div id="pensionResult" class="mt-4"></div>
+</section>
+
+<section id="daArrears" class="tool tool-accent" style="--ac:#1d4ed8"><ToolTitle>📜 DA Arrears Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Calculate Dearness Allowance arrears for Central Government employees with a month-wise breakdown.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="daBasic" label="Basic Pay ₹"><input type="number" id="daBasic" value="52000"></Field>
+<Field id="daTA" label="Fixed Transport Allowance (TA) ₹"><input type="number" id="daTA" value="3600"></Field>
+<Field id="daOld" label="Old DA Rate (%)"><input type="number" id="daOld" value="53"></Field>
+<Field id="daNew" label="New DA Rate (%)"><input type="number" id="daNew" value="60"></Field>
+<Field id="daMonths" label="Number of Arrears Months"><input type="number" id="daMonths" value="3"></Field>
+</div>
+<button class="btn mt-4" onclick="calcDAArrears()">Calculate Arrears</button>
+<div id="daArrearsResult" class="mt-4"></div>
+</section>
+
+<section id="eighthCPC" class="tool tool-accent" style="--ac:#059669"><ToolTitle>🏛️ 8th Pay Commission Expected Salary Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Estimate your expected salary under the 8th Central Pay Commission — HRA, TA, NPS, CGEGIS, CGHS and income tax included.</p>
+<div class="text-xs font-extrabold text-emerald-700 mb-2">💼 CURRENT PAY (7TH CPC)</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="cpcBasic" label="Current Basic Pay (₹) — 7th CPC"><input type="number" id="cpcBasic" value="52000"></Field>
+<Field id="cpcDA" label="Current DA Rate (%)"><input type="number" id="cpcDA" value="60"></Field>
+</div>
+<div class="text-xs font-extrabold text-emerald-700 mt-4 mb-2">🎯 Expected Fitment Factor</div>
+<div class="chip-group" id="cpcFitmentGroup">
+<div class="chip" data-v="1.83" onclick="selectChip(this)">1.83×<small>Lower band</small></div>
+<div class="chip" data-v="1.92" onclick="selectChip(this)">1.92×<small>Conservative</small></div>
+<div class="chip active" data-v="2.28" onclick="selectChip(this)">2.28×<small>Most-cited</small></div>
+<div class="chip" data-v="2.57" onclick="selectChip(this)">2.57×<small>7th CPC actual</small></div>
+<div class="chip" data-v="2.86" onclick="selectChip(this)">2.86×<small>Upper band</small></div>
+<div class="chip" data-v="3.83" onclick="selectChip(this)">3.83×<small>NC-JCM demand</small></div>
+</div>
+<div class="text-xs font-extrabold text-emerald-700 mt-4 mb-2">🏙️ City Category (HRA base rate — resets to 24/16/8% when DA resets to 0%)</div>
+<div class="chip-group" id="cpcCityGroup">
+<div class="chip active" data-v="24" onclick="selectChip(this)">X — Metro<small>24%</small></div>
+<div class="chip" data-v="16" onclick="selectChip(this)">Y — Urban<small>16%</small></div>
+<div class="chip" data-v="8" onclick="selectChip(this)">Z — Rural<small>8%</small></div>
+</div>
+<div class="text-xs font-extrabold text-emerald-700 mt-4 mb-2">🚗 Transport Allowance — Pay Level</div>
+<div class="chip-group" id="cpcTPTLevelGroup">
+<div class="chip" data-v="1350,900" onclick="selectChip(this)">Level 1-2<small>₹1,350 / ₹900</small></div>
+<div class="chip active" data-v="3600,1800" onclick="selectChip(this)">Level 3-8<small>₹3,600 / ₹1,800</small></div>
+<div class="chip" data-v="7200,3600" onclick="selectChip(this)">Level 9+<small>₹7,200 / ₹3,600</small></div>
+</div>
+<div class="chip-group mt-2" id="cpcTPTCityGroup" style="grid-template-columns:repeat(2,1fr)">
+<div class="chip active" data-v="hi" onclick="selectChip(this)">Higher TPT City</div>
+<div class="chip" data-v="lo" onclick="selectChip(this)">Other Places</div>
+</div>
+<div class="text-xs font-extrabold text-emerald-700 mt-4 mb-2">💸 Deductions</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="cpcCGEGIS" label="CGEGIS (Group C default ₹60)"><input type="number" id="cpcCGEGIS" value="60"></Field>
+<Field id="cpcCGHS" label="CGHS Contribution ₹"><input type="number" id="cpcCGHS" value="650"></Field>
+<Field id="cpcPT" label="Professional Tax ₹"><input type="number" id="cpcPT" value="210"></Field>
+<Field id="cpcArrearMonths" label="Months Since Assumed Effective Date"><input type="number" id="cpcArrearMonths" value="8"></Field>
+</div>
+<button class="btn mt-4" onclick="calc8thCPC()">Calculate Expected Salary</button>
+<div id="eighthCPCResult" class="mt-4"></div>
+<div class="rounded-xl bg-amber-50 border border-amber-100 p-3 mt-4 text-[11px] text-amber-900">⚠️ The 8th CPC has not been officially notified with a fitment factor, matrix or effective date. All figures here are estimates for planning only — not for financial decisions.</div>
+</section>
+
+<!-- ===================== Documents ===================== -->
+<section id="salarySlip" class="tool tool-accent" style="--ac:#db2777"><ToolTitle>🧾 Salary Slip Generator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Create a professional salary slip with PF, ESI and tax auto-calculated, then download it as a PDF.</p>
+<div class="text-xs font-extrabold text-pink-700 mb-2">🏢 COMPANY INFO</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="ssCompany" label="Company Name"><input type="text" id="ssCompany" value="Your Company Name Pvt. Ltd." oninput="renderSalarySlip()"></Field>
+<Field id="ssAddress" label="Company Address"><input type="text" id="ssAddress" value="123 Business Park, City - 110001" oninput="renderSalarySlip()"></Field>
+</div>
+<div class="text-xs font-extrabold text-pink-700 mt-4 mb-2">📅 PAY PERIOD</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="ssMonth" label="Month"><select id="ssMonth" onchange="renderSalarySlip()"><option>January</option><option>February</option><option>March</option><option>April</option><option>May</option><option>June</option><option>July</option><option>August</option><option selected>September</option><option>October</option><option>November</option><option>December</option></select></Field>
+<Field id="ssYear" label="Year"><input type="number" id="ssYear" value="2026" oninput="renderSalarySlip()"></Field>
+</div>
+<div class="text-xs font-extrabold text-pink-700 mt-4 mb-2">👤 EMPLOYEE INFO</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="ssName" label="Employee Name"><input type="text" id="ssName" value="Employee Name" oninput="renderSalarySlip()"></Field>
+<Field id="ssId" label="Employee ID"><input type="text" id="ssId" value="EMP001" oninput="renderSalarySlip()"></Field>
+<Field id="ssDesig" label="Designation"><input type="text" id="ssDesig" value="Manager" oninput="renderSalarySlip()"></Field>
+<Field id="ssDept" label="Department"><input type="text" id="ssDept" value="Operations" oninput="renderSalarySlip()"></Field>
+<Field id="ssPAN" label="PAN"><input type="text" id="ssPAN" value="ABCDE1234F" oninput="renderSalarySlip()"></Field>
+<Field id="ssBank" label="Bank A/c (Last 4 digits)"><input type="text" id="ssBank" value="5678" oninput="renderSalarySlip()"></Field>
+</div>
+<div class="text-xs font-extrabold text-pink-700 mt-4 mb-2">➕ EARNINGS (Monthly ₹)</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="ssBasic" label="Basic Salary"><input type="number" id="ssBasic" value="30000" oninput="renderSalarySlip()"></Field>
+<Field id="ssHRA" label="HRA"><input type="number" id="ssHRA" value="15000" oninput="renderSalarySlip()"></Field>
+<Field id="ssConv" label="Conveyance Allowance"><input type="number" id="ssConv" value="1600" oninput="renderSalarySlip()"></Field>
+<Field id="ssMed" label="Medical Allowance"><input type="number" id="ssMed" value="1250" oninput="renderSalarySlip()"></Field>
+<Field id="ssSpecial" label="Special Allowance"><input type="number" id="ssSpecial" value="5000" oninput="renderSalarySlip()"></Field>
+<Field id="ssOtherE" label="Other Earnings"><input type="number" id="ssOtherE" value="0" oninput="renderSalarySlip()"></Field>
+</div>
+<div class="text-xs font-extrabold text-pink-700 mt-4 mb-2">➖ DEDUCTIONS (Monthly ₹)</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="ssPF" label="PF (12% of Basic) — Auto"><input type="number" id="ssPF" value="3600" oninput="renderSalarySlip()"></Field>
+<Field id="ssESI" label="ESI (0.75% if gross ≤ ₹21K)"><input type="number" id="ssESI" value="0" oninput="renderSalarySlip()"></Field>
+<Field id="ssPT" label="Professional Tax"><input type="number" id="ssPT" value="200" oninput="renderSalarySlip()"></Field>
+<Field id="ssTDS" label="Income Tax (TDS)"><input type="number" id="ssTDS" value="0" oninput="renderSalarySlip()"></Field>
+<Field id="ssOtherD" label="Other Deductions (Loan, etc.)"><input type="number" id="ssOtherD" value="0" oninput="renderSalarySlip()"></Field>
+</div>
+<div class="flex flex-wrap gap-2 mt-4"><button class="smallbtn" onclick="autoPF()">Auto-fill PF</button><button class="btn secondary" onclick="downloadSalarySlipPDF()">⬇️ Download as PDF</button></div>
+<div class="text-xs font-extrabold text-slate-500 mt-5 mb-2">👁️ LIVE PREVIEW</div>
+<div id="ssPreview" class="doc-preview"></div>
+</section>
+
+<section id="invoiceGen" class="tool tool-accent" style="--ac:#2563eb"><ToolTitle>📃 Invoice Generator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Create a professional GST invoice in seconds and download it as a PDF.</p>
+<div class="text-xs font-extrabold text-blue-700 mb-2">🏢 YOUR BUSINESS</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="invBizName" label="Business Name"><input type="text" id="invBizName" value="Your Business Name" oninput="renderInvoice()"></Field>
+<Field id="invBizAddr" label="Address"><input type="text" id="invBizAddr" value="123 Business Street, City, State - 110001" oninput="renderInvoice()"></Field>
+<Field id="invGSTIN" label="GSTIN"><input type="text" id="invGSTIN" value="29ABCDE1234F1Z5" oninput="renderInvoice()"></Field>
+<Field id="invPhone" label="Phone"><input type="text" id="invPhone" value="+91 98765 43210" oninput="renderInvoice()"></Field>
+</div>
+<div class="text-xs font-extrabold text-blue-700 mt-4 mb-2">🧾 INVOICE INFO</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="invNumber" label="Invoice #"><input type="text" id="invNumber" value="INV-001" oninput="renderInvoice()"></Field>
+<Field id="invDate" label="Date"><input type="date" id="invDate" oninput="renderInvoice()"></Field>
+</div>
+<div class="text-xs font-extrabold text-blue-700 mt-4 mb-2">👤 BILL TO</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="invClientName" label="Client Name"><input type="text" id="invClientName" value="Client Name" oninput="renderInvoice()"></Field>
+<Field id="invClientAddr" label="Client Address"><input type="text" id="invClientAddr" value="Client Address, City - 110002" oninput="renderInvoice()"></Field>
+<Field id="invClientGSTIN" label="Client GSTIN (optional)"><input type="text" id="invClientGSTIN" placeholder="GSTIN if registered" oninput="renderInvoice()"></Field>
+</div>
+<div class="text-xs font-extrabold text-blue-700 mt-4 mb-2">📦 ITEMS</div>
+<table class="mini-table"><thead><tr><th>Description</th><th style="width:55px">Qty</th><th style="width:75px">Rate</th><th style="width:55px">GST%</th><th style="width:30px"></th></tr></thead><tbody id="invItemsBody"></tbody></table>
+<button class="smallbtn mt-2" onclick="addInvoiceItem()">+ Add Item</button>
+<div class="flex flex-wrap gap-2 mt-4"><button class="btn secondary" onclick="downloadInvoicePDF()">⬇️ Download as PDF</button></div>
+<div class="text-xs font-extrabold text-slate-500 mt-5 mb-2">👁️ LIVE PREVIEW</div>
+<div id="invPreview" class="doc-preview"></div>
+</section>
+
+<!-- ===================== Business Tools ===================== -->
+<section id="plStatement" class="tool tool-accent" style="--ac:#b45309"><ToolTitle>📊 Profit &amp; Loss Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Generate a complete P&amp;L statement with revenue, COGS, operating expenses and net profit.</p>
+<div class="text-xs font-extrabold text-amber-700 mb-2">💰 REVENUE</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="plSales" label="Total Sales / Revenue ₹"><input type="number" id="plSales" value="500000"></Field>
+<Field id="plOtherInc" label="Other Income (interest, refunds) ₹"><input type="number" id="plOtherInc" value="0"></Field>
+</div>
+<div class="text-xs font-extrabold text-amber-700 mt-4 mb-2">📦 COST OF GOODS SOLD (COGS)</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="plMaterials" label="Raw Materials / Inventory ₹"><input type="number" id="plMaterials" value="150000"></Field>
+<Field id="plLabor" label="Direct Labor ₹"><input type="number" id="plLabor" value="50000"></Field>
+</div>
+<div class="text-xs font-extrabold text-amber-700 mt-4 mb-2">🏢 OPERATING EXPENSES</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="plRent" label="Rent ₹"><input type="number" id="plRent" value="30000"></Field>
+<Field id="plSalaries" label="Salaries (non-direct) ₹"><input type="number" id="plSalaries" value="80000"></Field>
+<Field id="plUtilities" label="Utilities &amp; Internet ₹"><input type="number" id="plUtilities" value="10000"></Field>
+<Field id="plMarketing" label="Marketing &amp; Advertising ₹"><input type="number" id="plMarketing" value="20000"></Field>
+<Field id="plOtherExp" label="Other Expenses ₹"><input type="number" id="plOtherExp" value="15000"></Field>
+</div>
+<div class="text-xs font-extrabold text-amber-700 mt-4 mb-2">🏦 FINANCIAL</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="plInterest" label="Interest Paid (loans) ₹"><input type="number" id="plInterest" value="5000"></Field>
+<Field id="plTax" label="Tax Paid ₹"><input type="number" id="plTax" value="0"></Field>
+</div>
+<button class="btn mt-4" onclick="calcPL()">Generate P&amp;L Statement</button>
+<div id="plResult" class="mt-4"></div>
+</section>
+
+<section id="roi" class="tool tool-accent" style="--ac:#ca8a04"><ToolTitle>📈 ROI Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Calculate Return on Investment (ROI) and annualized returns for any investment.</p>
+<div class="text-xs font-extrabold text-yellow-700 mb-2">💼 INVESTMENT DETAILS</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="roiInitial" label="Initial Investment (Amount Invested) ₹"><input type="number" id="roiInitial" value="100000"></Field>
+<Field id="roiFinal" label="Final Value (Amount After Return) ₹"><input type="number" id="roiFinal" value="150000"></Field>
+<Field id="roiYears" label="Years"><input type="number" id="roiYears" value="3"></Field>
+<Field id="roiMonths" label="Months (extra)"><input type="number" id="roiMonths" value="0"></Field>
+</div>
+<button class="btn mt-4" onclick="calcROI()">Calculate Returns</button>
+<div id="roiResult" class="mt-4"></div>
+</section>
+
+<section id="freelanceRate" class="tool tool-accent" style="--ac:#ea580c"><ToolTitle>💻 Freelance Rate Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Find your ideal hourly rate based on income goals, expenses and billable hours. Stop undercharging!</p>
+<div class="text-xs font-extrabold text-orange-700 mb-2">🎯 YOUR NUMBERS</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="frIncome" label="Desired Annual Take-Home Income ₹"><input type="number" id="frIncome" value="1200000"></Field>
+</div>
+<div class="text-xs font-extrabold text-orange-700 mt-4 mb-2">📊 BUSINESS EXPENSES (YEARLY)</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="frExpenses" label="Business Expenses ₹"><input type="number" id="frExpenses" value="100000"></Field>
+<Field id="frTax" label="Tax Estimate %"><input type="number" id="frTax" value="20"></Field>
+</div>
+<div class="text-xs font-extrabold text-orange-700 mt-4 mb-2">⏱️ BILLABLE TIME</div>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="frHours" label="Billable Hours per Week"><input type="number" id="frHours" value="25"></Field>
+<Field id="frWeeks" label="Working Weeks per Year"><input type="number" id="frWeeks" value="48"></Field>
+</div>
+<button class="btn mt-4" onclick="calcFreelanceRate()">Calculate My Rate</button>
+<div id="freelanceRateResult" class="mt-4"></div>
+</section>
+
+<!-- ===================== Loan / EMI Tools ===================== -->
+<section id="homeLoanEMI" class="tool tool-accent" style="--ac:#16a34a"><ToolTitle>🏠 Home Loan EMI Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Home loan EMI with SBI, HDFC, ICICI, Axis, Kotak &amp; LIC HFL indicative current rates.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="hlAmount" label="Loan Amount ₹"><input type="number" id="hlAmount" value="3000000"></Field>
+<Field id="hlBank" label="Bank (indicative rate)"><select id="hlBank" onchange="$('hlRate').value=this.value">
+<option value="8.50">SBI — 8.50%</option><option value="8.60">HDFC — 8.60%</option><option value="8.75">ICICI — 8.75%</option><option value="8.75">Axis Bank — 8.75%</option><option value="8.75">Kotak — 8.75%</option><option value="8.65">LIC HFL — 8.65%</option></select></Field>
+<Field id="hlRate" label="Interest Rate % (editable)"><input type="number" id="hlRate" value="8.50" step="0.05"></Field>
+<Field id="hlYears" label="Tenure (Years)"><input type="number" id="hlYears" value="20"></Field>
+</div>
+<button class="btn mt-4" onclick="emiToolCalc('hlAmount','hlRate','hlYears','homeLoanEMIResult','#16a34a,#4ade80')">Calculate EMI</button>
+<div id="homeLoanEMIResult" class="mt-4"></div>
+<p class="text-[11px] text-slate-400 mt-3">Rates shown are indicative reference rates only. Always confirm the current rate with your bank.</p>
+</section>
+
+<section id="personalLoanEMI" class="tool tool-accent" style="--ac:#16a34a"><ToolTitle>💵 Personal Loan EMI Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Personal loan calculator with bank rates from ₹50,000 to ₹40 Lakhs, 1–7 year tenure.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="plAmt" label="Loan Amount ₹ (₹50,000 – ₹40,00,000)"><input type="number" id="plAmt" value="500000" min="50000" max="4000000"></Field>
+<Field id="plRate2" label="Interest Rate % p.a."><input type="number" id="plRate2" value="12" step="0.1"></Field>
+<Field id="plYears2" label="Tenure (Years, 1–7)"><input type="number" id="plYears2" value="3" min="1" max="7"></Field>
+</div>
+<button class="btn mt-4" onclick="emiToolCalc('plAmt','plRate2','plYears2','personalLoanEMIResult','#16a34a,#4ade80')">Calculate EMI</button>
+<div id="personalLoanEMIResult" class="mt-4"></div>
+</section>
+
+<section id="carLoanEMI" class="tool tool-accent" style="--ac:#16a34a"><ToolTitle>🚗 Car Loan EMI Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Auto loan EMI with a down payment slider (0–50%) and on-road price calculator.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="clPrice" label="On-Road Price ₹"><input type="number" id="clPrice" value="1000000"></Field>
+<Field id="clRate" label="Interest Rate % p.a."><input type="number" id="clRate" value="9.5" step="0.1"></Field>
+<Field id="clYears" label="Tenure (Years)"><input type="number" id="clYears" value="5"></Field>
+</div>
+<div class="mt-3"><label class="label">Down Payment: <b id="clDownLabel">20%</b></label><input id="clDownPct" type="range" min="0" max="50" value="20" class="w-full" oninput="$('clDownLabel').textContent=this.value+'%'"></div>
+<button class="btn mt-4" onclick="calcCarLoanEMI()">Calculate EMI</button>
+<div id="carLoanEMIResult" class="mt-4"></div>
+</section>
+
+<section id="eduLoanEMI" class="tool tool-accent" style="--ac:#16a34a"><ToolTitle>🎓 Education Loan EMI Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">EMI with moratorium period (course duration + 1 year). Interest compounds during the moratorium.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="elAmt" label="Loan Amount ₹"><input type="number" id="elAmt" value="1000000"></Field>
+<Field id="elRate" label="Interest Rate % p.a."><input type="number" id="elRate" value="10.5" step="0.1"></Field>
+<Field id="elCourse" label="Course Duration (Years)"><input type="number" id="elCourse" value="4"></Field>
+<Field id="elRepay" label="Repayment Tenure After Moratorium (Years)"><input type="number" id="elRepay" value="10"></Field>
+</div>
+<button class="btn mt-4" onclick="calcEduLoanEMI()">Calculate EMI</button>
+<div id="eduLoanEMIResult" class="mt-4"></div>
+</section>
+
+<section id="ccEMI" class="tool tool-accent" style="--ac:#16a34a"><ToolTitle>💳 Credit Card EMI Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Convert credit card purchases to EMI with processing fee + 18% GST included.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="ccAmt" label="Purchase Amount ₹"><input type="number" id="ccAmt" value="50000"></Field>
+<Field id="ccRate" label="Interest Rate % p.a."><input type="number" id="ccRate" value="15" step="0.1"></Field>
+<Field id="ccMonths" label="Tenure (Months)"><input type="number" id="ccMonths" value="6"></Field>
+<Field id="ccFee" label="Processing Fee %"><input type="number" id="ccFee" value="2" step="0.1"></Field>
+</div>
+<div class="chip-group mt-2" id="ccTypeGroup" style="grid-template-columns:repeat(2,1fr)"><div class="chip active" data-v="standard" onclick="selectChip(this)">Standard EMI</div><div class="chip" data-v="nocost" onclick="selectChip(this)">No-Cost EMI</div></div>
+<button class="btn mt-4" onclick="calcCCEMI()">Calculate EMI</button>
+<div id="ccEMIResult" class="mt-4"></div>
+</section>
+
+<section id="loanComparison" class="tool tool-accent" style="--ac:#16a34a"><ToolTitle>⚖️ Loan Comparison</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Compare 3 loan offers side-by-side. The cheapest option is highlighted.</p>
+<div class="grid md:grid-cols-3 gap-3">
+<div><div class="text-xs font-extrabold text-slate-500 mb-2">Loan Offer 1</div><Field id="lc1Amt" label="Amount ₹"><input type="number" id="lc1Amt" value="500000"></Field><Field id="lc1Rate" label="Rate %"><input type="number" id="lc1Rate" value="10"></Field><Field id="lc1Years" label="Years"><input type="number" id="lc1Years" value="5"></Field></div>
+<div><div class="text-xs font-extrabold text-slate-500 mb-2">Loan Offer 2</div><Field id="lc2Amt" label="Amount ₹"><input type="number" id="lc2Amt" value="500000"></Field><Field id="lc2Rate" label="Rate %"><input type="number" id="lc2Rate" value="11"></Field><Field id="lc2Years" label="Years"><input type="number" id="lc2Years" value="4"></Field></div>
+<div><div class="text-xs font-extrabold text-slate-500 mb-2">Loan Offer 3</div><Field id="lc3Amt" label="Amount ₹"><input type="number" id="lc3Amt" value="500000"></Field><Field id="lc3Rate" label="Rate %"><input type="number" id="lc3Rate" value="9.5"></Field><Field id="lc3Years" label="Years"><input type="number" id="lc3Years" value="6"></Field></div>
+</div>
+<button class="btn mt-4" onclick="calcLoanComparison()">Compare Loans</button>
+<div id="loanComparisonResult" class="mt-4"></div>
+</section>
+
+<section id="loanEligibility" class="tool tool-accent" style="--ac:#16a34a"><ToolTitle>✅ Loan Eligibility Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">How much loan can you get? FOIR-based eligibility with income and existing EMI factors.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="leIncome" label="Net Monthly Income ₹"><input type="number" id="leIncome" value="60000"></Field>
+<Field id="leExistingEMI" label="Existing Monthly EMIs ₹"><input type="number" id="leExistingEMI" value="5000"></Field>
+<Field id="leFOIR" label="FOIR % (Fixed Obligation to Income Ratio)"><input type="number" id="leFOIR" value="50"></Field>
+<Field id="leRate" label="Interest Rate % p.a."><input type="number" id="leRate" value="10"></Field>
+<Field id="leYears" label="Tenure (Years)"><input type="number" id="leYears" value="20"></Field>
+</div>
+<button class="btn mt-4" onclick="calcLoanEligibility()">Check Eligibility</button>
+<div id="loanEligibilityResult" class="mt-4"></div>
+</section>
+
+<section id="loanPrepayment" class="tool tool-accent" style="--ac:#16a34a"><ToolTitle>💰 Loan Prepayment Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Calculate interest savings and tenure reduction with a lump-sum part payment.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="ppOutstanding" label="Outstanding Principal ₹"><input type="number" id="ppOutstanding" value="2000000"></Field>
+<Field id="ppRate" label="Interest Rate % p.a."><input type="number" id="ppRate" value="8.5"></Field>
+<Field id="ppMonthsLeft" label="Remaining Tenure (Months)"><input type="number" id="ppMonthsLeft" value="180"></Field>
+<Field id="ppPrepay" label="Prepayment Amount ₹"><input type="number" id="ppPrepay" value="300000"></Field>
+</div>
+<button class="btn mt-4" onclick="calcLoanPrepayment()">Calculate Savings</button>
+<div id="loanPrepaymentResult" class="mt-4"></div>
+</section>
+
+<!-- ===================== Education Calculators ===================== -->
+<section id="cgpaPercent" class="tool tool-accent" style="--ac:#7c3aed"><ToolTitle>🎓 CGPA to Percentage Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Convert CGPA to percentage using formulas for VTU, Anna University, Mumbai, Delhi &amp; more universities.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="cgpaVal" label="CGPA (out of 10)"><input type="number" id="cgpaVal" value="8.5" step="0.01" max="10" min="0"></Field>
+<Field id="cgpaUni" label="University Formula"><select id="cgpaUni">
+<option value="general">General (CGPA × 9.5)</option>
+<option value="vtu">VTU — (CGPA − 0.75) × 10</option>
+<option value="anna">Anna University — CGPA × 10</option>
+<option value="mumbai">Mumbai University — CGPA × 7.1 + 11</option>
+<option value="delhi">Delhi University — CGPA × 9.5</option>
+</select></Field>
+</div>
+<button class="btn mt-4" onclick="calcCGPAPercent()">Convert to Percentage</button>
+<div id="cgpaPercentResult" class="mt-4"></div>
+</section>
+
+<section id="cgpaCalc" class="tool tool-accent" style="--ac:#7c3aed"><ToolTitle>📚 CGPA Calculator (Multi-Semester)</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Calculate cumulative CGPA from your semester SGPAs and credits. Track academic performance.</p>
+<table class="mini-table"><thead><tr><th>Semester</th><th>SGPA</th><th>Credits</th><th></th></tr></thead><tbody id="cgpaSemBody"></tbody></table>
+<button class="smallbtn mt-2" onclick="addCGPASemester()">+ Add Semester</button>
+<button class="btn mt-4" onclick="calcCGPA()">Calculate CGPA</button>
+<div id="cgpaCalcResult" class="mt-4"></div>
+</section>
+
+<section id="gpaCalc" class="tool tool-accent" style="--ac:#7c3aed"><ToolTitle>📖 GPA Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Calculate Semester GPA from your subject credits and grades (10-point scale).</p>
+<table class="mini-table"><thead><tr><th>Subject</th><th>Credits</th><th>Grade</th><th></th></tr></thead><tbody id="gpaSubBody"></tbody></table>
+<button class="smallbtn mt-2" onclick="addGPASubject()">+ Add Subject</button>
+<button class="btn mt-4" onclick="calcGPA()">Calculate GPA</button>
+<div id="gpaCalcResult" class="mt-4"></div>
+</section>
+
+<section id="marksPercent" class="tool tool-accent" style="--ac:#7c3aed"><ToolTitle>📊 Marks Percentage Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Calculate total percentage from subject marks. Add unlimited subjects.</p>
+<table class="mini-table"><thead><tr><th>Subject</th><th>Marks Obtained</th><th>Max Marks</th><th></th></tr></thead><tbody id="marksBody"></tbody></table>
+<button class="smallbtn mt-2" onclick="addMarksSubject()">+ Add Subject</button>
+<button class="btn mt-4" onclick="calcMarksPercentage()">Calculate Percentage</button>
+<div id="marksPercentResult" class="mt-4"></div>
+</section>
 
 
 <!-- New Developer, Design, Text & Utility Tools -->
@@ -651,7 +1101,28 @@ palette:{title:'Free Color Palette Generator Online',description:'Generate a fiv
 lorem:{title:'Free Lorem Ipsum Generator Online',description:'Generate placeholder Lorem Ipsum paragraphs and copy them quickly for website layouts, UI mockups and prototypes.',keywords:'Lorem Ipsum generator, dummy text generator, placeholder text'},
 stopwatch:{title:'Free Online Stopwatch & Timer',description:'Use a simple browser stopwatch and countdown timer for workouts, study sessions, cooking and everyday tasks.',keywords:'online stopwatch, countdown timer online, free timer'},
 worldClock:{title:'World Clock Online — Current Time Around the World',description:'Check current local time in major cities around the world with an automatically updating world clock.',keywords:'world clock online, current time worldwide, time zone clock'},
-scientific:{title:'Free Scientific Calculator Online',description:'Calculate scientific expressions with trigonometry, square roots, logarithms, powers and constants in your browser.',keywords:'scientific calculator online, sin cos calculator, logarithm calculator, square root calculator'}
+scientific:{title:'Free Scientific Calculator Online',description:'Calculate scientific expressions with trigonometry, square roots, logarithms, powers and constants in your browser.',keywords:'scientific calculator online, sin cos calculator, logarithm calculator, square root calculator'},
+incomeTax:{title:'Income Tax Calculator FY 2025-26 — New vs Old Regime',description:'Compare New Regime vs Old Regime income tax for FY 2025-26 (AY 2026-27) and see which one saves more tax for you.',keywords:'income tax calculator India, new vs old tax regime calculator, income tax FY 2025-26, HRA exemption calculator'},
+pension:{title:'Pension Calculator — OPS, NPS & UPS',description:'Estimate your monthly pension under the Old Pension Scheme, National Pension System or Unified Pension Scheme.',keywords:'pension calculator India, OPS calculator, NPS pension calculator, UPS unified pension scheme calculator'},
+daArrears:{title:'DA Arrears Calculator for Central Government Employees',description:'Calculate Dearness Allowance arrears with a month-wise breakdown for central government employees.',keywords:'DA arrears calculator, dearness allowance arrears, central government DA calculator'},
+eighthCPC:{title:'8th Pay Commission Salary Calculator (Expected)',description:'Estimate your expected 8th Pay Commission salary with fitment factor, HRA, TA, NPS, CGEGIS, CGHS and income tax.',keywords:'8th pay commission calculator, 8th CPC salary calculator, fitment factor calculator, expected salary 8th pay commission'},
+salarySlip:{title:'Free Salary Slip Generator Online',description:'Create a professional salary slip with PF, ESI and tax auto-calculated, then download it as a PDF.',keywords:'salary slip generator, payslip maker online, salary slip PDF download'},
+invoiceGen:{title:'Free GST Invoice Generator Online',description:'Create a professional GST invoice with item-wise tax and download it as a PDF in seconds.',keywords:'invoice generator online, GST invoice maker, free invoice PDF generator'},
+plStatement:{title:'Profit & Loss Statement Calculator',description:'Generate a complete profit and loss statement with revenue, COGS, operating expenses and net profit.',keywords:'profit and loss calculator, P&L statement generator, business profit calculator'},
+roi:{title:'Free ROI Calculator Online',description:'Calculate Return on Investment and annualized (CAGR) returns for any investment.',keywords:'ROI calculator, return on investment calculator, CAGR calculator online'},
+freelanceRate:{title:'Freelance Hourly Rate Calculator',description:'Find your ideal freelance hourly rate based on income goals, business expenses, taxes and billable hours.',keywords:'freelance rate calculator, hourly rate calculator freelancer, freelance pricing calculator'},
+homeLoanEMI:{title:'Home Loan EMI Calculator — SBI, HDFC, ICICI Rates',description:'Calculate home loan EMI with indicative current bank interest rates from SBI, HDFC, ICICI, Axis, Kotak and LIC HFL.',keywords:'home loan EMI calculator, housing loan calculator India, SBI home loan EMI'},
+personalLoanEMI:{title:'Personal Loan EMI Calculator',description:'Calculate personal loan EMI for loan amounts from ₹50,000 to ₹40 lakhs over 1 to 7 years.',keywords:'personal loan EMI calculator, personal loan calculator India'},
+carLoanEMI:{title:'Car Loan EMI Calculator with Down Payment',description:'Calculate car loan EMI with an adjustable down payment and on-road price.',keywords:'car loan EMI calculator, auto loan calculator, car loan down payment calculator'},
+eduLoanEMI:{title:'Education Loan EMI Calculator with Moratorium',description:'Calculate education loan EMI including the moratorium period (course duration plus one year).',keywords:'education loan EMI calculator, student loan calculator India, education loan moratorium calculator'},
+ccEMI:{title:'Credit Card EMI Calculator',description:'Convert a credit card purchase into EMI, including processing fee and GST.',keywords:'credit card EMI calculator, no cost EMI calculator, credit card installment calculator'},
+loanComparison:{title:'Loan Comparison Calculator — Compare 3 Loan Offers',description:'Compare up to three loan offers side by side and find the cheapest option by total interest.',keywords:'loan comparison calculator, compare loan offers, cheapest loan calculator'},
+loanEligibility:{title:'Loan Eligibility Calculator — FOIR Based',description:'Check how much loan you are eligible for based on income, existing EMIs and FOIR.',keywords:'loan eligibility calculator, FOIR calculator, maximum loan amount calculator'},
+loanPrepayment:{title:'Loan Prepayment Calculator — Interest Savings',description:'Calculate interest savings and tenure reduction from a lump-sum loan prepayment.',keywords:'loan prepayment calculator, part payment calculator, loan foreclosure calculator'},
+cgpaPercent:{title:'CGPA to Percentage Calculator',description:'Convert CGPA to percentage using formulas for VTU, Anna University, Mumbai University, Delhi University and more.',keywords:'CGPA to percentage calculator, VTU CGPA calculator, CGPA to percentage conversion'},
+cgpaCalc:{title:'CGPA Calculator — Multi-Semester',description:'Calculate cumulative CGPA from semester SGPAs and credits across multiple semesters.',keywords:'CGPA calculator, cumulative GPA calculator, semester SGPA calculator'},
+gpaCalc:{title:'GPA Calculator Online',description:'Calculate semester GPA from subject credits and grades on a 10-point scale.',keywords:'GPA calculator online, semester GPA calculator, grade point average calculator'},
+marksPercent:{title:'Marks Percentage Calculator',description:'Calculate total percentage from subject marks. Add unlimited subjects.',keywords:'marks percentage calculator, total percentage calculator, exam marks calculator'}
 });
 
 const tools=[
@@ -660,7 +1131,12 @@ const tools=[
 ['age','🎂','Age Calculator','Date'],['dateDiff','📅','Date Difference','Date'],['bmi','⚖️','BMI Calculator','Health'],
 ['qr','📱','QR Generator','QR'],['unit','📐','Unit Converter','Converter'],['color','🎨','Color Converter','Converter'],
 ['imageCompress','🖼️','Image Compressor','Image/PDF'],['imagePDF','📄','Images to PDF','Image/PDF'],['textPDF','📝','Text to PDF','Image/PDF'],['pdfImage','📑','PDF to Image','Image/PDF'],['textWord','📝','Text to Word','Documents'],['pdfWord','📃','PDF to Word','Documents'],['videoCompress','🎬','Video Compressor','Video'],
-['json','🧑‍💻','JSON Formatter','Developer'],['base64','🔤','Base64 Encoder & Decoder','Developer'],['hash','#️⃣','Hash Generator','Developer'],['shadow','🎨','CSS Box Shadow Generator','Developer'],['imageResize','📐','Image Resizer','Image/Design'],['svgPng','🖼️','SVG to PNG','Image/Design'],['palette','🌈','Color Palette Generator','Image/Design'],['lorem','📝','Lorem Ipsum Generator','Text'],['stopwatch','⏱️','Stopwatch & Timer','Utility'],['worldClock','🌍','World Clock','Utility'],['scientific','🧪','Scientific Calculator','Math'],['random','🎲','Random Number','Other'],['currency','💱','Currency Converter','Finance']
+['json','🧑‍💻','JSON Formatter','Developer'],['base64','🔤','Base64 Encoder & Decoder','Developer'],['hash','#️⃣','Hash Generator','Developer'],['shadow','🎨','CSS Box Shadow Generator','Developer'],['imageResize','📐','Image Resizer','Image/Design'],['svgPng','🖼️','SVG to PNG','Image/Design'],['palette','🌈','Color Palette Generator','Image/Design'],['lorem','📝','Lorem Ipsum Generator','Text'],['stopwatch','⏱️','Stopwatch & Timer','Utility'],['worldClock','🌍','World Clock','Utility'],['scientific','🧪','Scientific Calculator','Math'],['random','🎲','Random Number','Other'],['currency','💱','Currency Converter','Finance'],
+['incomeTax','💵','Income Tax Calculator','Government'],['pension','👴','Pension Calculator','Government'],['daArrears','📜','DA Arrears Calculator','Government'],['eighthCPC','🏛️','8th Pay Commission Calculator','Government'],
+['salarySlip','🧾','Salary Slip Generator','Documents'],['invoiceGen','📃','Invoice Generator','Documents'],
+['plStatement','📊','Profit & Loss Calculator','Business'],['roi','📈','ROI Calculator','Business'],['freelanceRate','💻','Freelance Rate Calculator','Business'],
+['homeLoanEMI','🏠','Home Loan EMI','Loans'],['personalLoanEMI','💵','Personal Loan EMI','Loans'],['carLoanEMI','🚗','Car Loan EMI','Loans'],['eduLoanEMI','🎓','Education Loan EMI','Loans'],['ccEMI','💳','Credit Card EMI','Loans'],['loanComparison','⚖️','Loan Comparison','Loans'],['loanEligibility','✅','Loan Eligibility','Loans'],['loanPrepayment','💰','Loan Prepayment','Loans'],
+['cgpaPercent','🎓','CGPA to Percentage','Education'],['cgpaCalc','📚','CGPA Calculator','Education'],['gpaCalc','📖','GPA Calculator','Education'],['marksPercent','📊','Marks Percentage','Education']
 ];
 const $=id=>document.getElementById(id);
 function Result({id}){} // placeholder component marker
@@ -675,11 +1151,11 @@ const nav=$('toolNav');
 const cards=$('cards');
 const allCards=$('allCards');
 const categoryRow=$('categoryRow');
-const popularIds=['sip','emi','discount','qr','bmi','age','json','imageResize','scientific'];
+const popularIds=['sip','emi','discount','qr','bmi','age','json','imageResize','scientific','incomeTax','pension','eighthCPC','salarySlip','invoiceGen'];
 const cats=['All',...new Set(tools.map(x=>x[3]))];
 
 function toolSlug(id){
- const map={sip:'sip-calculator',discount:'discount-calculator',emi:'emi-calculator',gst:'gst-calculator',percentage:'percentage-calculator',tip:'tip-calculator',loan:'loan-calculator',text:'text-formatter',word:'word-counter',password:'password-generator',age:'age-calculator',dateDiff:'date-difference-calculator',bmi:'bmi-calculator',qr:'qr-code-generator',unit:'unit-converter',color:'color-converter',imageCompress:'image-compressor',imagePDF:'images-to-pdf',textPDF:'text-to-pdf',pdfImage:'pdf-to-image',textWord:'text-to-word',pdfWord:'pdf-to-word',videoCompress:'video-compressor',json:'json-formatter',base64:'base64-encoder-decoder',hash:'hash-generator',shadow:'css-box-shadow-generator',imageResize:'image-resizer',svgPng:'svg-to-png',palette:'color-palette-generator',lorem:'lorem-ipsum-generator',stopwatch:'stopwatch-timer',worldClock:'world-clock',scientific:'scientific-calculator',random:'random-number-generator',currency:'currency-converter'};
+ const map={sip:'sip-calculator',discount:'discount-calculator',emi:'emi-calculator',gst:'gst-calculator',percentage:'percentage-calculator',tip:'tip-calculator',loan:'loan-calculator',text:'text-formatter',word:'word-counter',password:'password-generator',age:'age-calculator',dateDiff:'date-difference-calculator',bmi:'bmi-calculator',qr:'qr-code-generator',unit:'unit-converter',color:'color-converter',imageCompress:'image-compressor',imagePDF:'images-to-pdf',textPDF:'text-to-pdf',pdfImage:'pdf-to-image',textWord:'text-to-word',pdfWord:'pdf-to-word',videoCompress:'video-compressor',json:'json-formatter',base64:'base64-encoder-decoder',hash:'hash-generator',shadow:'css-box-shadow-generator',imageResize:'image-resizer',svgPng:'svg-to-png',palette:'color-palette-generator',lorem:'lorem-ipsum-generator',stopwatch:'stopwatch-timer',worldClock:'world-clock',scientific:'scientific-calculator',random:'random-number-generator',currency:'currency-converter',incomeTax:'income-tax-calculator',pension:'pension-calculator',daArrears:'da-arrears-calculator',eighthCPC:'8th-pay-commission-calculator',salarySlip:'salary-slip-generator',invoiceGen:'invoice-generator',plStatement:'profit-loss-calculator',roi:'roi-calculator',freelanceRate:'freelance-rate-calculator',homeLoanEMI:'home-loan-emi-calculator',personalLoanEMI:'personal-loan-emi-calculator',carLoanEMI:'car-loan-emi-calculator',eduLoanEMI:'education-loan-emi-calculator',ccEMI:'credit-card-emi-calculator',loanComparison:'loan-comparison',loanEligibility:'loan-eligibility-calculator',loanPrepayment:'loan-prepayment-calculator',cgpaPercent:'cgpa-to-percentage',cgpaCalc:'cgpa-calculator',gpaCalc:'gpa-calculator',marksPercent:'marks-percentage-calculator'};
  return map[id]||id;
 }
 function toolCard(t){
@@ -718,7 +1194,28 @@ palette:['How to use','Choose a base color and generate a five-color palette. Cl
 lorem:['How to use','Choose the number of paragraphs and approximate words per paragraph, then generate and copy the placeholder text.','Useful for testing layouts before real copy is available.','Is Lorem Ipsum meaningful content?','No. It is placeholder text and should be replaced with real, useful content before publishing.'],
 stopwatch:['How to use','Press Start to begin, Pause to stop temporarily and Reset to clear the stopwatch. Use the countdown section for a fixed duration.','Useful for study sessions, workouts, cooking and quick timing tasks.','Does it work when the browser is closed?','No. Keep the page open for reliable browser timing.'],
 worldClock:['How to use','Open the tool and compare the automatically updating local time for listed cities.','Helpful for remote work, travel, calls and international coordination.','Is the time based on my device?','Yes. The browser uses its built-in time-zone data and current device time.'],
-scientific:['How to use','Enter a supported expression and use the scientific buttons for common functions.','Useful for school, engineering and everyday calculations that need more than basic arithmetic.','Are angles in degrees?','Yes. Trigonometric functions in this tool interpret input angles in degrees.']
+scientific:['How to use','Enter a supported expression and use the scientific buttons for common functions.','Useful for school, engineering and everyday calculations that need more than basic arithmetic.','Are angles in degrees?','Yes. Trigonometric functions in this tool interpret input angles in degrees.'],
+incomeTax:['How to use','Enter your income, HRA details and old-regime deductions, then compare both regimes.','See exactly which regime saves more tax and by how much, with a full breakdown.','Does this replace a CA or ITR filing?','No. It is an estimate for FY 2025-26; confirm with a tax professional before filing.'],
+pension:['How to use','Choose OPS, NPS or UPS, enter your service details, and calculate your expected monthly pension.','Compare all three schemes side by side to understand your retirement income.','Is the NPS pension guaranteed?','No. NPS is market-linked; only OPS and the UPS minimum are guaranteed.'],
+daArrears:['How to use','Enter your basic pay, old and new DA rates and the number of arrears months.','Get an instant month-wise arrears breakdown with an estimated NPS deduction.','When are DA arrears usually paid?','Typically within 2-3 months of the official DA hike order.'],
+eighthCPC:['How to use','Enter your current basic pay and pick an assumed fitment factor, city category and TA level.','Estimate your expected 8th CPC gross and net salary before the official notification.','Is the 8th CPC fitment factor confirmed?','No. No fitment factor has been officially notified; all figures here are estimates only.'],
+salarySlip:['How to use','Fill in company, employee, earnings and deduction details — the preview updates live.','Download a ready-to-share salary slip as a PDF for record-keeping or HR use.','Is this a legal payroll document?','No. It is a convenience generator; use your official payroll system for statutory records.'],
+invoiceGen:['How to use','Enter business and client details, add line items with GST%, and download the invoice as a PDF.','Quickly create GST-ready invoices for freelance or small business billing.','Does this file GST returns?','No. It only generates the invoice document; GST filing is separate.'],
+plStatement:['How to use','Enter revenue, COGS, operating expenses and financial costs to generate the P&L statement.','See gross profit, operating profit (EBIT) and net profit with margins in one view.','Is this an audited financial statement?','No. It is an estimate for planning; consult an accountant for official statements.'],
+roi:['How to use','Enter the initial investment, final value and holding period to calculate ROI and CAGR.','Understand both total return and the annualized (yearly) growth rate of an investment.','What is the difference between ROI and CAGR?','ROI is total return over the whole period; CAGR is the equivalent constant annual growth rate.'],
+freelanceRate:['How to use','Enter your income goal, yearly expenses, tax estimate and billable hours to find your rate.','Avoid undercharging by pricing your time to cover taxes and business costs too.','Should I always charge exactly this rate?','Use it as a floor; market demand and experience can justify charging more.'],
+homeLoanEMI:['How to use','Enter the loan amount, pick a bank for an indicative rate, and set the tenure.','Compare EMI and total interest across different bank rates before applying.','Are the bank rates guaranteed?','No. They are indicative reference rates; always confirm the current rate with the bank.'],
+personalLoanEMI:['How to use','Enter the loan amount, interest rate and tenure to calculate the monthly EMI.','Useful for budgeting personal loan repayments before applying.','Can I use this for any lender?','Yes, enter the specific rate quoted by your lender for an accurate estimate.'],
+carLoanEMI:['How to use','Enter the on-road price, adjust the down payment slider, then set rate and tenure.','See how a larger down payment reduces your loan amount and EMI.','Does on-road price include insurance and registration?','Typically yes; enter the full on-road price quoted by the dealer.'],
+eduLoanEMI:['How to use','Enter the loan amount, rate and course duration; the EMI is calculated after the moratorium.','Understand how interest accrues during the study period before EMIs begin.','Do all education loans have a moratorium?','Most do, usually course duration plus 6-12 months; check your lender’s terms.'],
+ccEMI:['How to use','Enter the purchase amount, tenure and fees, and choose standard or no-cost EMI.','Compare the real cost of converting a purchase to EMI, including fees and GST.','Is No-Cost EMI really free?','The interest is usually built into the product price or discount, so check the total cost.'],
+loanComparison:['How to use','Enter up to three loan offers with amount, rate and tenure to compare them.','Instantly see which offer has the lowest EMI and total interest.','What if I only have two offers?','Leave the third offer’s fields empty or zero; it will be excluded from comparison.'],
+loanEligibility:['How to use','Enter your income, existing EMIs and FOIR percentage to see your maximum loan amount.','Understand how existing obligations reduce how much new loan you can afford.','What is a typical FOIR used by banks?','Many lenders use 40-50%, but it varies by lender and income level.'],
+loanPrepayment:['How to use','Enter your outstanding loan, rate, remaining tenure and prepayment amount.','See how much interest you save and how much sooner the loan can close.','Does prepayment always reduce tenure?','With a fixed EMI, yes — the extra payment reduces tenure rather than the EMI.'],
+cgpaPercent:['How to use','Enter your CGPA and choose your university’s formula to get the equivalent percentage.','Useful for job applications and forms that ask for a percentage instead of CGPA.','Is there one universal formula?','No. Each university/board publishes its own conversion formula.'],
+cgpaCalc:['How to use','Add each semester’s SGPA and credits, then calculate your cumulative CGPA.','Track your academic performance across multiple semesters in one place.','Are all semesters weighted equally?','No. Semesters are weighted by their credit totals, not just averaged equally.'],
+gpaCalc:['How to use','Add each subject with its credits and grade, then calculate your semester GPA.','Useful for a single semester’s grade point average on a 10-point scale.','Can I use a different grading scale?','This tool uses a standard 10-point scale; adjust grade points manually if yours differs.'],
+marksPercent:['How to use','Add each subject with marks obtained and maximum marks, then calculate the total percentage.','Add unlimited subjects for school or college mark-sheets.','Does it handle subjects with different maximum marks?','Yes. It sums obtained and maximum marks across all subjects before calculating percentage.']
 });
 
 function renderSEOContent(id){
@@ -851,6 +1348,12 @@ function filterCategory(cat,btn){
    const t=tools.find(x=>x[0]===card.dataset.toolId);
    card.style.display=(cat==='All'||(t&&t[3]===cat))?'':'none';
  });
+ const popularSection=$('popularSection');
+ if(cat==='All'){
+   if(popularSection)popularSection.style.display='';
+ }else{
+   if(popularSection)popularSection.style.display='none';
+ }
 }
 function filterTools(){
  const q=($('toolSearch').value||'').toLowerCase().trim();
@@ -920,28 +1423,454 @@ function deleteSaved(id){const list=savedCalculations().filter(x=>x.id!==id);loc
 function clearSavedCalculations(){if(!savedCalculations().length)return;if(confirm('Delete all saved calculations from this device?')){localStorage.removeItem('kk_saved_calculations');renderSavedCalculations()}}
 
 
-function calcSIP(){let p=+$('sipAmount').value,r=+$('sipRate').value/1200,n=+$('sipYears').value*12;if(!valid([p,r,n])||p<0||n<=0||r<0)return setR('sipResult','Please enter valid values.');let fv=r===0?p*n:p*((Math.pow(1+r,n)-1)/r)*(1+r),inv=p*n;setR('sipResult',`Invested: <b>${money(inv)}</b><br>Estimated Returns: <b class="text-green-600">${money(fv-inv)}</b><br>Total Value: <b class="text-indigo-600">${money(fv)}</b>`)}
-function calcDiscount(){let p=+$('origPrice').value,d=+$('discPercent').value;if(!valid([p,d])||p<0||d<0||d>100)return setR('discResult','Enter a price and discount between 0–100%.');let s=p*d/100;setR('discResult',`You Save: <b class="text-green-600">${money(s)}</b><br>Final Price: <b class="text-indigo-600">${money(p-s)}</b>`)}
-function calcEMI(){let P=+$('emiPrincipal').value,annual=+$('emiRate').value,years=+$('emiYears').value,n=years*12,r=annual/1200;if(!valid([P,annual,years])||P<=0||years<=0||annual<0)return setR('emiResult','Enter valid loan details.');let e=r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1),total=e*n;setR('emiResult',`Monthly EMI: <b>${money(e)}</b><br>Total Interest: <b>${money(total-P)}</b><br>Total Payment: <b>${money(total)}</b>`)}
-function calcGST(add){let p=+$('gstPrice').value,g=+$('gstRate').value;if(!valid([p,g])||p<0||g<0)return setR('gstResult','Enter valid values.');if(add){let tax=p*g/100;setR('gstResult',`GST: <b>${money(tax)}</b><br>Total: <b>${money(p+tax)}</b>`)}else{let base=p/(1+g/100);setR('gstResult',`Base Amount: <b>${money(base)}</b><br>GST Included: <b>${money(p-base)}</b>`)}} 
-function calcPercent(){let a=+$('p1').value,b=+$('p2').value;if(!valid([a,b]))return setR('percentResult','Enter valid values.');setR('percentResult',`${b}% of ${a} = <b>${(a*b/100).toFixed(2)}</b>`)}
-function calcTip(){let b=+$('bill').value,t=+$('tipRate').value,n=+$('people').value;if(!valid([b,t,n])||n<=0)return setR('tipResult','Enter valid values.');let tip=b*t/100,total=b+tip;setR('tipResult',`Tip: <b>${money(tip)}</b><br>Total: <b>${money(total)}</b><br>Per Person: <b>${money(total/n)}</b>`)}
-function calcSimpleLoan(){let p=+$('simpleLoan').value,r=+$('simpleRate').value,y=+$('simpleYears').value;if(!valid([p,r,y])||p<0||y<0)return setR('loanResult','Enter valid values.');let i=p*r*y/100;setR('loanResult',`Interest: <b>${money(i)}</b><br>Total Amount: <b>${money(p+i)}</b>`)}
+function calcSIP(){let p=+$('sipAmount').value,r=+$('sipRate').value/1200,n=+$('sipYears').value*12;if(!valid([p,r,n])||p<0||n<=0||r<0)return setR('sipResult','Please enter valid values.');let fv=r===0?p*n:p*((Math.pow(1+r,n)-1)/r)*(1+r),inv=p*n;setR('sipResult',rHero('linear-gradient(135deg,#059669,#10b981)','TOTAL VALUE',money(fv),`After ${$('sipYears').value} years`)+rBox(rRow('Total Invested',money(inv))+rRow('Estimated Returns',money(fv-inv))+rRow('Total Value',money(fv),true)))}
+function calcDiscount(){let p=+$('origPrice').value,d=+$('discPercent').value;if(!valid([p,d])||p<0||d<0||d>100)return setR('discResult','Enter a price and discount between 0–100%.');let s=p*d/100;setR('discResult',rHero('linear-gradient(135deg,#dc2626,#f87171)','YOU SAVE',money(s),`${d}% off ${money(p)}`)+rBox(rRow('Original Price',money(p))+rRow('Discount Amount',money(s))+rRow('Final Price',money(p-s),true)))}
+function calcEMI(){let P=+$('emiPrincipal').value,annual=+$('emiRate').value,years=+$('emiYears').value,n=years*12,r=annual/1200;if(!valid([P,annual,years])||P<=0||years<=0||annual<0)return setR('emiResult','Enter valid loan details.');let e=r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1),total=e*n;setR('emiResult',rHero('linear-gradient(135deg,#4338ca,#6366f1)','MONTHLY EMI',money(e),`${years} yrs @ ${annual}% p.a.`)+rBox(rRow('Loan Amount',money(P))+rRow('Total Interest',money(total-P))+rRow('Total Payment',money(total),true)))}
+function calcGST(add){let p=+$('gstPrice').value,g=+$('gstRate').value;if(!valid([p,g])||p<0||g<0)return setR('gstResult','Enter valid values.');if(add){let tax=p*g/100;setR('gstResult',rHero('linear-gradient(135deg,#d97706,#fbbf24)','TOTAL (INCL. GST)',money(p+tax),`GST @ ${g}%`)+rBox(rRow('Base Amount',money(p))+rRow('GST Amount',money(tax))+rRow('Total',money(p+tax),true)))}else{let base=p/(1+g/100);setR('gstResult',rHero('linear-gradient(135deg,#d97706,#fbbf24)','BASE AMOUNT',money(base),`GST @ ${g}% excluded`)+rBox(rRow('Total (incl. GST)',money(p))+rRow('GST Amount',money(p-base))+rRow('Base Amount',money(base),true)))}}
+function calcPercent(){let a=+$('p1').value,b=+$('p2').value;if(!valid([a,b]))return setR('percentResult','Enter valid values.');setR('percentResult',rHero('linear-gradient(135deg,#7c3aed,#a78bfa)','RESULT',(a*b/100).toFixed(2),`${b}% of ${a}`))}
+function calcTip(){let b=+$('bill').value,t=+$('tipRate').value,n=+$('people').value;if(!valid([b,t,n])||n<=0)return setR('tipResult','Enter valid values.');let tip=b*t/100,total=b+tip;setR('tipResult',rHero('linear-gradient(135deg,#16a34a,#4ade80)','PER PERSON',money(total/n),`Bill ${money(b)} + ${t}% tip ÷ ${n} people`)+rBox(rRow('Tip Amount',money(tip))+rRow('Total Bill',money(total))+rRow('Per Person',money(total/n),true)))}
+function calcSimpleLoan(){let p=+$('simpleLoan').value,r=+$('simpleRate').value,y=+$('simpleYears').value;if(!valid([p,r,y])||p<0||y<0)return setR('loanResult','Enter valid values.');let i=p*r*y/100;setR('loanResult',rHero('linear-gradient(135deg,#0891b2,#22d3ee)','TOTAL AMOUNT',money(p+i),`Simple interest over ${y} years`)+rBox(rRow('Principal',money(p))+rRow('Interest',money(i))+rRow('Total Amount',money(p+i),true)))}
+
+/* ===================== Shared helpers for the new colorful calculators ===================== */
+function rHero(bg,label,value,sub){return `<div class="rh" style="background:${bg}"><div class="rh-label">${label}</div><div class="rh-value">${value}</div>${sub?`<div class="rh-sub">${sub}</div>`:''}</div>`}
+function rRow(label,value,hl){return `<div class="rb-row${hl?' hl':''}"><span>${label}</span><b>${value}</b></div>`}
+function rBox(rowsHtml){return `<div class="rb">${rowsHtml}</div>`}
+function selectChip(el){el.parentElement.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));el.classList.add('active')}
+function emiOf(P,annualRate,months){const r=annualRate/1200;if(months<=0)return 0;if(r===0)return P/months;return P*r*Math.pow(1+r,months)/(Math.pow(1+r,months)-1)}
+function slabTaxNew(t){const slabs=[[400000,0],[400000,.05],[400000,.10],[400000,.15],[400000,.20],[400000,.25],[Infinity,.30]];let tax=0,rem=t;for(const [w,r] of slabs){const amt=Math.min(rem,w);if(amt<=0)break;tax+=amt*r;rem-=amt;}return tax}
+function slabTaxOld(t){let tax=0;if(t>1000000){tax+=(t-1000000)*.3;t=1000000}if(t>500000){tax+=(t-500000)*.2;t=500000}if(t>250000){tax+=(t-250000)*.05;t=250000}return tax}
+function numToWordsIndian(num){num=Math.round(Math.abs(num));if(num===0)return 'Zero';const ones=['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve','Thirteen','Fourteen','Fifteen','Sixteen','Seventeen','Eighteen','Nineteen'];const tens=['','','Twenty','Thirty','Forty','Fifty','Sixty','Seventy','Eighty','Ninety'];function two(n){if(n<20)return ones[n];return tens[Math.floor(n/10)]+(n%10?' '+ones[n%10]:'')}function three(n){if(n<100)return two(n);return ones[Math.floor(n/100)]+' Hundred'+(n%100?' '+two(n%100):'')}let crore=Math.floor(num/10000000);num%=10000000;let lakh=Math.floor(num/100000);num%=100000;let thousand=Math.floor(num/1000);num%=1000;let rest=num;let parts=[];if(crore)parts.push(three(crore)+' Crore');if(lakh)parts.push(three(lakh)+' Lakh');if(thousand)parts.push(three(thousand)+' Thousand');if(rest)parts.push(three(rest));return parts.join(' ')||'Zero'}
+
+/* ===================== Income Tax Calculator ===================== */
+function calcIncomeTax(){
+ const gross=+$('itGross').value||0, other=+$('itOther').value||0;
+ const basic=+$('itBasic').value||0, hraRec=+$('itHRA').value||0, rent=+$('itRent').value||0;
+ const metroEl=document.querySelector('#itMetroGroup .active'); const metro=metroEl?+metroEl.dataset.v:1;
+ const c80=Math.min(+$('it80C').value||0,150000), d80=+$('it80D').value||0, ccd=Math.min(+$('it80CCD').value||0,50000), hl=Math.min(+$('itHomeLoan').value||0,200000), other80=+$('itOtherDed').value||0;
+ if(!valid([gross])||gross<0){$('incomeTaxResult').innerHTML=rHero('#94a3b8','ENTER INCOME','Please enter a valid annual gross salary');return}
+ const totalIncome=gross+other;
+ const stdNew=75000;
+ let taxableNew=Math.max(0,totalIncome-stdNew);
+ let taxBeforeRebateNew=slabTaxNew(taxableNew);
+ let taxNew=taxBeforeRebateNew;
+ if(taxableNew<=1200000) taxNew=0; else if(taxNew>taxableNew-1200000) taxNew=taxableNew-1200000;
+ const cessNew=taxNew*0.04, finalNew=Math.round(taxNew+cessNew);
+ const hraExempt=Math.max(0,Math.min(hraRec, basic*(metro?0.5:0.4), Math.max(0,rent-basic*0.1)));
+ const stdOld=50000;
+ const totalDed=stdOld+hraExempt+c80+d80+ccd+hl+other80;
+ let taxableOld=Math.max(0,totalIncome-totalDed);
+ let taxOld=slabTaxOld(taxableOld);
+ if(taxableOld<=500000) taxOld=0;
+ const cessOld=taxOld*0.04, finalOld=Math.round(taxOld+cessOld);
+ const best=finalNew<=finalOld?'new':'old', save=Math.abs(finalNew-finalOld);
+ let html=`<div class="rc-grid">
+  <div class="rc" style="background:linear-gradient(135deg,#16a34a,#4ade80)">${best==='new'?'<div class="rc-badge">BEST</div>':''}<div class="rc-label">NEW REGIME</div><div class="rc-value">${money(finalNew)}</div><div class="rc-sub">FY 2025-26 slabs</div></div>
+  <div class="rc" style="background:linear-gradient(135deg,#2563eb,#60a5fa)">${best==='old'?'<div class="rc-badge">BEST</div>':''}<div class="rc-label">OLD REGIME</div><div class="rc-value">${money(finalOld)}</div><div class="rc-sub">With deductions</div></div>
+ </div>`;
+ html+=rHero('linear-gradient(135deg,#d97706,#fbbf24)',`💡 CHOOSE ${best.toUpperCase()} REGIME`,`Save ${money(save)}`,'compared to the other regime');
+ html+=`<div class="text-xs font-extrabold text-emerald-700 mt-3 mb-1">🟢 NEW REGIME BREAKDOWN</div>`+rBox(
+   rRow('Gross Income',money(totalIncome))+rRow('Standard Deduction','- '+money(stdNew))+rRow('Taxable Income',money(taxableNew))+rRow('Tax Before Rebate',money(Math.round(taxBeforeRebateNew)))+rRow('Rebate/Relief u/s 87A','- '+money(Math.round(taxBeforeRebateNew-taxNew)))+rRow('Final Tax (+4% Cess)',money(finalNew),true)
+ );
+ html+=`<div class="text-xs font-extrabold text-blue-700 mt-3 mb-1">🔵 OLD REGIME BREAKDOWN</div>`+rBox(
+   rRow('Gross Income',money(totalIncome))+rRow('Standard Deduction','- '+money(stdOld))+rRow('HRA Exemption','- '+money(hraExempt))+rRow('80C+80D+Others','- '+money(c80+d80+ccd+hl+other80))+rRow('Taxable Income',money(taxableOld))+rRow('Final Tax (+4% Cess)',money(finalOld),true)
+ );
+ $('incomeTaxResult').innerHTML=html;
+}
+
+/* ===================== Pension Calculator ===================== */
+function calcPension(){
+ const mode=document.querySelector('#pensionModeGroup .active').dataset.v;
+ const age=+$('penAge').value||0, retAge=+$('penRetireAge').value||0, basic=+$('penBasic').value||0, years=+$('penYears').value||0, dr=+$('penDR').value||0;
+ const corpusNow=+$('penCorpus').value||0, monthly=+$('penMonthly').value||0, ret=(+$('penReturn').value||0)/1200, annuity=(+$('penAnnuity').value||0)/100;
+ if(!valid([basic])||basic<0){$('pensionResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter a valid basic pay');return}
+ const monthsLeft=Math.max(0,(retAge-age)*12);
+ let corpusAtRetirement=corpusNow*Math.pow(1+ret,monthsLeft) + (ret===0? monthly*monthsLeft : monthly*((Math.pow(1+ret,monthsLeft)-1)/ret)*(1+ret));
+ let html='';
+ if(mode==='OPS'){
+   const basicPension=basic*0.5, drAmt=basicPension*dr/100, gross=basicPension+drAmt;
+   html=rHero('linear-gradient(135deg,#7c3aed,#a78bfa)','EXPECTED MONTHLY PENSION',money(gross),`Under OPS at age ${retAge} 🧓`);
+   html+=`<div class="text-xs font-extrabold text-violet-700 mt-3 mb-1">📊 OPS BREAKDOWN</div>`+rBox(
+     rRow('Last Basic Pay',money(basic))+rRow('Basic Pension (50% of Basic)',money(basicPension))+rRow('Dearness Relief',money(drAmt))+rRow('Gross Monthly Pension',money(gross),true)+rRow('Annual Pension',money(gross*12))
+   );
+ } else if(mode==='NPS'){
+   const lumpsum=corpusAtRetirement*0.6, annuityCorpus=corpusAtRetirement*0.4, monthlyPension=annuityCorpus*annuity/12;
+   html=rHero('linear-gradient(135deg,#7c3aed,#a78bfa)','EXPECTED MONTHLY PENSION',money(monthlyPension),'Under NPS — market-linked, not guaranteed');
+   html+=`<div class="text-xs font-extrabold text-violet-700 mt-3 mb-1">📊 NPS BREAKDOWN</div>`+rBox(
+     rRow('Estimated Retirement Corpus',money(corpusAtRetirement))+rRow('Lump Sum (60%, tax-free)',money(lumpsum))+rRow('Annuity Corpus (40%)',money(annuityCorpus))+rRow('Monthly Pension',money(monthlyPension),true)+rRow('Annual Pension',money(monthlyPension*12))
+   );
+ } else {
+   const factor=Math.min(years,25)/25, basePension=Math.max(basic*0.5*factor, years>=10?10000:0), drAmt=basePension*dr/100, gross=basePension+drAmt;
+   html=rHero('linear-gradient(135deg,#7c3aed,#a78bfa)','EXPECTED MONTHLY PENSION',money(gross),`Under UPS (25+ yrs = full 50%) at age ${retAge}`);
+   html+=`<div class="text-xs font-extrabold text-violet-700 mt-3 mb-1">📊 UPS BREAKDOWN</div>`+rBox(
+     rRow('Last Basic Pay',money(basic))+rRow('Qualifying Service Factor',`${(factor*100).toFixed(0)}% of 50%`)+rRow('Assured Base Pension (min ₹10,000)',money(basePension))+rRow('Dearness Relief',money(drAmt))+rRow('Gross Monthly Pension',money(gross),true)+rRow('Annual Pension',money(gross*12))
+   );
+ }
+ html+=`<div class="text-xs font-extrabold text-slate-500 mt-4 mb-1">📋 COMPARISON AT A GLANCE</div><table class="mini-table"><tr><th>Feature</th><th>OPS</th><th>NPS</th><th>UPS</th></tr><tr><td>Employee Contribution</td><td>None</td><td>10% Basic+DA</td><td>10% Basic+DA</td></tr><tr><td>Govt Contribution</td><td>Full pension</td><td>14%</td><td>18.5%</td></tr><tr><td>Pension Type</td><td>Defined Benefit</td><td>Defined Contribution</td><td>Hybrid Assured</td></tr><tr><td>Minimum Pension</td><td>50% of basic</td><td>Market-linked</td><td>₹10,000/month</td></tr></table>`;
+ $('pensionResult').innerHTML=html;
+}
+
+/* ===================== DA Arrears Calculator ===================== */
+function calcDAArrears(){
+ const basic=+$('daBasic').value||0, ta=+$('daTA').value||0, oldR=+$('daOld').value||0, newR=+$('daNew').value||0, months=+$('daMonths').value||0;
+ if(!valid([basic,ta,oldR,newR,months])||months<0){$('daArrearsResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please fill all fields correctly');return}
+ const hike=newR-oldR;
+ const arrBasic=basic*hike/100, arrTA=ta*hike/100, monthlyArrear=arrBasic+arrTA;
+ const totalGross=monthlyArrear*months, nps=Math.round(arrBasic*months*0.1), net=Math.round(totalGross-nps);
+ let rows='';
+ for(let i=1;i<=months;i++) rows+=rRow('Month '+i,money(monthlyArrear));
+ rows+=rRow('Total',money(totalGross),true);
+ let html=rHero('linear-gradient(135deg,#1d4ed8,#3b82f6)','TOTAL DA ARREARS (GROSS)',money(totalGross),`DA hike from ${oldR}% to ${newR}%`);
+ html+=rBox(rRow('DA Hike',hike.toFixed(2)+'%')+rRow('Monthly Arrear (Basic)',money(arrBasic))+rRow('Monthly Arrear (TA)',money(arrTA))+rRow('Total Monthly Arrear',money(monthlyArrear))+rRow('Number of Months',months)+rRow('NPS Deduction (~10% est.)','- '+money(nps))+rRow('Net Arrears (Approx.)',money(net),true));
+ html+=`<div class="text-xs font-extrabold text-slate-500 mt-3 mb-1">📅 MONTH-WISE BREAKDOWN</div>`+rBox(rows);
+ $('daArrearsResult').innerHTML=html;
+}
+
+/* ===================== 8th Pay Commission Expected Salary Calculator ===================== */
+function calc8thCPC(){
+ const basic=+$('cpcBasic').value||0, curDA=+$('cpcDA').value||0;
+ const fitment=+document.querySelector('#cpcFitmentGroup .active').dataset.v;
+ const newHRAPct=+document.querySelector('#cpcCityGroup .active').dataset.v;
+ const curHRAPct=newHRAPct*1.25;
+ const [tptHi,tptLo]=document.querySelector('#cpcTPTLevelGroup .active').dataset.v.split(',').map(Number);
+ const tptCityIsHi=document.querySelector('#cpcTPTCityGroup .active').dataset.v==='hi';
+ const tptBase=tptCityIsHi?tptHi:tptLo;
+ const cgegis=+$('cpcCGEGIS').value||0, cghs=+$('cpcCGHS').value||0, pt=+$('cpcPT').value||0, arrMonths=+$('cpcArrearMonths').value||0;
+ if(!valid([basic,fitment])||basic<=0){$('eighthCPCResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter a valid basic pay');return}
+ const curGross=Math.round(basic + basic*curDA/100 + basic*curHRAPct/100 + tptBase + tptBase*curDA/100);
+ const newBasic=Math.round(basic*fitment/100)*100;
+ const newHRA=Math.round(newBasic*newHRAPct/100);
+ const newTPT=tptBase;
+ const newGross=newBasic+newHRA+newTPT;
+ const nps=Math.round(newBasic*0.10);
+ const annualGross=newGross*12;
+ const taxableAnnual=Math.max(0,annualGross-75000);
+ let taxAnnual=slabTaxNew(taxableAnnual);
+ if(taxableAnnual<=1200000) taxAnnual=0; else if(taxAnnual>taxableAnnual-1200000) taxAnnual=taxableAnnual-1200000;
+ const taxMonthly=Math.round((taxAnnual*1.04)/12);
+ const netMonthly=newGross-nps-cgegis-cghs-taxMonthly-pt;
+ const annualNet=netMonthly*12;
+ const hike=newGross-curGross;
+ const grossArrears=hike*arrMonths;
+ let html=rHero('linear-gradient(135deg,#059669,#10b981)','NEW GROSS SALARY',money(newGross),`At ${fitment}× fitment factor`);
+ html+=rHero('linear-gradient(135deg,#10b981,#34d399)','💰 EXPECTED NET PAY',money(netMonthly),'After all deductions');
+ html+=rHero('linear-gradient(135deg,#f59e0b,#fbbf24)','📈 MONTHLY SALARY HIKE',(hike>=0?'+':'')+money(hike),`vs current 7th CPC gross ${money(curGross)}`);
+ html+=`<div class="text-xs font-extrabold text-emerald-700 mt-3 mb-1">➕ NEW EARNINGS (8TH CPC)</div>`+rBox(
+   rRow('New Basic Pay',money(newBasic))+rRow(`HRA (${newHRAPct}% — resets with DA 0%)`,money(newHRA))+rRow(`TPT (₹${tptBase} — DA 0%)`,money(newTPT))+rRow('DA (Reset to 0% on impl.)',money(0))+rRow('Total Gross',money(newGross),true)
+ );
+ html+=`<div class="text-xs font-extrabold text-rose-700 mt-3 mb-1">➖ EXPECTED DEDUCTIONS</div>`+rBox(
+   rRow('NPS (10% of new Basic)','- '+money(nps))+rRow('CGEGIS','- '+money(cgegis))+rRow('CGHS','- '+money(cghs))+rRow('Income Tax (Monthly, New Regime est.)','- '+money(taxMonthly))+rRow('Professional Tax','- '+money(pt))+rRow('Annual Net Pay',money(annualNet),true)
+ );
+ html+=`<div class="rounded-xl bg-slate-50 border p-3 mt-3 text-xs text-slate-600">Current 7th CPC gross (est.): <b>${money(curGross)}</b> → 8th CPC gross: <b>${money(newGross)}</b> (${curGross?(hike/curGross*100).toFixed(1):'0'}% hike).<br>If arrears become payable for ${arrMonths} months from an assumed (unofficial) effective date, gross arrears ≈ <b>${money(grossArrears)}</b> — estimate only, not notified by the government.</div>`;
+ $('eighthCPCResult').innerHTML=html;
+}
+
+/* ===================== Salary Slip Generator ===================== */
+function autoPF(){const b=+$('ssBasic').value||0;$('ssPF').value=Math.round(b*0.12);renderSalarySlip();}
+function ssTotals(){
+ const basic=+$('ssBasic').value||0,hra=+$('ssHRA').value||0,conv=+$('ssConv').value||0,med=+$('ssMed').value||0,special=+$('ssSpecial').value||0,otherE=+$('ssOtherE').value||0;
+ const totalE=basic+hra+conv+med+special+otherE;
+ const pf=+$('ssPF').value||0, pt=+$('ssPT').value||0, tds=+$('ssTDS').value||0, otherD=+$('ssOtherD').value||0, esi=+$('ssESI').value||0;
+ const totalD=pf+esi+pt+tds+otherD;
+ const net=totalE-totalD;
+ return {basic,hra,conv,med,special,otherE,totalE,pf,esi,pt,tds,otherD,totalD,net};
+}
+function renderSalarySlip(){
+ const t=ssTotals();
+ const html=`<h3>${escapeHtml($('ssCompany').value)}</h3><p class="text-slate-500">${escapeHtml($('ssAddress').value)}</p>
+ <p class="font-black text-pink-600 text-lg mt-1">SALARY SLIP</p><p class="text-slate-500 text-xs">For the month of ${$('ssMonth').value} ${$('ssYear').value}</p><hr class="my-3">
+ <div class="grid md:grid-cols-2 gap-3 text-xs mb-3">
+ <div><b>Employee Name:</b> ${escapeHtml($('ssName').value)}<br><b>ID:</b> ${escapeHtml($('ssId').value)}<br><b>Designation:</b> ${escapeHtml($('ssDesig').value)}<br><b>Department:</b> ${escapeHtml($('ssDept').value)}</div>
+ <div><b>PAN:</b> ${escapeHtml($('ssPAN').value)}<br><b>Bank A/c:</b> ****${escapeHtml($('ssBank').value)}</div></div>
+ <table><tr><th colspan="2">EARNINGS</th></tr><tr><td>Basic Salary</td><td>${money(t.basic)}</td></tr><tr><td>HRA</td><td>${money(t.hra)}</td></tr><tr><td>Conveyance</td><td>${money(t.conv)}</td></tr><tr><td>Medical</td><td>${money(t.med)}</td></tr><tr><td>Special Allowance</td><td>${money(t.special)}</td></tr><tr><td>Other Earnings</td><td>${money(t.otherE)}</td></tr><tr><td><b>Total Earnings</b></td><td><b>${money(t.totalE)}</b></td></tr>
+ <tr><th colspan="2">DEDUCTIONS</th></tr><tr><td>Provident Fund (PF)</td><td>${money(t.pf)}</td></tr><tr><td>ESI</td><td>${money(t.esi)}</td></tr><tr><td>Professional Tax</td><td>${money(t.pt)}</td></tr><tr><td>Income Tax (TDS)</td><td>${money(t.tds)}</td></tr><tr><td>Other Deductions</td><td>${money(t.otherD)}</td></tr><tr><td><b>Total Deductions</b></td><td><b>${money(t.totalD)}</b></td></tr></table>
+ <div class="rh mt-3" style="background:linear-gradient(135deg,#db2777,#ec4899)"><div class="rh-label">NET SALARY</div><div class="rh-value">${money(t.net)}</div><div class="rh-sub">Rupees ${numToWordsIndian(t.net)} Only</div></div>
+ <p class="text-[11px] text-slate-400 mt-3 text-center">This is a computer-generated salary slip and does not require a signature.<br>Generated via KaamKaTool.in</p>`;
+ $('ssPreview').innerHTML=html;
+}
+function downloadSalarySlipPDF(){
+ const {jsPDF}=window.jspdf||{}; if(!jsPDF)return alert('PDF library is not ready.');
+ const t=ssTotals();
+ const doc=new jsPDF({unit:'mm',format:'a4'});
+ let y=20;
+ doc.setFontSize(16);doc.text($('ssCompany').value,105,y,{align:'center'});y+=7;
+ doc.setFontSize(10);doc.setTextColor(100);doc.text($('ssAddress').value,105,y,{align:'center'});y+=10;
+ doc.setFontSize(13);doc.setTextColor(219,39,119);doc.text('SALARY SLIP',105,y,{align:'center'});y+=6;
+ doc.setFontSize(9);doc.setTextColor(100);doc.text(`For the month of ${$('ssMonth').value} ${$('ssYear').value}`,105,y,{align:'center'});y+=10;
+ doc.setTextColor(20);doc.setFontSize(10);
+ doc.text(`Employee: ${$('ssName').value}   ID: ${$('ssId').value}`,15,y);y+=6;
+ doc.text(`Designation: ${$('ssDesig').value}   Department: ${$('ssDept').value}`,15,y);y+=6;
+ doc.text(`PAN: ${$('ssPAN').value}   Bank A/c: ****${$('ssBank').value}`,15,y);y+=10;
+ const rows=[['Basic Salary',t.basic],['HRA',t.hra],['Conveyance',t.conv],['Medical',t.med],['Special Allowance',t.special],['Other Earnings',t.otherE]];
+ doc.setFillColor(23,32,51);doc.setTextColor(255);doc.rect(15,y-5,180,7,'F');doc.text('EARNINGS',17,y);doc.text('AMOUNT',193,y,{align:'right'});y+=8;
+ doc.setTextColor(20);
+ rows.forEach(r=>{doc.text(String(r[0]),17,y);doc.text(money(r[1]),193,y,{align:'right'});y+=6;});
+ doc.setFont(undefined,'bold');doc.text('Total Earnings',17,y);doc.text(money(t.totalE),193,y,{align:'right'});doc.setFont(undefined,'normal');y+=10;
+ const drows=[['Provident Fund (PF)',t.pf],['ESI',t.esi],['Professional Tax',t.pt],['Income Tax (TDS)',t.tds],['Other Deductions',t.otherD]];
+ doc.setFillColor(23,32,51);doc.setTextColor(255);doc.rect(15,y-5,180,7,'F');doc.text('DEDUCTIONS',17,y);doc.text('AMOUNT',193,y,{align:'right'});y+=8;
+ doc.setTextColor(20);
+ drows.forEach(r=>{doc.text(String(r[0]),17,y);doc.text(money(r[1]),193,y,{align:'right'});y+=6;});
+ doc.setFont(undefined,'bold');doc.text('Total Deductions',17,y);doc.text(money(t.totalD),193,y,{align:'right'});doc.setFont(undefined,'normal');y+=12;
+ doc.setFillColor(219,39,119);doc.setTextColor(255);doc.rect(15,y-6,180,14,'F');doc.setFontSize(13);doc.text(`NET SALARY: ${money(t.net)}`,105,y+2,{align:'center'});y+=18;
+ doc.setFontSize(9);doc.setTextColor(90);doc.text('Rupees '+numToWordsIndian(t.net)+' Only',105,y,{align:'center'});y+=10;
+ doc.setFontSize(8);doc.text('This is a computer-generated salary slip and does not require a signature.',105,y,{align:'center'});
+ doc.save('salary-slip.pdf');
+}
+
+/* ===================== Invoice Generator ===================== */
+function addInvoiceItem(desc,qty,rate,gst){
+ const tb=$('invItemsBody'); if(!tb)return; const row=document.createElement('tr');row.className='inv-row';
+ row.innerHTML=`<td><input class="inv-desc" value="${escapeHtml(desc||'')}" oninput="renderInvoice()"></td><td><input class="inv-qty" type="number" value="${qty||1}" oninput="renderInvoice()"></td><td><input class="inv-rate" type="number" value="${rate||0}" oninput="renderInvoice()"></td><td><input class="inv-gst" type="number" value="${gst!=null?gst:18}" oninput="renderInvoice()"></td><td><button class="row-del" onclick="this.closest('tr').remove();renderInvoice()">✕</button></td>`;
+ tb.appendChild(row);renderInvoice();
+}
+function invoiceLines(){
+ return [...document.querySelectorAll('#invItemsBody .inv-row')].map(r=>{
+   const desc=r.querySelector('.inv-desc').value, qty=+r.querySelector('.inv-qty').value||0, rate=+r.querySelector('.inv-rate').value||0, gst=+r.querySelector('.inv-gst').value||0;
+   const base=qty*rate, gstAmt=base*gst/100, amount=base+gstAmt;
+   return {desc,qty,rate,gst,base,gstAmt,amount};
+ });
+}
+function renderInvoice(){
+ const lines=invoiceLines();
+ const subtotal=lines.reduce((s,l)=>s+l.base,0), totalGST=lines.reduce((s,l)=>s+l.gstAmt,0), grand=subtotal+totalGST;
+ const dateStr=$('invDate').value?new Date($('invDate').value).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}):'';
+ const html=`<h3>${escapeHtml($('invBizName').value)}</h3><p class="text-slate-500 text-xs">${escapeHtml($('invBizAddr').value)}</p><p class="text-xs"><b>GSTIN:</b> ${escapeHtml($('invGSTIN').value)} · ${escapeHtml($('invPhone').value)}</p>
+ <p class="font-black text-blue-600 text-lg mt-2">INVOICE</p><p class="text-xs text-slate-500">#${escapeHtml($('invNumber').value)} · Date: ${dateStr}</p><hr class="my-3">
+ <p class="text-xs font-extrabold text-blue-600">BILL TO</p><p class="text-xs"><b>${escapeHtml($('invClientName').value)}</b><br>${escapeHtml($('invClientAddr').value)}${$('invClientGSTIN').value?'<br>GSTIN: '+escapeHtml($('invClientGSTIN').value):''}</p>
+ <table><tr><th>Description</th><th>Qty</th><th>Rate</th><th>GST%</th><th>Amount</th></tr>
+ ${lines.map(l=>`<tr><td>${escapeHtml(l.desc)}</td><td>${l.qty}</td><td>${money(l.rate)}</td><td>${l.gst}%</td><td>${money(l.amount)}</td></tr>`).join('')}
+ </table>
+ <div class="mt-2 text-right text-xs"><div>Subtotal: <b>${money(subtotal)}</b></div><div>Total GST: <b>${money(totalGST)}</b></div></div>
+ <div class="rh mt-2" style="background:linear-gradient(135deg,#2563eb,#3b82f6)"><div class="rh-label">GRAND TOTAL</div><div class="rh-value">${money(grand)}</div></div>
+ <p class="text-[11px] text-slate-400 mt-3 text-center">Thank you for your business! 🙏<br>Generated with KaamKaTool.com</p>`;
+ $('invPreview').innerHTML=html;
+}
+function downloadInvoicePDF(){
+ const {jsPDF}=window.jspdf||{}; if(!jsPDF)return alert('PDF library is not ready.');
+ const lines=invoiceLines();
+ const subtotal=lines.reduce((s,l)=>s+l.base,0), totalGST=lines.reduce((s,l)=>s+l.gstAmt,0), grand=subtotal+totalGST;
+ const doc=new jsPDF({unit:'mm',format:'a4'});
+ let y=20;
+ doc.setFontSize(16);doc.text($('invBizName').value,15,y);y+=6;
+ doc.setFontSize(9);doc.setTextColor(100);doc.text($('invBizAddr').value,15,y);y+=5;
+ doc.text(`GSTIN: ${$('invGSTIN').value}  |  ${$('invPhone').value}`,15,y);y+=10;
+ doc.setFontSize(18);doc.setTextColor(37,99,235);doc.text('INVOICE',15,y);y+=6;
+ doc.setFontSize(9);doc.setTextColor(100);doc.text(`#${$('invNumber').value}   Date: ${$('invDate').value||''}`,15,y);y+=10;
+ doc.setTextColor(20);doc.setFontSize(10);doc.text('BILL TO:',15,y);y+=5;
+ doc.text($('invClientName').value,15,y);y+=5;
+ doc.text($('invClientAddr').value,15,y);y+=10;
+ doc.setFillColor(23,32,51);doc.setTextColor(255);doc.rect(15,y-5,180,7,'F');
+ doc.text('Description',17,y);doc.text('Qty',110,y);doc.text('Rate',130,y);doc.text('GST%',155,y);doc.text('Amount',193,y,{align:'right'});y+=8;
+ doc.setTextColor(20);
+ lines.forEach(l=>{doc.text(String(l.desc).slice(0,45),17,y);doc.text(String(l.qty),110,y);doc.text(money(l.rate),130,y);doc.text(l.gst+'%',155,y);doc.text(money(l.amount),193,y,{align:'right'});y+=7;});
+ y+=3;doc.text(`Subtotal: ${money(subtotal)}`,193,y,{align:'right'});y+=6;
+ doc.text(`Total GST: ${money(totalGST)}`,193,y,{align:'right'});y+=8;
+ doc.setFillColor(37,99,235);doc.setTextColor(255);doc.rect(15,y-6,180,12,'F');doc.setFontSize(13);doc.text(`Grand Total: ${money(grand)}`,193,y+1,{align:'right'});
+ doc.save(`invoice-${$('invNumber').value||'draft'}.pdf`);
+}
+
+/* ===================== Profit & Loss Calculator ===================== */
+function calcPL(){
+ const sales=+$('plSales').value||0, otherInc=+$('plOtherInc').value||0;
+ const materials=+$('plMaterials').value||0, labor=+$('plLabor').value||0;
+ const rent=+$('plRent').value||0, salaries=+$('plSalaries').value||0, utilities=+$('plUtilities').value||0, marketing=+$('plMarketing').value||0, otherExp=+$('plOtherExp').value||0;
+ const interest=+$('plInterest').value||0, tax=+$('plTax').value||0;
+ const revenue=sales+otherInc, cogs=materials+labor, grossProfit=revenue-cogs;
+ const opex=rent+salaries+utilities+marketing+otherExp, ebit=grossProfit-opex;
+ const netProfit=ebit-interest-tax;
+ const gpMargin=revenue?(grossProfit/revenue*100):0, npMargin=revenue?(netProfit/revenue*100):0;
+ const bg=netProfit>=0?'linear-gradient(135deg,#059669,#10b981)':'linear-gradient(135deg,#dc2626,#f87171)';
+ let html=`<div class="doc-preview"><h3>📋 P&amp;L Statement</h3>`+rBox(
+   rRow('REVENUE',money(revenue),true)+rRow('Sales',money(sales))+rRow('Other Income',money(otherInc))+
+   rRow('(-) COGS',money(cogs))+rRow('Materials',money(materials))+rRow('Direct Labor',money(labor))+
+   rRow('= GROSS PROFIT',money(grossProfit)+` (${gpMargin.toFixed(1)}%)`,true)+
+   rRow('(-) OPERATING EXPENSES',money(opex))+rRow('Rent',money(rent))+rRow('Salaries',money(salaries))+rRow('Utilities',money(utilities))+rRow('Marketing',money(marketing))+rRow('Other',money(otherExp))+
+   rRow('= OPERATING PROFIT (EBIT)',money(ebit),true)+
+   rRow('(-) Interest',money(interest))+rRow('(-) Tax',money(tax))
+ )+`</div>`;
+ html+=rHero(bg,netProfit>=0?'NET PROFIT':'NET LOSS',money(Math.abs(netProfit)),`${Math.abs(npMargin).toFixed(1)}% margin`);
+ $('plResult').innerHTML=html;
+}
+
+/* ===================== ROI Calculator ===================== */
+function calcROI(){
+ const initial=+$('roiInitial').value||0, final=+$('roiFinal').value||0, years=+$('roiYears').value||0, months=+$('roiMonths').value||0;
+ if(!valid([initial,final])||initial<=0){$('roiResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter a valid initial investment');return}
+ const profit=final-initial, roiPct=profit/initial*100;
+ const totalYears=years+months/12;
+ const cagr=totalYears>0?(Math.pow(final/initial,1/totalYears)-1)*100:0;
+ const bg=profit>=0?'linear-gradient(135deg,#ca8a04,#facc15)':'linear-gradient(135deg,#dc2626,#f87171)';
+ let html=rHero(bg,profit>=0?'✅ PROFIT':'❌ LOSS',money(Math.abs(profit)),`${roiPct.toFixed(2)}% total ROI`);
+ html+=rBox(rRow('Initial Investment',money(initial))+rRow('Final Value',money(final))+rRow('Total Profit/Loss',money(profit),true)+rRow('Total ROI',roiPct.toFixed(2)+'%')+rRow('Investment Period',`${years} yrs ${months} mo`)+rRow('Annualized Return (CAGR)',cagr.toFixed(2)+'%',true));
+ $('roiResult').innerHTML=html;
+}
+
+/* ===================== Freelance Rate Calculator ===================== */
+function calcFreelanceRate(){
+ const income=+$('frIncome').value||0, expenses=+$('frExpenses').value||0, tax=+$('frTax').value||0, hours=+$('frHours').value||0, weeks=+$('frWeeks').value||0;
+ const annualHours=hours*weeks;
+ if(!valid([income])||annualHours<=0||tax>=100){$('freelanceRateResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter valid numbers (tax % must be below 100)');return}
+ const requiredRevenue=(income+expenses)/(1-tax/100);
+ const hourlyRate=requiredRevenue/annualHours;
+ const dailyRate=hourlyRate*8, monthlyRevenue=requiredRevenue/12;
+ let html=rHero('linear-gradient(135deg,#ea580c,#fb923c)','YOUR IDEAL HOURLY RATE',money(hourlyRate),'Charge at least this much per hour');
+ html+=rBox(rRow('Annual Billable Hours',annualHours+' hrs')+rRow('Required Annual Revenue',money(requiredRevenue),true)+rRow('Suggested Daily Rate (8 hrs)',money(dailyRate))+rRow('Required Monthly Revenue',money(monthlyRevenue)));
+ $('freelanceRateResult').innerHTML=html;
+}
+
+/* ===================== Loan / EMI Tools ===================== */
+function emiToolCalc(amtId,rateId,yrsId,resultId,grad){
+ const P=+$(amtId).value||0, rate=+$(rateId).value||0, years=+$(yrsId).value||0, months=years*12;
+ if(!valid([P,rate,years])||P<=0||months<=0){$(resultId).innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter valid loan details');return}
+ const emi=emiOf(P,rate,months), total=emi*months, interest=total-P;
+ let html=rHero('linear-gradient(135deg,'+grad+')','MONTHLY EMI',money(emi),`${years} years @ ${rate}% p.a.`);
+ html+=rBox(rRow('Loan Amount',money(P))+rRow('Total Interest',money(interest))+rRow('Total Payment',money(total),true));
+ $(resultId).innerHTML=html;
+}
+function calcCarLoanEMI(){
+ const price=+$('clPrice').value||0, downPct=+$('clDownPct').value||0, down=price*downPct/100, loanAmt=price-down, rate=+$('clRate').value||0, years=+$('clYears').value||0, months=years*12;
+ if(!valid([price,rate,years])||loanAmt<=0){$('carLoanEMIResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter valid loan details');return}
+ const emi=emiOf(loanAmt,rate,months), total=emi*months, interest=total-loanAmt;
+ let html=rHero('linear-gradient(135deg,#16a34a,#4ade80)','MONTHLY EMI',money(emi),`On loan of ${money(loanAmt)}`);
+ html+=rBox(rRow('On-Road Price',money(price))+rRow(`Down Payment (${downPct}%)`,money(down))+rRow('Loan Amount',money(loanAmt))+rRow('Total Interest',money(interest))+rRow('Total Payment',money(total),true));
+ $('carLoanEMIResult').innerHTML=html;
+}
+function calcEduLoanEMI(){
+ const P=+$('elAmt').value||0, rate=+$('elRate').value||0, course=+$('elCourse').value||0, repayYears=+$('elRepay').value||0;
+ if(!valid([P,rate,course,repayYears])||P<=0){$('eduLoanEMIResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter valid loan details');return}
+ const moratoriumMonths=(course+1)*12, r=rate/1200;
+ const principalAfterMoratorium=P*Math.pow(1+r,moratoriumMonths);
+ const accruedInterest=principalAfterMoratorium-P;
+ const months=repayYears*12, emi=emiOf(principalAfterMoratorium,rate,months), total=emi*months;
+ let html=rHero('linear-gradient(135deg,#16a34a,#4ade80)','EMI AFTER MORATORIUM',money(emi),`Moratorium: ${course}+1 = ${course+1} years`);
+ html+=rBox(rRow('Original Loan Amount',money(P))+rRow('Interest Accrued During Moratorium',money(accruedInterest))+rRow('Principal After Moratorium',money(principalAfterMoratorium),true)+rRow('Repayment Tenure',repayYears+' years')+rRow('Total Repayment',money(total)));
+ $('eduLoanEMIResult').innerHTML=html;
+}
+function calcCCEMI(){
+ const amt=+$('ccAmt').value||0, rate=+$('ccRate').value||0, months=+$('ccMonths').value||0, feePct=+$('ccFee').value||0;
+ const noCost=document.querySelector('#ccTypeGroup .active').dataset.v==='nocost';
+ if(!valid([amt,months])||amt<=0||months<=0){$('ccEMIResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter valid details');return}
+ const fee=amt*feePct/100, gstOnFee=fee*0.18;
+ let emi,interest;
+ if(noCost){ emi=amt/months; interest=0; } else { emi=emiOf(amt,rate,months); interest=emi*months-amt; }
+ const totalPayable=emi*months+fee+gstOnFee;
+ let html=rHero('linear-gradient(135deg,#16a34a,#4ade80)','MONTHLY EMI',money(emi),noCost?'No-Cost EMI — no extra interest':`${rate}% p.a. interest`);
+ html+=rBox(rRow('Purchase Amount',money(amt))+rRow('Interest',money(interest))+rRow('Processing Fee',money(fee))+rRow('GST (18%) on Fee',money(gstOnFee))+rRow('Total Payable',money(totalPayable),true));
+ $('ccEMIResult').innerHTML=html;
+}
+function calcLoanComparison(){
+ const offers=[1,2,3].map(i=>{const P=+$(`lc${i}Amt`).value||0,rate=+$(`lc${i}Rate`).value||0,years=+$(`lc${i}Years`).value||0,months=years*12;const emi=months>0?emiOf(P,rate,months):0,total=emi*months,interest=total-P;return {i,P,rate,years,emi,total,interest};});
+ const valid1=offers.filter(o=>o.P>0&&o.years>0);
+ if(!valid1.length){$('loanComparisonResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter at least one valid loan offer');return}
+ const cheapest=valid1.reduce((a,b)=>a.total<b.total?a:b);
+ let html=`<div class="rc-grid" style="grid-template-columns:repeat(3,1fr)">`+offers.map(o=>`<div class="rc" style="background:linear-gradient(135deg,${o.i===cheapest.i?'#16a34a,#4ade80':'#64748b,#94a3b8'})">${o.i===cheapest.i?'<div class="rc-badge">CHEAPEST</div>':''}<div class="rc-label">OFFER ${o.i}</div><div class="rc-value">${money(o.emi)}</div><div class="rc-sub">EMI · Interest ${money(o.interest)}</div></div>`).join('')+`</div>`;
+ html+=rBox(offers.map(o=>rRow(`Offer ${o.i} — Total Payment`,money(o.total),o.i===cheapest.i)).join(''));
+ $('loanComparisonResult').innerHTML=html;
+}
+function calcLoanEligibility(){
+ const income=+$('leIncome').value||0, existing=+$('leExistingEMI').value||0, foir=+$('leFOIR').value||0, rate=+$('leRate').value||0, years=+$('leYears').value||0, months=years*12;
+ const maxEMI=Math.max(0,income*foir/100-existing);
+ if(!valid([income,rate,years])||income<=0||months<=0){$('loanEligibilityResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter valid income details');return}
+ const r=rate/1200;
+ const maxLoan=r===0?maxEMI*months:maxEMI*((Math.pow(1+r,months)-1)/(r*Math.pow(1+r,months)));
+ let html=rHero('linear-gradient(135deg,#16a34a,#4ade80)','MAXIMUM LOAN ELIGIBLE',money(maxLoan),`Based on ${foir}% FOIR`);
+ html+=rBox(rRow('Net Monthly Income',money(income))+rRow('Existing EMIs',money(existing))+rRow('Max Affordable EMI',money(maxEMI),true)+rRow('Interest Rate',rate+'% p.a.')+rRow('Tenure',years+' years')+rRow('Max Loan Eligible',money(maxLoan),true));
+ $('loanEligibilityResult').innerHTML=html;
+}
+function calcLoanPrepayment(){
+ const P=+$('ppOutstanding').value||0, rate=+$('ppRate').value||0, months=+$('ppMonthsLeft').value||0, prepay=+$('ppPrepay').value||0;
+ if(!valid([P,rate,months])||P<=0||months<=0){$('loanPrepaymentResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter valid loan details');return}
+ const emi=emiOf(P,rate,months), originalTotal=emi*months, originalInterest=originalTotal-P;
+ const newP=Math.max(0,P-prepay);
+ const r=rate/1200;
+ let newMonths=0;
+ if(newP>0){ if(emi<=newP*r){ newMonths=months; } else { newMonths=Math.ceil(Math.log(emi/(emi-newP*r))/Math.log(1+r)); } }
+ const newTotal=emi*newMonths+prepay, newInterest=newTotal-P;
+ const interestSaved=originalInterest-newInterest, tenureReduced=months-newMonths;
+ let html=rHero('linear-gradient(135deg,#16a34a,#4ade80)','TOTAL INTEREST SAVED',money(Math.max(0,interestSaved)),`Tenure reduced by ${Math.max(0,tenureReduced)} months`);
+ html+=rBox(rRow('EMI (unchanged)',money(emi))+rRow('Original Remaining Tenure',months+' months')+rRow('New Remaining Tenure',newMonths+' months',true)+rRow('Original Total Interest',money(originalInterest))+rRow('New Total Interest (incl. prepayment)',money(Math.max(0,newInterest)),true));
+ $('loanPrepaymentResult').innerHTML=html;
+}
+
+/* ===================== Education Calculators ===================== */
+function calcCGPAPercent(){
+ const cgpa=+$('cgpaVal').value, uni=$('cgpaUni').value;
+ if(!valid([cgpa])||cgpa<0||cgpa>10){$('cgpaPercentResult').innerHTML=rHero('#94a3b8','ENTER CGPA','Enter a CGPA between 0 and 10');return}
+ let pct;
+ if(uni==='vtu')pct=(cgpa-0.75)*10;
+ else if(uni==='anna')pct=cgpa*10;
+ else if(uni==='mumbai')pct=cgpa*7.1+11;
+ else pct=cgpa*9.5;
+ pct=Math.max(0,Math.min(100,pct));
+ $('cgpaPercentResult').innerHTML=rHero('linear-gradient(135deg,#7c3aed,#a78bfa)','EQUIVALENT PERCENTAGE',pct.toFixed(2)+'%',`Using ${$('cgpaUni').selectedOptions[0].text} formula`);
+}
+let cgpaSemCount=0;
+function addCGPASemester(sgpa,credits){
+ cgpaSemCount++;
+ const tb=$('cgpaSemBody'); if(!tb)return; const row=document.createElement('tr');row.className='sem-row';
+ row.innerHTML=`<td>Sem ${cgpaSemCount}</td><td><input class="sem-sgpa" type="number" step="0.01" max="10" value="${sgpa!=null?sgpa:8}"></td><td><input class="sem-credits" type="number" value="${credits!=null?credits:20}"></td><td><button class="row-del" onclick="this.closest('tr').remove()">✕</button></td>`;
+ tb.appendChild(row);
+}
+function calcCGPA(){
+ const rows=[...document.querySelectorAll('#cgpaSemBody .sem-row')];
+ if(!rows.length){$('cgpaCalcResult').innerHTML=rHero('#94a3b8','NO DATA','Add at least one semester');return}
+ let totalPoints=0,totalCredits=0,breakdown='';
+ rows.forEach((r,i)=>{const sgpa=+r.querySelector('.sem-sgpa').value||0,credits=+r.querySelector('.sem-credits').value||0;totalPoints+=sgpa*credits;totalCredits+=credits;breakdown+=rRow(`Semester ${i+1} (SGPA ${sgpa}, Credits ${credits})`,(sgpa*credits).toFixed(1)+' pts');});
+ const cgpa=totalCredits?totalPoints/totalCredits:0;
+ let html=rHero('linear-gradient(135deg,#7c3aed,#a78bfa)','YOUR CGPA',cgpa.toFixed(2),`Across ${rows.length} semesters, ${totalCredits} total credits`);
+ html+=rBox(breakdown+rRow('Cumulative CGPA',cgpa.toFixed(2),true));
+ $('cgpaCalcResult').innerHTML=html;
+}
+let gpaSubCount=0;
+const gradePoints={'O (10)':10,'A+ (9)':9,'A (8)':8,'B+ (7)':7,'B (6)':6,'C (5)':5,'P (4)':4,'F (0)':0};
+function addGPASubject(name,credits){
+ gpaSubCount++;
+ const tb=$('gpaSubBody'); if(!tb)return; const row=document.createElement('tr');row.className='gpa-row';
+ const opts=Object.keys(gradePoints).map(g=>`<option>${g}</option>`).join('');
+ row.innerHTML=`<td><input class="gpa-name" value="${escapeHtml(name||'Subject '+gpaSubCount)}"></td><td><input class="gpa-credits" type="number" value="${credits||4}"></td><td><select class="gpa-grade">${opts}</select></td><td><button class="row-del" onclick="this.closest('tr').remove()">✕</button></td>`;
+ tb.appendChild(row);
+}
+function calcGPA(){
+ const rows=[...document.querySelectorAll('#gpaSubBody .gpa-row')];
+ if(!rows.length){$('gpaCalcResult').innerHTML=rHero('#94a3b8','NO DATA','Add at least one subject');return}
+ let totalPoints=0,totalCredits=0,breakdown='';
+ rows.forEach(r=>{const name=r.querySelector('.gpa-name').value,credits=+r.querySelector('.gpa-credits').value||0,grade=r.querySelector('.gpa-grade').value,gp=gradePoints[grade]||0;totalPoints+=gp*credits;totalCredits+=credits;breakdown+=rRow(`${escapeHtml(name)} (${credits} cr, ${grade})`,(gp*credits).toFixed(1)+' pts');});
+ const gpa=totalCredits?totalPoints/totalCredits:0;
+ let html=rHero('linear-gradient(135deg,#7c3aed,#a78bfa)','YOUR GPA',gpa.toFixed(2),`${rows.length} subjects, ${totalCredits} total credits`);
+ html+=rBox(breakdown+rRow('Semester GPA',gpa.toFixed(2),true));
+ $('gpaCalcResult').innerHTML=html;
+}
+let marksCount=0;
+function addMarksSubject(name,obtained,max){
+ marksCount++;
+ const tb=$('marksBody'); if(!tb)return; const row=document.createElement('tr');row.className='marks-row';
+ row.innerHTML=`<td><input class="marks-name" value="${escapeHtml(name||'Subject '+marksCount)}"></td><td><input class="marks-obtained" type="number" value="${obtained!=null?obtained:0}"></td><td><input class="marks-max" type="number" value="${max!=null?max:100}"></td><td><button class="row-del" onclick="this.closest('tr').remove()">✕</button></td>`;
+ tb.appendChild(row);
+}
+function calcMarksPercentage(){
+ const rows=[...document.querySelectorAll('#marksBody .marks-row')];
+ if(!rows.length){$('marksPercentResult').innerHTML=rHero('#94a3b8','NO DATA','Add at least one subject');return}
+ let obtainedSum=0,maxSum=0,breakdown='';
+ rows.forEach(r=>{const name=r.querySelector('.marks-name').value,obt=+r.querySelector('.marks-obtained').value||0,max=+r.querySelector('.marks-max').value||0;obtainedSum+=obt;maxSum+=max;breakdown+=rRow(escapeHtml(name),`${obt} / ${max}`);});
+ const pct=maxSum?obtainedSum/maxSum*100:0;
+ let html=rHero('linear-gradient(135deg,#7c3aed,#a78bfa)','TOTAL PERCENTAGE',pct.toFixed(2)+'%',`${obtainedSum} out of ${maxSum} marks`);
+ html+=rBox(breakdown+rRow('Total',`${obtainedSum} / ${maxSum}`,true));
+ $('marksPercentResult').innerHTML=html;
+}
 function fmt(t){let x=$('textInput'),v=x.value;if(t==='upper')x.value=v.toUpperCase();if(t==='lower')x.value=v.toLowerCase();if(t==='spaces')x.value=v.replace(/\s+/g,' ').trim();if(t==='title')x.value=v.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());updateStats()}
 function updateStats(){let v=$('textInput').value; $('textStats').textContent=`Words: ${v.trim()?v.trim().split(/\s+/).length:0} · Characters: ${v.length} · Lines: ${v?v.split(/\n/).length:0}`}
 $('textInput').addEventListener('input',updateStats);
 function countWords(){let v=$('wordText').value;setR('wordResult',`Words: <b>${v.trim()?v.trim().split(/\s+/).length:0}</b><br>Characters: <b>${v.length}</b><br>Characters without spaces: <b>${v.replace(/\s/g,'').length}</b>`)}
 function copy(id){navigator.clipboard?.writeText($(id).value);alert('Copied!')} function copyText(){navigator.clipboard?.writeText($('textInput').value);alert('Copied!')}
 function genPass(){let len=Math.min(128,Math.max(4,+$('passLen').value||16)),sets=[];if($('pUpper').checked)sets.push('ABCDEFGHIJKLMNOPQRSTUVWXYZ');if($('pLower').checked)sets.push('abcdefghijklmnopqrstuvwxyz');if($('pNum').checked)sets.push('0123456789');if($('pSym').checked)sets.push('!@#$%^&*()_+-=[]{}');if(!sets.length)return alert('Select at least one option');let all=sets.join(''),out=sets.map(s=>s[Math.floor(Math.random()*s.length)]);while(out.length<len)out.push(all[Math.floor(Math.random()*all.length)]);out.sort(()=>Math.random()-.5);$('passOut').value=out.join('')}
-function calcAge(){let d=new Date($('dob').value),now=new Date();if(isNaN(d))return setR('ageResult','Select your birth date.');if(d>now)return setR('ageResult','Birth date cannot be in the future.');let y=now.getFullYear()-d.getFullYear(),m=now.getMonth()-d.getMonth(),day=now.getDate()-d.getDate();if(day<0){m--;day+=new Date(now.getFullYear(),now.getMonth(),0).getDate()}if(m<0){y--;m+=12}setR('ageResult',`Age: <b>${y} years, ${m} months, ${day} days</b>`)}
-function calcDateDiff(){let a=new Date($('date1').value),b=new Date($('date2').value);if(isNaN(a)||isNaN(b))return setR('dateDiffResult','Select both dates.');let days=Math.round(Math.abs(b-a)/86400000);setR('dateDiffResult',`Difference: <b>${days} days</b><br>Approx: <b>${(days/30.44).toFixed(1)} months</b>`)}
-function calcBMI(){let h=+$('height').value/100,w=+$('weight').value;if(!h||!w)return setR('bmiResult','Enter height and weight.');let b=w/(h*h),cat=b<18.5?'Underweight':b<25?'Normal':b<30?'Overweight':'Obesity';setR('bmiResult',`BMI: <b>${b.toFixed(1)}</b><br>Category: <b>${cat}</b>`)}
+function calcAge(){let d=new Date($('dob').value),now=new Date();if(isNaN(d))return setR('ageResult','Select your birth date.');if(d>now)return setR('ageResult','Birth date cannot be in the future.');let y=now.getFullYear()-d.getFullYear(),m=now.getMonth()-d.getMonth(),day=now.getDate()-d.getDate();if(day<0){m--;day+=new Date(now.getFullYear(),now.getMonth(),0).getDate()}if(m<0){y--;m+=12}const totalDays=Math.floor((now-d)/86400000);setR('ageResult',rHero('linear-gradient(135deg,#db2777,#f472b6)','YOUR AGE',`${y}y ${m}m ${day}d`,`≈ ${totalDays.toLocaleString()} days lived`))}
+function calcDateDiff(){let a=new Date($('date1').value),b=new Date($('date2').value);if(isNaN(a)||isNaN(b))return setR('dateDiffResult','Select both dates.');let days=Math.round(Math.abs(b-a)/86400000);setR('dateDiffResult',rHero('linear-gradient(135deg,#2563eb,#60a5fa)','DAYS BETWEEN',days+' days',`≈ ${(days/30.44).toFixed(1)} months · ${(days/365.25).toFixed(2)} years`))}
+function calcBMI(){let h=+$('height').value/100,w=+$('weight').value;if(!h||!w)return setR('bmiResult','Enter height and weight.');let b=w/(h*h),cat=b<18.5?'Underweight':b<25?'Normal':b<30?'Overweight':'Obesity';let bg=b<18.5?'linear-gradient(135deg,#d97706,#fbbf24)':b<25?'linear-gradient(135deg,#16a34a,#4ade80)':b<30?'linear-gradient(135deg,#ea580c,#fb923c)':'linear-gradient(135deg,#dc2626,#f87171)';setR('bmiResult',rHero(bg,'YOUR BMI',b.toFixed(1),cat))}
 function genQR(){let c=$('qrcode'),t=$('qrText').value.trim();c.innerHTML='';$('qrDownload').classList.add('hidden');if(!t)return;new QRCode(c,{text:t,width:220,height:220,correctLevel:QRCode.CorrectLevel.H});setTimeout(()=>$('qrDownload').classList.remove('hidden'),200)}
 function downloadQR(){let img=$('qrcode').querySelector('img')||$('qrcode').querySelector('canvas');let a=document.createElement('a');a.download='kaam-kaaj-qr.png';a.href=img.tagName==='IMG'?img.src:img.toDataURL();a.click()}
 const units={length:{meter:1,kilometer:1000,centimeter:.01,millimeter:.001,foot:.3048,inch:.0254,mile:1609.344},weight:{kilogram:1,gram:.001,milligram:.000001,pound:.45359237,ounce:.0283495},area:{'sq meter':1,'sq km':1e6,'sq foot':.092903,'sq yard':.836127,'acre':4046.86},volume:{liter:1,'milliliter':.001,'cubic meter':1000,'gallon':3.78541},speed:{'km/h':1,'m/s':3.6,'mph':1.60934}};
 function loadUnits(){let type=$('unitType').value,arr=type==='temperature'?['Celsius','Fahrenheit','Kelvin']:Object.keys(units[type]);$('fromUnit').innerHTML=arr.map(x=>`<option>${x}</option>`).join('');$('toUnit').innerHTML=arr.map(x=>`<option>${x}</option>`).join('')}
-function convertUnit(){let type=$('unitType').value,v=+$('unitVal').value,a=$('fromUnit').value,b=$('toUnit').value;if(!valid([v]))return setR('unitResult','Enter a value.');let r;if(type==='temperature'){let c=a==='Celsius'?v:a==='Fahrenheit'?(v-32)*5/9:v-273.15;r=b==='Celsius'?c:b==='Fahrenheit'?c*9/5+32:c+273.15}else r=v*units[type][a]/units[type][b];setR('unitResult',`Result: <b>${r.toLocaleString(undefined,{maximumFractionDigits:8})} ${b}</b>`)}
-function hexToRgb(){let h=$('hex').value.trim().replace('#','');if(!/^[0-9a-fA-F]{6}$/.test(h))return setR('colorResult','Use a valid 6-digit HEX color.');let r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);setR('colorResult',`RGB: <b>rgb(${r}, ${g}, ${b})</b><br>HEX: <b>#${h.toUpperCase()}</b>`)}
+function convertUnit(){let type=$('unitType').value,v=+$('unitVal').value,a=$('fromUnit').value,b=$('toUnit').value;if(!valid([v]))return setR('unitResult','Enter a value.');let r;if(type==='temperature'){let c=a==='Celsius'?v:a==='Fahrenheit'?(v-32)*5/9:v-273.15;r=b==='Celsius'?c:b==='Fahrenheit'?c*9/5+32:c+273.15}else r=v*units[type][a]/units[type][b];setR('unitResult',rHero('linear-gradient(135deg,#0d9488,#2dd4bf)','CONVERTED VALUE',`${r.toLocaleString(undefined,{maximumFractionDigits:8})} ${b}`,`${v} ${a} = ? ${b}`))}
+function hexToRgb(){let h=$('hex').value.trim().replace('#','');if(!/^[0-9a-fA-F]{6}$/.test(h))return setR('colorResult','Use a valid 6-digit HEX color.');let r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);const lum=(0.299*r+0.587*g+0.114*b);const fg=lum>150?'#172033':'#ffffff';setR('colorResult',`<div class="rh" style="background:#${h};color:${fg}"><div class="rh-label" style="opacity:.85">HEX → RGB</div><div class="rh-value">#${h.toUpperCase()}</div><div class="rh-sub">rgb(${r}, ${g}, ${b})</div></div>`)}
 function compressImage(){let f=$('imgFile').files[0],max=+$('imgWidth').value,q=+$('imgQuality').value;if(!f)return setR('imgResult','Choose an image.');let im=new Image(),url=URL.createObjectURL(f);im.onload=()=>{let s=Math.min(1,max/im.width),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);c.toBlob(blob=>{let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='compressed-image.jpg';a.click();setR('imgResult',`Original: ${(f.size/1024).toFixed(1)} KB<br>New: ${(blob.size/1024).toFixed(1)} KB`,'image/jpeg',q)},'image/jpeg',q)};im.src=url}
 async function imagesToPDF(){
   const files=[...$('pdfImages').files];
@@ -1023,6 +1952,17 @@ async function fetchJsonWithTimeout(url,ms=7000){
   }finally{clearTimeout(timer)}
 }
 
+// Indicative reference rates: 1 unit of currency = X INR (approx, for instant offline display).
+// These are only a fallback shown instantly while (or if) the live rate fetch runs — always overwritten by a live rate when available.
+const STATIC_INR_RATES={INR:1,USD:83.5,EUR:90.2,GBP:105.4,AED:22.73,SAR:22.27,QAR:22.94,KWD:271.5,BHD:221.5,OMR:216.9,JOD:117.8,ILS:23.1,IQD:0.0637,IRR:0.00199,TRY:2.45,
+PKR:0.30,BDT:0.70,LKR:0.28,NPR:0.625,AFN:1.18,
+CHF:95.0,SEK:7.9,NOK:7.7,DKK:12.1,PLN:20.9,CZK:3.6,HUF:0.229,RON:17.9,BGN:46.1,ISK:0.60,RSD:0.77,BAM:46.1,ALL:0.915,MKD:1.47,UAH:2.0,RUB:0.87,GEL:30.9,
+ZAR:4.5,EGP:1.71,MAD:8.35,DZD:0.617,TND:26.5,NGN:0.052,GHS:5.6,KES:0.646,UGX:0.0221,TZS:0.0316,ETB:0.63,XOF:0.1375,XAF:0.1375,MUR:1.84,SCR:6.05,ZMW:3.1,BWP:6.1,NAD:4.5,MZN:1.31,AOA:0.091,RWF:0.058,SOS:0.146,
+JPY:0.565,CNY:11.55,HKD:10.68,SGD:62.1,MYR:17.85,THB:2.35,IDR:0.00524,PHP:1.44,VND:0.00327,KRW:0.0603,TWD:2.58,KZT:0.155,AZN:49.1,AMD:0.216,KGS:0.955,UZS:0.00655,MNT:0.0238,LAK:0.00378,MMK:0.0198,KHR:0.0205,
+AUD:54.3,NZD:49.5,FJD:36.9,
+CAD:60.2,MXN:4.35,BRL:14.6,ARS:0.083,CLP:0.087,COP:0.0197,PEN:22.2,UYU:2.05,BOB:12.1,PYG:0.0112,CRC:0.163,DOP:1.39,GTQ:10.7};
+function staticCurrencyRate(from,to){const fr=STATIC_INR_RATES[from],tr=STATIC_INR_RATES[to];if(!fr||!tr)return null;return fr/tr;}
+
 async function getCurrencyRate(from,to){
   const f=String(from).toLowerCase(), t=String(to).toLowerCase();
   const sources=[
@@ -1080,44 +2020,46 @@ async function convertCurrency(useInternet=true){
   const to=$('curTo').value;
   if(!Number.isFinite(amount)||amount<=0){setR('curResult','Enter a valid amount.');return}
   if(from===to){
-    setR('curResult',`Result: <b>${amount.toLocaleString()} ${to}</b><br>Rate: <b>1 ${from} = 1 ${to}</b>`);
+    setR('curResult',rHero('linear-gradient(135deg,#4338ca,#6366f1)','RESULT',`${amount.toLocaleString()} ${to}`,`1 ${from} = 1 ${to}`));
     $('curUpdated').textContent='Same-currency conversion.';
     return;
   }
 
   const cacheKey=`kk-rate-${from}-${to}`;
-  if(!useInternet){
-    const cached=JSON.parse(localStorage.getItem(cacheKey)||'null');
-    if(cached?.rate){
-      const result=amount*cached.rate;
-      setR('curResult',`Result: <b>${result.toLocaleString(undefined,{maximumFractionDigits:6})} ${to}</b><br>Saved rate: <b>1 ${from} ≈ ${cached.rate.toLocaleString(undefined,{maximumFractionDigits:6})} ${to}</b>`);
-      $('curUpdated').textContent=`📱 Using last saved rate · ${cached.date||'previously loaded'} · ${cached.source||'online source'}`;
-      return;
-    }
-    setR('curResult','No saved rate yet. Tap “🌐 Get Live Rate & Convert” while internet is available.');
+  const cached=JSON.parse(localStorage.getItem(cacheKey)||'null');
+  const staticRate=staticCurrencyRate(from,to);
+
+  // Always show an instant result first (saved rate > reference rate), so the tool never looks broken while a live fetch is (optionally) attempted.
+  const instantRate=cached?.rate ?? staticRate;
+  if(instantRate){
+    const result=amount*instantRate;
+    setR('curResult',rHero('linear-gradient(135deg,#4338ca,#6366f1)','CONVERTED AMOUNT',`${result.toLocaleString(undefined,{maximumFractionDigits:6})} ${to}`,`1 ${from} ≈ ${instantRate.toLocaleString(undefined,{maximumFractionDigits:6})} ${to}`));
+    $('curUpdated').textContent=cached?.rate?`📱 Using last saved rate · ${cached.date||''} · ${cached.source||''}`:(useInternet?'📊 Using an indicative reference rate — fetching live rate…':'📊 Using an indicative reference rate (no saved live rate yet on this device)');
+  } else if(useInternet){
+    setR('curResult','🌐 Fetching live exchange rate…');
+    $('curUpdated').textContent='Connecting to live rate sources…';
+  } else {
+    setR('curResult','No saved or reference rate available yet for this pair. Tap “🌐 Get Live Rate & Convert”.');
     return;
   }
 
+  if(!useInternet)return;
+
   const btn=document.querySelector('[onclick*="convertCurrency(true)"]');
   if(btn){btn.disabled=true;btn.style.opacity='.7';}
-  setR('curResult','🌐 Fetching live exchange rate…');
-  $('curUpdated').textContent='Connecting to live rate sources…';
 
   try{
     const d=await getCurrencyRate(from,to);
     const result=amount*d.rate;
     localStorage.setItem(cacheKey,JSON.stringify({rate:d.rate,date:d.date,source:d.source,savedAt:Date.now()}));
-    setR('curResult',`<div class="text-lg font-bold text-green-700">${amount.toLocaleString()} ${from} = ${result.toLocaleString(undefined,{maximumFractionDigits:6})} ${to}</div><div class="mt-2">Live rate: <b>1 ${from} ≈ ${d.rate.toLocaleString(undefined,{maximumFractionDigits:8})} ${to}</b></div>`);
+    setR('curResult',rHero('linear-gradient(135deg,#16a34a,#4ade80)','CONVERTED AMOUNT',`${result.toLocaleString(undefined,{maximumFractionDigits:6})} ${to}`,`1 ${from} ≈ ${d.rate.toLocaleString(undefined,{maximumFractionDigits:8})} ${to}`));
     $('curUpdated').textContent=`🟢 Live rate loaded · ${d.date} · ${d.source} · Saved on this device`;
   }catch(e){
-    const cached=JSON.parse(localStorage.getItem(cacheKey)||'null');
-    if(cached?.rate){
-      const result=amount*cached.rate;
-      setR('curResult',`⚠️ Live connection failed. Using your last saved rate:<br><div class="text-lg font-bold">${amount.toLocaleString()} ${from} = ${result.toLocaleString(undefined,{maximumFractionDigits:6})} ${to}</div><div class="mt-2">Saved rate: <b>1 ${from} ≈ ${cached.rate.toLocaleString(undefined,{maximumFractionDigits:8})} ${to}</b></div>`);
-      $('curUpdated').textContent=`🟠 Offline fallback · Last saved ${cached.date||'rate'} · ${cached.source||'online service'}`;
-    }else{
-      setR('curResult','❌ Live rate could not be loaded. Please check that the browser has internet access, then tap the button again.');
+    if(!instantRate){
+      setR('curResult','❌ Live rate could not be loaded and no reference rate is available for this pair. Please check your internet connection and try again.');
       $('curUpdated').textContent='No live rate was returned by the available public sources.';
+    }else{
+      $('curUpdated').textContent=cached?.rate?`🟠 Live fetch failed — showing your last saved rate · ${cached.date||'rate'} · ${cached.source||'online service'}`:'🟠 Live fetch failed — showing an indicative reference rate. Actual rates may vary; check your bank/forex provider.';
     }
   }finally{
     if(btn){btn.disabled=false;btn.style.opacity='';}
@@ -1256,6 +2198,22 @@ const clockZones=[['🇮🇳','New Delhi','Asia/Kolkata'],['🇦🇪','Dubai','A
 function sciInsert(v){$('sciInput').value+=v;}
 function scientificCalculate(){let expr=$('sciInput').value.trim();if(!expr)return setR('sciResult','Enter an expression.');if(!/^[0-9+\-*/%().,\sA-Za-z_]+$/.test(expr)||/\b(?:constructor|prototype|window|document|eval|Function|fetch|localStorage)\b/i.test(expr))return setR('sciResult','Expression contains unsupported characters or words.');try{expr=expr.replace(/π/g,'pi').replace(/\bpi\b/gi,'Math.PI').replace(/\be\b/g,'Math.E').replace(/sqrt\s*\(/gi,'Math.sqrt(').replace(/sin\s*\(/gi,'Math.sin(Math.PI/180*').replace(/cos\s*\(/gi,'Math.cos(Math.PI/180*').replace(/tan\s*\(/gi,'Math.tan(Math.PI/180*').replace(/log\s*\(/gi,'Math.log10(').replace(/ln\s*\(/gi,'Math.log(');let open=0;for(const c of expr){if(c==='(')open++;if(c===')')open--;if(open<0)throw 0;}if(open!==0)throw 0;const result=Function(`"use strict";return (${expr})`)();if(!Number.isFinite(result))throw 0;setR('sciResult',`Result: <b>${Number(result.toPrecision(12)).toLocaleString()}</b>`);}catch(e){setR('sciResult','Invalid expression. Example: sin(30)+sqrt(25)*2');}}
 updateShadow();generatePalette();generateLorem();renderClocks();
+
+// Init default rows for the new document/education calculators
+if($('invDate')) $('invDate').valueAsDate=new Date();
+addInvoiceItem('Web Development Services',1,50000,18);
+addInvoiceItem('Domain & Hosting (1 year)',1,3000,18);
+renderInvoice();
+renderSalarySlip();
+addCGPASemester(8.5,20);
+addCGPASemester(8.7,22);
+addGPASubject('Mathematics',4);
+addGPASubject('Physics',3);
+addGPASubject('Programming Lab',2);
+addMarksSubject('Subject 1',85,100);
+addMarksSubject('Subject 2',78,100);
+addMarksSubject('Subject 3',92,100);
+if($('curAmount'))convertCurrency(false);
 
 // Start the app with a crawlable clean URL when hosted on HTTP/HTTPS.
 // Direct routes such as /sip-calculator render the matching tool, while Android Back returns to Home.
