@@ -262,6 +262,13 @@ body.tool-mode #appLayout{display:flex!important}
 }
 </script>
 <script type="application/ld+json" id="kk-tool-list-schema"></script>
+
+<link rel="manifest" href="/manifest.webmanifest">
+<meta name="theme-color" content="#0f172a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KaamTools">
 </head>
 <body class="bg-slate-50 text-slate-800 min-h-screen">
 <header class="app-header sticky top-0 z-50 text-white shadow-lg">
@@ -471,8 +478,44 @@ body.tool-mode #appLayout{display:flex!important}
 
 <!-- Image/PDF -->
 <section id="imageCompress" class="tool"><ToolTitle>🖼️ Image Compressor & Resizer</ToolTitle>
-<input type="file" id="imgFile" accept="image/*" class="input"><div class="grid md:grid-cols-2 gap-3 mt-3"><Field id="imgWidth" label="Max Width px"><input type="number" id="imgWidth" value="1200"></Field><Field id="imgQuality" label="Quality 0.1–1"><input type="number" id="imgQuality" value="0.75" step="0.05" min="0.1" max="1"></Field></div>
-<button class="btn mt-4" onclick="compressImage()">Compress & Download</button><Result id="imgResult"/></section>
+<p class="text-xs text-slate-500 mb-3">Compress, resize and convert images with ready-made social media sizes or your own manual dimensions. Processing happens in your browser.</p>
+<input type="file" id="imgFile" accept="image/*" class="input" onchange="previewCompressImage()">
+<div class="mt-4">
+  <label class="block text-sm font-semibold mb-2">⚡ Automatic Size / Preset</label>
+  <select id="imgPreset" class="input" onchange="applyImagePreset()">
+    <option value="original">Keep Original Proportion</option>
+    <option value="reel">Instagram / Facebook Reel — 1080 × 1920</option>
+    <option value="story">Instagram / Facebook Story — 1080 × 1920</option>
+    <option value="square">Instagram / Social Square — 1080 × 1080</option>
+    <option value="postPortrait">Social Post Portrait — 1080 × 1350</option>
+    <option value="postLandscape">Social Post Landscape — 1200 × 630</option>
+    <option value="youtubeThumb">YouTube Thumbnail — 1280 × 720</option>
+    <option value="whatsappStatus">WhatsApp Status — 1080 × 1920</option>
+    <option value="whatsappDP">WhatsApp / Profile Photo — 640 × 640</option>
+    <option value="facebookCover">Facebook Cover — 1640 × 856</option>
+    <option value="linkedinPost">LinkedIn Post — 1200 × 627</option>
+    <option value="custom">Manual / Custom Size</option>
+  </select>
+</div>
+<div id="imgManualBox" class="grid md:grid-cols-3 gap-3 mt-3">
+  <Field id="imgWidth" label="Width px"><input type="number" id="imgWidth" value="1200" min="1"></Field>
+  <Field id="imgHeight" label="Height px"><input type="number" id="imgHeight" value="0" min="0" placeholder="Auto"></Field>
+  <Field id="imgQuality" label="Quality 0.1–1"><input type="number" id="imgQuality" value="0.75" step="0.05" min="0.1" max="1"></Field>
+</div>
+<div class="mt-3 flex items-center gap-2"><input type="checkbox" id="imgFit" checked><label for="imgFit" class="text-sm">Keep original aspect ratio (recommended)</label></div>
+<div id="imgPreview" class="mt-4"></div>
+<div id="imgLivePreview" class="hidden mt-4 rounded-2xl border border-slate-200 bg-slate-50 p-3">
+  <div class="flex items-center justify-between gap-2 mb-3"><b class="text-sm">👁️ Image Preview</b><span id="imgPreviewInfo" class="text-xs text-slate-500"></span></div>
+  <div class="grid md:grid-cols-2 gap-3">
+    <div><div class="text-xs font-semibold mb-1">Original</div><div class="bg-white rounded-xl p-2 flex items-center justify-center min-h-48"><img id="imgOriginalPreview" alt="Original image preview" class="max-h-80 max-w-full object-contain rounded-lg"></div></div>
+    <div><div class="text-xs font-semibold mb-1">Compressed / Resized</div><div class="bg-white rounded-xl p-2 flex items-center justify-center min-h-48"><img id="imgOutputPreview" alt="Compressed image preview" class="max-h-80 max-w-full object-contain rounded-lg"></div></div>
+  </div>
+</div>
+<div class="mt-4 flex flex-wrap gap-2">
+  <button class="btn" onclick="compressImage()">Compress & Resize</button>
+  <button class="smallbtn" onclick="resetImageCompressor()">Reset</button>
+</div>
+<Result id="imgResult"/></section>
 
 <section id="imagePDF" class="tool"><ToolTitle>📄 Images to PDF</ToolTitle>
 <input type="file" id="pdfImages" accept="image/*" multiple class="input"><button class="btn mt-4" onclick="imagesToPDF()">Create PDF</button><Result id="pdfResult"/></section>
@@ -983,8 +1026,10 @@ body.tool-mode #appLayout{display:flex!important}
     <button onclick="openLegal('disclaimer')">Disclaimer</button>
     <button onclick="openLegal('cookies')">Cookie Policy</button>
     <button onclick="openLegal('contact')">Contact Us</button>
+    <button onclick="openLegal('feedback')">Feedback</button>
   </div>
   <div class="mt-3">© 2026 Kaam Kaaj Tools · Calculations run in your browser</div>
+  <div class="mt-2"><a href="mailto:kaamkaaj05@gmail.com?subject=Kaam%20Kaaj%20Tools%20Feedback" style="color:#4f46e5;font-weight:800;text-decoration:none">Feedback / Contact: kaamkaaj05@gmail.com</a></div>
   <div class="mt-2 max-w-2xl mx-auto text-[10px]">Some tools may use third-party services and advertising. Always verify important results before relying on them.</div>
 </footer>
 <div id="legalModal" class="legal-modal hidden" onclick="if(event.target===this)closeLegal()"><div class="legal-card"><button class="legal-close" onclick="closeLegal()">×</button><div id="legalContent"></div></div></div>
@@ -1898,7 +1943,26 @@ const units={length:{meter:1,kilometer:1000,centimeter:.01,millimeter:.001,foot:
 function loadUnits(){let type=$('unitType').value,arr=type==='temperature'?['Celsius','Fahrenheit','Kelvin']:Object.keys(units[type]);$('fromUnit').innerHTML=arr.map(x=>`<option>${x}</option>`).join('');$('toUnit').innerHTML=arr.map(x=>`<option>${x}</option>`).join('')}
 function convertUnit(){let type=$('unitType').value,v=+$('unitVal').value,a=$('fromUnit').value,b=$('toUnit').value;if(!valid([v]))return setR('unitResult','Enter a value.');let r;if(type==='temperature'){let c=a==='Celsius'?v:a==='Fahrenheit'?(v-32)*5/9:v-273.15;r=b==='Celsius'?c:b==='Fahrenheit'?c*9/5+32:c+273.15}else r=v*units[type][a]/units[type][b];setR('unitResult',rHero('linear-gradient(135deg,#0d9488,#2dd4bf)','CONVERTED VALUE',`${r.toLocaleString(undefined,{maximumFractionDigits:8})} ${b}`,`${v} ${a} = ? ${b}`))}
 function hexToRgb(){let h=$('hex').value.trim().replace('#','');if(!/^[0-9a-fA-F]{6}$/.test(h))return setR('colorResult','Use a valid 6-digit HEX color.');let r=parseInt(h.slice(0,2),16),g=parseInt(h.slice(2,4),16),b=parseInt(h.slice(4,6),16);const lum=(0.299*r+0.587*g+0.114*b);const fg=lum>150?'#172033':'#ffffff';setR('colorResult',`<div class="rh" style="background:#${h};color:${fg}"><div class="rh-label" style="opacity:.85">HEX → RGB</div><div class="rh-value">#${h.toUpperCase()}</div><div class="rh-sub">rgb(${r}, ${g}, ${b})</div></div>`)}
-function compressImage(){let f=$('imgFile').files[0],max=+$('imgWidth').value,q=+$('imgQuality').value;if(!f)return setR('imgResult','Choose an image.');let im=new Image(),url=URL.createObjectURL(f);im.onload=()=>{let s=Math.min(1,max/im.width),c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);c.toBlob(blob=>{let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='compressed-image.jpg';a.click();setR('imgResult',`Original: ${(f.size/1024).toFixed(1)} KB<br>New: ${(blob.size/1024).toFixed(1)} KB`,'image/jpeg',q)},'image/jpeg',q)};im.src=url}
+const imagePresets={
+  original:[0,0],reel:[1080,1920],story:[1080,1920],square:[1080,1080],postPortrait:[1080,1350],postLandscape:[1200,630],youtubeThumb:[1280,720],whatsappStatus:[1080,1920],whatsappDP:[640,640],facebookCover:[1640,856],linkedinPost:[1200,627]
+};
+function applyImagePreset(){const p=$('imgPreset').value,box=$('imgManualBox');if(p==='custom'){box.classList.remove('opacity-50');$('imgWidth').disabled=false;$('imgHeight').disabled=false;return}box.classList.remove('opacity-50');const d=imagePresets[p]||[0,0];$('imgWidth').value=d[0]||1200;$('imgHeight').value=d[1]||0;$('imgWidth').disabled=false;$('imgHeight').disabled=false;if(p==='original'){$('imgWidth').value=1200;$('imgHeight').value=0}}
+function previewCompressImage(){const f=$('imgFile').files[0],p=$('imgPreview'),live=$('imgLivePreview');p.innerHTML='';if(!f){live.classList.add('hidden');return}const url=URL.createObjectURL(f),im=new Image();im.onload=()=>{p.innerHTML=`<div class="rounded-2xl border border-slate-200 bg-slate-50 p-3 flex gap-3 items-center"><img src="${url}" alt="Selected image preview" class="w-20 h-20 object-cover rounded-xl"><div class="text-xs text-slate-600"><b>${f.name}</b><br>Original: ${im.width} × ${im.height}px · ${(f.size/1024).toFixed(1)} KB</div></div>`;live.classList.remove('hidden');$('imgOriginalPreview').src=url;$('imgOutputPreview').removeAttribute('src');$('imgPreviewInfo').textContent=`${im.width} × ${im.height}px · ${(f.size/1024).toFixed(1)} KB`;};im.onerror=()=>live.classList.add('hidden');im.src=url}
+function resetImageCompressor(){if($('imgFile'))$('imgFile').value='';$('imgPreset').value='original';$('imgWidth').value=1200;$('imgHeight').value=0;$('imgQuality').value=.75;$('imgFit').checked=true;$('imgPreview').innerHTML='';$('imgResult').innerHTML='';$('imgLivePreview').classList.add('hidden');$('imgOriginalPreview').removeAttribute('src');$('imgOutputPreview').removeAttribute('src');$('imgPreviewInfo').textContent='';}
+function compressImage(){
+  const f=$('imgFile').files[0], preset=$('imgPreset').value, q=Math.min(1,Math.max(.1,+$('imgQuality').value||.75));
+  if(!f)return setR('imgResult','Choose an image first.');
+  const url=URL.createObjectURL(f),im=new Image();
+  im.onload=()=>{
+    let targetW=+$('imgWidth').value||im.width,targetH=+$('imgHeight').value||0,fit=$('imgFit').checked;
+    if(preset==='original'){targetW=Math.min(im.width,targetW);targetH=0;}
+    let w=targetW,h=targetH;
+    if(fit||!targetH){const scale=Math.min(targetW/im.width,(targetH?targetH/im.height:1));const safeScale=Math.min(1,scale||1);w=Math.max(1,Math.round(im.width*safeScale));h=Math.max(1,Math.round(im.height*safeScale));}
+    else {w=Math.max(1,Math.round(targetW));h=Math.max(1,Math.round(targetH));}
+    const c=document.createElement('canvas');c.width=w;c.height=h;const ctx=c.getContext('2d');ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.fillStyle='#fff';ctx.fillRect(0,0,w,h);ctx.drawImage(im,0,0,w,h);
+    c.toBlob(blob=>{if(!blob)return setR('imgResult','Could not create the compressed image.');const name=safeFileName(f.name.replace(/\.[^.]+$/,''),'')+'-compressed.jpg';rememberFile('imageCompress',blob,name);const outUrl=URL.createObjectURL(blob);$('imgOutputPreview').src=outUrl;setTimeout(()=>URL.revokeObjectURL(outUrl),60000);const reduction=f.size?((1-blob.size/f.size)*100):0;setR('imgResult',`<b>Ready ✓</b><br>Original: <b>${(f.size/1024).toFixed(1)} KB</b> · ${im.width}×${im.height}px<br>New: <b>${(blob.size/1024).toFixed(1)} KB</b> · ${w}×${h}px<br>${reduction>=0?`Size reduced by <b>${reduction.toFixed(1)}%</b>`:`Output is <b>${Math.abs(reduction).toFixed(1)}% larger</b>`}${fileActions('imageCompress')}`);URL.revokeObjectURL(url);},'image/jpeg',q);
+  };im.onerror=()=>{URL.revokeObjectURL(url);setR('imgResult','This image could not be read. Try JPG, PNG or WEBP.');};im.src=url;
+}
 async function imagesToPDF(){
   const files=[...$('pdfImages').files];
   if(!files.length)return setR('pdfResult','Choose one or more images.');
@@ -2190,14 +2254,16 @@ async function compressVideo(){
   }catch(e){setR('videoResult','Video compression failed. Try a shorter MP4/WebM video, lower resolution, or Chrome.');}
   finally{URL.revokeObjectURL(url)}
 }
+
 function openLegal(type){
  const content={
- about:`<h2>About Kaam Kaaj Tools</h2><p>Kaam Kaaj Tools is an all-in-one utility hub made to keep everyday calculations, conversions, text tools and document tools in one simple place.</p><h3>Our goal</h3><p>Make useful everyday tools fast, simple and accessible on mobile and desktop without unnecessary steps.</p><h3>Contact</h3><p>For feedback, corrections or business enquiries, use the real contact email or contact page published by the site owner.</p>`,
- privacy:`<h2>Privacy Policy</h2><p><b>Last updated: 20 August 2026</b></p><p>Kaam Kaaj Tools provides browser-based utility tools. Where technically possible, calculations and file processing happen locally in your browser.</p><h3>Information</h3><p>The basic tools do not require an account. If analytics, advertising or third-party services are enabled, those providers may process information such as browser/device data, usage information, approximate location or advertising identifiers according to their own policies.</p><h3>Files and text</h3><p>Files and text used by local tools are intended to be processed in your browser. Do not submit confidential information to a third-party API or service.</p><h3>Advertising</h3><p>We may display advertisements. Advertising partners may use cookies or similar technologies to serve, measure and personalize ads. You can manage available controls through your browser and the advertising provider.</p><h3>Third-party services</h3><p>Some tools use third-party libraries or APIs. Their privacy policies may also apply.</p><h3>Contact</h3><p>For privacy questions, use the contact email or contact page published by the site owner.</p>`,
+ about:`<h2>About Kaam Kaaj Tools</h2><p>Kaam Kaaj Tools is an all-in-one utility hub made to keep everyday calculations, conversions, text tools and document tools in one simple place.</p><h3>Our goal</h3><p>Make useful everyday tools fast, simple and accessible on mobile and desktop without unnecessary steps.</p><h3>Contact &amp; Feedback</h3><p>For feedback, corrections or business enquiries, email us at <a href="mailto:kaamkaaj05@gmail.com" style="color:#4f46e5;font-weight:800">kaamkaaj05@gmail.com</a>.</p>`,
+ privacy:`<h2>Privacy Policy</h2><p><b>Last updated: 20 August 2026</b></p><p>Kaam Kaaj Tools provides browser-based utility tools. Where technically possible, calculations and file processing happen locally in your browser.</p><h3>Information</h3><p>The basic tools do not require an account. If analytics, advertising or third-party services are enabled, those providers may process information such as browser/device data, usage information, approximate location or advertising identifiers according to their own policies.</p><h3>Files and text</h3><p>Files and text used by local tools are intended to be processed in your browser. Do not submit confidential information to a third-party API or service.</p><h3>Advertising</h3><p>We may display advertisements. Advertising partners may use cookies or similar technologies to serve, measure and personalize ads. You can manage available controls through your browser and the advertising provider.</p><h3>Third-party services</h3><p>Some tools use third-party libraries or APIs. Their privacy policies may also apply.</p><h3>Contact</h3><p>For privacy questions, email <a href="mailto:kaamkaaj05@gmail.com" style="color:#4f46e5;font-weight:800">kaamkaaj05@gmail.com</a>.</p>`,
  terms:`<h2>Terms & Conditions</h2><p>By using Kaam Kaaj Tools, you agree to use the website lawfully and responsibly.</p><h3>Tool use</h3><p>Tools are provided for general informational and productivity purposes. You are responsible for checking important results before relying on them.</p><h3>No guarantee</h3><p>We aim for accurate and reliable tools but do not guarantee that every calculation, conversion, PDF operation, third-party service or website feature will always be error-free or available.</p><h3>Uploads</h3><p>You are responsible for files and content you process. Do not use the service for unlawful, infringing or harmful material.</p><h3>Changes</h3><p>Features and these terms may be changed or updated from time to time.</p>`,
  disclaimer:`<h2>Disclaimer</h2><p>Kaam Kaaj Tools provides general-purpose utility tools and does not provide professional financial, medical, legal, tax or investment advice.</p><p>SIP, EMI, loan, GST, BMI and other calculators provide estimates based on the values entered. Actual results can differ because of rates, fees, taxes, rules, rounding and provider-specific terms.</p><p>Verify important results with the relevant bank, government department, professional adviser or original document.</p>`,
  cookies:`<h2>Cookie Policy</h2><p>Cookies and similar technologies may be used for essential site functions, analytics and advertising. Third-party advertising or analytics providers may set their own cookies according to their policies.</p><p>Browser settings can be used to restrict or delete cookies. Disabling some cookies may affect certain features or advertising preferences.</p>`,
- contact:`<h2>Contact Us</h2><p>For feedback, bug reports, privacy requests or business enquiries, contact the site owner using the official monitored email address or contact page published with this website.</p><p><b>Before publishing:</b> replace this text with your real contact email/contact page. A real contact method is important for users and advertising compliance.</p>`};
+ contact:`<h2>Contact Us</h2><p>For feedback, bug reports, privacy requests or business enquiries, email us at:</p><p style="font-size:16px;margin:14px 0"><a href="mailto:kaamkaaj05@gmail.com?subject=Kaam%20Kaaj%20Tools%20Contact" style="color:#4f46e5;font-weight:900">kaamkaaj05@gmail.com</a></p><p>We try to respond to genuine messages as soon as possible. Please include a clear subject so we can help faster.</p>`,
+ feedback:`<h2>Send Feedback</h2><p>Your suggestions help us improve Kaam Kaaj Tools — new tools, bug reports, design ideas or anything else.</p><p style="font-size:16px;margin:14px 0"><a href="mailto:kaamkaaj05@gmail.com?subject=Kaam%20Kaaj%20Tools%20Feedback" style="color:#4f46e5;font-weight:900">kaamkaaj05@gmail.com</a></p><p>Tap the email above to open your mail app with the subject already filled. Tell us what worked, what broke, or which tool you want next.</p><p class="text-xs" style="color:#64748b;margin-top:12px">Email: kaamkaaj05@gmail.com</p>`};
  $('legalContent').innerHTML=content[type]||content.privacy;$('legalModal').classList.remove('hidden');document.body.style.overflow='hidden';
 }
 function closeLegal(){$('legalModal').classList.add('hidden');document.body.style.overflow=''}
@@ -2261,5 +2327,74 @@ if(routeTool){
 }
 $('date1').valueAsDate=new Date();$('date2').valueAsDate=new Date();
 </script>
+
+<!-- PWA Install Banner (Chrome / Edge / Android / Windows) -->
+<div id="pwaInstallBanner" style="display:none;position:fixed;left:12px;right:12px;bottom:18px;z-index:99999;background:#fff;border:1px solid #e5e7eb;border-radius:18px;padding:14px;box-shadow:0 12px 40px rgba(0,0,0,.18);font-family:system-ui,sans-serif;max-width:520px;margin:0 auto">
+  <div style="display:flex;gap:12px;align-items:center">
+    <div style="width:46px;height:46px;border-radius:12px;background:#0f172a;color:#fff;display:grid;place-items:center;font-weight:800;flex-shrink:0">KT</div>
+    <div style="flex:1;min-width:0"><b style="display:block;font-size:15px">Install KaamTools App</b><span style="font-size:12px;color:#64748b">Fast access — use KaamTools like an app on phone or PC.</span></div>
+    <button id="pwaInstallBtn" type="button" style="border:0;border-radius:10px;padding:10px 13px;background:#4f46e5;color:#fff;font-weight:700;cursor:pointer;flex-shrink:0">Install</button>
+    <button id="pwaInstallClose" type="button" aria-label="Close" style="border:0;background:transparent;font-size:22px;color:#64748b;cursor:pointer;line-height:1;flex-shrink:0">×</button>
+  </div>
+</div>
+<div id="pwaInstallHint" style="display:none;position:fixed;left:16px;right:16px;bottom:18px;z-index:99998;background:#0f172a;color:#fff;border-radius:16px;padding:13px 15px;font:13px system-ui,sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.25);max-width:520px;margin:0 auto"></div>
+<script>
+(function(){
+  let deferredPrompt = null;
+  const banner = document.getElementById('pwaInstallBanner');
+  const btn = document.getElementById('pwaInstallBtn');
+  const close = document.getElementById('pwaInstallClose');
+  const hint = document.getElementById('pwaInstallHint');
+  function isStandalone(){
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  }
+  function showBanner(){
+    if(isStandalone() || localStorage.getItem('kt_pwa_dismissed')) return;
+    if(banner) banner.style.display = 'block';
+  }
+  window.addEventListener('beforeinstallprompt', function(e){
+    e.preventDefault();
+    deferredPrompt = e;
+    setTimeout(showBanner, 1200);
+  });
+  if(btn){
+    btn.addEventListener('click', async function(){
+      if(deferredPrompt){
+        deferredPrompt.prompt();
+        try { await deferredPrompt.userChoice; } catch(err){}
+        deferredPrompt = null;
+        if(banner) banner.style.display = 'none';
+      } else {
+        var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        var msg = isIOS
+          ? 'Safari me Share (↑) button dabayein → “Add to Home Screen” select karein.'
+          : 'Chrome / Edge me address bar ke right side install icon (⊕) ya ⋮ menu → “Install app” / “Install KaamTools” select karein. Windows PC par bhi yahi option milta hai.';
+        if(hint){
+          hint.style.display = 'block';
+          hint.textContent = msg;
+          setTimeout(function(){ hint.style.display = 'none'; }, 8000);
+        }
+      }
+    });
+  }
+  if(close){
+    close.addEventListener('click', function(){
+      if(banner) banner.style.display = 'none';
+      localStorage.setItem('kt_pwa_dismissed', '1');
+    });
+  }
+  window.addEventListener('appinstalled', function(){
+    if(banner) banner.style.display = 'none';
+    localStorage.removeItem('kt_pwa_dismissed');
+    deferredPrompt = null;
+  });
+  if('serviceWorker' in navigator){
+    window.addEventListener('load', function(){
+      navigator.serviceWorker.register('/sw.js').catch(function(){});
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
