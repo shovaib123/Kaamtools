@@ -3,13 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#4f46e5">
 <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
 <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
 <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
-<meta name="description" content="Free online tools for India: SIP, EMI, GST, Age, BMI calculators, PDF converters, QR generator, image compressor and more. No signup. Private in your browser.">
-<meta name="keywords" content="free online tools India, SIP calculator, EMI calculator, GST calculator, age calculator, BMI calculator, images to PDF, PDF to Word, QR code generator, image compressor">
+<meta name="description" content="Free online calculators, converters and utility tools for India. Use SIP, EMI, GST, loan, percentage, age, PDF, Word, image, QR, currency and business tools online for free.">
+<meta name="keywords" content="free online tools India, online calculators India, SIP calculator, EMI calculator, GST calculator, loan calculator, income tax calculator, PDF tools, Word converter, image compressor, QR code generator, currency converter">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
 <meta name="googlebot" content="index, follow">
 <meta name="author" content="Kaam Kaaj Tools">
@@ -26,13 +28,16 @@
 <meta property="og:site_name" content="Kaam Kaaj Tools">
 <meta property="og:url" content="https://kaamtools.in/">
 <meta property="og:title" content="Kaam Kaaj Tools — Free Online Calculators, Converters & Utility Tools">
-<meta property="og:description" content="Free SIP, EMI, GST calculators, PDF and image tools. Fast, private, no signup.">
+<meta property="og:description" content="Free online calculators, PDF, Word, image and business tools. Fast, mobile-friendly and easy to use with no signup for basic tools.">
+<meta property="og:image:alt" content="Kaam Kaaj Tools — Free Online Tools">
 <meta property="og:image" content="https://kaamtools.in/logo.jpg">
 <meta property="og:image:width" content="1024">
 <meta property="og:image:height" content="1024">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Kaam Kaaj Tools — Free Online Utility Tools">
 <meta name="twitter:description" content="Free calculators, converters, PDF and image tools for India. No signup.">
+<meta name="twitter:image" content="https://kaamtools.in/logo.jpg">
+<meta name="twitter:image:alt" content="Kaam Kaaj Tools logo">
 <title>Kaam Kaaj Tools — Free Online Calculators, Converters & Utility Tools</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
@@ -66,8 +71,8 @@ body.tool-mode{background:#f7f8fc}
  linear-gradient(135deg,#11185b,#35228d 55%,#4f46e5);box-shadow:0 18px 45px rgba(49,46,129,.22)}
 .hero:after{content:"";position:absolute;width:240px;height:240px;border:1px solid rgba(255,255,255,.12);border-radius:50%;right:-65px;bottom:-110px;box-shadow:0 0 0 35px rgba(255,255,255,.035),0 0 0 70px rgba(255,255,255,.025)}
 .hero-kicker{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;opacity:.8}
-.hero h2{font-size:clamp(30px,5vw,48px);font-weight:900;line-height:1.04;margin:7px 0 10px;max-width:720px}
-.hero h2 span{color:#facc15}
+.hero h1,.hero h2{font-size:clamp(30px,5vw,48px);font-weight:900;line-height:1.04;margin:7px 0 10px;max-width:720px}
+.hero h1 span,.hero h2 span{color:#facc15}
 .hero p{font-size:14px;opacity:.9;max-width:650px}
 .hero-search{position:relative;z-index:2;display:flex;gap:8px;max-width:560px;margin-top:22px;background:#fff;padding:6px;border-radius:17px;box-shadow:0 12px 30px rgba(0,0,0,.18)}
 .hero-search input{border:0!important;box-shadow:none!important;flex:1;padding:10px 12px;font-size:14px;color:#1e293b;background:#fff!important}
@@ -110,7 +115,7 @@ body.tool-mode #appLayout{display:flex}
 .dark body{background:#0f172a}.dark .hero{box-shadow:none}.dark .stat,.dark .pop-card,.dark .tool-sidebar,.dark .tool.active,.dark .hero-search{border-color:#334155;background:#1e293b}.dark .hero-search input{background:#1e293b!important;color:#fff}.dark .tool .input,.dark .tool input.input,.dark .tool select.input,.dark .tool .area{background:#0f172a;color:#e2e8f0;border-color:#334155!important}.dark .result{background:#0f172a;border-color:#334155}.dark .back-btn{background:#1e293b;color:#e2e8f0;border-color:#334155}.dark .pop-card span,.dark .stat span{color:#94a3b8}
 @media(max-width:900px){.popular-grid{grid-template-columns:repeat(3,1fr)}.hero-emoji{right:3%;font-size:75px;opacity:.18}.stat-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:640px){
- .header-inner{padding:11px 14px}.header-title{font-size:19px}.header-logo{width:42px;height:42px}.hero{padding:25px 20px;border-radius:23px}.hero h2{font-size:31px}.hero-emoji{display:none}
+ .header-inner{padding:11px 14px}.header-title{font-size:19px}.header-logo{width:42px;height:42px}.hero{padding:25px 20px;border-radius:23px}.hero h1,.hero h2{font-size:31px}.hero-emoji{display:none}
  #home{padding:12px}.stat-grid{gap:8px;margin:12px 0 22px}.stat{padding:11px;gap:9px}.stat-icon{width:38px;height:38px}.stat b{font-size:15px}.stat span{font-size:10px}
  .popular-grid{grid-template-columns:repeat(2,1fr)}.pop-card{padding:14px 8px}.section-head h3{font-size:18px}
  #appLayout{padding:10px;display:block!important}.tool-sidebar{display:none}.tool-main{width:100%}.tool.active{padding:18px 14px;border-radius:20px}
@@ -225,6 +230,24 @@ body.tool-mode #appLayout{display:flex!important}
   "description":"Free online calculators, converters, PDF, Word, image and productivity tools for India. Runs in your browser."
 }
 </script>
+<script type="application/ld+json" id="kk-organization-schema">
+{
+  "@context":"https://schema.org",
+  "@type":"Organization",
+  "name":"Kaam Kaaj Tools",
+  "url":"https://kaamtools.in/",
+  "logo":"https://kaamtools.in/logo.jpg"
+}
+</script>
+<script type="application/ld+json" id="kk-website-schema">
+{
+  "@context":"https://schema.org",
+  "@type":"WebSite",
+  "name":"Kaam Kaaj Tools",
+  "url":"https://kaamtools.in/",
+  "inLanguage":"en-IN"
+}
+</script>
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -268,7 +291,7 @@ body.tool-mode #appLayout{display:flex!important}
 <div id="home" class="tool active">
   <section class="hero">
     <div class="hero-kicker">SMART • SIMPLE • USEFUL</div>
-    <h2>Your All-in-One <span>Utility Companion</span> ⚡</h2>
+    <h1>Your All-in-One <span>Utility Companion</span> ⚡</h1>
     <p>Everyday calculators, converters and productivity tools — fast, free and easy to use.</p>
     <div class="hero-search">
       <input id="homeSearch" oninput="homeSearchTools()" placeholder="Search any tool..." autocomplete="off">
@@ -1020,7 +1043,7 @@ function upsertJsonLd(id, obj){
 function updateToolSchemas(id, data){
   const slug=toolSlug(id);
   const url='https://kaamtools.in/'+slug;
-  const name=(document.querySelector('#'+CSS.escape(id)+' h2')?.innerText||data.title).replace(/^\S+\s*/,'');
+  const name=(document.querySelector('#'+CSS.escape(id)+' h1, #'+CSS.escape(id)+' h2')?.innerText||data.title).replace(/^\S+\s*/,'');
   upsertJsonLd('kk-breadcrumb-schema',{
     "@context":"https://schema.org",
     "@type":"BreadcrumbList",
@@ -1038,6 +1061,8 @@ function updateToolSchemas(id, data){
     "applicationCategory":"UtilitiesApplication",
     "operatingSystem":"Any",
     "offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},
+    "isAccessibleForFree":true,
+    "creator":{"@type":"Organization","name":"Kaam Kaaj Tools","url":"https://kaamtools.in/"},
     "inLanguage":"en-IN"
   });
   const guide=typeof toolGuideData!=='undefined' ? toolGuideData[id] : null;
@@ -1077,13 +1102,15 @@ function resetHomeSEO(){
   setCanonical('/');
   document.title = 'Kaam Kaaj Tools — Free Online Calculators, Converters & Utility Tools';
   const desc = document.querySelector('meta[name="description"]');
-  if(desc) desc.setAttribute('content', 'Free online tools for India: SIP, EMI, GST, Age, BMI calculators, PDF converters, QR generator, image compressor and more. No signup. Private in your browser.');
+  if(desc) desc.setAttribute('content', 'Free online calculators, converters and utility tools for India. Use SIP, EMI, GST, loan, percentage, age, PDF, Word, image, QR, currency and business tools online for free.');
   const kw = document.querySelector('meta[name="keywords"]');
-  if(kw) kw.setAttribute('content', 'free online tools India, SIP calculator, EMI calculator, GST calculator, age calculator, BMI calculator, images to PDF, PDF to Word, QR code generator, image compressor');
+  if(kw) kw.setAttribute('content', 'free online tools India, online calculators India, SIP calculator, EMI calculator, GST calculator, loan calculator, income tax calculator, PDF tools, Word converter, image compressor, QR code generator, currency converter');
   const ogt = document.querySelector('meta[property="og:title"]');
   if(ogt) ogt.setAttribute('content', 'Kaam Kaaj Tools — Free Online Calculators, Converters & Utility Tools');
   const ogd = document.querySelector('meta[property="og:description"]');
-  if(ogd) ogd.setAttribute('content', 'Free SIP, EMI, GST calculators, PDF and image tools. Fast, private, no signup.');
+  if(ogd) ogd.setAttribute('content', 'Free online calculators, PDF, Word, image and business tools. Fast, mobile-friendly and easy to use with no signup for basic tools.');
+  const twt=document.querySelector('meta[name="twitter:title"]'); if(twt) twt.setAttribute('content','Kaam Kaaj Tools — Free Online Utility Tools');
+  const twd=document.querySelector('meta[name="twitter:description"]'); if(twd) twd.setAttribute('content','Free calculators, converters, PDF, Word, image and business tools for India. No signup for basic tools.');
   const ogUrl=document.querySelector('meta[property="og:url"]');
   if(ogUrl) ogUrl.setAttribute('content','https://kaamtools.in/');
 }
@@ -1228,7 +1255,7 @@ function renderSEOContent(id){
    box.className='seo-tool-content';
    page.appendChild(box);
  }
- const name=(page.querySelector('h2')?.innerText||'This tool').replace(/^\S+\s*/,'');
+ const name=(page.querySelector('h1,h2')?.innerText||'This tool').replace(/^\S+\s*/,'');
  const current=tools.find(t=>t[0]===id);
  const cat=current?current[3]:'';
  const related=tools.filter(t=>t[0]!==id && t[3]===cat).slice(0,6);
