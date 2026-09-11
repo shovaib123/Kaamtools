@@ -309,7 +309,7 @@ body.tool-mode #appLayout{display:flex!important}
   </section>
 
   <div class="stat-grid">
-    <div class="stat"><div class="stat-icon">▦</div><div><b>57+</b><span>Powerful Tools</span></div></div>
+    <div class="stat"><div class="stat-icon">▦</div><div><b>64+</b><span>Powerful Tools</span></div></div>
     <div class="stat"><div class="stat-icon">⚡</div><div><b>100%</b><span>Free Forever</span></div></div>
     <div class="stat"><div class="stat-icon">🛡️</div><div><b>Secure</b><span>Private & Safe</span></div></div>
     <div class="stat"><div class="stat-icon">◷</div><div><b>Instant</b><span>Quick Results</span></div></div>
@@ -403,6 +403,13 @@ body.tool-mode #appLayout{display:flex!important}
       <a href="/cgpa-calculator" onclick="event.preventDefault();openTool('cgpaCalc')">CGPA Calculator — Multi-Semester</a>
       <a href="/gpa-calculator" onclick="event.preventDefault();openTool('gpaCalc')">GPA Calculator Online</a>
       <a href="/marks-percentage-calculator" onclick="event.preventDefault();openTool('marksPercent')">Marks Percentage Calculator</a>
+      <a href="/labour-wage-calculator" onclick="event.preventDefault();openTool('labourWage')">Labour Wage Calculator — Daily Wage &amp; Overtime Payment</a>
+      <a href="/contract-margin-calculator" onclick="event.preventDefault();openTool('contractMargin')">Contract Margin Calculator for Contractors</a>
+      <a href="/solar-panel-load-calculator" onclick="event.preventDefault();openTool('solarLoad')">Solar Panel Load Calculator — Panel &amp; Battery Sizing</a>
+      <a href="/battery-backup-time-calculator" onclick="event.preventDefault();openTool('batteryBackup')">Battery Backup Time Calculator (Ah to Hours)</a>
+      <a href="/wire-cable-size-calculator" onclick="event.preventDefault();openTool('wireGauge')">Wire &amp; Cable Size Calculator (mm² by Current)</a>
+      <a href="/land-area-converter" onclick="event.preventDefault();openTool('landAreaConverter')">Land Area Converter — Bigha, Katha, Acre, Gaj</a>
+      <a href="/indian-weight-converter" onclick="event.preventDefault();openTool('indianWeightConverter')">Indian Weight Converter — Tola, Ser, Maund to Gram/Kg</a>
     </div>
   </section>
 
@@ -1003,6 +1010,154 @@ body.tool-mode #appLayout{display:flex!important}
 <div id="marksPercentResult" class="mt-4"></div>
 </section>
 
+<!-- ===================== Daily Wage / Contracting Tools ===================== -->
+<section id="labourWage" class="tool tool-accent" style="--ac:#0f766e"><ToolTitle>👷 Labour Wage Payment Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Calculate daily wage, overtime and final payable amount for labourers, mazdoor or daily-wage workers.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="lwRate" label="Daily Wage Rate ₹"><input type="number" id="lwRate" value="600"></Field>
+<Field id="lwDays" label="Days Worked"><input type="number" id="lwDays" value="26"></Field>
+<Field id="lwOTHours" label="Overtime Hours"><input type="number" id="lwOTHours" value="0"></Field>
+<Field id="lwOTRate" label="Overtime Rate ₹/hour"><input type="number" id="lwOTRate" value="75"></Field>
+<Field id="lwAdvance" label="Advance Paid ₹"><input type="number" id="lwAdvance" value="0"></Field>
+<Field id="lwOtherDed" label="Other Deductions ₹"><input type="number" id="lwOtherDed" value="0"></Field>
+</div>
+<button class="btn mt-4" onclick="calcLabourWage()">Calculate Payment</button>
+<div id="labourWageResult" class="mt-4"></div>
+</section>
+
+<section id="contractMargin" class="tool tool-accent" style="--ac:#9333ea"><ToolTitle>📐 Contract Margin Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Calculate profit margin on a contract after material, labour and other costs — for contractors and local businesses.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="cmValue" label="Contract Value ₹"><input type="number" id="cmValue" value="500000"></Field>
+<Field id="cmMaterial" label="Material Cost ₹"><input type="number" id="cmMaterial" value="250000"></Field>
+<Field id="cmLabour" label="Labour Cost ₹"><input type="number" id="cmLabour" value="120000"></Field>
+<Field id="cmOther" label="Transport / Other Expenses ₹"><input type="number" id="cmOther" value="30000"></Field>
+</div>
+<button class="btn mt-4" onclick="calcContractMargin()">Calculate Margin</button>
+<div id="contractMarginResult" class="mt-4"></div>
+</section>
+
+<!-- ===================== Solar / Electrical / Energy Tools ===================== -->
+<section id="solarLoad" class="tool tool-accent" style="--ac:#f59e0b"><ToolTitle>☀️ Solar Panel Load &amp; Battery Size Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Calculate the solar panel capacity and battery bank size needed for your connected load — for home or off-grid solar setups.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="slLoad" label="Total Connected Load (Watts)"><input type="number" id="slLoad" value="1000"></Field>
+<Field id="slUsageHours" label="Daily Usage Hours"><input type="number" id="slUsageHours" value="6"></Field>
+<Field id="slSunHours" label="Peak Sun Hours per Day"><input type="number" id="slSunHours" value="5"></Field>
+<Field id="slLosses" label="System Losses % (wiring, inverter, dust)"><input type="number" id="slLosses" value="20"></Field>
+<Field id="slBackupHours" label="Battery Backup Hours Required"><input type="number" id="slBackupHours" value="4"></Field>
+<Field id="slDoD" label="Battery Depth of Discharge %"><input type="number" id="slDoD" value="50"></Field>
+</div>
+<div class="text-xs font-extrabold text-amber-700 mt-3 mb-2">🔋 System Voltage</div>
+<div class="chip-group" id="slVoltGroup" style="grid-template-columns:repeat(3,1fr)"><div class="chip" data-v="12" onclick="selectChip(this)">12V</div><div class="chip active" data-v="24" onclick="selectChip(this)">24V</div><div class="chip" data-v="48" onclick="selectChip(this)">48V</div></div>
+<button class="btn mt-4" onclick="calcSolarLoad()">Calculate Solar &amp; Battery Size</button>
+<div id="solarLoadResult" class="mt-4"></div>
+<p class="text-[11px] text-slate-400 mt-3">Estimate only — actual solar sizing also depends on panel type, shading, weather and inverter specs. Consult a solar installer for a final system design.</p>
+</section>
+
+<section id="batteryBackup" class="tool tool-accent" style="--ac:#16a34a"><ToolTitle>🔋 Battery Backup Time Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Find out how many hours a battery will run a given load — e.g. how long a 200Ah battery lasts on a 1000W load.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="bbAh" label="Battery Capacity (Ah)"><input type="number" id="bbAh" value="200"></Field>
+<Field id="bbLoad" label="Load (Watts)"><input type="number" id="bbLoad" value="1000"></Field>
+<Field id="bbDoD" label="Depth of Discharge %"><input type="number" id="bbDoD" value="80"></Field>
+<Field id="bbEff" label="Inverter Efficiency %"><input type="number" id="bbEff" value="90"></Field>
+</div>
+<div class="text-xs font-extrabold text-emerald-700 mt-3 mb-2">🔌 Battery Voltage</div>
+<div class="chip-group" id="bbVoltGroup" style="grid-template-columns:repeat(3,1fr)"><div class="chip active" data-v="12" onclick="selectChip(this)">12V</div><div class="chip" data-v="24" onclick="selectChip(this)">24V</div><div class="chip" data-v="48" onclick="selectChip(this)">48V</div></div>
+<button class="btn mt-4" onclick="calcBatteryBackup()">Calculate Backup Time</button>
+<div id="batteryBackupResult" class="mt-4"></div>
+</section>
+
+<section id="wireGauge" class="tool tool-accent" style="--ac:#dc2626"><ToolTitle>🔌 Wire &amp; Cable Size Calculator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Calculate the recommended wire/cable cross-section (mm²) for a given load current, cable length and voltage drop limit.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="wgCurrent" label="Load Current (Amps)"><input type="number" id="wgCurrent" value="10"></Field>
+<Field id="wgLength" label="One-Way Cable Length (meters)"><input type="number" id="wgLength" value="20"></Field>
+<Field id="wgVoltage" label="Supply Voltage (V)"><input type="number" id="wgVoltage" value="230"></Field>
+<Field id="wgVD" label="Max Allowed Voltage Drop %"><input type="number" id="wgVD" value="3"></Field>
+</div>
+<div class="text-xs font-extrabold text-red-700 mt-3 mb-2">🧵 Conductor Material</div>
+<div class="chip-group" id="wgMaterialGroup" style="grid-template-columns:repeat(2,1fr)"><div class="chip active" data-v="0.0175" onclick="selectChip(this)">Copper</div><div class="chip" data-v="0.028" onclick="selectChip(this)">Aluminium</div></div>
+<button class="btn mt-4" onclick="calcWireGauge()">Calculate Wire Size</button>
+<div id="wireGaugeResult" class="mt-4"></div>
+<p class="text-[11px] text-slate-400 mt-3">This is a general electrical estimate based on voltage-drop calculation. Always follow local electrical code and consult a licensed electrician before installation.</p>
+</section>
+
+<!-- ===================== Regional Measurement Converters ===================== -->
+<section id="landAreaConverter" class="tool tool-accent" style="--ac:#65a30d"><ToolTitle>🌾 Land Area Converter (Bigha, Acre, Gaj &amp; More)</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Convert between Indian land measurement units — Bigha, Katha, Biswa, Guntha, Marla, Kanal, Cent, Ground, Acre, Hectare and more.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="laValue" label="Value"><input type="number" id="laValue" value="1"></Field>
+<Field id="laFrom" label="From Unit"><select id="laFrom">
+<option value="bigha" selected>Bigha (UP/Rajasthan/MP — approx.)</option>
+<option value="katha">Katha (Bihar/Bengal — approx.)</option>
+<option value="biswa">Biswa (UP — approx.)</option>
+<option value="guntha">Guntha (Maharashtra/Karnataka)</option>
+<option value="marla">Marla (Punjab/Haryana)</option>
+<option value="kanal">Kanal (Punjab/J&amp;K/Haryana)</option>
+<option value="cent">Cent (Kerala/Tamil Nadu)</option>
+<option value="ground">Ground (Tamil Nadu/Chennai)</option>
+<option value="acre">Acre</option>
+<option value="hectare">Hectare</option>
+<option value="sqmeter">Square Meter</option>
+<option value="sqyard">Square Yard (Gaj)</option>
+<option value="sqft">Square Feet</option>
+</select></Field>
+</div>
+<div class="text-center my-2 text-xl">⬇️</div>
+<Field id="laTo" label="To Unit"><select id="laTo">
+<option value="sqft">Square Feet</option>
+<option value="sqyard">Square Yard (Gaj)</option>
+<option value="sqmeter">Square Meter</option>
+<option value="acre" selected>Acre</option>
+<option value="hectare">Hectare</option>
+<option value="bigha">Bigha (UP/Rajasthan/MP — approx.)</option>
+<option value="katha">Katha (Bihar/Bengal — approx.)</option>
+<option value="biswa">Biswa (UP — approx.)</option>
+<option value="guntha">Guntha (Maharashtra/Karnataka)</option>
+<option value="marla">Marla (Punjab/Haryana)</option>
+<option value="kanal">Kanal (Punjab/J&amp;K/Haryana)</option>
+<option value="cent">Cent (Kerala/Tamil Nadu)</option>
+<option value="ground">Ground (Tamil Nadu/Chennai)</option>
+</select></Field>
+<button class="btn mt-4" onclick="calcLandArea()">Convert</button>
+<div id="landAreaConverterResult" class="mt-4"></div>
+<p class="text-[11px] text-slate-400 mt-3">⚠️ Bigha, Katha and Biswa sizes vary significantly by state and even by village/local custom. These are commonly used approximate values — always confirm the local conversion with your Patwari/Tehsildar or local land records before any official or financial use.</p>
+</section>
+
+<section id="indianWeightConverter" class="tool tool-accent" style="--ac:#92400e"><ToolTitle>⚖️ Traditional Indian Weight Converter</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Convert between traditional Indian weight units — Tola, Ratti, Masha, Chatak, Ser, Maund — and modern grams/kilograms.</p>
+<div class="grid md:grid-cols-2 gap-3">
+<Field id="iwValue" label="Value"><input type="number" id="iwValue" value="1"></Field>
+<Field id="iwFrom" label="From Unit"><select id="iwFrom">
+<option value="tola" selected>Tola</option>
+<option value="ratti">Ratti</option>
+<option value="masha">Masha</option>
+<option value="chatak">Chatak</option>
+<option value="ser">Ser (Seer)</option>
+<option value="pao">Pao (Paav)</option>
+<option value="maund">Maund (Man)</option>
+<option value="gram">Gram</option>
+<option value="kilogram">Kilogram</option>
+</select></Field>
+</div>
+<div class="text-center my-2 text-xl">⬇️</div>
+<Field id="iwTo" label="To Unit"><select id="iwTo">
+<option value="gram" selected>Gram</option>
+<option value="kilogram">Kilogram</option>
+<option value="tola">Tola</option>
+<option value="ratti">Ratti</option>
+<option value="masha">Masha</option>
+<option value="chatak">Chatak</option>
+<option value="ser">Ser (Seer)</option>
+<option value="pao">Pao (Paav)</option>
+<option value="maund">Maund (Man)</option>
+</select></Field>
+<button class="btn mt-4" onclick="calcIndianWeight()">Convert</button>
+<div id="indianWeightConverterResult" class="mt-4"></div>
+</section>
+
 
 <!-- New Developer, Design, Text & Utility Tools -->
 <section id="base64" class="tool"><ToolTitle>🔤 Base64 Encoder & Decoder</ToolTitle>
@@ -1220,7 +1375,14 @@ loanPrepayment:{title:'Loan Prepayment Calculator — Interest Savings',descript
 cgpaPercent:{title:'CGPA to Percentage Calculator',description:'Convert CGPA to percentage using formulas for VTU, Anna University, Mumbai University, Delhi University and more.',keywords:'CGPA to percentage calculator, VTU CGPA calculator, CGPA to percentage conversion'},
 cgpaCalc:{title:'CGPA Calculator — Multi-Semester',description:'Calculate cumulative CGPA from semester SGPAs and credits across multiple semesters.',keywords:'CGPA calculator, cumulative GPA calculator, semester SGPA calculator'},
 gpaCalc:{title:'GPA Calculator Online',description:'Calculate semester GPA from subject credits and grades on a 10-point scale.',keywords:'GPA calculator online, semester GPA calculator, grade point average calculator'},
-marksPercent:{title:'Marks Percentage Calculator',description:'Calculate total percentage from subject marks. Add unlimited subjects.',keywords:'marks percentage calculator, total percentage calculator, exam marks calculator'}
+marksPercent:{title:'Marks Percentage Calculator',description:'Calculate total percentage from subject marks. Add unlimited subjects.',keywords:'marks percentage calculator, total percentage calculator, exam marks calculator'},
+labourWage:{title:'Labour Wage Calculator — Daily Wage & Overtime Payment',description:'Calculate daily wage, overtime pay and net payment for labourers and daily-wage workers, with advance and deduction adjustments.',keywords:'labour payment calculator, daily wage calculator, mazdoor payment calculator, overtime wage calculator India, labour charges calculator'},
+contractMargin:{title:'Contract Margin Calculator — Profit Margin for Contractors',description:'Calculate profit margin on a contract after material, labour and other costs. Built for small contractors and local businesses.',keywords:'contract margin calculator, contractor profit calculator, construction profit margin calculator, contract profit loss calculator'},
+solarLoad:{title:'Solar Panel Load Calculator — Panel & Battery Size for Your Load',description:'Calculate the solar panel capacity in kW and battery bank size in Ah needed for your home or off-grid connected load.',keywords:'solar panel load calculator, how to calculate load for solar system, solar system sizing calculator, off grid solar calculator, solar battery size calculator'},
+batteryBackup:{title:'Battery Backup Time Calculator — Ah, Watts & Backup Hours',description:'Calculate how many hours a battery will run a given load — for inverters, UPS and solar battery backup systems.',keywords:'battery backup time calculator, inverter battery backup calculator, how many hours battery will run, Ah to backup hours calculator, UPS backup time calculator'},
+wireGauge:{title:'Wire & Cable Size Calculator — mm² by Current & Voltage Drop',description:'Calculate the recommended wire or cable cross-section in mm² for a given current, cable length and voltage drop limit.',keywords:'wire gauge calculator, cable size calculator mm2, wire size calculator for current, electrical wire sizing calculator, voltage drop calculator'},
+landAreaConverter:{title:'Land Area Converter — Bigha, Katha, Acre, Gaj & More',description:'Convert Indian land measurement units like Bigha, Katha, Biswa, Guntha, Marla, Kanal, Cent, Ground, Acre and Hectare.',keywords:'bigha to acre converter, bigha to square feet, katha to square feet, guntha to acre, marla to square feet, land measurement converter India'},
+indianWeightConverter:{title:'Indian Weight Converter — Tola, Ratti, Ser, Maund to Gram/Kg',description:'Convert traditional Indian weight units like Tola, Ratti, Masha, Chatak, Ser and Maund to grams and kilograms.',keywords:'tola to gram converter, ser to kg converter, maund to kg converter, ratti to gram, traditional weight units converter India'}
 });
 
 const tools=[
@@ -1234,7 +1396,10 @@ const tools=[
 ['salarySlip','🧾','Salary Slip Generator','Documents'],['invoiceGen','📃','Invoice Generator','Documents'],
 ['plStatement','📊','Profit & Loss Calculator','Business'],['roi','📈','ROI Calculator','Business'],['freelanceRate','💻','Freelance Rate Calculator','Business'],
 ['homeLoanEMI','🏠','Home Loan EMI','Loans'],['personalLoanEMI','💵','Personal Loan EMI','Loans'],['carLoanEMI','🚗','Car Loan EMI','Loans'],['eduLoanEMI','🎓','Education Loan EMI','Loans'],['ccEMI','💳','Credit Card EMI','Loans'],['loanComparison','⚖️','Loan Comparison','Loans'],['loanEligibility','✅','Loan Eligibility','Loans'],['loanPrepayment','💰','Loan Prepayment','Loans'],
-['cgpaPercent','🎓','CGPA to Percentage','Education'],['cgpaCalc','📚','CGPA Calculator','Education'],['gpaCalc','📖','GPA Calculator','Education'],['marksPercent','📊','Marks Percentage','Education']
+['cgpaPercent','🎓','CGPA to Percentage','Education'],['cgpaCalc','📚','CGPA Calculator','Education'],['gpaCalc','📖','GPA Calculator','Education'],['marksPercent','📊','Marks Percentage','Education'],
+['labourWage','👷','Labour Wage Calculator','Business'],['contractMargin','📐','Contract Margin Calculator','Business'],
+['solarLoad','☀️','Solar Panel Load Calculator','Energy'],['batteryBackup','🔋','Battery Backup Time Calculator','Energy'],['wireGauge','🔌','Wire Gauge Size Calculator','Energy'],
+['landAreaConverter','🌾','Land Area Converter','Converter'],['indianWeightConverter','⚖️','Indian Weight Converter','Converter']
 ];
 const $=id=>document.getElementById(id);
 function Result({id}){} // placeholder component marker
@@ -1253,7 +1418,7 @@ const popularIds=['sip','emi','discount','qr','bmi','age','json','imageResize','
 const cats=['All',...new Set(tools.map(x=>x[3]))];
 
 function toolSlug(id){
- const map={sip:'sip-calculator',discount:'discount-calculator',emi:'emi-calculator',gst:'gst-calculator',percentage:'percentage-calculator',tip:'tip-calculator',loan:'loan-calculator',text:'text-formatter',word:'word-counter',password:'password-generator',age:'age-calculator',dateDiff:'date-difference-calculator',bmi:'bmi-calculator',qr:'qr-code-generator',unit:'unit-converter',color:'color-converter',imageCompress:'image-compressor',imagePDF:'images-to-pdf',textPDF:'text-to-pdf',pdfImage:'pdf-to-image',textWord:'text-to-word',pdfWord:'pdf-to-word',videoCompress:'video-compressor',json:'json-formatter',base64:'base64-encoder-decoder',hash:'hash-generator',shadow:'css-box-shadow-generator',imageResize:'image-resizer',svgPng:'svg-to-png',palette:'color-palette-generator',lorem:'lorem-ipsum-generator',stopwatch:'stopwatch-timer',worldClock:'world-clock',scientific:'scientific-calculator',random:'random-number-generator',currency:'currency-converter',incomeTax:'income-tax-calculator',pension:'pension-calculator',daArrears:'da-arrears-calculator',eighthCPC:'8th-pay-commission-calculator',salarySlip:'salary-slip-generator',invoiceGen:'invoice-generator',plStatement:'profit-loss-calculator',roi:'roi-calculator',freelanceRate:'freelance-rate-calculator',homeLoanEMI:'home-loan-emi-calculator',personalLoanEMI:'personal-loan-emi-calculator',carLoanEMI:'car-loan-emi-calculator',eduLoanEMI:'education-loan-emi-calculator',ccEMI:'credit-card-emi-calculator',loanComparison:'loan-comparison',loanEligibility:'loan-eligibility-calculator',loanPrepayment:'loan-prepayment-calculator',cgpaPercent:'cgpa-to-percentage',cgpaCalc:'cgpa-calculator',gpaCalc:'gpa-calculator',marksPercent:'marks-percentage-calculator'};
+ const map={sip:'sip-calculator',discount:'discount-calculator',emi:'emi-calculator',gst:'gst-calculator',percentage:'percentage-calculator',tip:'tip-calculator',loan:'loan-calculator',text:'text-formatter',word:'word-counter',password:'password-generator',age:'age-calculator',dateDiff:'date-difference-calculator',bmi:'bmi-calculator',qr:'qr-code-generator',unit:'unit-converter',color:'color-converter',imageCompress:'image-compressor',imagePDF:'images-to-pdf',textPDF:'text-to-pdf',pdfImage:'pdf-to-image',textWord:'text-to-word',pdfWord:'pdf-to-word',videoCompress:'video-compressor',json:'json-formatter',base64:'base64-encoder-decoder',hash:'hash-generator',shadow:'css-box-shadow-generator',imageResize:'image-resizer',svgPng:'svg-to-png',palette:'color-palette-generator',lorem:'lorem-ipsum-generator',stopwatch:'stopwatch-timer',worldClock:'world-clock',scientific:'scientific-calculator',random:'random-number-generator',currency:'currency-converter',incomeTax:'income-tax-calculator',pension:'pension-calculator',daArrears:'da-arrears-calculator',eighthCPC:'8th-pay-commission-calculator',salarySlip:'salary-slip-generator',invoiceGen:'invoice-generator',plStatement:'profit-loss-calculator',roi:'roi-calculator',freelanceRate:'freelance-rate-calculator',homeLoanEMI:'home-loan-emi-calculator',personalLoanEMI:'personal-loan-emi-calculator',carLoanEMI:'car-loan-emi-calculator',eduLoanEMI:'education-loan-emi-calculator',ccEMI:'credit-card-emi-calculator',loanComparison:'loan-comparison',loanEligibility:'loan-eligibility-calculator',loanPrepayment:'loan-prepayment-calculator',cgpaPercent:'cgpa-to-percentage',cgpaCalc:'cgpa-calculator',gpaCalc:'gpa-calculator',marksPercent:'marks-percentage-calculator',labourWage:'labour-wage-calculator',contractMargin:'contract-margin-calculator',solarLoad:'solar-panel-load-calculator',batteryBackup:'battery-backup-time-calculator',wireGauge:'wire-cable-size-calculator',landAreaConverter:'land-area-converter',indianWeightConverter:'indian-weight-converter'};
  return map[id]||id;
 }
 function toolCard(t){
@@ -1313,7 +1478,14 @@ loanPrepayment:['How to use','Enter your outstanding loan, rate, remaining tenur
 cgpaPercent:['How to use','Enter your CGPA and choose your university’s formula to get the equivalent percentage.','Useful for job applications and forms that ask for a percentage instead of CGPA.','Is there one universal formula?','No. Each university/board publishes its own conversion formula.'],
 cgpaCalc:['How to use','Add each semester’s SGPA and credits, then calculate your cumulative CGPA.','Track your academic performance across multiple semesters in one place.','Are all semesters weighted equally?','No. Semesters are weighted by their credit totals, not just averaged equally.'],
 gpaCalc:['How to use','Add each subject with its credits and grade, then calculate your semester GPA.','Useful for a single semester’s grade point average on a 10-point scale.','Can I use a different grading scale?','This tool uses a standard 10-point scale; adjust grade points manually if yours differs.'],
-marksPercent:['How to use','Add each subject with marks obtained and maximum marks, then calculate the total percentage.','Add unlimited subjects for school or college mark-sheets.','Does it handle subjects with different maximum marks?','Yes. It sums obtained and maximum marks across all subjects before calculating percentage.']
+marksPercent:['How to use','Add each subject with marks obtained and maximum marks, then calculate the total percentage.','Add unlimited subjects for school or college mark-sheets.','Does it handle subjects with different maximum marks?','Yes. It sums obtained and maximum marks across all subjects before calculating percentage.'],
+labourWage:['How to use','Enter the daily wage rate, days worked and any overtime hours, advance or deductions.','Quickly work out what a labourer or daily-wage worker should be paid, including overtime.','Can I use this for weekly or monthly wages?','Yes. Enter the equivalent daily rate and total days worked for that period.'],
+contractMargin:['How to use','Enter the contract value along with material, labour and other costs to see your profit margin.','Useful for contractors and small businesses to check margins before finalizing a quote.','What is a healthy contract margin?','It varies by trade, but many small contractors target 15-25% depending on risk and competition.'],
+solarLoad:['How to use','Enter your connected load, daily usage hours, peak sun hours and desired backup, then pick a system voltage.','Get a starting estimate for solar panel capacity and battery bank size before consulting an installer.','Is this exact enough to buy equipment?','Use it as a starting estimate — a solar installer should confirm the final design for your site.'],
+batteryBackup:['How to use','Enter the battery capacity (Ah), voltage, load in watts, depth of discharge and inverter efficiency.','Find out how long a battery will power a given load, such as an inverter or UPS during a power cut.','Why not use 100% of battery capacity?','Fully discharging a battery repeatedly shortens its life, so a safe depth-of-discharge limit is used.'],
+wireGauge:['How to use','Enter the load current, one-way cable length, supply voltage and allowed voltage-drop percentage.','Get a recommended wire cross-section (mm²) based on standard voltage-drop calculations.','Does this replace an electrician?','No. Always confirm sizing against your local electrical code and a licensed electrician.'],
+landAreaConverter:['How to use','Enter a value, choose the unit you have and the unit you want, then convert.','Useful for understanding land listings that use Bigha, Katha, Guntha, Marla or other regional units.','Is 1 Bigha always the same size?','No. Bigha, Katha and Biswa sizes vary by state and even by local custom — always confirm locally.'],
+indianWeightConverter:['How to use','Enter a value, choose the traditional unit and the unit you want to convert to.','Useful for understanding gold/silver weights in Tola or grain weights in Ser and Maund.','Is a Tola the same everywhere in India?','The modern Tola (11.6638 g) is widely standardized, especially for gold and jewellery.']
 });
 
 Object.assign(toolGuideData,{
@@ -1962,6 +2134,86 @@ function calcMarksPercentage(){
  let html=rHero('linear-gradient(135deg,#7c3aed,#a78bfa)','TOTAL PERCENTAGE',pct.toFixed(2)+'%',`${obtainedSum} out of ${maxSum} marks`);
  html+=rBox(breakdown+rRow('Total',`${obtainedSum} / ${maxSum}`,true));
  $('marksPercentResult').innerHTML=html;
+}
+
+/* ===================== Labour Wage & Contract Margin ===================== */
+function calcLabourWage(){
+ const rate=+$('lwRate').value||0, days=+$('lwDays').value||0, otH=+$('lwOTHours').value||0, otR=+$('lwOTRate').value||0, adv=+$('lwAdvance').value||0, ded=+$('lwOtherDed').value||0;
+ if(!valid([rate,days])||rate<0||days<0){$('labourWageResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter a valid wage rate and days worked');return}
+ const basic=rate*days, ot=otH*otR, gross=basic+ot, net=gross-adv-ded;
+ let html=rHero('linear-gradient(135deg,#0f766e,#14b8a6)','NET PAYABLE AMOUNT',money(net),`${days} days @ ₹${rate}/day`);
+ html+=rBox(rRow('Basic Pay',money(basic))+rRow('Overtime Pay',money(ot))+rRow('Gross Pay',money(gross),true)+rRow('Advance Paid','- '+money(adv))+rRow('Other Deductions','- '+money(ded))+rRow('Net Payable',money(net),true));
+ $('labourWageResult').innerHTML=html;
+}
+function calcContractMargin(){
+ const value=+$('cmValue').value||0, material=+$('cmMaterial').value||0, labour=+$('cmLabour').value||0, other=+$('cmOther').value||0;
+ if(!valid([value])||value<=0){$('contractMarginResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter a valid contract value');return}
+ const totalCost=material+labour+other, profit=value-totalCost, marginPct=value?profit/value*100:0;
+ const bg=profit>=0?'linear-gradient(135deg,#9333ea,#c084fc)':'linear-gradient(135deg,#dc2626,#f87171)';
+ let html=rHero(bg,profit>=0?'YOUR PROFIT':'YOUR LOSS',money(Math.abs(profit)),`${marginPct.toFixed(1)}% margin on ${money(value)}`);
+ html+=rBox(rRow('Contract Value',money(value))+rRow('Material Cost',money(material))+rRow('Labour Cost',money(labour))+rRow('Other Expenses',money(other))+rRow('Total Cost',money(totalCost),true)+rRow('Profit Margin',money(profit),true));
+ $('contractMarginResult').innerHTML=html;
+}
+
+/* ===================== Solar / Battery / Wire Calculators ===================== */
+function calcSolarLoad(){
+ const load=+$('slLoad').value||0, usageH=+$('slUsageHours').value||0, sunH=+$('slSunHours').value||0, losses=+$('slLosses').value||0, backupH=+$('slBackupHours').value||0, dod=+$('slDoD').value||0;
+ const volt=+document.querySelector('#slVoltGroup .active').dataset.v;
+ if(!valid([load,usageH,sunH])||load<=0||sunH<=0){$('solarLoadResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter a valid load and sun hours');return}
+ const dailyEnergyWh=load*usageH;
+ const panelW=dailyEnergyWh/(sunH*(1-losses/100));
+ const batteryAh=(load*backupH)/(volt*(dod/100)*0.9);
+ let html=rHero('linear-gradient(135deg,#f59e0b,#fbbf24)','RECOMMENDED SOLAR PANEL',`${(panelW/1000).toFixed(2)} kW`,`For ${dailyEnergyWh.toLocaleString()} Wh/day at ${sunH} peak sun hours`);
+ html+=rHero('linear-gradient(135deg,#d97706,#fbbf24)','RECOMMENDED BATTERY BANK',`${Math.ceil(batteryAh)} Ah @ ${volt}V`,`For ${backupH} hours backup at ${dod}% DoD`);
+ html+=rBox(rRow('Daily Energy Consumption',(dailyEnergyWh/1000).toFixed(2)+' kWh')+rRow('Panel Capacity Needed',panelW.toFixed(0)+' W')+rRow('Battery Capacity Needed',Math.ceil(batteryAh)+' Ah')+rRow('System Voltage',volt+'V',true));
+ $('solarLoadResult').innerHTML=html;
+}
+function calcBatteryBackup(){
+ const ah=+$('bbAh').value||0, load=+$('bbLoad').value||0, dod=+$('bbDoD').value||0, eff=+$('bbEff').value||0;
+ const volt=+document.querySelector('#bbVoltGroup .active').dataset.v;
+ if(!valid([ah,load])||ah<=0||load<=0){$('batteryBackupResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter a valid battery capacity and load');return}
+ const usableWh=ah*volt*(dod/100)*(eff/100);
+ const hours=usableWh/load;
+ const h=Math.floor(hours), m=Math.round((hours-h)*60);
+ let html=rHero('linear-gradient(135deg,#16a34a,#4ade80)','ESTIMATED BACKUP TIME',`${h}h ${m}m`,`${ah}Ah @ ${volt}V running a ${load}W load`);
+ html+=rBox(rRow('Total Battery Energy',(ah*volt).toLocaleString()+' Wh')+rRow('Usable Energy (after DoD & efficiency)',Math.round(usableWh).toLocaleString()+' Wh')+rRow('Load',load+' W')+rRow('Backup Time',hours.toFixed(2)+' hours',true));
+ $('batteryBackupResult').innerHTML=html;
+}
+const STANDARD_WIRE_SIZES=[0.5,0.75,1,1.5,2.5,4,6,10,16,25,35,50,70,95,120,150,185,240];
+function calcWireGauge(){
+ const current=+$('wgCurrent').value||0, length=+$('wgLength').value||0, voltage=+$('wgVoltage').value||0, vdPct=+$('wgVD').value||0;
+ const resistivity=+document.querySelector('#wgMaterialGroup .active').dataset.v;
+ if(!valid([current,length,voltage,vdPct])||current<=0||length<=0||voltage<=0||vdPct<=0){$('wireGaugeResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter valid electrical details');return}
+ const allowedDropV=voltage*vdPct/100;
+ const requiredArea=(2*resistivity*length*current)/allowedDropV;
+ const recommended=STANDARD_WIRE_SIZES.find(s=>s>=requiredArea)||STANDARD_WIRE_SIZES[STANDARD_WIRE_SIZES.length-1];
+ let html=rHero('linear-gradient(135deg,#dc2626,#f87171)','RECOMMENDED WIRE SIZE',`${recommended} mm²`,`For ${current}A over ${length}m, max ${vdPct}% drop`);
+ html+=rBox(rRow('Calculated Minimum Area',requiredArea.toFixed(2)+' mm²')+rRow('Recommended Standard Size',recommended+' mm²',true)+rRow('Allowed Voltage Drop',allowedDropV.toFixed(2)+' V')+rRow('Conductor',resistivity===0.0175?'Copper':'Aluminium'));
+ $('wireGaugeResult').innerHTML=html;
+}
+
+/* ===================== Regional Measurement Converters ===================== */
+const LAND_UNITS_SQFT={sqft:1,sqmeter:10.7639,sqyard:9,acre:43560,hectare:107639,bigha:27225,katha:1361.25,biswa:1361.25,guntha:1089,marla:272.25,kanal:5445,cent:435.6,ground:2400};
+function calcLandArea(){
+ const v=+$('laValue').value||0, from=$('laFrom').value, to=$('laTo').value;
+ if(!valid([v])||v<0){$('landAreaConverterResult').innerHTML=rHero('#94a3b8','ENTER VALUE','Please enter a valid area value');return}
+ const sqft=v*LAND_UNITS_SQFT[from];
+ const result=sqft/LAND_UNITS_SQFT[to];
+ const fromLabel=$('laFrom').selectedOptions[0].text, toLabel=$('laTo').selectedOptions[0].text;
+ let html=rHero('linear-gradient(135deg,#65a30d,#a3e635)','CONVERTED AREA',`${result.toLocaleString(undefined,{maximumFractionDigits:4})}`,toLabel);
+ html+=rBox(rRow('Input',`${v} ${fromLabel}`)+rRow('Equivalent in Square Feet',sqft.toLocaleString(undefined,{maximumFractionDigits:2})+' sq ft')+rRow('Result',`${result.toLocaleString(undefined,{maximumFractionDigits:4})} ${toLabel}`,true));
+ $('landAreaConverterResult').innerHTML=html;
+}
+const INDIAN_WEIGHT_GRAMS={gram:1,kilogram:1000,tola:11.6638,ratti:0.1215,masha:0.972,chatak:58.319,ser:933.1,pao:233.275,maund:37324};
+function calcIndianWeight(){
+ const v=+$('iwValue').value||0, from=$('iwFrom').value, to=$('iwTo').value;
+ if(!valid([v])||v<0){$('indianWeightConverterResult').innerHTML=rHero('#94a3b8','ENTER VALUE','Please enter a valid weight value');return}
+ const grams=v*INDIAN_WEIGHT_GRAMS[from];
+ const result=grams/INDIAN_WEIGHT_GRAMS[to];
+ const fromLabel=$('iwFrom').selectedOptions[0].text, toLabel=$('iwTo').selectedOptions[0].text;
+ let html=rHero('linear-gradient(135deg,#92400e,#d97706)','CONVERTED WEIGHT',`${result.toLocaleString(undefined,{maximumFractionDigits:4})}`,toLabel);
+ html+=rBox(rRow('Input',`${v} ${fromLabel}`)+rRow('Equivalent in Grams',grams.toLocaleString(undefined,{maximumFractionDigits:3})+' g')+rRow('Result',`${result.toLocaleString(undefined,{maximumFractionDigits:4})} ${toLabel}`,true));
+ $('indianWeightConverterResult').innerHTML=html;
 }
 function fmt(t){let x=$('textInput'),v=x.value;if(t==='upper')x.value=v.toUpperCase();if(t==='lower')x.value=v.toLowerCase();if(t==='spaces')x.value=v.replace(/\s+/g,' ').trim();if(t==='title')x.value=v.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());updateStats()}
 function updateStats(){let v=$('textInput').value; $('textStats').textContent=`Words: ${v.trim()?v.trim().split(/\s+/).length:0} · Characters: ${v.length} · Lines: ${v?v.split(/\n/).length:0}`}
