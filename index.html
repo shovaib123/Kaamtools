@@ -504,7 +504,7 @@ body.tool-mode #appLayout{display:flex!important}
   <label class="block text-sm font-semibold mb-2">⚡ Automatic Size / Preset</label>
   <select id="imgPreset" class="input" onchange="applyImagePreset()">
     <option value="original">Keep Original Proportion</option>
-    <option value="reel">Instagram / Facebook Reel — 1080 × 1920</option>
+    <option value="reel">YouTube Shorts / Instagram / Facebook Reel — 1080 × 1920</option>
     <option value="story">Instagram / Facebook Story — 1080 × 1920</option>
     <option value="square">Instagram / Social Square — 1080 × 1080</option>
     <option value="postPortrait">Social Post Portrait — 1080 × 1350</option>
@@ -586,12 +586,22 @@ body.tool-mode #appLayout{display:flex!important}
 <section id="videoCompress" class="tool"><ToolTitle>🎬 Video Compressor</ToolTitle>
 <p class="text-xs text-slate-500 mb-3">Compress a video locally in your browser. No upload is required. Save or share the compressed video directly from your device. Output is WebM for broad browser support.</p>
 <input type="file" id="videoFile" accept="video/*" class="input">
-<div class="grid md:grid-cols-3 gap-3 mt-3">
+<div class="mt-4">
+  <label class="block text-sm font-semibold mb-2">⚡ Automatic Size / Preset</label>
+  <select id="videoPreset" class="input" onchange="applyVideoPreset()">
+    <option value="whatsapp">WhatsApp / Chat Share — 480p · Low</option>
+    <option value="reel" selected>YouTube Shorts / Instagram Reel — 720p · Balanced</option>
+    <option value="youtube">YouTube Upload — 1080p · High</option>
+    <option value="story">Story / Status — 480p · Low · 24 FPS</option>
+    <option value="custom">Manual / Custom Settings</option>
+  </select>
+</div>
+<div class="grid md:grid-cols-3 gap-3 mt-3" id="videoManualBox">
 <Field id="videoWidth" label="Max Width"><select id="videoWidth" class="input"><option value="854">480p (854px)</option><option value="1280" selected>720p (1280px)</option><option value="1920">1080p (1920px)</option></select></Field>
 <Field id="videoBitrate" label="Video Bitrate"><select id="videoBitrate" class="input"><option value="700000">Low · 0.7 Mbps</option><option value="1200000" selected>Balanced · 1.2 Mbps</option><option value="2200000">High · 2.2 Mbps</option></select></Field>
 <Field id="videoFps" label="Frame Rate"><select id="videoFps" class="input"><option value="24">24 FPS</option><option value="30" selected>30 FPS</option></select></Field>
 </div>
-<div class="mt-4 rounded-xl bg-slate-50 p-3 text-xs text-slate-500">Tip: 720p + Balanced is a good starting point for sharing. Compression speed depends on your phone/computer.</div>
+<div class="mt-4 rounded-xl bg-slate-50 p-3 text-xs text-slate-500">Tip: YouTube Shorts / Instagram Reel preset is a good starting point. Compression speed depends on your phone/computer.</div>
 <button class="btn mt-4" onclick="compressVideo()">Compress & Download Video</button><Result id="videoResult"/></section>
 
 <!-- Developer -->
@@ -1002,11 +1012,41 @@ body.tool-mode #appLayout{display:flex!important}
 <div id="gpaCalcResult" class="mt-4"></div>
 </section>
 
-<section id="marksPercent" class="tool tool-accent" style="--ac:#7c3aed"><ToolTitle>📊 Marks Percentage Calculator</ToolTitle>
-<p class="text-slate-500 mb-4 text-sm">Calculate total percentage from subject marks. Add unlimited subjects.</p>
-<table class="mini-table"><thead><tr><th>Subject</th><th>Marks Obtained</th><th>Max Marks</th><th></th></tr></thead><tbody id="marksBody"></tbody></table>
-<button class="smallbtn mt-2" onclick="addMarksSubject()">+ Add Subject</button>
-<button class="btn mt-4" onclick="calcMarksPercentage()">Calculate Percentage</button>
+<section id="marksPercent" class="tool tool-accent" style="--ac:#7c3aed"><ToolTitle>📊 Marksheet &amp; Marks Percentage Generator</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Create a complete school/college marksheet with student details, subject marks, percentage, grade and signature lines. Print or share the result.</p>
+
+<div class="text-xs font-extrabold text-violet-700 mt-1 mb-2">🏫 School / College Details</div>
+<div class="grid md:grid-cols-2 gap-3">
+  <Field id="msSchool" label="School / College Name"><input type="text" id="msSchool" value="Delhi Public School" placeholder="School or College name"></Field>
+  <Field id="msAddress" label="Address"><input type="text" id="msAddress" value="New Delhi, India" placeholder="City / Address"></Field>
+  <Field id="msSession" label="Academic Year / Session"><input type="text" id="msSession" value="2025-26" placeholder="e.g. 2025-26"></Field>
+  <Field id="msExam" label="Exam Name"><input type="text" id="msExam" value="Annual Examination" placeholder="e.g. Mid-Term / Annual"></Field>
+</div>
+
+<div class="text-xs font-extrabold text-violet-700 mt-4 mb-2">👤 Student Details</div>
+<div class="grid md:grid-cols-2 gap-3">
+  <Field id="msName" label="Student Name"><input type="text" id="msName" value="Rahul Sharma" placeholder="Full name"></Field>
+  <Field id="msRoll" label="Roll No. / Admission No."><input type="text" id="msRoll" value="24" placeholder="Roll number"></Field>
+  <Field id="msClass" label="Class / Course"><input type="text" id="msClass" value="Class 10" placeholder="e.g. Class 10 / B.Com 1st Year"></Field>
+  <Field id="msSection" label="Section"><input type="text" id="msSection" value="A" placeholder="Section"></Field>
+  <Field id="msFather" label="Father's / Parent's Name"><input type="text" id="msFather" value="Mr. Suresh Sharma" placeholder="Parent name"></Field>
+  <Field id="msMother" label="Mother's Name (optional)"><input type="text" id="msMother" value="Mrs. Sunita Sharma" placeholder="Optional"></Field>
+</div>
+
+<div class="text-xs font-extrabold text-violet-700 mt-4 mb-2">📝 Subject Marks</div>
+<table class="mini-table" style="width:100%"><thead><tr><th>#</th><th>Subject</th><th>Marks Obtained</th><th>Max Marks</th><th></th></tr></thead><tbody id="marksBody"></tbody></table>
+<div class="flex flex-wrap gap-2 mt-2">
+  <button class="smallbtn" onclick="addMarksSubject()">+ Add Subject</button>
+  <button class="smallbtn" onclick="loadMarksSample()">📋 Load Sample Data</button>
+</div>
+
+<div class="text-xs font-extrabold text-violet-700 mt-4 mb-2">✍️ Signatures (shown on marksheet)</div>
+<div class="grid md:grid-cols-2 gap-3">
+  <Field id="msTeacher" label="Class Teacher Name"><input type="text" id="msTeacher" value="Mrs. Anjali Verma" placeholder="Class Teacher"></Field>
+  <Field id="msPrincipal" label="Principal / Head Name"><input type="text" id="msPrincipal" value="Dr. R. K. Mehta" placeholder="Principal"></Field>
+</div>
+
+<button class="btn mt-4" onclick="calcMarksPercentage()">Generate Marksheet</button>
 <div id="marksPercentResult" class="mt-4"></div>
 </section>
 
@@ -1039,49 +1079,79 @@ body.tool-mode #appLayout{display:flex!important}
 
 <!-- ===================== Solar / Electrical / Energy Tools ===================== -->
 <section id="solarLoad" class="tool tool-accent" style="--ac:#f59e0b"><ToolTitle>☀️ Solar Panel Load &amp; Battery Size Calculator</ToolTitle>
-<p class="text-slate-500 mb-4 text-sm">Calculate the solar panel capacity and battery bank size needed for your connected load — for home or off-grid solar setups.</p>
+<p class="text-slate-500 mb-4 text-sm">Calculate the solar panel capacity, battery bank size and suggested inverter size for home or off-grid solar setups.</p>
 <div class="grid md:grid-cols-2 gap-3">
-<Field id="slLoad" label="Total Connected Load (Watts)"><input type="number" id="slLoad" value="1000"></Field>
-<Field id="slUsageHours" label="Daily Usage Hours"><input type="number" id="slUsageHours" value="6"></Field>
-<Field id="slSunHours" label="Peak Sun Hours per Day"><input type="number" id="slSunHours" value="5"></Field>
-<Field id="slLosses" label="System Losses % (wiring, inverter, dust)"><input type="number" id="slLosses" value="20"></Field>
-<Field id="slBackupHours" label="Battery Backup Hours Required"><input type="number" id="slBackupHours" value="4"></Field>
-<Field id="slDoD" label="Battery Depth of Discharge %"><input type="number" id="slDoD" value="50"></Field>
+<Field id="slLoad" label="Total Connected Load (Watts)"><input type="number" id="slLoad" value="1000" min="1"></Field>
+<Field id="slUsageHours" label="Daily Usage Hours"><input type="number" id="slUsageHours" value="6" min="0.5" step="0.5"></Field>
+<Field id="slSunHours" label="Peak Sun Hours per Day"><input type="number" id="slSunHours" value="5" min="1" step="0.5"></Field>
+<Field id="slLosses" label="System Losses % (wiring, inverter, dust)"><input type="number" id="slLosses" value="20" min="5" max="40"></Field>
+<Field id="slBackupHours" label="Battery Backup Hours Required"><input type="number" id="slBackupHours" value="4" min="1"></Field>
+<Field id="slDoD" label="Battery Depth of Discharge %"><input type="number" id="slDoD" value="80" min="20" max="100"></Field>
 </div>
-<div class="text-xs font-extrabold text-amber-700 mt-3 mb-2">🔋 System Voltage</div>
+<div class="text-xs font-extrabold text-amber-700 mt-3 mb-2">🔋 Battery Type (sets typical DoD)</div>
+<div class="chip-group" id="slBattTypeGroup" style="grid-template-columns:repeat(2,1fr)">
+  <div class="chip active" data-v="80" onclick="selectChip(this);$('slDoD').value=80">LiFePO4 / Lithium (80–90%)</div>
+  <div class="chip" data-v="50" onclick="selectChip(this);$('slDoD').value=50">Lead-Acid / Tubular (50%)</div>
+</div>
+<div class="text-xs font-extrabold text-amber-700 mt-3 mb-2">⚡ System Voltage</div>
 <div class="chip-group" id="slVoltGroup" style="grid-template-columns:repeat(3,1fr)"><div class="chip" data-v="12" onclick="selectChip(this)">12V</div><div class="chip active" data-v="24" onclick="selectChip(this)">24V</div><div class="chip" data-v="48" onclick="selectChip(this)">48V</div></div>
 <button class="btn mt-4" onclick="calcSolarLoad()">Calculate Solar &amp; Battery Size</button>
 <div id="solarLoadResult" class="mt-4"></div>
-<p class="text-[11px] text-slate-400 mt-3">Estimate only — actual solar sizing also depends on panel type, shading, weather and inverter specs. Consult a solar installer for a final system design.</p>
+<p class="text-[11px] text-slate-400 mt-3">Estimate only — actual solar sizing also depends on panel type, shading, weather and inverter specs. Consult a solar installer for a final system design. Peak sun hours in most of India are typically 4–6 hours.</p>
 </section>
 
 <section id="batteryBackup" class="tool tool-accent" style="--ac:#16a34a"><ToolTitle>🔋 Battery Backup Time Calculator</ToolTitle>
-<p class="text-slate-500 mb-4 text-sm">Find out how many hours a battery will run a given load — e.g. how long a 200Ah battery lasts on a 1000W load.</p>
+<p class="text-slate-500 mb-4 text-sm">Find out how many hours a battery will run a given load — e.g. how long a 200Ah battery lasts on a 1000W inverter load during a power cut.</p>
 <div class="grid md:grid-cols-2 gap-3">
-<Field id="bbAh" label="Battery Capacity (Ah)"><input type="number" id="bbAh" value="200"></Field>
-<Field id="bbLoad" label="Load (Watts)"><input type="number" id="bbLoad" value="1000"></Field>
-<Field id="bbDoD" label="Depth of Discharge %"><input type="number" id="bbDoD" value="80"></Field>
-<Field id="bbEff" label="Inverter Efficiency %"><input type="number" id="bbEff" value="90"></Field>
+<Field id="bbAh" label="Battery Capacity (Ah)"><input type="number" id="bbAh" value="200" min="1"></Field>
+<Field id="bbLoad" label="Load (Watts)"><input type="number" id="bbLoad" value="1000" min="1"></Field>
+<Field id="bbDoD" label="Depth of Discharge %"><input type="number" id="bbDoD" value="80" min="20" max="100"></Field>
+<Field id="bbEff" label="Inverter Efficiency %"><input type="number" id="bbEff" value="90" min="70" max="100"></Field>
 </div>
 <div class="text-xs font-extrabold text-emerald-700 mt-3 mb-2">🔌 Battery Voltage</div>
 <div class="chip-group" id="bbVoltGroup" style="grid-template-columns:repeat(3,1fr)"><div class="chip active" data-v="12" onclick="selectChip(this)">12V</div><div class="chip" data-v="24" onclick="selectChip(this)">24V</div><div class="chip" data-v="48" onclick="selectChip(this)">48V</div></div>
 <button class="btn mt-4" onclick="calcBatteryBackup()">Calculate Backup Time</button>
 <div id="batteryBackupResult" class="mt-4"></div>
+<p class="text-[11px] text-slate-400 mt-3">Typical DoD: LiFePO4 80–90%, Lead-acid / Tubular 50%. Lower DoD increases battery life. Results are estimates — actual runtime depends on temperature, battery age and inverter efficiency.</p>
 </section>
 
 <section id="wireGauge" class="tool tool-accent" style="--ac:#dc2626"><ToolTitle>🔌 Cable Size Calculator — Wire &amp; Cable Size (mm²)</ToolTitle>
-<p class="text-slate-500 mb-4 text-sm">Free cable size calculator and electrical wire size calculator. Find recommended cable cross-section (mm²) for load current, cable length and voltage drop. Works as cable thickness, power cable size and wire sizing calculator.</p>
-<div class="grid md:grid-cols-2 gap-3">
-<Field id="wgCurrent" label="Load Current (Amps)"><input type="number" id="wgCurrent" value="10"></Field>
-<Field id="wgLength" label="One-Way Cable Length (meters)"><input type="number" id="wgLength" value="20"></Field>
-<Field id="wgVoltage" label="Supply Voltage (V)"><input type="number" id="wgVoltage" value="230"></Field>
-<Field id="wgVD" label="Max Allowed Voltage Drop %"><input type="number" id="wgVD" value="3"></Field>
+<p class="text-slate-500 mb-4 text-sm">Free cable size calculator and electrical wire size calculator. Calculates recommended cable cross-section (mm²) using both <b>voltage drop</b> and <b>current carrying capacity (ampacity)</b>. Supports single-phase &amp; three-phase, copper &amp; aluminium.</p>
+
+<div class="text-xs font-extrabold text-red-700 mt-1 mb-2">⚡ Load Input Method</div>
+<div class="chip-group" id="wgInputModeGroup" style="grid-template-columns:repeat(2,1fr)">
+  <div class="chip active" data-v="amps" onclick="selectChip(this);toggleWgInput()">Current (Amps)</div>
+  <div class="chip" data-v="power" onclick="selectChip(this);toggleWgInput()">Power (kW)</div>
 </div>
+
+<div class="grid md:grid-cols-2 gap-3 mt-3">
+  <div id="wgAmpsField">
+    <Field id="wgCurrent" label="Load Current (Amps)"><input type="number" id="wgCurrent" value="10" min="0.1" step="0.1"></Field>
+  </div>
+  <div id="wgPowerField" style="display:none">
+    <Field id="wgPower" label="Load Power (kW)"><input type="number" id="wgPower" value="2.5" min="0.1" step="0.1"></Field>
+  </div>
+  <Field id="wgPF" label="Power Factor (0.8–1.0)"><input type="number" id="wgPF" value="0.85" min="0.5" max="1" step="0.01"></Field>
+  <Field id="wgLength" label="One-Way Cable Length (meters)"><input type="number" id="wgLength" value="20" min="1"></Field>
+  <Field id="wgVoltage" label="Supply Voltage (V)"><input type="number" id="wgVoltage" value="230" min="12"></Field>
+  <Field id="wgVD" label="Max Allowed Voltage Drop %"><input type="number" id="wgVD" value="3" min="1" max="10" step="0.5"></Field>
+</div>
+
+<div class="text-xs font-extrabold text-red-700 mt-3 mb-2">🔌 System Type</div>
+<div class="chip-group" id="wgPhaseGroup" style="grid-template-columns:repeat(2,1fr)">
+  <div class="chip active" data-v="1" onclick="selectChip(this)">Single Phase</div>
+  <div class="chip" data-v="3" onclick="selectChip(this)">Three Phase</div>
+</div>
+
 <div class="text-xs font-extrabold text-red-700 mt-3 mb-2">🧵 Conductor Material</div>
-<div class="chip-group" id="wgMaterialGroup" style="grid-template-columns:repeat(2,1fr)"><div class="chip active" data-v="0.0175" onclick="selectChip(this)">Copper</div><div class="chip" data-v="0.028" onclick="selectChip(this)">Aluminium</div></div>
+<div class="chip-group" id="wgMaterialGroup" style="grid-template-columns:repeat(2,1fr)">
+  <div class="chip active" data-v="0.0175" onclick="selectChip(this)">Copper</div>
+  <div class="chip" data-v="0.028" onclick="selectChip(this)">Aluminium</div>
+</div>
+
 <button class="btn mt-4" onclick="calcWireGauge()">Calculate Cable Size</button>
 <div id="wireGaugeResult" class="mt-4"></div>
-<p class="text-[11px] text-slate-400 mt-3">This is a general electrical estimate based on voltage-drop calculation. Always follow local electrical code and consult a licensed electrician before installation.</p>
+<p class="text-[11px] text-slate-400 mt-3">This calculator checks both voltage drop and approximate current-carrying capacity (based on typical PVC insulated cables at ~30°C). Always follow IS 3961 / local electrical code and consult a licensed electrician before installation. Derating may be needed for high temperature, conduit or grouped cables.</p>
 </section>
 
 <!-- ===================== Regional Measurement Converters ===================== -->
@@ -1375,7 +1445,7 @@ loanPrepayment:{title:'Loan Prepayment Calculator — Interest Savings',descript
 cgpaPercent:{title:'CGPA to Percentage Calculator',description:'Convert CGPA to percentage using formulas for VTU, Anna University, Mumbai University, Delhi University and more.',keywords:'CGPA to percentage calculator, VTU CGPA calculator, CGPA to percentage conversion'},
 cgpaCalc:{title:'CGPA Calculator — Multi-Semester',description:'Calculate cumulative CGPA from semester SGPAs and credits across multiple semesters.',keywords:'CGPA calculator, cumulative GPA calculator, semester SGPA calculator'},
 gpaCalc:{title:'GPA Calculator Online',description:'Calculate semester GPA from subject credits and grades on a 10-point scale.',keywords:'GPA calculator online, semester GPA calculator, grade point average calculator'},
-marksPercent:{title:'Marks Percentage Calculator',description:'Calculate total percentage from subject marks. Add unlimited subjects.',keywords:'marks percentage calculator, total percentage calculator, exam marks calculator'},
+marksPercent:{title:'Marksheet & Marks Percentage Generator',description:'Create a full school marksheet with student details, subject marks, percentage, grade, teacher and principal signatures. Print or download PDF.',keywords:'marksheet generator, marks percentage calculator, report card generator, school marksheet, exam marks calculator'},
 labourWage:{title:'Labour Wage Calculator — Daily Wage & Overtime Payment',description:'Calculate daily wage, overtime pay and net payment for labourers and daily-wage workers, with advance and deduction adjustments.',keywords:'labour payment calculator, daily wage calculator, mazdoor payment calculator, overtime wage calculator India, labour charges calculator'},
 contractMargin:{title:'Contract Margin Calculator — Profit Margin for Contractors',description:'Calculate profit margin on a contract after material, labour and other costs. Built for small contractors and local businesses. Free contractor margin calculator.',keywords:'contractor margin calculator, contract margin calculator, contractor profit calculator, construction profit margin calculator, contract profit loss calculator'},
 solarLoad:{title:'Solar Panel Load Calculator — Panel & Battery Size for Your Load',description:'Calculate the solar panel capacity in kW and battery bank size in Ah needed for your home or off-grid connected load.',keywords:'solar panel load calculator, how to calculate load for solar system, solar system sizing calculator, off grid solar calculator, solar battery size calculator'},
@@ -1512,7 +1582,7 @@ loanPrepayment:['How to use','Enter your outstanding loan, rate, remaining tenur
 cgpaPercent:['How to use','Enter your CGPA and choose your university’s formula to get the equivalent percentage.','Useful for job applications and forms that ask for a percentage instead of CGPA.','Is there one universal formula?','No. Each university/board publishes its own conversion formula.'],
 cgpaCalc:['How to use','Add each semester’s SGPA and credits, then calculate your cumulative CGPA.','Track your academic performance across multiple semesters in one place.','Are all semesters weighted equally?','No. Semesters are weighted by their credit totals, not just averaged equally.'],
 gpaCalc:['How to use','Add each subject with its credits and grade, then calculate your semester GPA.','Useful for a single semester’s grade point average on a 10-point scale.','Can I use a different grading scale?','This tool uses a standard 10-point scale; adjust grade points manually if yours differs.'],
-marksPercent:['How to use','Add each subject with marks obtained and maximum marks, then calculate the total percentage.','Add unlimited subjects for school or college mark-sheets.','Does it handle subjects with different maximum marks?','Yes. It sums obtained and maximum marks across all subjects before calculating percentage.'],
+marksPercent:['How to use','Fill school and student details, add subject marks, then generate the marksheet. Use Load Sample to preview.','Create a printable report card with percentage, grade, teacher and principal signature lines.','Can I print or download the marksheet?','Yes. After generating, use Print Marksheet, Download PDF or share on WhatsApp.'],
 labourWage:['How to use','Enter the daily wage rate, days worked and any overtime hours, advance or deductions.','Quickly work out what a labourer or daily-wage worker should be paid, including overtime.','Can I use this for weekly or monthly wages?','Yes. Enter the equivalent daily rate and total days worked for that period.'],
 contractMargin:['How to use','Enter the contract value along with material, labour and other costs to see your profit margin.','Useful for contractors and small businesses to check margins before finalizing a quote.','What is a healthy contract margin?','It varies by trade, but many small contractors target 15-25% depending on risk and competition.'],
 solarLoad:['How to use','Enter your connected load, daily usage hours, peak sun hours and desired backup, then pick a system voltage.','Get a starting estimate for solar panel capacity and battery bank size before consulting an installer.','Is this exact enough to buy equipment?','Use it as a starting estimate — a solar installer should confirm the final design for your site.'],
@@ -1739,7 +1809,17 @@ function clearSavedCalculations(){if(!savedCalculations().length)return;if(confi
 function calcSIP(){let p=+$('sipAmount').value,r=+$('sipRate').value/1200,n=+$('sipYears').value*12;if(!valid([p,r,n])||p<0||n<=0||r<0)return setR('sipResult','Please enter valid values.');let fv=r===0?p*n:p*((Math.pow(1+r,n)-1)/r)*(1+r),inv=p*n;setR('sipResult',rHero('linear-gradient(135deg,#059669,#10b981)','TOTAL VALUE',money(fv),`After ${$('sipYears').value} years`)+rBox(rRow('Total Invested',money(inv))+rRow('Estimated Returns',money(fv-inv))+rRow('Total Value',money(fv),true)))}
 function calcDiscount(){let p=+$('origPrice').value,d=+$('discPercent').value;if(!valid([p,d])||p<0||d<0||d>100)return setR('discResult','Enter a price and discount between 0–100%.');let s=p*d/100;setR('discResult',rHero('linear-gradient(135deg,#dc2626,#f87171)','YOU SAVE',money(s),`${d}% off ${money(p)}`)+rBox(rRow('Original Price',money(p))+rRow('Discount Amount',money(s))+rRow('Final Price',money(p-s),true)))}
 function calcEMI(){let P=+$('emiPrincipal').value,annual=+$('emiRate').value,years=+$('emiYears').value,n=years*12,r=annual/1200;if(!valid([P,annual,years])||P<=0||years<=0||annual<0)return setR('emiResult','Enter valid loan details.');let e=r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1),total=e*n;setR('emiResult',rHero('linear-gradient(135deg,#4338ca,#6366f1)','MONTHLY EMI',money(e),`${years} yrs @ ${annual}% p.a.`)+rBox(rRow('Loan Amount',money(P))+rRow('Total Interest',money(total-P))+rRow('Total Payment',money(total),true)))}
-function calcGST(add){let p=+$('gstPrice').value,g=+$('gstRate').value;if(!valid([p,g])||p<0||g<0)return setR('gstResult','Enter valid values.');if(add){let tax=p*g/100;setR('gstResult',rHero('linear-gradient(135deg,#d97706,#fbbf24)','TOTAL (INCL. GST)',money(p+tax),`GST @ ${g}%`)+rBox(rRow('Base Amount',money(p))+rRow('GST Amount',money(tax))+rRow('Total',money(p+tax),true)))}else{let base=p/(1+g/100);setR('gstResult',rHero('linear-gradient(135deg,#d97706,#fbbf24)','BASE AMOUNT',money(base),`GST @ ${g}% excluded`)+rBox(rRow('Total (incl. GST)',money(p))+rRow('GST Amount',money(p-base))+rRow('Base Amount',money(base),true)))}}
+function calcGST(add){
+  let p=+$('gstPrice').value,g=+$('gstRate').value;
+  if(!valid([p,g])||p<0||g<0)return setR('gstResult','Enter valid values.');
+  if(add){
+    let tax=p*g/100, half=tax/2;
+    setR('gstResult',rHero('linear-gradient(135deg,#d97706,#fbbf24)','TOTAL (INCL. GST)',money(p+tax),`GST @ ${g}%`)+rBox(rRow('Base Amount',money(p))+rRow('CGST ('+(g/2)+'%)',money(half))+rRow('SGST ('+(g/2)+'%)',money(half))+rRow('Total GST',money(tax))+rRow('Total (incl. GST)',money(p+tax),true)));
+  } else {
+    let base=p/(1+g/100), tax=p-base, half=tax/2;
+    setR('gstResult',rHero('linear-gradient(135deg,#d97706,#fbbf24)','BASE AMOUNT',money(base),`GST @ ${g}% excluded`)+rBox(rRow('Total (incl. GST)',money(p))+rRow('CGST ('+(g/2)+'%)',money(half))+rRow('SGST ('+(g/2)+'%)',money(half))+rRow('Total GST',money(tax))+rRow('Base Amount',money(base),true)));
+  }
+}
 function calcPercent(){let a=+$('p1').value,b=+$('p2').value;if(!valid([a,b]))return setR('percentResult','Enter valid values.');setR('percentResult',rHero('linear-gradient(135deg,#7c3aed,#a78bfa)','RESULT',(a*b/100).toFixed(2),`${b}% of ${a}`))}
 function calcTip(){let b=+$('bill').value,t=+$('tipRate').value,n=+$('people').value;if(!valid([b,t,n])||n<=0)return setR('tipResult','Enter valid values.');let tip=b*t/100,total=b+tip;setR('tipResult',rHero('linear-gradient(135deg,#16a34a,#4ade80)','PER PERSON',money(total/n),`Bill ${money(b)} + ${t}% tip ÷ ${n} people`)+rBox(rRow('Tip Amount',money(tip))+rRow('Total Bill',money(total))+rRow('Per Person',money(total/n),true)))}
 function calcSimpleLoan(){let p=+$('simpleLoan').value,r=+$('simpleRate').value,y=+$('simpleYears').value;if(!valid([p,r,y])||p<0||y<0)return setR('loanResult','Enter valid values.');let i=p*r*y/100;setR('loanResult',rHero('linear-gradient(135deg,#0891b2,#22d3ee)','TOTAL AMOUNT',money(p+i),`Simple interest over ${y} years`)+rBox(rRow('Principal',money(p))+rRow('Interest',money(i))+rRow('Total Amount',money(p+i),true)))}
@@ -2155,19 +2235,200 @@ function calcGPA(){
 let marksCount=0;
 function addMarksSubject(name,obtained,max){
  marksCount++;
- const tb=$('marksBody'); if(!tb)return; const row=document.createElement('tr');row.className='marks-row';
- row.innerHTML=`<td><input class="marks-name" value="${escapeHtml(name||'Subject '+marksCount)}"></td><td><input class="marks-obtained" type="number" value="${obtained!=null?obtained:0}"></td><td><input class="marks-max" type="number" value="${max!=null?max:100}"></td><td><button class="row-del" onclick="this.closest('tr').remove()">✕</button></td>`;
+ const tb=$('marksBody'); if(!tb)return;
+ const row=document.createElement('tr');row.className='marks-row';
+ const sn=tb.querySelectorAll('.marks-row').length+1;
+ row.innerHTML=`<td class="marks-sn" style="text-align:center;font-weight:700;color:#64748b">${sn}</td><td><input class="marks-name input" style="min-width:120px" value="${escapeHtml(name||'Subject '+marksCount)}"></td><td><input class="marks-obtained input" type="number" min="0" value="${obtained!=null?obtained:0}" style="width:90px"></td><td><input class="marks-max input" type="number" min="1" value="${max!=null?max:100}" style="width:90px"></td><td><button class="row-del" onclick="this.closest('tr').remove();renumberMarksRows()">✕</button></td>`;
  tb.appendChild(row);
 }
+function renumberMarksRows(){
+  [...document.querySelectorAll('#marksBody .marks-row')].forEach((r,i)=>{const sn=r.querySelector('.marks-sn');if(sn)sn.textContent=i+1;});
+}
+function loadMarksSample(){
+  const tb=$('marksBody'); if(!tb)return;
+  tb.innerHTML=''; marksCount=0;
+  const sample=[['English',82,100],['Hindi',78,100],['Mathematics',91,100],['Science',88,100],['Social Science',85,100],['Computer',94,100]];
+  sample.forEach(([n,o,m])=>addMarksSubject(n,o,m));
+  if($('msSchool'))$('msSchool').value='Delhi Public School';
+  if($('msAddress'))$('msAddress').value='Sector 12, R.K. Puram, New Delhi';
+  if($('msSession'))$('msSession').value='2025-26';
+  if($('msExam'))$('msExam').value='Annual Examination';
+  if($('msName'))$('msName').value='Rahul Sharma';
+  if($('msRoll'))$('msRoll').value='24';
+  if($('msClass'))$('msClass').value='Class 10';
+  if($('msSection'))$('msSection').value='A';
+  if($('msFather'))$('msFather').value='Mr. Suresh Sharma';
+  if($('msMother'))$('msMother').value='Mrs. Sunita Sharma';
+  if($('msTeacher'))$('msTeacher').value='Mrs. Anjali Verma';
+  if($('msPrincipal'))$('msPrincipal').value='Dr. R. K. Mehta';
+}
+function marksGrade(pct){
+  if(pct>=90)return 'A+'; if(pct>=80)return 'A'; if(pct>=70)return 'B+'; if(pct>=60)return 'B';
+  if(pct>=50)return 'C'; if(pct>=40)return 'D'; return 'E / Fail';
+}
 function calcMarksPercentage(){
- const rows=[...document.querySelectorAll('#marksBody .marks-row')];
- if(!rows.length){$('marksPercentResult').innerHTML=rHero('#94a3b8','NO DATA','Add at least one subject');return}
- let obtainedSum=0,maxSum=0,breakdown='';
- rows.forEach(r=>{const name=r.querySelector('.marks-name').value,obt=+r.querySelector('.marks-obtained').value||0,max=+r.querySelector('.marks-max').value||0;obtainedSum+=obt;maxSum+=max;breakdown+=rRow(escapeHtml(name),`${obt} / ${max}`);});
- const pct=maxSum?obtainedSum/maxSum*100:0;
- let html=rHero('linear-gradient(135deg,#7c3aed,#a78bfa)','TOTAL PERCENTAGE',pct.toFixed(2)+'%',`${obtainedSum} out of ${maxSum} marks`);
- html+=rBox(breakdown+rRow('Total',`${obtainedSum} / ${maxSum}`,true));
- $('marksPercentResult').innerHTML=html;
+  const rows=[...document.querySelectorAll('#marksBody .marks-row')];
+  if(!rows.length){$('marksPercentResult').innerHTML=rHero('#94a3b8','NO DATA','Add at least one subject');return}
+  const school=$('msSchool')?.value.trim()||'School / College';
+  const address=$('msAddress')?.value.trim()||'';
+  const session=$('msSession')?.value.trim()||'';
+  const exam=$('msExam')?.value.trim()||'Examination';
+  const name=$('msName')?.value.trim()||'Student';
+  const roll=$('msRoll')?.value.trim()||'—';
+  const cls=$('msClass')?.value.trim()||'—';
+  const section=$('msSection')?.value.trim()||'';
+  const father=$('msFather')?.value.trim()||'—';
+  const mother=$('msMother')?.value.trim()||'';
+  const teacher=$('msTeacher')?.value.trim()||'Class Teacher';
+  const principal=$('msPrincipal')?.value.trim()||'Principal';
+
+  let obtainedSum=0,maxSum=0,tableRows='';
+  rows.forEach((r,i)=>{
+    const sub=r.querySelector('.marks-name').value||('Subject '+(i+1));
+    const obt=+r.querySelector('.marks-obtained').value||0;
+    const max=+r.querySelector('.marks-max').value||0;
+    obtainedSum+=obt; maxSum+=max;
+    const sp=max?((obt/max)*100).toFixed(1):'0';
+    tableRows+=`<tr>
+      <td style="padding:8px 10px;border:1px solid #e2e8f0;text-align:center">${i+1}</td>
+      <td style="padding:8px 10px;border:1px solid #e2e8f0;font-weight:600">${escapeHtml(sub)}</td>
+      <td style="padding:8px 10px;border:1px solid #e2e8f0;text-align:center">${obt}</td>
+      <td style="padding:8px 10px;border:1px solid #e2e8f0;text-align:center">${max}</td>
+      <td style="padding:8px 10px;border:1px solid #e2e8f0;text-align:center">${sp}%</td>
+    </tr>`;
+  });
+  const pct=maxSum?obtainedSum/maxSum*100:0;
+  const grade=marksGrade(pct);
+  const result=pct>=33?'PASS':'FAIL';
+  const resultColor=pct>=33?'#16a34a':'#dc2626';
+
+  const marksheet=`
+  <div id="marksheetCard" style="background:#fff;border:2px solid #4f46e5;border-radius:16px;padding:20px;max-width:640px;margin:0 auto;font-family:system-ui,sans-serif;color:#172033;box-shadow:0 8px 30px rgba(79,70,229,.12)">
+    <div style="text-align:center;border-bottom:2px solid #e0e7ff;padding-bottom:12px;margin-bottom:14px">
+      <div style="font-size:11px;font-weight:800;letter-spacing:.12em;color:#6366f1;text-transform:uppercase">Marksheet / Report Card</div>
+      <div style="font-size:22px;font-weight:900;color:#312e81;margin-top:4px">${escapeHtml(school)}</div>
+      ${address?`<div style="font-size:12px;color:#64748b;margin-top:2px">${escapeHtml(address)}</div>`:''}
+      <div style="font-size:13px;font-weight:700;color:#4338ca;margin-top:6px">${escapeHtml(exam)}${session?' · Session '+escapeHtml(session):''}</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px 16px;font-size:13px;margin-bottom:14px">
+      <div><b>Student:</b> ${escapeHtml(name)}</div>
+      <div><b>Roll No:</b> ${escapeHtml(roll)}</div>
+      <div><b>Class:</b> ${escapeHtml(cls)}${section?' – '+escapeHtml(section):''}</div>
+      <div><b>Parent:</b> ${escapeHtml(father)}</div>
+      ${mother?`<div style="grid-column:1/-1"><b>Mother:</b> ${escapeHtml(mother)}</div>`:''}
+    </div>
+    <table style="width:100%;border-collapse:collapse;font-size:13px;margin-bottom:12px">
+      <thead>
+        <tr style="background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff">
+          <th style="padding:9px 10px;text-align:center">#</th>
+          <th style="padding:9px 10px;text-align:left">Subject</th>
+          <th style="padding:9px 10px;text-align:center">Obtained</th>
+          <th style="padding:9px 10px;text-align:center">Max</th>
+          <th style="padding:9px 10px;text-align:center">%</th>
+        </tr>
+      </thead>
+      <tbody>${tableRows}
+        <tr style="background:#f8fafc;font-weight:800">
+          <td colspan="2" style="padding:9px 10px;border:1px solid #e2e8f0;text-align:right">TOTAL</td>
+          <td style="padding:9px 10px;border:1px solid #e2e8f0;text-align:center">${obtainedSum}</td>
+          <td style="padding:9px 10px;border:1px solid #e2e8f0;text-align:center">${maxSum}</td>
+          <td style="padding:9px 10px;border:1px solid #e2e8f0;text-align:center">${pct.toFixed(2)}%</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:space-between;align-items:center;margin:14px 0 18px">
+      <div style="background:#eef2ff;border-radius:12px;padding:10px 14px;font-weight:800;color:#3730a3">Percentage: ${pct.toFixed(2)}%</div>
+      <div style="background:#f5f3ff;border-radius:12px;padding:10px 14px;font-weight:800;color:#6d28d9">Grade: ${grade}</div>
+      <div style="background:${pct>=33?'#dcfce7':'#fee2e2'};border-radius:12px;padding:10px 14px;font-weight:900;color:${resultColor}">${result}</div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px;padding-top:8px">
+      <div style="text-align:center">
+        <div style="border-top:1px solid #94a3b8;margin:0 20px 6px;padding-top:4px"></div>
+        <div style="font-size:12px;font-weight:700">${escapeHtml(teacher)}</div>
+        <div style="font-size:11px;color:#64748b">Class Teacher</div>
+      </div>
+      <div style="text-align:center">
+        <div style="border-top:1px solid #94a3b8;margin:0 20px 6px;padding-top:4px"></div>
+        <div style="font-size:12px;font-weight:700">${escapeHtml(principal)}</div>
+        <div style="font-size:11px;color:#64748b">Principal / Head</div>
+      </div>
+    </div>
+    <div style="text-align:center;font-size:10px;color:#94a3b8;margin-top:16px">Generated with Kaam Kaaj Tools · For reference only</div>
+  </div>`;
+
+  let html = marksheet;
+  html += `<div class="result-actions" style="margin-top:16px;justify-content:center">
+    <button class="print" onclick="printMarksheet()">🖨️ Print Marksheet</button>
+    <button class="pdf" onclick="downloadMarksheetPDF()">📄 Download PDF</button>
+    <button class="wa" onclick="shareMarksheetWA()">🟢 WhatsApp</button>
+    <button class="copy" onclick="navigator.clipboard?.writeText(document.getElementById('marksheetCard')?.innerText||'')">📋 Copy Text</button>
+  </div>`;
+  $('marksPercentResult').innerHTML=html;
+}
+function printMarksheet(){
+  const card=$('marksheetCard'); if(!card)return alert('Generate marksheet first.');
+  const w=window.open('','_blank','width=800,height=1000');
+  if(!w){alert('Please allow pop-ups to print.');return}
+  w.document.write(`<!doctype html><html><head><title>Marksheet</title><style>
+    body{font-family:system-ui,sans-serif;padding:24px;background:#f8fafc;color:#172033}
+    @media print{body{padding:0;background:#fff} .no-print{display:none}}
+  </style></head><body>${card.outerHTML}<script>window.onload=()=>setTimeout(()=>window.print(),300)<\\/script></body></html>`);
+  w.document.close();
+}
+function downloadMarksheetPDF(){
+  const {jsPDF}=window.jspdf||{}; if(!jsPDF){alert('PDF library is not ready. Try Print instead.');return}
+  const card=$('marksheetCard'); if(!card)return alert('Generate marksheet first.');
+  const school=$('msSchool')?.value.trim()||'Marksheet';
+  const name=$('msName')?.value.trim()||'Student';
+  const doc=new jsPDF({unit:'mm',format:'a4'});
+  const margin=14, maxW=182;
+  let y=margin;
+  doc.setFont('helvetica','bold'); doc.setFontSize(16);
+  doc.text(school, 105, y, {align:'center'}); y+=8;
+  doc.setFontSize(11); doc.setFont('helvetica','normal');
+  const addr=$('msAddress')?.value.trim(); if(addr){doc.setTextColor(100); doc.text(addr,105,y,{align:'center'}); y+=6; doc.setTextColor(0);}
+  doc.setFont('helvetica','bold'); doc.setFontSize(12);
+  doc.text(($('msExam')?.value.trim()||'Examination')+(($('msSession')?.value.trim())?(' · '+$('msSession').value.trim()):''),105,y,{align:'center'}); y+=10;
+  doc.setFontSize(10); doc.setFont('helvetica','normal');
+  doc.text('Student: '+name, margin, y); doc.text('Roll No: '+($('msRoll')?.value||'—'), 120, y); y+=6;
+  doc.text('Class: '+($('msClass')?.value||'—')+(($('msSection')?.value)?(' – '+$('msSection').value):''), margin, y);
+  doc.text('Parent: '+($('msFather')?.value||'—'), 120, y); y+=10;
+  // table header
+  doc.setFillColor(67,56,202); doc.rect(margin, y-4, maxW, 8, 'F');
+  doc.setTextColor(255); doc.setFont('helvetica','bold');
+  doc.text('#', margin+3, y+1); doc.text('Subject', margin+12, y+1); doc.text('Obt.', margin+100, y+1); doc.text('Max', margin+125, y+1); doc.text('%', margin+150, y+1);
+  doc.setTextColor(0); doc.setFont('helvetica','normal'); y+=8;
+  const rows=[...document.querySelectorAll('#marksBody .marks-row')];
+  let obtSum=0, maxSum=0;
+  rows.forEach((r,i)=>{
+    const sub=r.querySelector('.marks-name').value||('Subject '+(i+1));
+    const obt=+r.querySelector('.marks-obtained').value||0;
+    const max=+r.querySelector('.marks-max').value||0;
+    obtSum+=obt; maxSum+=max;
+    const sp=max?((obt/max)*100).toFixed(1):'0';
+    if(y>270){doc.addPage(); y=margin;}
+    doc.text(String(i+1), margin+3, y);
+    doc.text(doc.splitTextToSize(sub, 80)[0], margin+12, y);
+    doc.text(String(obt), margin+100, y); doc.text(String(max), margin+125, y); doc.text(sp+'%', margin+150, y);
+    y+=7;
+  });
+  const pct=maxSum?obtSum/maxSum*100:0;
+  doc.setFont('helvetica','bold');
+  doc.text('TOTAL', margin+12, y); doc.text(String(obtSum), margin+100, y); doc.text(String(maxSum), margin+125, y); doc.text(pct.toFixed(2)+'%', margin+150, y);
+  y+=10;
+  doc.text('Percentage: '+pct.toFixed(2)+'%   |   Grade: '+marksGrade(pct)+'   |   '+(pct>=33?'PASS':'FAIL'), margin, y);
+  y+=20;
+  doc.setFont('helvetica','normal'); doc.setFontSize(9);
+  doc.text('________________', margin+10, y); doc.text('________________', 130, y); y+=5;
+  doc.text($('msTeacher')?.value||'Class Teacher', margin+10, y); doc.text($('msPrincipal')?.value||'Principal', 130, y); y+=4;
+  doc.setTextColor(120); doc.text('Class Teacher', margin+10, y); doc.text('Principal / Head', 130, y);
+  doc.save(safeFileName((name||'student')+'-marksheet','.pdf'));
+}
+function shareMarksheetWA(){
+  const name=$('msName')?.value.trim()||'Student';
+  const pctText=document.querySelector('#marksheetCard')?.innerText||'Marksheet';
+  const text=`*Marksheet — ${name}*\n\n${pctText}\n\nMade with Kaam Kaaj Tools ⚡`;
+  window.open('https://wa.me/?text='+encodeURIComponent(text.slice(0,1500)),'_blank','noopener');
 }
 
 /* ===================== Labour Wage & Contract Margin ===================== */
@@ -2192,14 +2453,26 @@ function calcContractMargin(){
 /* ===================== Solar / Battery / Wire Calculators ===================== */
 function calcSolarLoad(){
  const load=+$('slLoad').value||0, usageH=+$('slUsageHours').value||0, sunH=+$('slSunHours').value||0, losses=+$('slLosses').value||0, backupH=+$('slBackupHours').value||0, dod=+$('slDoD').value||0;
- const volt=+document.querySelector('#slVoltGroup .active').dataset.v;
+ const volt=+document.querySelector('#slVoltGroup .active')?.dataset.v||24;
  if(!valid([load,usageH,sunH])||load<=0||sunH<=0){$('solarLoadResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter a valid load and sun hours');return}
  const dailyEnergyWh=load*usageH;
  const panelW=dailyEnergyWh/(sunH*(1-losses/100));
+ // Battery sized for backup hours at given DoD + 10% margin for efficiency
  const batteryAh=(load*backupH)/(volt*(dod/100)*0.9);
+ // Suggested inverter: load + 25% headroom (rounded to common sizes)
+ const invRaw=load*1.25;
+ const invSizes=[500,800,1000,1500,2000,2500,3000,3500,5000,7500,10000];
+ const invW=invSizes.find(s=>s>=invRaw)||Math.ceil(invRaw/500)*500;
  let html=rHero('linear-gradient(135deg,#f59e0b,#fbbf24)','RECOMMENDED SOLAR PANEL',`${(panelW/1000).toFixed(2)} kW`,`For ${dailyEnergyWh.toLocaleString()} Wh/day at ${sunH} peak sun hours`);
  html+=rHero('linear-gradient(135deg,#d97706,#fbbf24)','RECOMMENDED BATTERY BANK',`${Math.ceil(batteryAh)} Ah @ ${volt}V`,`For ${backupH} hours backup at ${dod}% DoD`);
- html+=rBox(rRow('Daily Energy Consumption',(dailyEnergyWh/1000).toFixed(2)+' kWh')+rRow('Panel Capacity Needed',panelW.toFixed(0)+' W')+rRow('Battery Capacity Needed',Math.ceil(batteryAh)+' Ah')+rRow('System Voltage',volt+'V',true));
+ html+=rHero('linear-gradient(135deg,#ea580c,#fb923c)','SUGGESTED INVERTER',`${invW} W`,`~25% headroom over ${load} W load`);
+ html+=rBox(
+   rRow('Daily Energy Consumption',(dailyEnergyWh/1000).toFixed(2)+' kWh')+
+   rRow('Panel Capacity Needed',panelW.toFixed(0)+' W')+
+   rRow('Battery Capacity Needed',Math.ceil(batteryAh)+' Ah')+
+   rRow('System Voltage',volt+' V')+
+   rRow('Suggested Inverter',invW+' W',true)
+ );
  $('solarLoadResult').innerHTML=html;
 }
 function calcBatteryBackup(){
@@ -2214,16 +2487,84 @@ function calcBatteryBackup(){
  $('batteryBackupResult').innerHTML=html;
 }
 const STANDARD_WIRE_SIZES=[0.5,0.75,1,1.5,2.5,4,6,10,16,25,35,50,70,95,120,150,185,240];
+/* Approximate current-carrying capacity (A) for PVC insulated cables, single core, in air ~30°C (typical values used in India) */
+const AMPACITY_CU={0.5:6,0.75:10,1:11,1.5:15,2.5:20,4:25,6:32,10:45,16:60,25:80,35:100,50:125,70:150,95:180,120:210,150:240,185:270,240:320};
+const AMPACITY_AL={0.5:0,0.75:0,1:9,1.5:12,2.5:16,4:20,6:26,10:36,16:48,25:64,35:80,50:100,70:120,95:145,120:170,150:190,185:215,240:255};
+
+function toggleWgInput(){
+  const mode=document.querySelector('#wgInputModeGroup .active')?.dataset.v||'amps';
+  const ampsField=$('wgAmpsField'), powerField=$('wgPowerField');
+  if(ampsField) ampsField.style.display=mode==='amps'?'block':'none';
+  if(powerField) powerField.style.display=mode==='power'?'block':'none';
+}
+
 function calcWireGauge(){
- const current=+$('wgCurrent').value||0, length=+$('wgLength').value||0, voltage=+$('wgVoltage').value||0, vdPct=+$('wgVD').value||0;
- const resistivity=+document.querySelector('#wgMaterialGroup .active').dataset.v;
- if(!valid([current,length,voltage,vdPct])||current<=0||length<=0||voltage<=0||vdPct<=0){$('wireGaugeResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter valid electrical details');return}
- const allowedDropV=voltage*vdPct/100;
- const requiredArea=(2*resistivity*length*current)/allowedDropV;
- const recommended=STANDARD_WIRE_SIZES.find(s=>s>=requiredArea)||STANDARD_WIRE_SIZES[STANDARD_WIRE_SIZES.length-1];
- let html=rHero('linear-gradient(135deg,#dc2626,#f87171)','RECOMMENDED WIRE SIZE',`${recommended} mm²`,`For ${current}A over ${length}m, max ${vdPct}% drop`);
- html+=rBox(rRow('Calculated Minimum Area',requiredArea.toFixed(2)+' mm²')+rRow('Recommended Standard Size',recommended+' mm²',true)+rRow('Allowed Voltage Drop',allowedDropV.toFixed(2)+' V')+rRow('Conductor',resistivity===0.0175?'Copper':'Aluminium'));
- $('wireGaugeResult').innerHTML=html;
+  const length=+$('wgLength').value||0, voltage=+$('wgVoltage').value||0, vdPct=+$('wgVD').value||0, pf=+$('wgPF').value||0.85;
+  const resistivity=+document.querySelector('#wgMaterialGroup .active')?.dataset.v||0.0175;
+  const isCopper=resistivity<0.02;
+  const phase=+(document.querySelector('#wgPhaseGroup .active')?.dataset.v||1);
+  const mode=document.querySelector('#wgInputModeGroup .active')?.dataset.v||'amps';
+
+  let current=0;
+  if(mode==='power'){
+    const powerKw=+$('wgPower').value||0;
+    if(powerKw<=0){$('wireGaugeResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter a valid power in kW');return}
+    // I = P / (V × PF) for 1-ph ; I = P / (√3 × V × PF) for 3-ph
+    current = phase===3 ? (powerKw*1000)/(Math.sqrt(3)*voltage*pf) : (powerKw*1000)/(voltage*pf);
+  } else {
+    current=+$('wgCurrent').value||0;
+  }
+
+  if(!valid([current,length,voltage,vdPct])||current<=0||length<=0||voltage<=0||vdPct<=0){
+    $('wireGaugeResult').innerHTML=rHero('#94a3b8','ENTER DETAILS','Please enter valid electrical details');return;
+  }
+
+  const allowedDropV=voltage*vdPct/100;
+  // Voltage drop formula: 1-ph → 2×ρ×L×I / A   |   3-ph → √3×ρ×L×I / A
+  const k = phase===3 ? Math.sqrt(3) : 2;
+  const requiredAreaVD = (k * resistivity * length * current) / allowedDropV;
+
+  // Find smallest standard size that satisfies BOTH voltage drop AND ampacity
+  const ampacityTable = isCopper ? AMPACITY_CU : AMPACITY_AL;
+  let recommended = null;
+  let byVD = null, byAmp = null;
+
+  for(const size of STANDARD_WIRE_SIZES){
+    if(size >= requiredAreaVD && byVD===null) byVD = size;
+    if(ampacityTable[size] >= current && byAmp===null) byAmp = size;
+  }
+  if(byVD===null) byVD = STANDARD_WIRE_SIZES[STANDARD_WIRE_SIZES.length-1];
+  if(byAmp===null) byAmp = STANDARD_WIRE_SIZES[STANDARD_WIRE_SIZES.length-1];
+
+  recommended = Math.max(byVD, byAmp);
+
+  // Actual voltage drop at recommended size
+  const actualDropV = (k * resistivity * length * current) / recommended;
+  const actualDropPct = (actualDropV / voltage) * 100;
+  const ampacityAtSize = ampacityTable[recommended] || 0;
+
+  const material = isCopper ? 'Copper' : 'Aluminium';
+  const phaseLabel = phase===3 ? 'Three Phase' : 'Single Phase';
+
+  let html = rHero('linear-gradient(135deg,#dc2626,#f87171)','RECOMMENDED CABLE SIZE',`${recommended} mm²`,`${material} · ${phaseLabel} · ${current.toFixed(1)} A`);
+  html += rBox(
+    rRow('Design Current', current.toFixed(2)+' A') +
+    rRow('Min. size for Voltage Drop', byVD + ' mm²') +
+    rRow('Min. size for Ampacity', byAmp + ' mm²') +
+    rRow('Recommended Size (both checks)', recommended + ' mm²', true) +
+    rRow('Actual Voltage Drop', actualDropV.toFixed(2)+' V ('+actualDropPct.toFixed(2)+'%)') +
+    rRow('Ampacity of recommended size', ampacityAtSize + ' A') +
+    rRow('Conductor / System', material + ' · ' + phaseLabel, true)
+  );
+
+  if(actualDropPct > vdPct){
+    html += `<div class="mt-3 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-sm"><b>Note:</b> Even the largest standard size still exceeds your ${vdPct}% limit. Consider parallel cables or higher voltage.</div>`;
+  }
+  if(ampacityAtSize < current){
+    html += `<div class="mt-3 p-3 rounded-xl bg-red-50 border border-red-200 text-red-800 text-sm"><b>Warning:</b> Recommended size ampacity is lower than load current. Use larger cable or parallel runs.</div>`;
+  }
+
+  $('wireGaugeResult').innerHTML = html;
 }
 
 /* ===================== Regional Measurement Converters ===================== */
@@ -2592,6 +2933,21 @@ async function pdfToWord(){
     const blob=await makeWordDocxBlob(text,name,size);rememberFile('pdfWord',blob,name);downloadBlob(blob,name);
     setR('pdfWordResult',`<b>Word created successfully ✓</b><br><span class="text-slate-500">${usedOcr?'Scanned PDF was processed with OCR.':'Selectable PDF text was extracted.'} ${nums.length} selected page(s) of ${pdf.numPages} total page(s).</span><br><details class="mt-3"><summary class="cursor-pointer font-semibold">👁️ View extracted text</summary><pre class="mt-2 max-h-64 overflow-auto whitespace-pre-wrap rounded-lg bg-slate-50 p-3 text-xs">${xmlEsc(text)}</pre></details>${fileActions('pdfWord')}`);
   }catch(e){setR('pdfWordResult',`<b>Conversion/OCR failed.</b><br><span class="text-slate-500">Try fewer pages, select the correct OCR language, or use a clearer PDF. ${escapeHtml(e?.message||'')}</span>`);}
+}
+function applyVideoPreset(){
+  const p=$('videoPreset')?.value||'reel';
+  const presets={
+    whatsapp:{w:'854',b:'700000',f:'30'},
+    reel:{w:'1280',b:'1200000',f:'30'},
+    youtube:{w:'1920',b:'2200000',f:'30'},
+    story:{w:'854',b:'700000',f:'24'},
+    custom:null
+  };
+  const d=presets[p];
+  if(!d) return; // custom — leave manual controls as-is
+  if($('videoWidth')) $('videoWidth').value=d.w;
+  if($('videoBitrate')) $('videoBitrate').value=d.b;
+  if($('videoFps')) $('videoFps').value=d.f;
 }
 async function compressVideo(){
   const file=$('videoFile').files[0];if(!file)return setR('videoResult','Choose a video file.');
