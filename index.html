@@ -565,18 +565,31 @@ body.tool-mode #appLayout{display:flex!important}
 <Result id="imgResult"/></section>
 
 <section id="imagePDF" class="tool"><ToolTitle>📄 JPG & PNG to PDF Converter — Images to PDF</ToolTitle>
-<p class="text-xs text-slate-500 mb-3">Convert JPG, PNG and WEBP images into one PDF. After creating, use Save / Download, Share or Print.</p>
-<input type="file" id="pdfImages" accept="image/*" multiple class="input"><button class="btn mt-4" onclick="imagesToPDF()">Create PDF</button><Result id="pdfResult"/></section>
+<p class="text-xs text-slate-500 mb-3">Convert JPG, PNG and WEBP images into one PDF. Preview pages first, then Save / Download, Share or Print.</p>
+<input type="file" id="pdfImages" accept="image/*" multiple class="input" onchange="previewImagesToPDF()">
+<div class="mt-4 flex flex-wrap gap-2">
+  <button class="smallbtn" onclick="previewImagesToPDF()">👁️ Preview</button>
+  <button class="btn" onclick="imagesToPDF()">Create PDF</button>
+  <button class="smallbtn" onclick="resetImagesToPDF()">↺ Reset</button>
+</div>
+<div id="imagePDFPreview" class="hidden mt-4"></div>
+<Result id="pdfResult"/></section>
 
 <!-- PDF Tools -->
 <section id="textPDF" class="tool"><ToolTitle>📝 Text to PDF Converter</ToolTitle>
-<textarea id="pdfText" rows="12" class="area" placeholder="Type or paste your text here..."></textarea>
+<textarea id="pdfText" rows="12" class="area" placeholder="Type or paste your text here... (Hindi / English supported)"></textarea>
 <div class="grid md:grid-cols-3 gap-3 mt-3">
 <Field id="pdfFontSize" label="Font Size"><input type="number" id="pdfFontSize" value="12" min="8" max="30"></Field>
 <Field id="pdfMargin" label="Margin (mm)"><input type="number" id="pdfMargin" value="15" min="5" max="40"></Field>
 <Field id="pdfFileName" label="File Name"><input type="text" id="pdfFileName" value="kaam-kaaj-text"></Field>
 </div>
-<button class="btn mt-4" onclick="textToPDF()">Create PDF</button><Result id="textPDFResult"/></section>
+<div class="mt-4 flex flex-wrap gap-2">
+  <button class="smallbtn" onclick="previewTextPDF()">👁️ Preview</button>
+  <button class="btn" onclick="textToPDF()">Create PDF</button>
+  <button class="smallbtn" onclick="resetTextPDF()">↺ Reset</button>
+</div>
+<div id="textPDFPreview" class="hidden mt-4"></div>
+<Result id="textPDFResult"/></section>
 
 <section id="pdfImage" class="tool"><ToolTitle>📑 PDF to JPG / PNG Converter</ToolTitle>
 <p class="text-xs text-slate-500 mb-3">Convert every PDF page to PNG or JPG. Download pages individually or all pages together as a ZIP.</p>
@@ -586,7 +599,10 @@ body.tool-mode #appLayout{display:flex!important}
   <div><label class="block text-sm font-semibold mb-2">Output Format</label>
   <select id="pdfImgFormat" class="input"><option value="image/png" selected>PNG</option><option value="image/jpeg">JPG</option></select></div>
 </div>
-<button class="btn mt-4" onclick="pdfToImages()">Convert PDF to Images</button>
+<div class="mt-4 flex flex-wrap gap-2">
+  <button class="btn" onclick="pdfToImages()">Convert PDF to Images</button>
+  <button class="smallbtn" onclick="resetPdfToImages()">↺ Reset</button>
+</div>
 <div id="pdfImageActions" class="hidden mt-4 flex flex-wrap gap-2"><button class="smallbtn" onclick="downloadPdfImagesZip()">Download All as ZIP</button></div>
 <div id="pdfPreview" class="grid md:grid-cols-2 gap-3 mt-4"></div><Result id="pdfImageResult"/></section>
 
@@ -595,7 +611,11 @@ body.tool-mode #appLayout{display:flex!important}
 <p class="text-xs text-slate-500 mb-3">Create a real .docx Word document directly on your device. No Word library is required.</p>
 <textarea id="wordDocText" rows="13" class="area" placeholder="Type or paste your text here..."></textarea>
 <div class="grid md:grid-cols-2 gap-3 mt-3"><Field id="wordDocFileName" label="File Name"><input type="text" id="wordDocFileName" value="kaam-kaaj-document"></Field><Field id="wordDocFontSize" label="Font Size"><input type="number" id="wordDocFontSize" value="12" min="8" max="30"></Field></div>
-<button class="btn mt-4" onclick="textToWord()">Create & Download Word</button><Result id="textWordResult"/></section>
+<div class="mt-4 flex flex-wrap gap-2">
+  <button class="btn" onclick="textToWord()">Create & Download Word</button>
+  <button class="smallbtn" onclick="resetTextWord()">↺ Reset</button>
+</div>
+<Result id="textWordResult"/></section>
 
 <section id="pdfWord" class="tool"><ToolTitle>📃 PDF to Word Converter</ToolTitle>
 <p class="text-xs text-slate-500 mb-3">Convert normal or scanned PDFs into an editable Word document. Text PDFs use direct extraction; image/scanned PDFs automatically fall back to OCR.</p>
@@ -612,6 +632,7 @@ body.tool-mode #appLayout{display:flex!important}
 <button class="smallbtn" onclick="previewPdfForWord()">👁️ Preview PDF</button>
 <button class="smallbtn" onclick="pdfWordClearPreview()">↺ Clear Preview</button>
 <button class="btn" onclick="pdfToWord()">⚡ Convert to Editable Word</button>
+  <button class="smallbtn" onclick="resetPdfWord()">↺ Reset</button>
 </div>
 <div id="pdfWordResult" class="mt-4"></div></section>
 
@@ -634,7 +655,11 @@ body.tool-mode #appLayout{display:flex!important}
 <Field id="videoFps" label="Frame Rate"><select id="videoFps" class="input"><option value="24">24 FPS</option><option value="30" selected>30 FPS</option></select></Field>
 </div>
 <div class="mt-4 rounded-xl bg-slate-50 p-3 text-xs text-slate-500">Tip: YouTube Shorts / Instagram Reel preset is a good starting point. Compression speed depends on your phone/computer.</div>
-<button class="btn mt-4" onclick="compressVideo()">Compress & Download Video</button><Result id="videoResult"/></section>
+<div class="mt-4 flex flex-wrap gap-2">
+  <button class="btn" onclick="compressVideo()">Compress & Download Video</button>
+  <button class="smallbtn" onclick="resetVideoCompress()">↺ Reset</button>
+</div>
+<Result id="videoResult"/></section>
 
 <!-- Developer -->
 <section id="json" class="tool"><ToolTitle>🧑‍💻 JSON Formatter & Validator</ToolTitle>
@@ -816,7 +841,7 @@ body.tool-mode #appLayout{display:flex!important}
 <Field id="ssTDS" label="Income Tax (TDS)"><input type="number" id="ssTDS" value="0" oninput="renderSalarySlip()"></Field>
 <Field id="ssOtherD" label="Other Deductions (Loan, etc.)"><input type="number" id="ssOtherD" value="0" oninput="renderSalarySlip()"></Field>
 </div>
-<div class="flex flex-wrap gap-2 mt-4"><button class="smallbtn" onclick="autoPF()">Auto-fill PF</button><button class="btn secondary" onclick="downloadSalarySlipPDF()">⬇️ Download as PDF</button></div>
+<div class="flex flex-wrap gap-2 mt-4"><button class="smallbtn" onclick="autoPF()">Auto-fill PF</button><button class="btn secondary" onclick="downloadSalarySlipPDF()">⬇️ Download as PDF</button><button class="smallbtn" onclick="resetSalarySlip()">↺ Reset</button></div>
 <div class="text-xs font-extrabold text-slate-500 mt-5 mb-2">👁️ LIVE PREVIEW</div>
 <div id="ssPreview" class="doc-preview"></div>
 </section>
@@ -844,7 +869,7 @@ body.tool-mode #appLayout{display:flex!important}
 <div class="text-xs font-extrabold text-blue-700 mt-4 mb-2">📦 ITEMS</div>
 <table class="mini-table"><thead><tr><th>Description</th><th style="width:55px">Qty</th><th style="width:75px">Rate</th><th style="width:55px">GST%</th><th style="width:30px"></th></tr></thead><tbody id="invItemsBody"></tbody></table>
 <button class="smallbtn mt-2" onclick="addInvoiceItem()">+ Add Item</button>
-<div class="flex flex-wrap gap-2 mt-4"><button class="btn secondary" onclick="downloadInvoicePDF()">⬇️ Download as PDF</button></div>
+<div class="flex flex-wrap gap-2 mt-4"><button class="btn secondary" onclick="downloadInvoicePDF()">⬇️ Download as PDF</button><button class="smallbtn" onclick="resetInvoice()">↺ Reset</button></div>
 <div class="text-xs font-extrabold text-slate-500 mt-5 mb-2">👁️ LIVE PREVIEW</div>
 <div id="invPreview" class="doc-preview"></div>
 </section>
@@ -1078,7 +1103,10 @@ body.tool-mode #appLayout{display:flex!important}
   <Field id="msPrincipal" label="Principal / Head Name"><input type="text" id="msPrincipal" value="" placeholder="Principal"></Field>
 </div>
 
-<button class="btn mt-4" onclick="calcMarksPercentage()">Generate Marksheet</button>
+<div class="mt-4 flex flex-wrap gap-2">
+  <button class="btn" onclick="calcMarksPercentage()">Generate Marksheet</button>
+  <button class="smallbtn" onclick="resetMarksheet()">↺ Reset</button>
+</div>
 <div id="marksPercentResult" class="mt-4"></div>
 </section>
 
@@ -2417,43 +2445,79 @@ function downloadMarksheetPDF(){
   if(!d){alert('Pehle Generate Marksheet dabayein, phir Download PDF.');return}
   const jspdfNS=window.jspdf||{};
   const jsPDF=jspdfNS.jsPDF||window.jsPDF;
-  if(!jsPDF){alert('PDF library is not ready. Try Print instead.');return}
-  const doc=new jsPDF({unit:'mm',format:'a4'});
-  const margin=14, maxW=182;
-  let y=margin;
-  doc.setFont('helvetica','bold'); doc.setFontSize(16);
-  doc.text(String(d.school||'Marksheet'), 105, y, {align:'center'}); y+=8;
-  doc.setFontSize(11); doc.setFont('helvetica','normal');
-  if(d.address){doc.setTextColor(100); doc.text(String(d.address),105,y,{align:'center'}); y+=6; doc.setTextColor(0);}
-  doc.setFont('helvetica','bold'); doc.setFontSize(12);
-  doc.text(String(d.exam||'Examination')+(d.session?(' · '+d.session):''),105,y,{align:'center'}); y+=10;
-  doc.setFontSize(10); doc.setFont('helvetica','normal');
-  doc.text('Student: '+String(d.name||''), margin, y); doc.text('Roll No: '+String(d.roll||'—'), 120, y); y+=6;
-  doc.text('Class: '+String(d.cls||'—')+(d.section?(' – '+d.section):''), margin, y);
-  doc.text('Parent: '+String(d.father||'—'), 120, y); y+=6;
-  if(d.mother){doc.text('Mother: '+String(d.mother), margin, y); y+=6;}
-  y+=4;
-  doc.setFillColor(67,56,202); doc.rect(margin, y-4, maxW, 8, 'F');
-  doc.setTextColor(255); doc.setFont('helvetica','bold');
-  doc.text('#', margin+3, y+1); doc.text('Subject', margin+12, y+1); doc.text('Obt.', margin+100, y+1); doc.text('Max', margin+125, y+1); doc.text('%', margin+150, y+1);
-  doc.setTextColor(0); doc.setFont('helvetica','normal'); y+=8;
+  if(!jsPDF){alert('PDF library is not ready. Wait 2 seconds and try again, or use Print.');return}
+
+  // Canvas path so Hindi / Unicode school & student names render correctly
+  const scale=2;
+  const pxPerMm=(96/25.4)*scale;
+  const pageW=Math.round(210*pxPerMm), pageH=Math.round(297*pxPerMm);
+  const margin=Math.round(14*pxPerMm);
+  const canvas=document.createElement('canvas');
+  canvas.width=pageW; canvas.height=pageH;
+  const ctx=canvas.getContext('2d');
+  const fontFamily='"Noto Sans Devanagari","Noto Sans","Mangal","Segoe UI",system-ui,sans-serif';
+  const fillBg=()=>{ctx.fillStyle='#fff';ctx.fillRect(0,0,pageW,pageH);ctx.strokeStyle='#4f46e5';ctx.lineWidth=4;ctx.strokeRect(8,8,pageW-16,pageH-16);};
+  fillBg();
+  ctx.fillStyle='#111';
+  ctx.textAlign='center';
+  ctx.font='bold '+Math.round(18*scale)+'px '+fontFamily;
+  let y=margin+10;
+  ctx.fillText(String(d.school||'Marksheet'), pageW/2, y); y+=Math.round(22*scale);
+  ctx.font=Math.round(11*scale)+'px '+fontFamily; ctx.fillStyle='#555';
+  if(d.address){ctx.fillText(String(d.address), pageW/2, y); y+=Math.round(16*scale);}
+  ctx.fillStyle='#111'; ctx.font='bold '+Math.round(13*scale)+'px '+fontFamily;
+  ctx.fillText(String(d.exam||'Examination')+(d.session?(' · '+d.session):''), pageW/2, y); y+=Math.round(28*scale);
+  ctx.textAlign='left'; ctx.font=Math.round(12*scale)+'px '+fontFamily;
+  ctx.fillText('Student: '+String(d.name||''), margin, y);
+  ctx.fillText('Roll No: '+String(d.roll||'—'), pageW/2+20, y); y+=Math.round(18*scale);
+  ctx.fillText('Class: '+String(d.cls||'—')+(d.section?(' – '+d.section):''), margin, y);
+  ctx.fillText('Parent: '+String(d.father||'—'), pageW/2+20, y); y+=Math.round(18*scale);
+  if(d.mother){ctx.fillText('Mother: '+String(d.mother), margin, y); y+=Math.round(18*scale);}
+  y+=Math.round(8*scale);
+  // table header
+  const cols=[margin, margin+Math.round(30*scale), margin+Math.round(220*scale), margin+Math.round(300*scale), margin+Math.round(370*scale)];
+  const rowH=Math.round(18*scale);
+  ctx.fillStyle='#4338ca'; ctx.fillRect(margin, y, pageW-margin*2, rowH);
+  ctx.fillStyle='#fff'; ctx.font='bold '+Math.round(11*scale)+'px '+fontFamily;
+  ctx.fillText('#', cols[0]+6, y+Math.round(13*scale));
+  ctx.fillText('Subject', cols[1], y+Math.round(13*scale));
+  ctx.fillText('Obt.', cols[2], y+Math.round(13*scale));
+  ctx.fillText('Max', cols[3], y+Math.round(13*scale));
+  ctx.fillText('%', cols[4], y+Math.round(13*scale));
+  y+=rowH;
+  ctx.fillStyle='#111'; ctx.font=Math.round(11*scale)+'px '+fontFamily;
   (d.subjects||[]).forEach(function(s,i){
-    if(y>270){doc.addPage(); y=margin;}
-    doc.text(String(i+1), margin+3, y);
-    doc.text(doc.splitTextToSize(String(s.sub||''), 80)[0], margin+12, y);
-    doc.text(String(s.obt), margin+100, y); doc.text(String(s.max), margin+125, y); doc.text(String(s.sp)+'%', margin+150, y);
-    y+=7;
+    if(y>pageH-margin-Math.round(80*scale)){ /* single page limit */ return; }
+    if(i%2===1){ctx.fillStyle='#f1f5f9';ctx.fillRect(margin,y,pageW-margin*2,rowH);ctx.fillStyle='#111';}
+    ctx.fillText(String(i+1), cols[0]+6, y+Math.round(13*scale));
+    ctx.fillText(String(s.sub||'').slice(0,28), cols[1], y+Math.round(13*scale));
+    ctx.fillText(String(s.obt), cols[2], y+Math.round(13*scale));
+    ctx.fillText(String(s.max), cols[3], y+Math.round(13*scale));
+    ctx.fillText(String(s.sp)+'%', cols[4], y+Math.round(13*scale));
+    y+=rowH;
   });
-  doc.setFont('helvetica','bold');
-  doc.text('TOTAL', margin+12, y); doc.text(String(d.obtainedSum), margin+100, y); doc.text(String(d.maxSum), margin+125, y); doc.text((+d.pct).toFixed(2)+'%', margin+150, y);
-  y+=10;
-  doc.text('Percentage: '+(+d.pct).toFixed(2)+'%   |   Grade: '+d.grade+'   |   '+d.result, margin, y);
-  y+=20;
-  doc.setFont('helvetica','normal'); doc.setFontSize(9);
-  doc.text('________________', margin+10, y); doc.text('________________', 130, y); y+=5;
-  doc.text(String(d.teacher||'Class Teacher'), margin+10, y); doc.text(String(d.principal||'Principal'), 130, y); y+=4;
-  doc.setTextColor(120); doc.text('Class Teacher', margin+10, y); doc.text('Principal / Head', 130, y);
+  ctx.font='bold '+Math.round(12*scale)+'px '+fontFamily;
+  y+=Math.round(6*scale);
+  ctx.fillText('TOTAL: '+d.obtainedSum+' / '+d.maxSum+'   |   '+(+d.pct).toFixed(2)+'%   |   Grade: '+d.grade+'   |   '+d.result, margin, y);
+  y+=Math.round(40*scale);
+  ctx.font=Math.round(11*scale)+'px '+fontFamily;
+  ctx.textAlign='center';
+  ctx.fillText('____________________', pageW*0.28, y);
+  ctx.fillText('____________________', pageW*0.72, y);
+  y+=Math.round(16*scale);
+  ctx.font='bold '+Math.round(11*scale)+'px '+fontFamily;
+  ctx.fillText(String(d.teacher||'Class Teacher'), pageW*0.28, y);
+  ctx.fillText(String(d.principal||'Principal'), pageW*0.72, y);
+  y+=Math.round(14*scale);
+  ctx.font=Math.round(10*scale)+'px '+fontFamily; ctx.fillStyle='#64748b';
+  ctx.fillText('Class Teacher', pageW*0.28, y);
+  ctx.fillText('Principal / Head', pageW*0.72, y);
+
+  const doc=new jsPDF({unit:'mm',format:'a4'});
+  doc.addImage(canvas.toDataURL('image/jpeg',0.93),'JPEG',0,0,210,297);
   var baseName=(d.name||'student').toString().trim().replace(/[\\/:*?"<>|]+/g,'-')||'student';
+  const blob=doc.output('blob');
+  rememberFile('marksPercent',blob,baseName+'-marksheet.pdf');
   doc.save(baseName+'-marksheet.pdf');
 }
 function shareMarksheetWA(){
@@ -2795,12 +2859,108 @@ async function compressImage(){
   URL.revokeObjectURL(url);
 }
 
+
+
+function resetImagesToPDF(){
+  if($('pdfImages')) $('pdfImages').value='';
+  const box=$('imagePDFPreview');
+  if(box){box.classList.add('hidden');box.innerHTML='';}
+  if($('pdfResult')) $('pdfResult').innerHTML='';
+  try{ delete generatedFiles['imagePDF']; }catch(e){}
+}
+
+function resetPdfToImages(){
+  if($('pdfInput')) $('pdfInput').value='';
+  if($('pdfScale')) $('pdfScale').value=2;
+  if($('pdfImgFormat')) $('pdfImgFormat').value='image/png';
+  if($('pdfPreview')) $('pdfPreview').innerHTML='';
+  if($('pdfImageActions')) $('pdfImageActions').classList.add('hidden');
+  if($('pdfImageResult')) $('pdfImageResult').innerHTML='';
+  pdfImageFiles=[];
+}
+function resetTextWord(){
+  if($('wordDocText')) $('wordDocText').value='';
+  if($('wordDocFileName')) $('wordDocFileName').value='kaam-kaaj-document';
+  if($('wordDocFontSize')) $('wordDocFontSize').value=12;
+  if($('textWordResult')) $('textWordResult').innerHTML='';
+  try{ delete generatedFiles['textWord']; }catch(e){}
+}
+function resetPdfWord(){
+  if($('pdfWordInput')) $('pdfWordInput').value='';
+  if($('pdfWordPages')) $('pdfWordPages').value='';
+  if($('pdfWordFileInfo')){ $('pdfWordFileInfo').classList.add('hidden'); $('pdfWordFileInfo').innerHTML=''; }
+  if($('pdfWordPreview')){ $('pdfWordPreview').classList.add('hidden'); $('pdfWordPreview').innerHTML=''; }
+  if($('pdfWordResult')) $('pdfWordResult').innerHTML='';
+  try{ if(typeof pdfWordClearPreview==='function') pdfWordClearPreview(); }catch(e){}
+  try{ delete generatedFiles['pdfWord']; }catch(e){}
+}
+function resetVideoCompress(){
+  if($('videoFile')) $('videoFile').value='';
+  if($('videoPreset')) $('videoPreset').value='reel';
+  try{ if(typeof applyVideoPreset==='function') applyVideoPreset(); }catch(e){}
+  if($('videoResult')) $('videoResult').innerHTML='';
+  try{ delete generatedFiles['videoCompress']; }catch(e){}
+}
+function resetMarksheet(){
+  ['msSchool','msAddress','msSession','msExam','msName','msRoll','msClass','msSection','msFather','msMother','msTeacher','msPrincipal'].forEach(function(id){ if($(id)) $(id).value=''; });
+  const tb=$('marksBody'); if(tb) tb.innerHTML='';
+  if($('marksPercentResult')) $('marksPercentResult').innerHTML='';
+  window._msData=null;
+  try{ delete generatedFiles['marksPercent']; }catch(e){}
+}
+function resetSalarySlip(){
+  const defaults={ssCompany:'',ssAddress:'',ssName:'',ssId:'',ssDesig:'',ssDept:'',ssMonth:'',ssYear:'',ssPAN:'',ssBank:'',ssBasic:'15000',ssHRA:'6000',ssConv:'1600',ssMed:'1250',ssSpecial:'5000',ssOtherE:'0',ssPF:'3600',ssESI:'0',ssPT:'200',ssTDS:'0',ssOtherD:'0'};
+  Object.keys(defaults).forEach(function(id){ if($(id)) $(id).value=defaults[id]; });
+  try{ if(typeof renderSalarySlip==='function') renderSalarySlip(); }catch(e){}
+}
+function resetInvoice(){
+  if($('invBizName')) $('invBizName').value='Your Business Name';
+  if($('invBizAddr')) $('invBizAddr').value='123 Business Street, City, State - 110001';
+  if($('invGSTIN')) $('invGSTIN').value='29ABCDE1234F1Z5';
+  if($('invPhone')) $('invPhone').value='+91 98765 43210';
+  if($('invNumber')) $('invNumber').value='INV-001';
+  if($('invClientName')) $('invClientName').value='Client Name';
+  if($('invClientAddr')) $('invClientAddr').value='Client Address, City - 110002';
+  if($('invClientGSTIN')) $('invClientGSTIN').value='';
+  const tb=$('invItemsBody'); if(tb) tb.innerHTML='';
+  try{ if(typeof addInvoiceItem==='function') addInvoiceItem(); }catch(e){}
+  try{ if(typeof renderInvoice==='function') renderInvoice(); }catch(e){}
+}
+
+function resetTextPDF(){
+  if($('pdfText')) $('pdfText').value='';
+  if($('pdfFontSize')) $('pdfFontSize').value=12;
+  if($('pdfMargin')) $('pdfMargin').value=15;
+  if($('pdfFileName')) $('pdfFileName').value='kaam-kaaj-text';
+  const box=$('textPDFPreview');
+  if(box){box.classList.add('hidden');box.innerHTML='';}
+  if($('textPDFResult')) $('textPDFResult').innerHTML='';
+  try{ delete generatedFiles['textPDF']; }catch(e){}
+}
+
+async function previewImagesToPDF(){
+  const files=[...($('pdfImages')?.files||[])];
+  const box=$('imagePDFPreview');
+  if(!box)return;
+  if(!files.length){box.classList.add('hidden');box.innerHTML='';return setR('pdfResult','Choose one or more images to preview.');}
+  box.classList.remove('hidden');
+  box.innerHTML='<div class="text-sm font-semibold mb-2">📄 Page preview ('+files.length+' page'+(files.length>1?'s':'')+')</div><div class="grid grid-cols-2 md:grid-cols-3 gap-3" id="imagePDFPreviewGrid"></div>';
+  const grid=$('imagePDFPreviewGrid');
+  for(let i=0;i<files.length;i++){
+    const url=URL.createObjectURL(files[i]);
+    const card=document.createElement('div');
+    card.className='rounded-xl border border-slate-200 bg-white p-2 text-center';
+    card.innerHTML='<img src="'+url+'" alt="Page '+(i+1)+'" class="max-h-40 mx-auto object-contain rounded-lg mb-1"/><div class="text-xs text-slate-500">Page '+(i+1)+' · '+escapeHtml(files[i].name)+'</div>';
+    grid.appendChild(card);
+  }
+  setR('pdfResult','Preview ready — check page order, then tap <b>Create PDF</b>.');
+}
 async function imagesToPDF(){
   const files=[...$('pdfImages').files];
   if(!files.length)return setR('pdfResult','Choose one or more images.');
   const jspdfNS=window.jspdf||{};
   const jsPDF=jspdfNS.jsPDF||window.jsPDF;
-  if(!jsPDF)return setR('pdfResult','PDF library is loading. Please wait a second and try again.');
+  if(!jsPDF)return setR('pdfResult','PDF library is loading. Please wait 2 seconds and try again.');
   let doc=null;
   try{
     for(let i=0;i<files.length;i++){
@@ -2823,27 +2983,112 @@ async function imagesToPDF(){
   }catch(e){setR('pdfResult','Could not create the PDF. Please use valid JPG, PNG or WEBP images.');}
 }
 function fileData(f){return new Promise(r=>{let x=new FileReader();x.onload=()=>r(x.result);x.readAsDataURL(f)})}function loadImg(src){return new Promise(r=>{let i=new Image();i.onload=()=>r(i);i.src=src})}
+
+/** Build Unicode-safe page canvases for Text→PDF (Hindi + English). Returns dataURL[] */
+function buildTextPDFPages(){
+  const text=($('pdfText')?.value||'').trim();
+  if(!text) return null;
+  const size=Math.max(8,Math.min(30,+$('pdfFontSize')?.value||12));
+  const marginMm=Math.max(5,Math.min(40,+$('pdfMargin')?.value||15));
+  const scale=2;
+  const pxPerMm=(96/25.4)*scale;
+  const pageWpx=Math.round(210*pxPerMm);
+  const pageHpx=Math.round(297*pxPerMm);
+  const marginPx=Math.round(marginMm*pxPerMm);
+  const fontPx=Math.max(12,Math.round(size*(96/72)*scale));
+  const lineH=Math.round(fontPx*1.45);
+  const maxW=pageWpx-marginPx*2;
+  const fontFamily='"Noto Sans Devanagari","Noto Sans","Mangal","Arial Unicode MS","Segoe UI",system-ui,sans-serif';
+  const canvas=document.createElement('canvas');
+  canvas.width=pageWpx; canvas.height=pageHpx;
+  const ctx=canvas.getContext('2d');
+  ctx.font=fontPx+'px '+fontFamily;
+  ctx.textBaseline='top';
+  function wrapLine(str){
+    if(!str) return [''];
+    const words=str.split(/(\s+)/);
+    const lines=[]; let cur='';
+    for(let i=0;i<words.length;i++){
+      const test=cur+words[i];
+      if(ctx.measureText(test).width>maxW && cur){ lines.push(cur); cur=words[i].replace(/^\s+/,''); }
+      else cur=test;
+    }
+    if(cur!=='') lines.push(cur);
+    const out=[];
+    for(const ln of lines){
+      if(ctx.measureText(ln).width<=maxW){ out.push(ln); continue; }
+      let chunk='';
+      for(const ch of ln){
+        if(ctx.measureText(chunk+ch).width>maxW && chunk){ out.push(chunk); chunk=ch; }
+        else chunk+=ch;
+      }
+      if(chunk) out.push(chunk);
+    }
+    return out.length?out:[''];
+  }
+  const allLines=[];
+  for(const para of text.replace(/\r/g,'').split('\n')){
+    for(const ln of wrapLine(para)) allLines.push(ln);
+    allLines.push('');
+  }
+  if(allLines.length && allLines[allLines.length-1]==='') allLines.pop();
+  const linesPerPage=Math.max(1,Math.floor((pageHpx-marginPx*2)/lineH));
+  const pages=[];
+  for(let i=0;i<allLines.length;i+=linesPerPage){
+    const slice=allLines.slice(i,i+linesPerPage);
+    ctx.fillStyle='#fff'; ctx.fillRect(0,0,pageWpx,pageHpx);
+    ctx.fillStyle='#111'; ctx.font=fontPx+'px '+fontFamily; ctx.textBaseline='top';
+    let y=marginPx;
+    for(const ln of slice){ if(ln) ctx.fillText(ln,marginPx,y); y+=lineH; }
+    pages.push(canvas.toDataURL('image/jpeg',0.92));
+  }
+  if(!pages.length){
+    ctx.fillStyle='#fff'; ctx.fillRect(0,0,pageWpx,pageHpx);
+    pages.push(canvas.toDataURL('image/jpeg',0.92));
+  }
+  return pages;
+}
+function previewTextPDF(){
+  const pages=buildTextPDFPages();
+  const box=$('textPDFPreview');
+  if(!pages){ if(box){box.classList.add('hidden');box.innerHTML='';} return setR('textPDFResult','Enter some text first.'); }
+  if(!box) return;
+  box.classList.remove('hidden');
+  let html='<div class="text-sm font-semibold mb-2">📄 PDF preview ('+pages.length+' page'+(pages.length>1?'s':'')+') — Hindi / English</div><div class="space-y-3">';
+  pages.forEach(function(src,i){
+    html+='<div class="rounded-xl border border-slate-200 bg-slate-50 p-2"><div class="text-xs text-slate-500 mb-1">Page '+(i+1)+'</div><img src="'+src+'" alt="Page '+(i+1)+'" class="w-full max-w-md mx-auto rounded-lg shadow border border-slate-100"/></div>';
+  });
+  html+='</div>';
+  box.innerHTML=html;
+  setR('textPDFResult','Preview ready — if text looks correct, tap <b>Create PDF</b>.');
+}
 function textToPDF(){
-  const text=$('pdfText').value.trim();
-  if(!text)return setR('textPDFResult','Enter some text first.');
+  const pages=buildTextPDFPages();
+  if(!pages)return setR('textPDFResult','Enter some text first.');
   const jspdfNS=window.jspdf||{};
   const jsPDF=jspdfNS.jsPDF||window.jsPDF;
-  if(!jsPDF)return setR('textPDFResult','PDF library is loading. Please wait a second and try again.');
-  const size=Math.max(8,Math.min(30,+$('pdfFontSize').value||12));
-  const margin=Math.max(5,Math.min(40,+$('pdfMargin').value||15));
+  if(!jsPDF)return setR('textPDFResult','PDF library is loading. Please wait 2 seconds and try again.');
   const filename=($('pdfFileName').value.trim()||'kaam-kaaj-text').replace(/[\\/:*?"<>|]+/g,'-');
-  const doc=new jsPDF({unit:'mm',format:'a4'}), pageW=210,pageH=297,maxW=pageW-margin*2,lineH=Math.max(4,size*0.42+2);
-  doc.setFont('helvetica','normal');doc.setFontSize(size);let y=margin;
-  for(const para of text.replace(/\r/g,'').split('\n')){
-    const lines=para?doc.splitTextToSize(para,maxW):[''];
-    for(const line of lines){if(y>pageH-margin){doc.addPage();y=margin;}doc.text(line,margin,y);y+=lineH;}
-    y+=2;
-  }
+  const doc=new jsPDF({unit:'mm',format:'a4'});
+  pages.forEach(function(img,i){
+    if(i) doc.addPage();
+    doc.addImage(img,'JPEG',0,0,210,297);
+  });
   const blob=doc.output('blob');
   const name=filename+'.pdf';
   rememberFile('textPDF',blob,name);
-  setR('textPDFResult','<b>PDF ready ✓</b><br>Use Save / Download, Share or Print below.'+fileActions('textPDF'));
+  // also refresh preview so user sees same pages
+  const box=$('textPDFPreview');
+  if(box){
+    box.classList.remove('hidden');
+    let html='<div class="text-sm font-semibold mb-2">📄 PDF created ('+pages.length+' page'+(pages.length>1?'s':'')+')</div><div class="space-y-3">';
+    pages.forEach(function(src,i){ html+='<div class="rounded-xl border border-slate-200 bg-slate-50 p-2"><div class="text-xs text-slate-500 mb-1">Page '+(i+1)+'</div><img src="'+src+'" class="w-full max-w-md mx-auto rounded-lg shadow"/></div>'; });
+    html+='</div>';
+    box.innerHTML=html;
+  }
+  setR('textPDFResult','<b>PDF ready ✓</b><br>Hindi / English text supported.<br>Use Save / Download, Share or Print below.'+fileActions('textPDF'));
 }
+
 let pdfImageFiles=[];
 async function pdfToImages(){
   const file=$('pdfInput').files[0];if(!file)return setR('pdfImageResult','Choose a PDF file.');
@@ -2998,6 +3243,20 @@ async function convertCurrency(useInternet=true){
   }
 }
 function swapCurrency(){const a=$('curFrom').value,b=$('curTo').value;$('curFrom').value=b;$('curTo').value=a;} 
+
+function ensureJsPDF(){
+  return new Promise(function(resolve){
+    const get=()=>{const ns=window.jspdf||{};return ns.jsPDF||window.jsPDF||null;};
+    if(get()) return resolve(get());
+    let n=0;
+    const id=setInterval(function(){
+      n++;
+      const f=get();
+      if(f||n>40){clearInterval(id);resolve(f||null);}
+    },50);
+  });
+}
+
 function downloadBlob(blob,name){const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},1000)}
 function safeFileName(name,ext){return ((name||'kaam-kaaj-document').trim().replace(/[\\/:*?"<>|]+/g,'-')||'kaam-kaaj-document')+ext}
 /* Local file helpers: no document-generation library is required. */
@@ -3224,7 +3483,7 @@ function base64Decode(){const v=$('base64Text').value.trim();try{const bin=atob(
 async function generateHashes(){const text=$('hashText').value; if(!text)return setR('hashResult','Enter text first.'); const enc=new TextEncoder().encode(text); let out=''; for(const name of ['SHA-1','SHA-256','SHA-512']){const buf=await crypto.subtle.digest(name,enc);out+=`<div class="mb-2"><b>${name}</b><br><code>${[...new Uint8Array(buf)].map(x=>x.toString(16).padStart(2,'0')).join('')}</code></div>`;} setR('hashResult',out);}
 function copyHash(which){const el=document.querySelector('#hashResult code');if(el)navigator.clipboard?.writeText(el.textContent);}
 function updateShadow(){const x=+$('shadowX').value||0,y=+$('shadowY').value||0,b=+$('shadowBlur').value||0,sp=+$('shadowSpread').value||0,o=Math.min(1,Math.max(0,+$('shadowOpacity').value||0)),hex=$('shadowColor').value||'#000';const n=parseInt(hex.slice(1),16),r=n>>16,g=n>>8&255,bl=n&255;const css=`box-shadow: ${x}px ${y}px ${b}px ${sp}px rgba(${r}, ${g}, ${bl}, ${o});`;$('shadowPreview').style.boxShadow=`${x}px ${y}px ${b}px ${sp}px rgba(${r},${g},${bl},${o})`;$('shadowCode').value=css;}
-function resizeImage(){const f=$('resizeFile').files[0];if(!f)return setR('resizeResult','Choose an image.');const im=new Image(),url=URL.createObjectURL(f);im.onload=()=>{let w=+$('resizeWidth').value||im.width,h=+$('resizeHeight').value||0;if($('resizeKeep').checked){const ratio=im.height/im.width;if(!w&&h)w=Math.round(h/ratio);h=Math.round(w*ratio);}else{h=h||im.height;}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(im,0,0,w,h);c.toBlob(blob=>{const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='kaam-kaaj-resized-image.jpg';a.click();setR('resizeResult',`Resized image: <b>${w} × ${h}px</b><br>Output: <b>${(blob.size/1024).toFixed(1)} KB</b>`);URL.revokeObjectURL(url);},'image/jpeg',Math.min(1,Math.max(.1,+$('resizeQuality').value||.9)));};im.onerror=()=>setR('resizeResult','Could not read this image.');im.src=url;}
+function resizeImage(){const f=$('resizeFile').files[0];if(!f)return setR('resizeResult','Choose an image.');const im=new Image(),url=URL.createObjectURL(f);im.onload=()=>{let w=+$('resizeWidth').value||im.width,h=+$('resizeHeight').value||0;if($('resizeKeep').checked){const ratio=im.height/im.width;if(!w&&h)w=Math.round(h/ratio);h=Math.round(w*ratio);}else{h=h||im.height;}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(im,0,0,w,h);c.toBlob(blob=>{const name='kaam-kaaj-resized-image.jpg';rememberFile('imageResize',blob,name);setR('resizeResult',`Resized image: <b>${w} × ${h}px</b><br>Output: <b>${(blob.size/1024).toFixed(1)} KB</b>`+fileActions('imageResize'));URL.revokeObjectURL(url);},'image/jpeg',Math.min(1,Math.max(.1,+$('resizeQuality').value||.9)));};im.onerror=()=>setR('resizeResult','Could not read this image.');im.src=url;}
 function svgToPng(){const f=$('svgFile').files[0];if(!f)return setR('svgResult','Choose an SVG file.');const reader=new FileReader();reader.onload=()=>{const svgText=reader.result;const blob=new Blob([svgText],{type:'image/svg+xml'});const url=URL.createObjectURL(blob),im=new Image();im.onload=()=>{const w=+$('svgWidth').value||im.naturalWidth||1200,h=+$('svgHeight').value||Math.round(w*(im.naturalHeight/im.naturalWidth||1));const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(im,0,0,w,h);c.toBlob(out=>{const a=document.createElement('a');a.href=URL.createObjectURL(out);a.download='kaam-kaaj-svg.png';a.click();setR('svgResult',`Converted to PNG: <b>${w} × ${h}px</b>`);URL.revokeObjectURL(url);},'image/png');};im.onerror=()=>setR('svgResult','This SVG could not be rendered by the browser.');im.src=url;};reader.readAsText(f);}
 function generatePalette(){const hex=$('paletteColor').value;const n=parseInt(hex.slice(1),16),r=n>>16,g=n>>8&255,b=n&255;function rgbToHsl(r,g,b){r/=255;g/=255;b/=255;let max=Math.max(r,g,b),min=Math.min(r,g,b),h,s,l=(max+min)/2;if(max===min)h=s=0;else{let d=max-min;s=l>.5?d/(2-max-min):d/(max+min);switch(max){case r:h=(g-b)/d+(g<b?6:0);break;case g:h=(b-r)/d+2;break;default:h=(r-g)/d+4;}h/=6;}return[h*360,s*100,l*100];}function hsl(h,s,l){return `hsl(${h},${s}%,${l}%)`;}const [h,s,l]=rgbToHsl(r,g,b),vals=[l-24,l-12,l,l+12,l+24].map(x=>Math.max(8,Math.min(92,x)));$('paletteGrid').innerHTML=vals.map(x=>{const c=hsl(h,s,x);return `<button class="rounded-2xl p-5 text-white font-bold min-h-28" style="background:${c}" onclick="navigator.clipboard?.writeText(this.dataset.hex)" data-hex="${hslToHex(h,s,x)}">${hslToHex(h,s,x)}</button>`}).join('');setR('paletteResult','Tap a color to copy its HEX value.');}
 function hslToHex(h,s,l){s/=100;l/=100;const k=n=>(n+h/30)%12,a=s*Math.min(l,1-l),f=n=>l-a*Math.max(-1,Math.min(k(n)-3,Math.min(9-k(n),1)));return '#'+[f(0),f(8),f(4)].map(x=>Math.round(255*x).toString(16).padStart(2,'0')).join('').toUpperCase();}
