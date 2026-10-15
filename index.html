@@ -45,6 +45,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js" defer></script>
+<script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js" defer></script>
 <script defer>document.addEventListener('DOMContentLoaded',function(){if(window.pdfjsLib){pdfjsLib.GlobalWorkerOptions.workerSrc="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";}});</script>
 <style>
 *{box-sizing:border-box} body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji","Apple Color Emoji",emoji,sans-serif}
@@ -339,6 +340,7 @@ body.tool-mode #appLayout{display:flex!important}
     <a href="/discount-calculator" onclick="event.preventDefault();openTool('discount')">Discount Price Calculator — Sale Price & Offer Percentage</a>
     <a href="/image-compressor" onclick="event.preventDefault();openTool('imageCompress')">Photo Compressor — Reduce Image Size in KB/MB</a>
     <a href="/images-to-pdf" onclick="event.preventDefault();openTool('imagePDF')">JPG to PDF Converter — Merge Images to PDF Free</a>
+    <a href="/image-to-excel" onclick="event.preventDefault();openTool('imageExcel')">Image to Excel Converter — Table Photo to Full Sheet XLSX</a>
     <a href="/pdf-to-word" onclick="event.preventDefault();openTool('pdfWord')">PDF to Word Converter Free — PDF to DOCX Online</a>
   </div>
 </section>
@@ -358,6 +360,7 @@ body.tool-mode #appLayout{display:flex!important}
       <a href="/unit-converter" onclick="event.preventDefault();openTool('unit')">Unit Converter — Length, Weight & Temperature</a>
       <a href="/image-compressor" onclick="event.preventDefault();openTool('imageCompress')">Image Compressor — Reduce JPG & PNG Size</a>
       <a href="/images-to-pdf" onclick="event.preventDefault();openTool('imagePDF')">JPG to PDF — Convert Images to PDF Free</a>
+      <a href="/image-to-excel" onclick="event.preventDefault();openTool('imageExcel')">Image to Excel — Photo / Table to XLSX Converter</a>
       <a href="/text-to-pdf" onclick="event.preventDefault();openTool('textPDF')">Text to PDF Converter Free Online</a>
       <a href="/pdf-to-image" onclick="event.preventDefault();openTool('pdfImage')">PDF to JPG Converter — PDF to Image Free</a>
       <a href="/text-to-word" onclick="event.preventDefault();openTool('textWord')">Text to Word — Create DOCX Online</a>
@@ -574,6 +577,41 @@ body.tool-mode #appLayout{display:flex!important}
 </div>
 <div id="imagePDFPreview" class="hidden mt-4"></div>
 <Result id="pdfResult"/></section>
+
+<section id="imageExcel" class="tool tool-accent" style="--ac:#059669"><ToolTitle>📊 Image to Excel Converter — Photo / Table to XLSX</ToolTitle>
+<p class="text-slate-500 mb-4 text-sm">Upload one or more images of tables, marksheets, invoices or handwritten lists. OCR extracts the text and builds a full Excel workbook (one sheet per image). Processing stays in your browser.</p>
+<input type="file" id="imgExcelFiles" accept="image/*" multiple class="input" onchange="previewImageExcel()">
+<div class="grid md:grid-cols-2 gap-3 mt-4">
+  <div>
+    <label class="block text-sm font-semibold mb-2">OCR Language</label>
+    <select id="imgExcelLang" class="input">
+      <option value="eng" selected>English</option>
+      <option value="hin">Hindi</option>
+      <option value="eng+hin">English + Hindi</option>
+    </select>
+  </div>
+  <div>
+    <label class="block text-sm font-semibold mb-2">Column Split Mode</label>
+    <select id="imgExcelSplit" class="input">
+      <option value="auto" selected>Auto (spaces / tabs)</option>
+      <option value="pipe">Pipe | separated</option>
+      <option value="comma">Comma separated</option>
+      <option value="line">One column (full line)</option>
+    </select>
+  </div>
+</div>
+<div class="mt-3 flex items-center gap-2">
+  <input type="checkbox" id="imgExcelHeader" checked>
+  <label for="imgExcelHeader" class="text-sm">Treat first row of each sheet as header</label>
+</div>
+<div id="imgExcelPreview" class="hidden mt-4"></div>
+<div class="mt-4 flex flex-wrap gap-2">
+  <button class="btn" onclick="convertImagesToExcel()">⚡ Convert to Excel</button>
+  <button class="smallbtn" onclick="resetImageExcel()">↺ Reset</button>
+</div>
+<p class="text-[11px] text-slate-400 mt-3">Tip: Clear, well-lit photos of printed tables work best. Scanned sheets and high-contrast screenshots give the most complete Excel rows. Complex multi-column layouts may need a quick cleanup in Excel after download.</p>
+<div id="imageExcelResult" class="mt-4"></div>
+</section>
 
 <!-- PDF Tools -->
 <section id="textPDF" class="tool"><ToolTitle>📝 Text to PDF Converter</ToolTitle>
@@ -1529,7 +1567,8 @@ const tools=[
 ['cgpaPercent','🎓','CGPA to Percentage','Education'],['cgpaCalc','📚','CGPA Calculator','Education'],['gpaCalc','📖','GPA Calculator','Education'],['marksPercent','📊','Marks Percentage','Education'],
 ['labourWage','👷','Labour Wage Calculator','Business'],['contractMargin','📐','Contract Margin Calculator','Business'],
 ['solarLoad','☀️','Solar Panel Load Calculator','Energy'],['batteryBackup','🔋','Battery Backup Time Calculator','Energy'],['wireGauge','🔌','Cable Size Calculator','Energy'],
-['landAreaConverter','🌾','Land Area Converter','Converter'],['indianWeightConverter','⚖️','Indian Weight Converter','Converter']
+['landAreaConverter','🌾','Land Area Converter','Converter'],['indianWeightConverter','⚖️','Indian Weight Converter','Converter'],
+['imageExcel','📊','Image to Excel Converter','Image/PNG/PDF']
 ];
 const $=id=>document.getElementById(id);
 function Result({id}){} // placeholder component marker
@@ -2982,6 +3021,152 @@ async function imagesToPDF(){
     setR('pdfResult',`<b>${files.length} image(s)</b> converted into <b>${files.length} PDF page(s)</b>.${fileActions('imagePDF')}`);
   }catch(e){setR('pdfResult','Could not create the PDF. Please use valid JPG, PNG or WEBP images.');}
 }
+
+/* ===================== Image to Excel Converter ===================== */
+function previewImageExcel(){
+  const files=[...($('imgExcelFiles')?.files||[])];
+  const box=$('imgExcelPreview');
+  if(!box)return;
+  if(!files.length){box.classList.add('hidden');box.innerHTML='';return;}
+  box.classList.remove('hidden');
+  let html='<div class="text-sm font-semibold mb-2">📷 Selected images ('+files.length+')</div><div class="grid grid-cols-2 md:grid-cols-4 gap-3">';
+  files.forEach(function(f,i){
+    const url=URL.createObjectURL(f);
+    html+='<div class="rounded-xl border border-slate-200 bg-white p-2 text-center"><img src="'+url+'" alt="Image '+(i+1)+'" class="max-h-28 mx-auto object-contain rounded-lg mb-1"/><div class="text-xs text-slate-500 truncate">'+escapeHtml(f.name)+'</div></div>';
+  });
+  html+='</div>';
+  box.innerHTML=html;
+}
+function resetImageExcel(){
+  if($('imgExcelFiles')) $('imgExcelFiles').value='';
+  if($('imgExcelPreview')){ $('imgExcelPreview').classList.add('hidden'); $('imgExcelPreview').innerHTML=''; }
+  if($('imageExcelResult')) $('imageExcelResult').innerHTML='';
+  try{ delete generatedFiles['imageExcel']; }catch(e){}
+}
+function splitOcrLine(line, mode){
+  const s=(line||'').replace(/\t+/g,'  ').trim();
+  if(!s) return [];
+  if(mode==='line') return [s];
+  if(mode==='pipe') return s.split(/\s*\|\s*/).map(x=>x.trim()).filter(Boolean);
+  if(mode==='comma') return s.split(/\s*,\s*/).map(x=>x.trim()).filter(Boolean);
+  return s.split(/\s{2,}|\t+/).map(x=>x.trim()).filter(Boolean);
+}
+function ocrTextToRows(text, mode){
+  const lines=(text||'').replace(/\r/g,'').split('\n');
+  const rows=[];
+  let maxCols=1;
+  for(const line of lines){
+    const cells=splitOcrLine(line, mode);
+    if(!cells.length) continue;
+    rows.push(cells);
+    if(cells.length>maxCols) maxCols=cells.length;
+  }
+  return rows.map(r=>{
+    const out=r.slice();
+    while(out.length<maxCols) out.push('');
+    return out;
+  });
+}
+let imgExcelOcrWorker=null;
+async function getImgExcelOcrWorker(lang, progressCb){
+  if(!window.Tesseract) throw new Error('OCR engine not loaded. Check internet and try again.');
+  if(!imgExcelOcrWorker){
+    imgExcelOcrWorker=await Tesseract.createWorker(lang,1,{logger:m=>progressCb?.(m)});
+  } else if(imgExcelOcrWorker.__lang!==lang){
+    try{
+      await imgExcelOcrWorker.loadLanguage(lang);
+      await imgExcelOcrWorker.initialize(lang);
+    }catch(e){
+      await imgExcelOcrWorker.terminate();
+      imgExcelOcrWorker=await Tesseract.createWorker(lang,1,{logger:m=>progressCb?.(m)});
+    }
+  }
+  imgExcelOcrWorker.__lang=lang;
+  return imgExcelOcrWorker;
+}
+async function convertImagesToExcel(){
+  const files=[...($('imgExcelFiles')?.files||[])];
+  if(!files.length){
+    $('imageExcelResult').innerHTML=rHero('#94a3b8','CHOOSE IMAGES','Please select one or more images of tables or sheets');
+    return;
+  }
+  if(!window.XLSX){
+    $('imageExcelResult').innerHTML=rHero('#94a3b8','LOADING','Excel library is still loading. Wait 2 seconds and try again.');
+    return;
+  }
+  const lang=$('imgExcelLang')?.value||'eng';
+  const mode=$('imgExcelSplit')?.value||'auto';
+  const asHeader=!!$('imgExcelHeader')?.checked;
+  const setProgress=function(msg,pct){
+    const p=pct!=null?Math.round(pct):null;
+    let bar='';
+    if(p!=null) bar='<div style="margin-top:10px;height:10px;background:#e2e8f0;border-radius:999px;overflow:hidden"><div style="height:100%;width:'+p+'%;background:linear-gradient(90deg,#059669,#34d399);border-radius:999px;transition:width .15s"></div></div><div style="margin-top:6px;font-size:13px;font-weight:700;color:#059669">'+p+'%</div>';
+    $('imageExcelResult').innerHTML='<div class="rounded-2xl border border-emerald-100 bg-emerald-50 p-4"><b>'+msg+'</b>'+bar+'<div class="text-xs text-slate-500 mt-2">Keep this screen open until conversion finishes.</div></div>';
+  };
+  try{
+    setProgress('Starting OCR…',2);
+    const worker=await getImgExcelOcrWorker(lang, function(m){});
+    const wb=XLSX.utils.book_new();
+    let totalRows=0, sheetNames=[];
+    for(let i=0;i<files.length;i++){
+      const f=files[i];
+      const basePct=Math.round((i/files.length)*90);
+      setProgress('OCR image '+(i+1)+' of '+files.length+' — '+escapeHtml(f.name), basePct+2);
+      const {data}=await worker.recognize(f);
+      const text=(data?.text||'').trim();
+      let rows=ocrTextToRows(text, mode);
+      if(!rows.length){ rows=[['']]; }
+      totalRows+=rows.length;
+      const ws=XLSX.utils.aoa_to_sheet(rows);
+      const colCount=rows[0]?rows[0].length:1;
+      const cols=[];
+      for(let c=0;c<colCount;c++){
+        let maxLen=8;
+        for(let r=0;r<rows.length;r++){
+          const cell=String(rows[r][c]||'');
+          if(cell.length>maxLen) maxLen=Math.min(60,cell.length);
+        }
+        cols.push({wch:maxLen+2});
+      }
+      ws['!cols']=cols;
+      let sheetName=('Sheet'+(i+1)+'_'+(f.name||'image').replace(/\.[^.]+$/,'').replace(/[\\/?*\[\]:]/g,'').slice(0,20))||('Sheet'+(i+1));
+      sheetName=sheetName.slice(0,31);
+      let n=sheetName, k=2;
+      while(sheetNames.includes(n)){ n=(sheetName.slice(0,28)+'_'+k).slice(0,31); k++; }
+      sheetNames.push(n);
+      XLSX.utils.book_append_sheet(wb, ws, n);
+      setProgress('Sheet ready: '+n+' ('+rows.length+' rows)', Math.round(((i+1)/files.length)*90));
+    }
+    setProgress('Building Excel file…',95);
+    const out=XLSX.write(wb,{bookType:'xlsx',type:'array'});
+    const blob=new Blob([out],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+    const name='kaam-kaaj-image-to-excel.xlsx';
+    rememberFile('imageExcel',blob,name);
+    let preview='';
+    try{
+      const first=wb.Sheets[sheetNames[0]];
+      const aoa=XLSX.utils.sheet_to_json(first,{header:1,defval:''});
+      const show=aoa.slice(0,12);
+      if(show.length){
+        preview='<div class="mt-3 overflow-auto rounded-xl border border-slate-200"><table class="mini-table"><thead><tr>'+
+          (show[0]||[]).map(function(h,i){return '<th>'+escapeHtml(String(asHeader?h:('Col '+(i+1))))+'</th>';}).join('')+
+          '</tr></thead><tbody>'+
+          show.slice(asHeader?1:0).map(function(row){
+            return '<tr>'+row.map(function(c){return '<td>'+escapeHtml(String(c))+'</td>';}).join('')+'</tr>';
+          }).join('')+
+          '</tbody></table></div>'+(aoa.length>12?'<div class="text-xs text-slate-500 mt-1">Showing first 12 rows of sheet 1. Full data is in the Excel file.</div>':'');
+      }
+    }catch(e){}
+    $('imageExcelResult').innerHTML=
+      rHero('linear-gradient(135deg,#059669,#34d399)','EXCEL READY',files.length+' image'+(files.length>1?'s':'')+' → '+sheetNames.length+' sheet'+(sheetNames.length>1?'s':''), totalRows+' total data rows')+
+      rBox(rRow('Sheets',sheetNames.join(', '))+rRow('Total rows',String(totalRows))+rRow('OCR language',lang)+rRow('Split mode',mode,true))+
+      preview+
+      fileActions('imageExcel');
+  }catch(e){
+    $('imageExcelResult').innerHTML='<div class="rounded-2xl border border-red-200 bg-red-50 p-4 text-red-800"><b>Conversion failed.</b><br><span class="text-sm">'+escapeHtml(e?.message||String(e))+'</span><br><span class="text-xs text-slate-500">Try clearer images, fewer files, or English-only OCR.</span></div>';
+  }
+}
+
 function fileData(f){return new Promise(r=>{let x=new FileReader();x.onload=()=>r(x.result);x.readAsDataURL(f)})}function loadImg(src){return new Promise(r=>{let i=new Image();i.onload=()=>r(i);i.src=src})}
 
 /** Build Unicode-safe page canvases for Text→PDF (Hindi + English). Returns dataURL[] */
